@@ -669,35 +669,6 @@ import Layout from '../layouts/Layout.astro';
     return '';
   }
 
-  /**
-   * Ensures that canonical text always has an H1 title heading
-   */
-  function ensureMarkdownTitle(markdown: string, filePath: string, bookCode: string): string {
-    const trimmed = (markdown || '').trim();
-    const topLines = trimmed.split('\n').slice(0, 25).join('\n');
-    if (/^\s*#\s+[^\n]+/m.test(topLines)) {
-      return markdown;
-    }
-
-    const info = getBookInfo(bookCode);
-    const bookTitleStr = info ? `${bookCode} ${info.title}` : bookCode;
-
-    // Check if markdown starts with breadcrumb navigation lines like [Home](/) / ...
-    const lines = markdown.split('\n');
-    let insertIndex = 0;
-    while (insertIndex < lines.length && (lines[insertIndex].trim().startsWith('[Home]') || lines[insertIndex].trim() === '')) {
-      insertIndex++;
-    }
-
-    const headerMd = `# ${bookTitleStr}\n\n`;
-    if (insertIndex > 0) {
-      const before = lines.slice(0, insertIndex).join('\n');
-      const after = lines.slice(insertIndex).join('\n');
-      return `${before}\n\n${headerMd}${after}`;
-    }
-
-    return `${headerMd}${markdown}`;
-  }
 
   let catalog: CatalogData | null = null;
   const contentCache = new Map<string, string>();
@@ -1107,11 +1078,8 @@ import Layout from '../layouts/Layout.astro';
         fetchMarkdown(compareEdition, rightFile),
       ]);
 
-      const baseWithTitle = ensureMarkdownTitle(baseMd, leftFile, currentBookCode);
-      const compareWithTitle = ensureMarkdownTitle(compareMd, rightFile, currentBookCode);
-
-      currentLeftMd = baseWithTitle;
-      currentRightMd = compareWithTitle;
+      currentLeftMd = baseMd;
+      currentRightMd = compareMd;
 
       // Update Left Pane links
       const leftClean = leftFile.replace(/^\/+/, '');
@@ -1130,21 +1098,21 @@ import Layout from '../layouts/Layout.astro';
       if (rightRawLink) rightRawLink.href = `https://raw.githubusercontent.com/${rightRepo}/${rightBranch}/${rightClean}`;
       if (rightGhLink) rightGhLink.href = `https://github.com/${rightRepo}/blob/${rightBranch}/${rightClean}`;
 
-      let rightRenderMd = compareWithTitle;
+      let rightRenderMd = compareMd;
       if (diffEnabled) {
-        rightRenderMd = highlightPaliDiff(compareWithTitle, baseWithTitle);
+        rightRenderMd = highlightPaliDiff(compareMd, baseMd);
       }
 
       if (leftContentEl) {
         if (showRawMarkdown) {
-          leftContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(baseWithTitle)}</code></pre>`;
+          leftContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(baseMd)}</code></pre>`;
         } else {
-          leftContentEl.innerHTML = convertMarkdownToHtml(baseWithTitle, leftFile, 'tipitaka2500');
+          leftContentEl.innerHTML = convertMarkdownToHtml(baseMd, leftFile, 'tipitaka2500');
         }
       }
       if (rightContentEl) {
         if (showRawMarkdown) {
-          rightContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(compareWithTitle)}</code></pre>`;
+          rightContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(compareMd)}</code></pre>`;
         } else {
           rightContentEl.innerHTML = convertMarkdownToHtml(rightRenderMd, rightFile, compareEdition);
         }
@@ -1167,20 +1135,18 @@ import Layout from '../layouts/Layout.astro';
 
       const targetFile = currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
       const targetMd = await fetchMarkdown(currentEdition, targetFile);
-      const targetWithTitle = ensureMarkdownTitle(targetMd, targetFile, currentBookCode);
-      currentSingleMd = targetWithTitle;
+      currentSingleMd = targetMd;
 
-      let renderMd = targetWithTitle;
+      let renderMd = targetMd;
       if (diffEnabled && currentEdition !== 'tipitaka2500') {
         const baseFile = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
         const baseMd = await fetchMarkdown('tipitaka2500', baseFile);
-        const baseWithTitle = ensureMarkdownTitle(baseMd, baseFile, currentBookCode);
-        renderMd = highlightPaliDiff(targetWithTitle, baseWithTitle);
+        renderMd = highlightPaliDiff(targetMd, baseMd);
       }
 
       if (mainContentEl) {
         if (showRawMarkdown) {
-          mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(targetWithTitle)}</code></pre>`;
+          mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(targetMd)}</code></pre>`;
         } else {
           mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition);
         }
