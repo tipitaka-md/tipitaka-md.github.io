@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <title>Tipiṭaka Multi-Edition - Redirecting</title>
   <script>
-    // GitHub Pages SPA router fallback
-    // Converts pathname to hash path on index.html
-    const segment = window.location.pathname.replace(/^\/+/g, '');
-    if (segment) {
-      window.location.replace('/#' + (segment.startsWith('view/') ? '/' : '/view/') + segment + window.location.search);
+    // GitHub Pages 404 router fallback
+    const pathname = window.location.pathname.replace(/^\/+/g, '');
+    const search = window.location.search;
+    if (pathname && (pathname.startsWith('tipitaka') || pathname.endsWith('.html') || pathname.endsWith('.md'))) {
+      const clean = pathname.replace(/\.html$/, '.md');
+      window.location.replace('/reader.html?file=' + encodeURIComponent(clean) + (search ? '&' + search.slice(1) : ''));
     } else {
       window.location.replace('/');
     }

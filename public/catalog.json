@@ -1,0 +1,4167 @@
+{
+  "editions": {
+    "tipitaka2500": {
+      "name": "World Tipiṭaka 2500",
+      "short_name": "T2500",
+      "repo": "tipitaka-md/tipitaka2500",
+      "branch": "main",
+      "base_path": "tipitaka",
+      "badge": "🌟 World Tipiṭaka 2500",
+      "desc": "Roman Script 2005 / 2020 Edition (Mahāsaṅgīti Tipiṭaka Buddhavasse 2500)"
+    },
+    "pts": {
+      "name": "Pali Text Society",
+      "short_name": "PTS",
+      "repo": "tipitaka-md/pts",
+      "branch": "main",
+      "base_path": "",
+      "badge": "🇬🇧 Pali Text Society",
+      "desc": "Pali Text Society Roman Edition (London / GRETIL)"
+    },
+    "bjt": {
+      "name": "Buddha Jayanthi",
+      "short_name": "BJT",
+      "repo": "tipitaka-md/buddha-jayanthi",
+      "branch": "main",
+      "base_path": "",
+      "badge": "🇱🇰 Buddha Jayanthi",
+      "desc": "Sri Lanka Buddha Jayanthi Tripitaka Series (B.E. 2500)"
+    },
+    "cst": {
+      "name": "Chaṭṭha Saṅgāyana",
+      "short_name": "CST4",
+      "repo": "tipitaka-md/cst",
+      "branch": "main",
+      "base_path": "",
+      "badge": "🇲🇲 Chaṭṭha Saṅgāyana",
+      "desc": "Sixth Buddhist Council Edition (Vipassana Research Institute)"
+    },
+    "siam-rath": {
+      "name": "Siam Rath",
+      "short_name": "Siam",
+      "repo": "tipitaka-md/siam-rath",
+      "branch": "main",
+      "base_path": "",
+      "badge": "🇹🇭 Siam Rath",
+      "desc": "Royal Thai Syāmaraṭṭha Tepiṭakaṃ (King Rama VII)"
+    }
+  },
+  "structure": [
+    {
+      "id": "vinaya",
+      "title": "Vinayapiṭaka",
+      "pali_title": "Vinayapiṭaka",
+      "description": "The Book of the Discipline",
+      "books": [
+        {
+          "code": "1V",
+          "title": "Pārājikapāḷi",
+          "pali_title": "Pārājikapāḷi",
+          "pitaka": "Vinayapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/1V.md",
+            "pts": "vinaya/vb-pj.md",
+            "bjt": "vinaya/vp-prj.md",
+            "cst": "mula/vinaya/vin01m.mul.md",
+            "siam-rath": "vinaya/vol01.md"
+          },
+          "sections": [
+            {
+              "title": "1 Mahāvibhaṅga",
+              "tipitaka2500": "tipitaka/1V/1.md"
+            }
+          ]
+        },
+        {
+          "code": "2V",
+          "title": "Pācittiyapāḷi",
+          "pali_title": "Pācittiyapāḷi",
+          "pitaka": "Vinayapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/2V.md",
+            "pts": "vinaya/vb-pc.md",
+            "bjt": "vinaya/vp-pct.md",
+            "cst": "mula/vinaya/vin02m.mul.md",
+            "siam-rath": "vinaya/vol02.md"
+          },
+          "sections": [
+            {
+              "title": "1 Mahāvibhaṅga",
+              "tipitaka2500": "tipitaka/2V/1.md"
+            },
+            {
+              "title": "2 Bhikkhunivibhaṅga",
+              "tipitaka2500": "tipitaka/2V/2.md"
+            }
+          ]
+        },
+        {
+          "code": "3V",
+          "title": "Mahāvaggapāḷi",
+          "pali_title": "Mahāvaggapāḷi",
+          "pitaka": "Vinayapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/3V.md",
+            "pts": "vinaya/mv01.md",
+            "bjt": "vinaya/vp-mv.md",
+            "cst": "mula/vinaya/vin03m.mul.md",
+            "siam-rath": "vinaya/vol04.md"
+          },
+          "sections": [
+            {
+              "title": "1 Mahākhandhaka",
+              "tipitaka2500": "tipitaka/3V/1.md"
+            },
+            {
+              "title": "2 Uposathakkhandhaka",
+              "tipitaka2500": "tipitaka/3V/2.md"
+            },
+            {
+              "title": "3 Vassūpanāyikakkhandhaka",
+              "tipitaka2500": "tipitaka/3V/3.md"
+            },
+            {
+              "title": "4 Pavāraṇākkhandhaka",
+              "tipitaka2500": "tipitaka/3V/4.md"
+            },
+            {
+              "title": "5 Cammakkhandhaka",
+              "tipitaka2500": "tipitaka/3V/5.md"
+            },
+            {
+              "title": "6 Bhesajjakkhandhaka",
+              "tipitaka2500": "tipitaka/3V/6.md"
+            },
+            {
+              "title": "7 Kathinakkhandhaka",
+              "tipitaka2500": "tipitaka/3V/7.md"
+            },
+            {
+              "title": "8 Cīvarakkhandhaka",
+              "tipitaka2500": "tipitaka/3V/8.md"
+            },
+            {
+              "title": "9 Campeyyakkhandhaka",
+              "tipitaka2500": "tipitaka/3V/9.md"
+            },
+            {
+              "title": "10 Kosambakakkhandhaka",
+              "tipitaka2500": "tipitaka/3V/10.md"
+            }
+          ]
+        },
+        {
+          "code": "4V",
+          "title": "Cūḷavaggapāḷi",
+          "pali_title": "Cūḷavaggapāḷi",
+          "pitaka": "Vinayapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/4V.md",
+            "pts": "vinaya/cv01.md",
+            "bjt": "vinaya/vp-cv.md",
+            "cst": "mula/vinaya/vin04m.mul.md",
+            "siam-rath": "vinaya/vol06.md"
+          },
+          "sections": [
+            {
+              "title": "1 Kammakkhandhaka",
+              "tipitaka2500": "tipitaka/4V/1.md"
+            },
+            {
+              "title": "2 Pārivāsikakkhandhaka",
+              "tipitaka2500": "tipitaka/4V/2.md"
+            },
+            {
+              "title": "3 Samuccayakkhandhaka",
+              "tipitaka2500": "tipitaka/4V/3.md"
+            },
+            {
+              "title": "4 Samathakkhandhaka",
+              "tipitaka2500": "tipitaka/4V/4.md"
+            },
+            {
+              "title": "5 Khuddakavatthukkhandhaka",
+              "tipitaka2500": "tipitaka/4V/5.md"
+            },
+            {
+              "title": "6 Senāsanakkhandhaka",
+              "tipitaka2500": "tipitaka/4V/6.md"
+            },
+            {
+              "title": "7 Saṃghabhedakakkhandhaka",
+              "tipitaka2500": "tipitaka/4V/7.md"
+            },
+            {
+              "title": "8 Vattakkhandhaka",
+              "tipitaka2500": "tipitaka/4V/8.md"
+            },
+            {
+              "title": "9 Pātimokkhaṭṭhapanakkhandhaka",
+              "tipitaka2500": "tipitaka/4V/9.md"
+            },
+            {
+              "title": "10 Bhikkhunikkhandhaka",
+              "tipitaka2500": "tipitaka/4V/10.md"
+            },
+            {
+              "title": "11 Pañcasatikakkhandhaka",
+              "tipitaka2500": "tipitaka/4V/11.md"
+            },
+            {
+              "title": "12 Sattasatikakkhandhaka",
+              "tipitaka2500": "tipitaka/4V/12.md"
+            }
+          ]
+        },
+        {
+          "code": "5V",
+          "title": "Parivārapāḷi",
+          "pali_title": "Parivārapāḷi",
+          "pitaka": "Vinayapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/5V.md",
+            "pts": "vinaya/parivara.md",
+            "bjt": "vinaya/vp-pv.md",
+            "cst": "mula/vinaya/vin05m.mul.md",
+            "siam-rath": "vinaya/vol08.md"
+          },
+          "sections": [
+            {
+              "title": "1 Bhikkhuvibhaṅga",
+              "tipitaka2500": "tipitaka/5V/1.md"
+            },
+            {
+              "title": "2 Bhikkhunivibhaṅga",
+              "tipitaka2500": "tipitaka/5V/2.md"
+            },
+            {
+              "title": "3 Samuṭṭhānasīsasaṅkhepa",
+              "tipitaka2500": "tipitaka/5V/3.md"
+            },
+            {
+              "title": "4 Antarapeyyāla",
+              "tipitaka2500": "tipitaka/5V/4.md"
+            },
+            {
+              "title": "5 Samathabheda",
+              "tipitaka2500": "tipitaka/5V/5.md"
+            },
+            {
+              "title": "6 Khandhakapucchāvāra",
+              "tipitaka2500": "tipitaka/5V/6.md"
+            },
+            {
+              "title": "7 Ekuttarikanaya",
+              "tipitaka2500": "tipitaka/5V/7.md"
+            },
+            {
+              "title": "8 Uposathādipucchāvissajjanā",
+              "tipitaka2500": "tipitaka/5V/8.md"
+            },
+            {
+              "title": "9 Atthavasapakaraṇa",
+              "tipitaka2500": "tipitaka/5V/9.md"
+            },
+            {
+              "title": "10 Gāthāsaṅgaṇika",
+              "tipitaka2500": "tipitaka/5V/10.md"
+            },
+            {
+              "title": "11 Adhikaraṇabheda",
+              "tipitaka2500": "tipitaka/5V/11.md"
+            },
+            {
+              "title": "12 Aparagāthāsaṅgaṇika",
+              "tipitaka2500": "tipitaka/5V/12.md"
+            },
+            {
+              "title": "13 Codanākaṇḍa",
+              "tipitaka2500": "tipitaka/5V/13.md"
+            },
+            {
+              "title": "14 Cūḷasaṅgāma",
+              "tipitaka2500": "tipitaka/5V/14.md"
+            },
+            {
+              "title": "15 Mahāsaṅgāma",
+              "tipitaka2500": "tipitaka/5V/15.md"
+            },
+            {
+              "title": "16 Kathinabheda",
+              "tipitaka2500": "tipitaka/5V/16.md"
+            },
+            {
+              "title": "17 Upālipañcaka",
+              "tipitaka2500": "tipitaka/5V/17.md"
+            },
+            {
+              "title": "18 Atthāpattisamuṭṭhāna",
+              "tipitaka2500": "tipitaka/5V/18.md"
+            },
+            {
+              "title": "19 Dutiyagāthāsaṅgaṇika",
+              "tipitaka2500": "tipitaka/5V/19.md"
+            },
+            {
+              "title": "20 Sedamocanagāthā",
+              "tipitaka2500": "tipitaka/5V/20.md"
+            },
+            {
+              "title": "21 Pañcavagga",
+              "tipitaka2500": "tipitaka/5V/21.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dn",
+      "title": "Dīghanikāya",
+      "pali_title": "Dīghanikāya",
+      "description": "Long Discourses of the Buddha (34 Suttas)",
+      "books": [
+        {
+          "code": "6D",
+          "title": "Sīlakkhandhavaggapāḷi",
+          "pali_title": "Sīlakkhandhavaggapāḷi",
+          "nikaya": "Dīghanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/6D.md",
+            "cst": "mula/sutta/dn/s0101m.mul.md",
+            "siam-rath": "sutta/dn/vol09.md"
+          },
+          "suttas": [
+            {
+              "id": "dn1",
+              "citation": "DN 1",
+              "title": "1. Brahmajālasutta",
+              "pali_title": "Brahmajālasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/6D/1.md",
+                "pts": "sutta/dn/dn01.md",
+                "bjt": "sutta/dn/dn-1.md",
+                "cst": "mula/sutta/dn/s0101m.mul.md",
+                "siam-rath": "sutta/dn/vol09.md"
+              }
+            },
+            {
+              "id": "dn2",
+              "citation": "DN 2",
+              "title": "2. Sāmaññaphalasutta",
+              "pali_title": "Sāmaññaphalasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/6D/2.md",
+                "pts": "sutta/dn/dn02.md",
+                "bjt": "sutta/dn/dn-1-2.md",
+                "cst": "mula/sutta/dn/s0101m.mul.md",
+                "siam-rath": "sutta/dn/vol09.md"
+              }
+            },
+            {
+              "id": "dn3",
+              "citation": "DN 3",
+              "title": "3. Ambaṭṭhasutta",
+              "pali_title": "Ambaṭṭhasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/6D/3.md",
+                "pts": "sutta/dn/dn03.md",
+                "bjt": "sutta/dn/dn-1-3.md",
+                "cst": "mula/sutta/dn/s0101m.mul.md",
+                "siam-rath": "sutta/dn/vol09.md"
+              }
+            },
+            {
+              "id": "dn4",
+              "citation": "DN 4",
+              "title": "4. Soṇadaṇḍasutta",
+              "pali_title": "Soṇadaṇḍasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/6D/4.md",
+                "pts": "sutta/dn/dn04.md",
+                "bjt": "sutta/dn/dn-1-4.md",
+                "cst": "mula/sutta/dn/s0101m.mul.md",
+                "siam-rath": "sutta/dn/vol09.md"
+              }
+            },
+            {
+              "id": "dn5",
+              "citation": "DN 5",
+              "title": "5. Kūṭadantasutta",
+              "pali_title": "Kūṭadantasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/6D/5.md",
+                "pts": "sutta/dn/dn05.md",
+                "bjt": "sutta/dn/dn-1-5.md",
+                "cst": "mula/sutta/dn/s0101m.mul.md",
+                "siam-rath": "sutta/dn/vol09.md"
+              }
+            },
+            {
+              "id": "dn6",
+              "citation": "DN 6",
+              "title": "6. Mahālisutta",
+              "pali_title": "Mahālisutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/6D/6.md",
+                "pts": "sutta/dn/dn06.md",
+                "bjt": "sutta/dn/dn-1-6.md",
+                "cst": "mula/sutta/dn/s0101m.mul.md",
+                "siam-rath": "sutta/dn/vol09.md"
+              }
+            },
+            {
+              "id": "dn7",
+              "citation": "DN 7",
+              "title": "7. Jāliyasutta",
+              "pali_title": "Jāliyasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/6D/7.md",
+                "pts": "sutta/dn/dn07.md",
+                "bjt": "sutta/dn/dn-1-7.md",
+                "cst": "mula/sutta/dn/s0101m.mul.md",
+                "siam-rath": "sutta/dn/vol09.md"
+              }
+            },
+            {
+              "id": "dn8",
+              "citation": "DN 8",
+              "title": "8. Mahāsīhanādasutta",
+              "pali_title": "Mahāsīhanādasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/6D/8.md",
+                "pts": "sutta/dn/dn08.md",
+                "bjt": "sutta/dn/dn-1-8.md",
+                "cst": "mula/sutta/dn/s0101m.mul.md",
+                "siam-rath": "sutta/dn/vol09.md"
+              }
+            },
+            {
+              "id": "dn9",
+              "citation": "DN 9",
+              "title": "9. Poṭṭhapādasutta",
+              "pali_title": "Poṭṭhapādasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/6D/9.md",
+                "pts": "sutta/dn/dn09.md",
+                "bjt": "sutta/dn/dn-1-9.md",
+                "cst": "mula/sutta/dn/s0101m.mul.md",
+                "siam-rath": "sutta/dn/vol09.md"
+              }
+            },
+            {
+              "id": "dn10",
+              "citation": "DN 10",
+              "title": "10. Subhasutta",
+              "pali_title": "Subhasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/6D/10.md",
+                "pts": "sutta/dn/dn10.md",
+                "bjt": "sutta/dn/dn-1-10.md",
+                "cst": "mula/sutta/dn/s0101m.mul.md",
+                "siam-rath": "sutta/dn/vol09.md"
+              }
+            },
+            {
+              "id": "dn11",
+              "citation": "DN 11",
+              "title": "11. Kevaṭṭasutta",
+              "pali_title": "Kevaṭṭasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/6D/11.md",
+                "pts": "sutta/dn/dn11.md",
+                "bjt": "sutta/dn/dn-1-11.md",
+                "cst": "mula/sutta/dn/s0101m.mul.md",
+                "siam-rath": "sutta/dn/vol09.md"
+              }
+            },
+            {
+              "id": "dn12",
+              "citation": "DN 12",
+              "title": "12. Lohiccasutta",
+              "pali_title": "Lohiccasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/6D/12.md",
+                "pts": "sutta/dn/dn12.md",
+                "bjt": "sutta/dn/dn-1-12.md",
+                "cst": "mula/sutta/dn/s0101m.mul.md",
+                "siam-rath": "sutta/dn/vol09.md"
+              }
+            },
+            {
+              "id": "dn13",
+              "citation": "DN 13",
+              "title": "13. Tevijjasutta",
+              "pali_title": "Tevijjasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/6D/13.md",
+                "pts": "sutta/dn/dn13.md",
+                "bjt": "sutta/dn/dn-1-13.md",
+                "cst": "mula/sutta/dn/s0101m.mul.md",
+                "siam-rath": "sutta/dn/vol09.md"
+              }
+            }
+          ]
+        },
+        {
+          "code": "7D",
+          "title": "Mahāvaggapāḷi",
+          "pali_title": "Mahāvaggapāḷi",
+          "nikaya": "Dīghanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/7D.md",
+            "cst": "mula/sutta/dn/s0102m.mul.md",
+            "siam-rath": "sutta/dn/vol10.md"
+          },
+          "suttas": [
+            {
+              "id": "dn14",
+              "citation": "DN 14",
+              "title": "14. Mahāpadānasutta",
+              "pali_title": "Mahāpadānasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/7D/1.md",
+                "pts": "sutta/dn/dn14.md",
+                "bjt": "sutta/dn/dn-2.md",
+                "cst": "mula/sutta/dn/s0102m.mul.md",
+                "siam-rath": "sutta/dn/vol10.md"
+              }
+            },
+            {
+              "id": "dn15",
+              "citation": "DN 15",
+              "title": "15. Mahānidānasutta",
+              "pali_title": "Mahānidānasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/7D/2.md",
+                "pts": "sutta/dn/dn15.md",
+                "bjt": "sutta/dn/dn-2-2.md",
+                "cst": "mula/sutta/dn/s0102m.mul.md",
+                "siam-rath": "sutta/dn/vol10.md"
+              }
+            },
+            {
+              "id": "dn16",
+              "citation": "DN 16",
+              "title": "16. Mahāparinibbānasutta",
+              "pali_title": "Mahāparinibbānasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/7D/3.md",
+                "pts": "sutta/dn/dn16.md",
+                "bjt": "sutta/dn/dn-2-3.md",
+                "cst": "mula/sutta/dn/s0102m.mul.md",
+                "siam-rath": "sutta/dn/vol10.md"
+              }
+            },
+            {
+              "id": "dn17",
+              "citation": "DN 17",
+              "title": "17. Mahāsudassanasutta",
+              "pali_title": "Mahāsudassanasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/7D/4.md",
+                "pts": "sutta/dn/dn17.md",
+                "bjt": "sutta/dn/dn-2-4.md",
+                "cst": "mula/sutta/dn/s0102m.mul.md",
+                "siam-rath": "sutta/dn/vol10.md"
+              }
+            },
+            {
+              "id": "dn18",
+              "citation": "DN 18",
+              "title": "18. Janavasabhasutta",
+              "pali_title": "Janavasabhasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/7D/5.md",
+                "pts": "sutta/dn/dn18.md",
+                "bjt": "sutta/dn/dn-2-5.md",
+                "cst": "mula/sutta/dn/s0102m.mul.md",
+                "siam-rath": "sutta/dn/vol10.md"
+              }
+            },
+            {
+              "id": "dn19",
+              "citation": "DN 19",
+              "title": "19. Mahāgovindasutta",
+              "pali_title": "Mahāgovindasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/7D/6.md",
+                "pts": "sutta/dn/dn19.md",
+                "bjt": "sutta/dn/dn-2-6.md",
+                "cst": "mula/sutta/dn/s0102m.mul.md",
+                "siam-rath": "sutta/dn/vol10.md"
+              }
+            },
+            {
+              "id": "dn20",
+              "citation": "DN 20",
+              "title": "20. Mahāsamayasutta",
+              "pali_title": "Mahāsamayasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/7D/7.md",
+                "pts": "sutta/dn/dn20.md",
+                "bjt": "sutta/dn/dn-2-7.md",
+                "cst": "mula/sutta/dn/s0102m.mul.md",
+                "siam-rath": "sutta/dn/vol10.md"
+              }
+            },
+            {
+              "id": "dn21",
+              "citation": "DN 21",
+              "title": "21. Sakkapañhasutta",
+              "pali_title": "Sakkapañhasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/7D/8.md",
+                "pts": "sutta/dn/dn21.md",
+                "bjt": "sutta/dn/dn-2-8.md",
+                "cst": "mula/sutta/dn/s0102m.mul.md",
+                "siam-rath": "sutta/dn/vol10.md"
+              }
+            },
+            {
+              "id": "dn22",
+              "citation": "DN 22",
+              "title": "22. Mahāsatipaṭṭhānasutta",
+              "pali_title": "Mahāsatipaṭṭhānasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/7D/9.md",
+                "pts": "sutta/dn/dn22.md",
+                "bjt": "sutta/dn/dn-2-9.md",
+                "cst": "mula/sutta/dn/s0102m.mul.md",
+                "siam-rath": "sutta/dn/vol10.md"
+              }
+            },
+            {
+              "id": "dn23",
+              "citation": "DN 23",
+              "title": "23. Pāyāsisutta",
+              "pali_title": "Pāyāsisutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/7D/10.md",
+                "pts": "sutta/dn/dn23.md",
+                "bjt": "sutta/dn/dn-2-10.md",
+                "cst": "mula/sutta/dn/s0102m.mul.md",
+                "siam-rath": "sutta/dn/vol10.md"
+              }
+            }
+          ]
+        },
+        {
+          "code": "8D",
+          "title": "Pāthikavaggapāḷi",
+          "pali_title": "Pāthikavaggapāḷi",
+          "nikaya": "Dīghanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/8D.md",
+            "cst": "mula/sutta/dn/s0103m.mul.md",
+            "siam-rath": "sutta/dn/vol11.md"
+          },
+          "suttas": [
+            {
+              "id": "dn24",
+              "citation": "DN 24",
+              "title": "24. Pāthikasutta",
+              "pali_title": "Pāthikasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/8D/1.md",
+                "pts": "sutta/dn/dn24.md",
+                "bjt": "sutta/dn/dn-3.md",
+                "cst": "mula/sutta/dn/s0103m.mul.md",
+                "siam-rath": "sutta/dn/vol11.md"
+              }
+            },
+            {
+              "id": "dn25",
+              "citation": "DN 25",
+              "title": "25. Udumbarikasutta",
+              "pali_title": "Udumbarikasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/8D/2.md",
+                "pts": "sutta/dn/dn25.md",
+                "bjt": "sutta/dn/dn-3-2.md",
+                "cst": "mula/sutta/dn/s0103m.mul.md",
+                "siam-rath": "sutta/dn/vol11.md"
+              }
+            },
+            {
+              "id": "dn26",
+              "citation": "DN 26",
+              "title": "26. Cakkavattisutta",
+              "pali_title": "Cakkavattisutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/8D/3.md",
+                "pts": "sutta/dn/dn26.md",
+                "bjt": "sutta/dn/dn-3-3.md",
+                "cst": "mula/sutta/dn/s0103m.mul.md",
+                "siam-rath": "sutta/dn/vol11.md"
+              }
+            },
+            {
+              "id": "dn27",
+              "citation": "DN 27",
+              "title": "27. Aggaññasutta",
+              "pali_title": "Aggaññasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/8D/4.md",
+                "pts": "sutta/dn/dn27.md",
+                "bjt": "sutta/dn/dn-3-4.md",
+                "cst": "mula/sutta/dn/s0103m.mul.md",
+                "siam-rath": "sutta/dn/vol11.md"
+              }
+            },
+            {
+              "id": "dn28",
+              "citation": "DN 28",
+              "title": "28. Sampasādanīyasutta",
+              "pali_title": "Sampasādanīyasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/8D/5.md",
+                "pts": "sutta/dn/dn28.md",
+                "bjt": "sutta/dn/dn-3-5.md",
+                "cst": "mula/sutta/dn/s0103m.mul.md",
+                "siam-rath": "sutta/dn/vol11.md"
+              }
+            },
+            {
+              "id": "dn29",
+              "citation": "DN 29",
+              "title": "29. Pāsādikasutta",
+              "pali_title": "Pāsādikasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/8D/6.md",
+                "pts": "sutta/dn/dn29.md",
+                "bjt": "sutta/dn/dn-3-6.md",
+                "cst": "mula/sutta/dn/s0103m.mul.md",
+                "siam-rath": "sutta/dn/vol11.md"
+              }
+            },
+            {
+              "id": "dn30",
+              "citation": "DN 30",
+              "title": "30. Lakkhaṇasutta",
+              "pali_title": "Lakkhaṇasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/8D/7.md",
+                "pts": "sutta/dn/dn30.md",
+                "bjt": "sutta/dn/dn-3-7.md",
+                "cst": "mula/sutta/dn/s0103m.mul.md",
+                "siam-rath": "sutta/dn/vol11.md"
+              }
+            },
+            {
+              "id": "dn31",
+              "citation": "DN 31",
+              "title": "31. Siṅgālasutta",
+              "pali_title": "Siṅgālasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/8D/8.md",
+                "pts": "sutta/dn/dn31.md",
+                "bjt": "sutta/dn/dn-3-8.md",
+                "cst": "mula/sutta/dn/s0103m.mul.md",
+                "siam-rath": "sutta/dn/vol11.md"
+              }
+            },
+            {
+              "id": "dn32",
+              "citation": "DN 32",
+              "title": "32. Āṭānāṭiyasutta",
+              "pali_title": "Āṭānāṭiyasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/8D/9.md",
+                "pts": "sutta/dn/dn32.md",
+                "bjt": "sutta/dn/dn-3-9.md",
+                "cst": "mula/sutta/dn/s0103m.mul.md",
+                "siam-rath": "sutta/dn/vol11.md"
+              }
+            },
+            {
+              "id": "dn33",
+              "citation": "DN 33",
+              "title": "33. Saṅgītisutta",
+              "pali_title": "Saṅgītisutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/8D/10.md",
+                "pts": "sutta/dn/dn33.md",
+                "bjt": "sutta/dn/dn-3-10.md",
+                "cst": "mula/sutta/dn/s0103m.mul.md",
+                "siam-rath": "sutta/dn/vol11.md"
+              }
+            },
+            {
+              "id": "dn34",
+              "citation": "DN 34",
+              "title": "34. Dasuttarasutta",
+              "pali_title": "Dasuttarasutta",
+              "editions": {
+                "tipitaka2500": "tipitaka/8D/11.md",
+                "pts": "sutta/dn/dn34.md",
+                "bjt": "sutta/dn/dn-3-11.md",
+                "cst": "mula/sutta/dn/s0103m.mul.md",
+                "siam-rath": "sutta/dn/vol11.md"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mn",
+      "title": "Majjhimanikāya",
+      "pali_title": "Majjhimanikāya",
+      "description": "Middle-length Discourses of the Buddha (152 Suttas)",
+      "books": [
+        {
+          "code": "9M",
+          "title": "Mūlapaṇṇāsapāḷi",
+          "pali_title": "Mūlapaṇṇāsapāḷi",
+          "nikaya": "Majjhimanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/9M.md",
+            "cst": "mula/sutta/mn/s0201m.mul.md",
+            "siam-rath": "sutta/mn/vol12.md"
+          },
+          "suttas": [
+            {
+              "id": "mn1",
+              "citation": "MN 1",
+              "title": "MN 1",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/1/1.1.md",
+                "pts": "sutta/mn/mn001.md",
+                "bjt": "sutta/mn/mn-1-1.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn2",
+              "citation": "MN 2",
+              "title": "MN 2",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/1/1.2.md",
+                "pts": "sutta/mn/mn002.md",
+                "bjt": "sutta/mn/mn-1-1.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn3",
+              "citation": "MN 3",
+              "title": "MN 3",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/1/1.3.md",
+                "pts": "sutta/mn/mn003.md",
+                "bjt": "sutta/mn/mn-1-1.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn4",
+              "citation": "MN 4",
+              "title": "MN 4",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/1/1.4.md",
+                "pts": "sutta/mn/mn004.md",
+                "bjt": "sutta/mn/mn-1-1.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn5",
+              "citation": "MN 5",
+              "title": "MN 5",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/1/1.5.md",
+                "pts": "sutta/mn/mn005.md",
+                "bjt": "sutta/mn/mn-1-1.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn6",
+              "citation": "MN 6",
+              "title": "MN 6",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/1/1.6.md",
+                "pts": "sutta/mn/mn006.md",
+                "bjt": "sutta/mn/mn-1-1.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn7",
+              "citation": "MN 7",
+              "title": "MN 7",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/1/1.7.md",
+                "pts": "sutta/mn/mn007.md",
+                "bjt": "sutta/mn/mn-1-1.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn8",
+              "citation": "MN 8",
+              "title": "MN 8",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/1/1.8.md",
+                "pts": "sutta/mn/mn008.md",
+                "bjt": "sutta/mn/mn-1-1.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn9",
+              "citation": "MN 9",
+              "title": "MN 9",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/1/1.9.md",
+                "pts": "sutta/mn/mn009.md",
+                "bjt": "sutta/mn/mn-1-1.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn10",
+              "citation": "MN 10",
+              "title": "MN 10",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/1/1.10.md",
+                "pts": "sutta/mn/mn010.md",
+                "bjt": "sutta/mn/mn-1-1.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn11",
+              "citation": "MN 11",
+              "title": "MN 11",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/2/2.1.md",
+                "pts": "sutta/mn/mn011.md",
+                "bjt": "sutta/mn/mn-1-2.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn12",
+              "citation": "MN 12",
+              "title": "MN 12",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/2/2.2.md",
+                "pts": "sutta/mn/mn012.md",
+                "bjt": "sutta/mn/mn-1-2.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn13",
+              "citation": "MN 13",
+              "title": "MN 13",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/2/2.3.md",
+                "pts": "sutta/mn/mn013.md",
+                "bjt": "sutta/mn/mn-1-2.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn14",
+              "citation": "MN 14",
+              "title": "MN 14",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/2/2.4.md",
+                "pts": "sutta/mn/mn014.md",
+                "bjt": "sutta/mn/mn-1-2.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn15",
+              "citation": "MN 15",
+              "title": "MN 15",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/2/2.5.md",
+                "pts": "sutta/mn/mn015.md",
+                "bjt": "sutta/mn/mn-1-2.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn16",
+              "citation": "MN 16",
+              "title": "MN 16",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/2/2.6.md",
+                "pts": "sutta/mn/mn016.md",
+                "bjt": "sutta/mn/mn-1-2.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn17",
+              "citation": "MN 17",
+              "title": "MN 17",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/2/2.7.md",
+                "pts": "sutta/mn/mn017.md",
+                "bjt": "sutta/mn/mn-1-2.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn18",
+              "citation": "MN 18",
+              "title": "MN 18",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/2/2.8.md",
+                "pts": "sutta/mn/mn018.md",
+                "bjt": "sutta/mn/mn-1-2.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn19",
+              "citation": "MN 19",
+              "title": "MN 19",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/2/2.9.md",
+                "pts": "sutta/mn/mn019.md",
+                "bjt": "sutta/mn/mn-1-2.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn20",
+              "citation": "MN 20",
+              "title": "MN 20",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/2/2.10.md",
+                "pts": "sutta/mn/mn020.md",
+                "bjt": "sutta/mn/mn-1-2.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn21",
+              "citation": "MN 21",
+              "title": "MN 21",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/3/3.1.md",
+                "pts": "sutta/mn/mn021.md",
+                "bjt": "sutta/mn/mn-1-3.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn22",
+              "citation": "MN 22",
+              "title": "MN 22",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/3/3.2.md",
+                "pts": "sutta/mn/mn022.md",
+                "bjt": "sutta/mn/mn-1-3.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn23",
+              "citation": "MN 23",
+              "title": "MN 23",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/3/3.3.md",
+                "pts": "sutta/mn/mn023.md",
+                "bjt": "sutta/mn/mn-1-3.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn24",
+              "citation": "MN 24",
+              "title": "MN 24",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/3/3.4.md",
+                "pts": "sutta/mn/mn024.md",
+                "bjt": "sutta/mn/mn-1-3.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn25",
+              "citation": "MN 25",
+              "title": "MN 25",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/3/3.5.md",
+                "pts": "sutta/mn/mn025.md",
+                "bjt": "sutta/mn/mn-1-3.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn26",
+              "citation": "MN 26",
+              "title": "MN 26",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/3/3.6.md",
+                "pts": "sutta/mn/mn026.md",
+                "bjt": "sutta/mn/mn-1-3.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn27",
+              "citation": "MN 27",
+              "title": "MN 27",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/3/3.7.md",
+                "pts": "sutta/mn/mn027.md",
+                "bjt": "sutta/mn/mn-1-3.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn28",
+              "citation": "MN 28",
+              "title": "MN 28",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/3/3.8.md",
+                "pts": "sutta/mn/mn028.md",
+                "bjt": "sutta/mn/mn-1-3.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn29",
+              "citation": "MN 29",
+              "title": "MN 29",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/3/3.9.md",
+                "pts": "sutta/mn/mn029.md",
+                "bjt": "sutta/mn/mn-1-3.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn30",
+              "citation": "MN 30",
+              "title": "MN 30",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/3/3.10.md",
+                "pts": "sutta/mn/mn030.md",
+                "bjt": "sutta/mn/mn-1-3.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn31",
+              "citation": "MN 31",
+              "title": "MN 31",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/4/4.1.md",
+                "pts": "sutta/mn/mn031.md",
+                "bjt": "sutta/mn/mn-1-4.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn32",
+              "citation": "MN 32",
+              "title": "MN 32",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/4/4.2.md",
+                "pts": "sutta/mn/mn032.md",
+                "bjt": "sutta/mn/mn-1-4.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn33",
+              "citation": "MN 33",
+              "title": "MN 33",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/4/4.3.md",
+                "pts": "sutta/mn/mn033.md",
+                "bjt": "sutta/mn/mn-1-4.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn34",
+              "citation": "MN 34",
+              "title": "MN 34",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/4/4.4.md",
+                "pts": "sutta/mn/mn034.md",
+                "bjt": "sutta/mn/mn-1-4.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn35",
+              "citation": "MN 35",
+              "title": "MN 35",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/4/4.5.md",
+                "pts": "sutta/mn/mn035.md",
+                "bjt": "sutta/mn/mn-1-4.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn36",
+              "citation": "MN 36",
+              "title": "MN 36",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/4/4.6.md",
+                "pts": "sutta/mn/mn036.md",
+                "bjt": "sutta/mn/mn-1-4.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn37",
+              "citation": "MN 37",
+              "title": "MN 37",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/4/4.7.md",
+                "pts": "sutta/mn/mn037.md",
+                "bjt": "sutta/mn/mn-1-4.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn38",
+              "citation": "MN 38",
+              "title": "MN 38",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/4/4.8.md",
+                "pts": "sutta/mn/mn038.md",
+                "bjt": "sutta/mn/mn-1-4.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn39",
+              "citation": "MN 39",
+              "title": "MN 39",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/4/4.9.md",
+                "pts": "sutta/mn/mn039.md",
+                "bjt": "sutta/mn/mn-1-4.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn40",
+              "citation": "MN 40",
+              "title": "MN 40",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/4/4.10.md",
+                "pts": "sutta/mn/mn040.md",
+                "bjt": "sutta/mn/mn-1-4.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn41",
+              "citation": "MN 41",
+              "title": "MN 41",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/5/5.1.md",
+                "pts": "sutta/mn/mn041.md",
+                "bjt": "sutta/mn/mn-1-5.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn42",
+              "citation": "MN 42",
+              "title": "MN 42",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/5/5.2.md",
+                "pts": "sutta/mn/mn042.md",
+                "bjt": "sutta/mn/mn-1-5.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn43",
+              "citation": "MN 43",
+              "title": "MN 43",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/5/5.3.md",
+                "pts": "sutta/mn/mn043.md",
+                "bjt": "sutta/mn/mn-1-5.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn44",
+              "citation": "MN 44",
+              "title": "MN 44",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/5/5.4.md",
+                "pts": "sutta/mn/mn044.md",
+                "bjt": "sutta/mn/mn-1-5.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn45",
+              "citation": "MN 45",
+              "title": "MN 45",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/5/5.5.md",
+                "pts": "sutta/mn/mn045.md",
+                "bjt": "sutta/mn/mn-1-5.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn46",
+              "citation": "MN 46",
+              "title": "MN 46",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/5/5.6.md",
+                "pts": "sutta/mn/mn046.md",
+                "bjt": "sutta/mn/mn-1-5.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn47",
+              "citation": "MN 47",
+              "title": "MN 47",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/5/5.7.md",
+                "pts": "sutta/mn/mn047.md",
+                "bjt": "sutta/mn/mn-1-5.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn48",
+              "citation": "MN 48",
+              "title": "MN 48",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/5/5.8.md",
+                "pts": "sutta/mn/mn048.md",
+                "bjt": "sutta/mn/mn-1-5.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn49",
+              "citation": "MN 49",
+              "title": "MN 49",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/5/5.9.md",
+                "pts": "sutta/mn/mn049.md",
+                "bjt": "sutta/mn/mn-1-5.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            },
+            {
+              "id": "mn50",
+              "citation": "MN 50",
+              "title": "MN 50",
+              "editions": {
+                "tipitaka2500": "tipitaka/9M/5/5.10.md",
+                "pts": "sutta/mn/mn050.md",
+                "bjt": "sutta/mn/mn-1-5.md",
+                "cst": "mula/sutta/mn/s0201m.mul.md",
+                "siam-rath": "sutta/mn/vol12.md"
+              }
+            }
+          ]
+        },
+        {
+          "code": "10M",
+          "title": "Majjhimapaṇṇāsapāḷi",
+          "pali_title": "Majjhimapaṇṇāsapāḷi",
+          "nikaya": "Majjhimanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/10M.md",
+            "cst": "mula/sutta/mn/s0202m.mul.md",
+            "siam-rath": "sutta/mn/vol13.md"
+          },
+          "suttas": [
+            {
+              "id": "mn51",
+              "citation": "MN 51",
+              "title": "MN 51",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/1/1.1.md",
+                "pts": "sutta/mn/mn051.md",
+                "bjt": "sutta/mn/mn-2-1.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn52",
+              "citation": "MN 52",
+              "title": "MN 52",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/1/1.2.md",
+                "pts": "sutta/mn/mn052.md",
+                "bjt": "sutta/mn/mn-2-1.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn53",
+              "citation": "MN 53",
+              "title": "MN 53",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/1/1.3.md",
+                "pts": "sutta/mn/mn053.md",
+                "bjt": "sutta/mn/mn-2-1.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn54",
+              "citation": "MN 54",
+              "title": "MN 54",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/1/1.4.md",
+                "pts": "sutta/mn/mn054.md",
+                "bjt": "sutta/mn/mn-2-1.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn55",
+              "citation": "MN 55",
+              "title": "MN 55",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/1/1.5.md",
+                "pts": "sutta/mn/mn055.md",
+                "bjt": "sutta/mn/mn-2-1.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn56",
+              "citation": "MN 56",
+              "title": "MN 56",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/1/1.6.md",
+                "pts": "sutta/mn/mn056.md",
+                "bjt": "sutta/mn/mn-2-1.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn57",
+              "citation": "MN 57",
+              "title": "MN 57",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/1/1.7.md",
+                "pts": "sutta/mn/mn057.md",
+                "bjt": "sutta/mn/mn-2-1.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn58",
+              "citation": "MN 58",
+              "title": "MN 58",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/1/1.8.md",
+                "pts": "sutta/mn/mn058.md",
+                "bjt": "sutta/mn/mn-2-1.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn59",
+              "citation": "MN 59",
+              "title": "MN 59",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/1/1.9.md",
+                "pts": "sutta/mn/mn059.md",
+                "bjt": "sutta/mn/mn-2-1.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn60",
+              "citation": "MN 60",
+              "title": "MN 60",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/1/1.10.md",
+                "pts": "sutta/mn/mn060.md",
+                "bjt": "sutta/mn/mn-2-1.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn61",
+              "citation": "MN 61",
+              "title": "MN 61",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/2/2.1.md",
+                "pts": "sutta/mn/mn061.md",
+                "bjt": "sutta/mn/mn-2-2.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn62",
+              "citation": "MN 62",
+              "title": "MN 62",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/2/2.2.md",
+                "pts": "sutta/mn/mn062.md",
+                "bjt": "sutta/mn/mn-2-2.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn63",
+              "citation": "MN 63",
+              "title": "MN 63",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/2/2.3.md",
+                "pts": "sutta/mn/mn063.md",
+                "bjt": "sutta/mn/mn-2-2.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn64",
+              "citation": "MN 64",
+              "title": "MN 64",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/2/2.4.md",
+                "pts": "sutta/mn/mn064.md",
+                "bjt": "sutta/mn/mn-2-2.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn65",
+              "citation": "MN 65",
+              "title": "MN 65",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/2/2.5.md",
+                "pts": "sutta/mn/mn065.md",
+                "bjt": "sutta/mn/mn-2-2.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn66",
+              "citation": "MN 66",
+              "title": "MN 66",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/2/2.6.md",
+                "pts": "sutta/mn/mn066.md",
+                "bjt": "sutta/mn/mn-2-2.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn67",
+              "citation": "MN 67",
+              "title": "MN 67",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/2/2.7.md",
+                "pts": "sutta/mn/mn067.md",
+                "bjt": "sutta/mn/mn-2-2.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn68",
+              "citation": "MN 68",
+              "title": "MN 68",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/2/2.8.md",
+                "pts": "sutta/mn/mn068.md",
+                "bjt": "sutta/mn/mn-2-2.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn69",
+              "citation": "MN 69",
+              "title": "MN 69",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/2/2.9.md",
+                "pts": "sutta/mn/mn069.md",
+                "bjt": "sutta/mn/mn-2-2.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn70",
+              "citation": "MN 70",
+              "title": "MN 70",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/2/2.10.md",
+                "pts": "sutta/mn/mn070.md",
+                "bjt": "sutta/mn/mn-2-2.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn71",
+              "citation": "MN 71",
+              "title": "MN 71",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/3/3.1.md",
+                "pts": "sutta/mn/mn071.md",
+                "bjt": "sutta/mn/mn-2-3.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn72",
+              "citation": "MN 72",
+              "title": "MN 72",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/3/3.2.md",
+                "pts": "sutta/mn/mn072.md",
+                "bjt": "sutta/mn/mn-2-3.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn73",
+              "citation": "MN 73",
+              "title": "MN 73",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/3/3.3.md",
+                "pts": "sutta/mn/mn073.md",
+                "bjt": "sutta/mn/mn-2-3.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn74",
+              "citation": "MN 74",
+              "title": "MN 74",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/3/3.4.md",
+                "pts": "sutta/mn/mn074.md",
+                "bjt": "sutta/mn/mn-2-3.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn75",
+              "citation": "MN 75",
+              "title": "MN 75",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/3/3.5.md",
+                "pts": "sutta/mn/mn075.md",
+                "bjt": "sutta/mn/mn-2-3.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn76",
+              "citation": "MN 76",
+              "title": "MN 76",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/3/3.6.md",
+                "pts": "sutta/mn/mn076.md",
+                "bjt": "sutta/mn/mn-2-3.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn77",
+              "citation": "MN 77",
+              "title": "MN 77",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/3/3.7.md",
+                "pts": "sutta/mn/mn077.md",
+                "bjt": "sutta/mn/mn-2-3.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn78",
+              "citation": "MN 78",
+              "title": "MN 78",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/3/3.8.md",
+                "pts": "sutta/mn/mn078.md",
+                "bjt": "sutta/mn/mn-2-3.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn79",
+              "citation": "MN 79",
+              "title": "MN 79",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/3/3.9.md",
+                "pts": "sutta/mn/mn079.md",
+                "bjt": "sutta/mn/mn-2-3.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn80",
+              "citation": "MN 80",
+              "title": "MN 80",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/3/3.10.md",
+                "pts": "sutta/mn/mn080.md",
+                "bjt": "sutta/mn/mn-2-3.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn81",
+              "citation": "MN 81",
+              "title": "MN 81",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/4/4.1.md",
+                "pts": "sutta/mn/mn081.md",
+                "bjt": "sutta/mn/mn-2-4.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn82",
+              "citation": "MN 82",
+              "title": "MN 82",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/4/4.2.md",
+                "pts": "sutta/mn/mn082.md",
+                "bjt": "sutta/mn/mn-2-4.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn83",
+              "citation": "MN 83",
+              "title": "MN 83",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/4/4.3.md",
+                "pts": "sutta/mn/mn083.md",
+                "bjt": "sutta/mn/mn-2-4.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn84",
+              "citation": "MN 84",
+              "title": "MN 84",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/4/4.4.md",
+                "pts": "sutta/mn/mn084.md",
+                "bjt": "sutta/mn/mn-2-4.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn85",
+              "citation": "MN 85",
+              "title": "MN 85",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/4/4.5.md",
+                "pts": "sutta/mn/mn085.md",
+                "bjt": "sutta/mn/mn-2-4.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn86",
+              "citation": "MN 86",
+              "title": "MN 86",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/4/4.6.md",
+                "pts": "sutta/mn/mn086.md",
+                "bjt": "sutta/mn/mn-2-4.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn87",
+              "citation": "MN 87",
+              "title": "MN 87",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/4/4.7.md",
+                "pts": "sutta/mn/mn087.md",
+                "bjt": "sutta/mn/mn-2-4.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn88",
+              "citation": "MN 88",
+              "title": "MN 88",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/4/4.8.md",
+                "pts": "sutta/mn/mn088.md",
+                "bjt": "sutta/mn/mn-2-4.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn89",
+              "citation": "MN 89",
+              "title": "MN 89",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/4/4.9.md",
+                "pts": "sutta/mn/mn089.md",
+                "bjt": "sutta/mn/mn-2-4.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn90",
+              "citation": "MN 90",
+              "title": "MN 90",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/4/4.10.md",
+                "pts": "sutta/mn/mn090.md",
+                "bjt": "sutta/mn/mn-2-4.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn91",
+              "citation": "MN 91",
+              "title": "MN 91",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/5/5.1.md",
+                "pts": "sutta/mn/mn091.md",
+                "bjt": "sutta/mn/mn-2-5.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn92",
+              "citation": "MN 92",
+              "title": "MN 92",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/5/5.2.md",
+                "pts": "sutta/mn/mn092.md",
+                "bjt": "sutta/mn/mn-2-5.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn93",
+              "citation": "MN 93",
+              "title": "MN 93",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/5/5.3.md",
+                "pts": "sutta/mn/mn093.md",
+                "bjt": "sutta/mn/mn-2-5.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn94",
+              "citation": "MN 94",
+              "title": "MN 94",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/5/5.4.md",
+                "pts": "sutta/mn/mn094.md",
+                "bjt": "sutta/mn/mn-2-5.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn95",
+              "citation": "MN 95",
+              "title": "MN 95",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/5/5.5.md",
+                "pts": "sutta/mn/mn095.md",
+                "bjt": "sutta/mn/mn-2-5.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn96",
+              "citation": "MN 96",
+              "title": "MN 96",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/5/5.6.md",
+                "pts": "sutta/mn/mn096.md",
+                "bjt": "sutta/mn/mn-2-5.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn97",
+              "citation": "MN 97",
+              "title": "MN 97",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/5/5.7.md",
+                "pts": "sutta/mn/mn097.md",
+                "bjt": "sutta/mn/mn-2-5.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn98",
+              "citation": "MN 98",
+              "title": "MN 98",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/5/5.8.md",
+                "pts": "sutta/mn/mn098.md",
+                "bjt": "sutta/mn/mn-2-5.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn99",
+              "citation": "MN 99",
+              "title": "MN 99",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/5/5.9.md",
+                "pts": "sutta/mn/mn099.md",
+                "bjt": "sutta/mn/mn-2-5.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            },
+            {
+              "id": "mn100",
+              "citation": "MN 100",
+              "title": "MN 100",
+              "editions": {
+                "tipitaka2500": "tipitaka/10M/5/5.10.md",
+                "pts": "sutta/mn/mn100.md",
+                "bjt": "sutta/mn/mn-2-5.md",
+                "cst": "mula/sutta/mn/s0202m.mul.md",
+                "siam-rath": "sutta/mn/vol13.md"
+              }
+            }
+          ]
+        },
+        {
+          "code": "11M",
+          "title": "Uparipaṇṇāsapāḷi",
+          "pali_title": "Uparipaṇṇāsapāḷi",
+          "nikaya": "Majjhimanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/11M.md",
+            "cst": "mula/sutta/mn/s0203m.mul.md",
+            "siam-rath": "sutta/mn/vol14.md"
+          },
+          "suttas": [
+            {
+              "id": "mn101",
+              "citation": "MN 101",
+              "title": "MN 101",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/1/1.1.md",
+                "pts": "sutta/mn/mn101.md",
+                "bjt": "sutta/mn/mn-3-1.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn102",
+              "citation": "MN 102",
+              "title": "MN 102",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/1/1.2.md",
+                "pts": "sutta/mn/mn102.md",
+                "bjt": "sutta/mn/mn-3-1.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn103",
+              "citation": "MN 103",
+              "title": "MN 103",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/1/1.3.md",
+                "pts": "sutta/mn/mn103.md",
+                "bjt": "sutta/mn/mn-3-1.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn104",
+              "citation": "MN 104",
+              "title": "MN 104",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/1/1.4.md",
+                "pts": "sutta/mn/mn104.md",
+                "bjt": "sutta/mn/mn-3-1.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn105",
+              "citation": "MN 105",
+              "title": "MN 105",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/1/1.5.md",
+                "pts": "sutta/mn/mn105.md",
+                "bjt": "sutta/mn/mn-3-1.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn106",
+              "citation": "MN 106",
+              "title": "MN 106",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/1/1.6.md",
+                "pts": "sutta/mn/mn106.md",
+                "bjt": "sutta/mn/mn-3-1.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn107",
+              "citation": "MN 107",
+              "title": "MN 107",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/1/1.7.md",
+                "pts": "sutta/mn/mn107.md",
+                "bjt": "sutta/mn/mn-3-1.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn108",
+              "citation": "MN 108",
+              "title": "MN 108",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/1/1.8.md",
+                "pts": "sutta/mn/mn108.md",
+                "bjt": "sutta/mn/mn-3-1.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn109",
+              "citation": "MN 109",
+              "title": "MN 109",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/1/1.9.md",
+                "pts": "sutta/mn/mn109.md",
+                "bjt": "sutta/mn/mn-3-1.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn110",
+              "citation": "MN 110",
+              "title": "MN 110",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/1/1.10.md",
+                "pts": "sutta/mn/mn110.md",
+                "bjt": "sutta/mn/mn-3-1.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn111",
+              "citation": "MN 111",
+              "title": "MN 111",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/2/2.1.md",
+                "pts": "sutta/mn/mn111.md",
+                "bjt": "sutta/mn/mn-3-2.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn112",
+              "citation": "MN 112",
+              "title": "MN 112",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/2/2.2.md",
+                "pts": "sutta/mn/mn112.md",
+                "bjt": "sutta/mn/mn-3-2.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn113",
+              "citation": "MN 113",
+              "title": "MN 113",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/2/2.3.md",
+                "pts": "sutta/mn/mn113.md",
+                "bjt": "sutta/mn/mn-3-2.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn114",
+              "citation": "MN 114",
+              "title": "MN 114",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/2/2.4.md",
+                "pts": "sutta/mn/mn114.md",
+                "bjt": "sutta/mn/mn-3-2.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn115",
+              "citation": "MN 115",
+              "title": "MN 115",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/2/2.5.md",
+                "pts": "sutta/mn/mn115.md",
+                "bjt": "sutta/mn/mn-3-2.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn116",
+              "citation": "MN 116",
+              "title": "MN 116",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/2/2.6.md",
+                "pts": "sutta/mn/mn116.md",
+                "bjt": "sutta/mn/mn-3-2.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn117",
+              "citation": "MN 117",
+              "title": "MN 117",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/2/2.7.md",
+                "pts": "sutta/mn/mn117.md",
+                "bjt": "sutta/mn/mn-3-2.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn118",
+              "citation": "MN 118",
+              "title": "MN 118",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/2/2.8.md",
+                "pts": "sutta/mn/mn118.md",
+                "bjt": "sutta/mn/mn-3-2.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn119",
+              "citation": "MN 119",
+              "title": "MN 119",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/2/2.9.md",
+                "pts": "sutta/mn/mn119.md",
+                "bjt": "sutta/mn/mn-3-2.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn120",
+              "citation": "MN 120",
+              "title": "MN 120",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/2/2.10.md",
+                "pts": "sutta/mn/mn120.md",
+                "bjt": "sutta/mn/mn-3-2.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn121",
+              "citation": "MN 121",
+              "title": "MN 121",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/3/3.1.md",
+                "pts": "sutta/mn/mn121.md",
+                "bjt": "sutta/mn/mn-3-3.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn122",
+              "citation": "MN 122",
+              "title": "MN 122",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/3/3.2.md",
+                "pts": "sutta/mn/mn122.md",
+                "bjt": "sutta/mn/mn-3-3.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn123",
+              "citation": "MN 123",
+              "title": "MN 123",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/3/3.3.md",
+                "pts": "sutta/mn/mn123.md",
+                "bjt": "sutta/mn/mn-3-3.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn124",
+              "citation": "MN 124",
+              "title": "MN 124",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/3/3.4.md",
+                "pts": "sutta/mn/mn124.md",
+                "bjt": "sutta/mn/mn-3-3.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn125",
+              "citation": "MN 125",
+              "title": "MN 125",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/3/3.5.md",
+                "pts": "sutta/mn/mn125.md",
+                "bjt": "sutta/mn/mn-3-3.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn126",
+              "citation": "MN 126",
+              "title": "MN 126",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/3/3.6.md",
+                "pts": "sutta/mn/mn126.md",
+                "bjt": "sutta/mn/mn-3-3.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn127",
+              "citation": "MN 127",
+              "title": "MN 127",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/3/3.7.md",
+                "pts": "sutta/mn/mn127.md",
+                "bjt": "sutta/mn/mn-3-3.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn128",
+              "citation": "MN 128",
+              "title": "MN 128",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/3/3.8.md",
+                "pts": "sutta/mn/mn128.md",
+                "bjt": "sutta/mn/mn-3-3.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn129",
+              "citation": "MN 129",
+              "title": "MN 129",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/3/3.9.md",
+                "pts": "sutta/mn/mn129.md",
+                "bjt": "sutta/mn/mn-3-3.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn130",
+              "citation": "MN 130",
+              "title": "MN 130",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/3/3.10.md",
+                "pts": "sutta/mn/mn130.md",
+                "bjt": "sutta/mn/mn-3-3.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn131",
+              "citation": "MN 131",
+              "title": "MN 131",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/4/4.1.md",
+                "pts": "sutta/mn/mn131.md",
+                "bjt": "sutta/mn/mn-3-4.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn132",
+              "citation": "MN 132",
+              "title": "MN 132",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/4/4.2.md",
+                "pts": "sutta/mn/mn132.md",
+                "bjt": "sutta/mn/mn-3-4.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn133",
+              "citation": "MN 133",
+              "title": "MN 133",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/4/4.3.md",
+                "pts": "sutta/mn/mn133.md",
+                "bjt": "sutta/mn/mn-3-4.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn134",
+              "citation": "MN 134",
+              "title": "MN 134",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/4/4.4.md",
+                "pts": "sutta/mn/mn134.md",
+                "bjt": "sutta/mn/mn-3-4.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn135",
+              "citation": "MN 135",
+              "title": "MN 135",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/4/4.5.md",
+                "pts": "sutta/mn/mn135.md",
+                "bjt": "sutta/mn/mn-3-4.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn136",
+              "citation": "MN 136",
+              "title": "MN 136",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/4/4.6.md",
+                "pts": "sutta/mn/mn136.md",
+                "bjt": "sutta/mn/mn-3-4.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn137",
+              "citation": "MN 137",
+              "title": "MN 137",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/4/4.7.md",
+                "pts": "sutta/mn/mn137.md",
+                "bjt": "sutta/mn/mn-3-4.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn138",
+              "citation": "MN 138",
+              "title": "MN 138",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/4/4.8.md",
+                "pts": "sutta/mn/mn138.md",
+                "bjt": "sutta/mn/mn-3-4.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn139",
+              "citation": "MN 139",
+              "title": "MN 139",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/4/4.9.md",
+                "pts": "sutta/mn/mn139.md",
+                "bjt": "sutta/mn/mn-3-4.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn140",
+              "citation": "MN 140",
+              "title": "MN 140",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/4/4.10.md",
+                "pts": "sutta/mn/mn140.md",
+                "bjt": "sutta/mn/mn-3-4.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn141",
+              "citation": "MN 141",
+              "title": "MN 141",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/5/5.1.md",
+                "pts": "sutta/mn/mn141.md",
+                "bjt": "sutta/mn/mn-3-5.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn142",
+              "citation": "MN 142",
+              "title": "MN 142",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/5/5.2.md",
+                "pts": "sutta/mn/mn142.md",
+                "bjt": "sutta/mn/mn-3-5.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn143",
+              "citation": "MN 143",
+              "title": "MN 143",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/5/5.3.md",
+                "pts": "sutta/mn/mn143.md",
+                "bjt": "sutta/mn/mn-3-5.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn144",
+              "citation": "MN 144",
+              "title": "MN 144",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/5/5.4.md",
+                "pts": "sutta/mn/mn144.md",
+                "bjt": "sutta/mn/mn-3-5.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn145",
+              "citation": "MN 145",
+              "title": "MN 145",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/5/5.5.md",
+                "pts": "sutta/mn/mn145.md",
+                "bjt": "sutta/mn/mn-3-5.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn146",
+              "citation": "MN 146",
+              "title": "MN 146",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/5/5.6.md",
+                "pts": "sutta/mn/mn146.md",
+                "bjt": "sutta/mn/mn-3-5.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn147",
+              "citation": "MN 147",
+              "title": "MN 147",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/5/5.7.md",
+                "pts": "sutta/mn/mn147.md",
+                "bjt": "sutta/mn/mn-3-5.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn148",
+              "citation": "MN 148",
+              "title": "MN 148",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/5/5.8.md",
+                "pts": "sutta/mn/mn148.md",
+                "bjt": "sutta/mn/mn-3-5.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn149",
+              "citation": "MN 149",
+              "title": "MN 149",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/5/5.9.md",
+                "pts": "sutta/mn/mn149.md",
+                "bjt": "sutta/mn/mn-3-5.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn150",
+              "citation": "MN 150",
+              "title": "MN 150",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/5/5.10.md",
+                "pts": "sutta/mn/mn150.md",
+                "bjt": "sutta/mn/mn-3-5.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn151",
+              "citation": "MN 151",
+              "title": "MN 151",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/1/1.1.md",
+                "pts": "sutta/mn/mn151.md",
+                "bjt": "sutta/mn/mn-3-1.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            },
+            {
+              "id": "mn152",
+              "citation": "MN 152",
+              "title": "MN 152",
+              "editions": {
+                "tipitaka2500": "tipitaka/11M/1/1.2.md",
+                "pts": "sutta/mn/mn152.md",
+                "bjt": "sutta/mn/mn-3-1.md",
+                "cst": "mula/sutta/mn/s0203m.mul.md",
+                "siam-rath": "sutta/mn/vol14.md"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sn",
+      "title": "Saṃyuttanikāya",
+      "pali_title": "Saṃyuttanikāya",
+      "description": "Connected Discourses of the Buddha (56 Saṃyuttas)",
+      "books": [
+        {
+          "code": "12S1",
+          "title": "Sagāthāvaggasaṃyutta",
+          "pali_title": "Sagāthāvaggasaṃyutta",
+          "nikaya": "Saṃyuttanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/12S1.md",
+            "cst": "mula/sutta/sn/s0301m.mul.md",
+            "siam-rath": "sutta/sn/vol15.md"
+          },
+          "samyuttas": [
+            {
+              "id": "sn1",
+              "citation": "SN 1",
+              "title": "SN 1",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S1/1.md",
+                "pts": "sutta/sn/sn01.md",
+                "bjt": "sutta/sn/sn-1.md",
+                "cst": "mula/sutta/sn/s0301m.mul.md",
+                "siam-rath": "sutta/sn/vol15.md"
+              }
+            },
+            {
+              "id": "sn2",
+              "citation": "SN 2",
+              "title": "SN 2",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S1/2.md",
+                "pts": "sutta/sn/sn02.md",
+                "bjt": "sutta/sn/sn-2.md",
+                "cst": "mula/sutta/sn/s0301m.mul.md",
+                "siam-rath": "sutta/sn/vol15.md"
+              }
+            },
+            {
+              "id": "sn3",
+              "citation": "SN 3",
+              "title": "SN 3",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S1/3.md",
+                "pts": "sutta/sn/sn03.md",
+                "bjt": "sutta/sn/sn-3.md",
+                "cst": "mula/sutta/sn/s0301m.mul.md",
+                "siam-rath": "sutta/sn/vol15.md"
+              }
+            },
+            {
+              "id": "sn4",
+              "citation": "SN 4",
+              "title": "SN 4",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S1/4.md",
+                "pts": "sutta/sn/sn04.md",
+                "bjt": "sutta/sn/sn-4.md",
+                "cst": "mula/sutta/sn/s0301m.mul.md",
+                "siam-rath": "sutta/sn/vol15.md"
+              }
+            },
+            {
+              "id": "sn5",
+              "citation": "SN 5",
+              "title": "SN 5",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S1/5.md",
+                "pts": "sutta/sn/sn05.md",
+                "bjt": "sutta/sn/sn-5.md",
+                "cst": "mula/sutta/sn/s0301m.mul.md",
+                "siam-rath": "sutta/sn/vol15.md"
+              }
+            },
+            {
+              "id": "sn6",
+              "citation": "SN 6",
+              "title": "SN 6",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S1/6.md",
+                "pts": "sutta/sn/sn06.md",
+                "bjt": "sutta/sn/sn-6.md",
+                "cst": "mula/sutta/sn/s0301m.mul.md",
+                "siam-rath": "sutta/sn/vol15.md"
+              }
+            },
+            {
+              "id": "sn7",
+              "citation": "SN 7",
+              "title": "SN 7",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S1/7.md",
+                "pts": "sutta/sn/sn07.md",
+                "bjt": "sutta/sn/sn-7.md",
+                "cst": "mula/sutta/sn/s0301m.mul.md",
+                "siam-rath": "sutta/sn/vol15.md"
+              }
+            },
+            {
+              "id": "sn8",
+              "citation": "SN 8",
+              "title": "SN 8",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S1/8.md",
+                "pts": "sutta/sn/sn08.md",
+                "bjt": "sutta/sn/sn-8.md",
+                "cst": "mula/sutta/sn/s0301m.mul.md",
+                "siam-rath": "sutta/sn/vol15.md"
+              }
+            },
+            {
+              "id": "sn9",
+              "citation": "SN 9",
+              "title": "SN 9",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S1/9.md",
+                "pts": "sutta/sn/sn09.md",
+                "bjt": "sutta/sn/sn-9.md",
+                "cst": "mula/sutta/sn/s0301m.mul.md",
+                "siam-rath": "sutta/sn/vol15.md"
+              }
+            },
+            {
+              "id": "sn10",
+              "citation": "SN 10",
+              "title": "SN 10",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S1/10.md",
+                "pts": "sutta/sn/sn10.md",
+                "bjt": "sutta/sn/sn-10.md",
+                "cst": "mula/sutta/sn/s0301m.mul.md",
+                "siam-rath": "sutta/sn/vol15.md"
+              }
+            },
+            {
+              "id": "sn11",
+              "citation": "SN 11",
+              "title": "SN 11",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S1/11.md",
+                "pts": "sutta/sn/sn11.md",
+                "bjt": "sutta/sn/sn-11.md",
+                "cst": "mula/sutta/sn/s0301m.mul.md",
+                "siam-rath": "sutta/sn/vol15.md"
+              }
+            }
+          ]
+        },
+        {
+          "code": "12S2",
+          "title": "Nidānavaggasaṃyutta",
+          "pali_title": "Nidānavaggasaṃyutta",
+          "nikaya": "Saṃyuttanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/12S2.md",
+            "cst": "mula/sutta/sn/s0302m.mul.md",
+            "siam-rath": "sutta/sn/vol16.md"
+          },
+          "samyuttas": [
+            {
+              "id": "sn12",
+              "citation": "SN 12",
+              "title": "SN 12",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S2/1.md",
+                "pts": "sutta/sn/sn12.md",
+                "bjt": "sutta/sn/sn-1.md",
+                "cst": "mula/sutta/sn/s0302m.mul.md",
+                "siam-rath": "sutta/sn/vol16.md"
+              }
+            },
+            {
+              "id": "sn13",
+              "citation": "SN 13",
+              "title": "SN 13",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S2/2.md",
+                "pts": "sutta/sn/sn13.md",
+                "bjt": "sutta/sn/sn-2.md",
+                "cst": "mula/sutta/sn/s0302m.mul.md",
+                "siam-rath": "sutta/sn/vol16.md"
+              }
+            },
+            {
+              "id": "sn14",
+              "citation": "SN 14",
+              "title": "SN 14",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S2/3.md",
+                "pts": "sutta/sn/sn14.md",
+                "bjt": "sutta/sn/sn-3.md",
+                "cst": "mula/sutta/sn/s0302m.mul.md",
+                "siam-rath": "sutta/sn/vol16.md"
+              }
+            },
+            {
+              "id": "sn15",
+              "citation": "SN 15",
+              "title": "SN 15",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S2/4.md",
+                "pts": "sutta/sn/sn15.md",
+                "bjt": "sutta/sn/sn-4.md",
+                "cst": "mula/sutta/sn/s0302m.mul.md",
+                "siam-rath": "sutta/sn/vol16.md"
+              }
+            },
+            {
+              "id": "sn16",
+              "citation": "SN 16",
+              "title": "SN 16",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S2/5.md",
+                "pts": "sutta/sn/sn16.md",
+                "bjt": "sutta/sn/sn-5.md",
+                "cst": "mula/sutta/sn/s0302m.mul.md",
+                "siam-rath": "sutta/sn/vol16.md"
+              }
+            },
+            {
+              "id": "sn17",
+              "citation": "SN 17",
+              "title": "SN 17",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S2/6.md",
+                "pts": "sutta/sn/sn17.md",
+                "bjt": "sutta/sn/sn-6.md",
+                "cst": "mula/sutta/sn/s0302m.mul.md",
+                "siam-rath": "sutta/sn/vol16.md"
+              }
+            },
+            {
+              "id": "sn18",
+              "citation": "SN 18",
+              "title": "SN 18",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S2/7.md",
+                "pts": "sutta/sn/sn18.md",
+                "bjt": "sutta/sn/sn-7.md",
+                "cst": "mula/sutta/sn/s0302m.mul.md",
+                "siam-rath": "sutta/sn/vol16.md"
+              }
+            },
+            {
+              "id": "sn19",
+              "citation": "SN 19",
+              "title": "SN 19",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S2/8.md",
+                "pts": "sutta/sn/sn19.md",
+                "bjt": "sutta/sn/sn-8.md",
+                "cst": "mula/sutta/sn/s0302m.mul.md",
+                "siam-rath": "sutta/sn/vol16.md"
+              }
+            },
+            {
+              "id": "sn20",
+              "citation": "SN 20",
+              "title": "SN 20",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S2/9.md",
+                "pts": "sutta/sn/sn20.md",
+                "bjt": "sutta/sn/sn-9.md",
+                "cst": "mula/sutta/sn/s0302m.mul.md",
+                "siam-rath": "sutta/sn/vol16.md"
+              }
+            },
+            {
+              "id": "sn21",
+              "citation": "SN 21",
+              "title": "SN 21",
+              "editions": {
+                "tipitaka2500": "tipitaka/12S2/10.md",
+                "pts": "sutta/sn/sn21.md",
+                "bjt": "sutta/sn/sn-10.md",
+                "cst": "mula/sutta/sn/s0302m.mul.md",
+                "siam-rath": "sutta/sn/vol16.md"
+              }
+            }
+          ]
+        },
+        {
+          "code": "13S3",
+          "title": "Khandhavaggasaṃyutta",
+          "pali_title": "Khandhavaggasaṃyutta",
+          "nikaya": "Saṃyuttanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/13S3.md",
+            "cst": "mula/sutta/sn/s0303m.mul.md",
+            "siam-rath": "sutta/sn/vol17.md"
+          },
+          "samyuttas": [
+            {
+              "id": "sn22",
+              "citation": "SN 22",
+              "title": "SN 22",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S3/1.md",
+                "pts": "sutta/sn/sn22.md",
+                "bjt": "sutta/sn/sn-1.md",
+                "cst": "mula/sutta/sn/s0303m.mul.md",
+                "siam-rath": "sutta/sn/vol17.md"
+              }
+            },
+            {
+              "id": "sn23",
+              "citation": "SN 23",
+              "title": "SN 23",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S3/2.md",
+                "pts": "sutta/sn/sn23.md",
+                "bjt": "sutta/sn/sn-2.md",
+                "cst": "mula/sutta/sn/s0303m.mul.md",
+                "siam-rath": "sutta/sn/vol17.md"
+              }
+            },
+            {
+              "id": "sn24",
+              "citation": "SN 24",
+              "title": "SN 24",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S3/3.md",
+                "pts": "sutta/sn/sn24.md",
+                "bjt": "sutta/sn/sn-3.md",
+                "cst": "mula/sutta/sn/s0303m.mul.md",
+                "siam-rath": "sutta/sn/vol17.md"
+              }
+            },
+            {
+              "id": "sn25",
+              "citation": "SN 25",
+              "title": "SN 25",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S3/4.md",
+                "pts": "sutta/sn/sn25.md",
+                "bjt": "sutta/sn/sn-4.md",
+                "cst": "mula/sutta/sn/s0303m.mul.md",
+                "siam-rath": "sutta/sn/vol17.md"
+              }
+            },
+            {
+              "id": "sn26",
+              "citation": "SN 26",
+              "title": "SN 26",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S3/5.md",
+                "pts": "sutta/sn/sn26.md",
+                "bjt": "sutta/sn/sn-5.md",
+                "cst": "mula/sutta/sn/s0303m.mul.md",
+                "siam-rath": "sutta/sn/vol17.md"
+              }
+            },
+            {
+              "id": "sn27",
+              "citation": "SN 27",
+              "title": "SN 27",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S3/6.md",
+                "pts": "sutta/sn/sn27.md",
+                "bjt": "sutta/sn/sn-6.md",
+                "cst": "mula/sutta/sn/s0303m.mul.md",
+                "siam-rath": "sutta/sn/vol17.md"
+              }
+            },
+            {
+              "id": "sn28",
+              "citation": "SN 28",
+              "title": "SN 28",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S3/7.md",
+                "pts": "sutta/sn/sn28.md",
+                "bjt": "sutta/sn/sn-7.md",
+                "cst": "mula/sutta/sn/s0303m.mul.md",
+                "siam-rath": "sutta/sn/vol17.md"
+              }
+            },
+            {
+              "id": "sn29",
+              "citation": "SN 29",
+              "title": "SN 29",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S3/8.md",
+                "pts": "sutta/sn/sn29.md",
+                "bjt": "sutta/sn/sn-8.md",
+                "cst": "mula/sutta/sn/s0303m.mul.md",
+                "siam-rath": "sutta/sn/vol17.md"
+              }
+            },
+            {
+              "id": "sn30",
+              "citation": "SN 30",
+              "title": "SN 30",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S3/9.md",
+                "pts": "sutta/sn/sn30.md",
+                "bjt": "sutta/sn/sn-9.md",
+                "cst": "mula/sutta/sn/s0303m.mul.md",
+                "siam-rath": "sutta/sn/vol17.md"
+              }
+            },
+            {
+              "id": "sn31",
+              "citation": "SN 31",
+              "title": "SN 31",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S3/10.md",
+                "pts": "sutta/sn/sn31.md",
+                "bjt": "sutta/sn/sn-10.md",
+                "cst": "mula/sutta/sn/s0303m.mul.md",
+                "siam-rath": "sutta/sn/vol17.md"
+              }
+            },
+            {
+              "id": "sn32",
+              "citation": "SN 32",
+              "title": "SN 32",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S3/11.md",
+                "pts": "sutta/sn/sn32.md",
+                "bjt": "sutta/sn/sn-11.md",
+                "cst": "mula/sutta/sn/s0303m.mul.md",
+                "siam-rath": "sutta/sn/vol17.md"
+              }
+            },
+            {
+              "id": "sn33",
+              "citation": "SN 33",
+              "title": "SN 33",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S3/12.md",
+                "pts": "sutta/sn/sn33.md",
+                "bjt": "sutta/sn/sn-12.md",
+                "cst": "mula/sutta/sn/s0303m.mul.md",
+                "siam-rath": "sutta/sn/vol17.md"
+              }
+            },
+            {
+              "id": "sn34",
+              "citation": "SN 34",
+              "title": "SN 34",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S3/13.md",
+                "pts": "sutta/sn/sn34.md",
+                "bjt": "sutta/sn/sn-13.md",
+                "cst": "mula/sutta/sn/s0303m.mul.md",
+                "siam-rath": "sutta/sn/vol17.md"
+              }
+            }
+          ]
+        },
+        {
+          "code": "13S4",
+          "title": "Saḷāyatanavaggasaṃyutta",
+          "pali_title": "Saḷāyatanavaggasaṃyutta",
+          "nikaya": "Saṃyuttanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/13S4.md",
+            "cst": "mula/sutta/sn/s0304m.mul.md",
+            "siam-rath": "sutta/sn/vol18.md"
+          },
+          "samyuttas": [
+            {
+              "id": "sn35",
+              "citation": "SN 35",
+              "title": "SN 35",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S4/1.md",
+                "pts": "sutta/sn/sn35.md",
+                "bjt": "sutta/sn/sn-1.md",
+                "cst": "mula/sutta/sn/s0304m.mul.md",
+                "siam-rath": "sutta/sn/vol18.md"
+              }
+            },
+            {
+              "id": "sn36",
+              "citation": "SN 36",
+              "title": "SN 36",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S4/2.md",
+                "pts": "sutta/sn/sn36.md",
+                "bjt": "sutta/sn/sn-2.md",
+                "cst": "mula/sutta/sn/s0304m.mul.md",
+                "siam-rath": "sutta/sn/vol18.md"
+              }
+            },
+            {
+              "id": "sn37",
+              "citation": "SN 37",
+              "title": "SN 37",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S4/3.md",
+                "pts": "sutta/sn/sn37.md",
+                "bjt": "sutta/sn/sn-3.md",
+                "cst": "mula/sutta/sn/s0304m.mul.md",
+                "siam-rath": "sutta/sn/vol18.md"
+              }
+            },
+            {
+              "id": "sn38",
+              "citation": "SN 38",
+              "title": "SN 38",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S4/4.md",
+                "pts": "sutta/sn/sn38.md",
+                "bjt": "sutta/sn/sn-4.md",
+                "cst": "mula/sutta/sn/s0304m.mul.md",
+                "siam-rath": "sutta/sn/vol18.md"
+              }
+            },
+            {
+              "id": "sn39",
+              "citation": "SN 39",
+              "title": "SN 39",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S4/5.md",
+                "pts": "sutta/sn/sn39.md",
+                "bjt": "sutta/sn/sn-5.md",
+                "cst": "mula/sutta/sn/s0304m.mul.md",
+                "siam-rath": "sutta/sn/vol18.md"
+              }
+            },
+            {
+              "id": "sn40",
+              "citation": "SN 40",
+              "title": "SN 40",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S4/6.md",
+                "pts": "sutta/sn/sn40.md",
+                "bjt": "sutta/sn/sn-6.md",
+                "cst": "mula/sutta/sn/s0304m.mul.md",
+                "siam-rath": "sutta/sn/vol18.md"
+              }
+            },
+            {
+              "id": "sn41",
+              "citation": "SN 41",
+              "title": "SN 41",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S4/7.md",
+                "pts": "sutta/sn/sn41.md",
+                "bjt": "sutta/sn/sn-7.md",
+                "cst": "mula/sutta/sn/s0304m.mul.md",
+                "siam-rath": "sutta/sn/vol18.md"
+              }
+            },
+            {
+              "id": "sn42",
+              "citation": "SN 42",
+              "title": "SN 42",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S4/8.md",
+                "pts": "sutta/sn/sn42.md",
+                "bjt": "sutta/sn/sn-8.md",
+                "cst": "mula/sutta/sn/s0304m.mul.md",
+                "siam-rath": "sutta/sn/vol18.md"
+              }
+            },
+            {
+              "id": "sn43",
+              "citation": "SN 43",
+              "title": "SN 43",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S4/9.md",
+                "pts": "sutta/sn/sn43.md",
+                "bjt": "sutta/sn/sn-9.md",
+                "cst": "mula/sutta/sn/s0304m.mul.md",
+                "siam-rath": "sutta/sn/vol18.md"
+              }
+            },
+            {
+              "id": "sn44",
+              "citation": "SN 44",
+              "title": "SN 44",
+              "editions": {
+                "tipitaka2500": "tipitaka/13S4/10.md",
+                "pts": "sutta/sn/sn44.md",
+                "bjt": "sutta/sn/sn-10.md",
+                "cst": "mula/sutta/sn/s0304m.mul.md",
+                "siam-rath": "sutta/sn/vol18.md"
+              }
+            }
+          ]
+        },
+        {
+          "code": "14S5",
+          "title": "Mahāvaggasaṃyutta",
+          "pali_title": "Mahāvaggasaṃyutta",
+          "nikaya": "Saṃyuttanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/14S5.md",
+            "cst": "mula/sutta/sn/s0305m.mul.md",
+            "siam-rath": "sutta/sn/vol19.md"
+          },
+          "samyuttas": [
+            {
+              "id": "sn45",
+              "citation": "SN 45",
+              "title": "SN 45",
+              "editions": {
+                "tipitaka2500": "tipitaka/14S5/1.md",
+                "pts": "sutta/sn/sn45.md",
+                "bjt": "sutta/sn/sn-1.md",
+                "cst": "mula/sutta/sn/s0305m.mul.md",
+                "siam-rath": "sutta/sn/vol19.md"
+              }
+            },
+            {
+              "id": "sn46",
+              "citation": "SN 46",
+              "title": "SN 46",
+              "editions": {
+                "tipitaka2500": "tipitaka/14S5/2.md",
+                "pts": "sutta/sn/sn46.md",
+                "bjt": "sutta/sn/sn-2.md",
+                "cst": "mula/sutta/sn/s0305m.mul.md",
+                "siam-rath": "sutta/sn/vol19.md"
+              }
+            },
+            {
+              "id": "sn47",
+              "citation": "SN 47",
+              "title": "SN 47",
+              "editions": {
+                "tipitaka2500": "tipitaka/14S5/3.md",
+                "pts": "sutta/sn/sn47.md",
+                "bjt": "sutta/sn/sn-3.md",
+                "cst": "mula/sutta/sn/s0305m.mul.md",
+                "siam-rath": "sutta/sn/vol19.md"
+              }
+            },
+            {
+              "id": "sn48",
+              "citation": "SN 48",
+              "title": "SN 48",
+              "editions": {
+                "tipitaka2500": "tipitaka/14S5/4.md",
+                "pts": "sutta/sn/sn48.md",
+                "bjt": "sutta/sn/sn-4.md",
+                "cst": "mula/sutta/sn/s0305m.mul.md",
+                "siam-rath": "sutta/sn/vol19.md"
+              }
+            },
+            {
+              "id": "sn49",
+              "citation": "SN 49",
+              "title": "SN 49",
+              "editions": {
+                "tipitaka2500": "tipitaka/14S5/5.md",
+                "pts": "sutta/sn/sn49.md",
+                "bjt": "sutta/sn/sn-5.md",
+                "cst": "mula/sutta/sn/s0305m.mul.md",
+                "siam-rath": "sutta/sn/vol19.md"
+              }
+            },
+            {
+              "id": "sn50",
+              "citation": "SN 50",
+              "title": "SN 50",
+              "editions": {
+                "tipitaka2500": "tipitaka/14S5/6.md",
+                "pts": "sutta/sn/sn50.md",
+                "bjt": "sutta/sn/sn-6.md",
+                "cst": "mula/sutta/sn/s0305m.mul.md",
+                "siam-rath": "sutta/sn/vol19.md"
+              }
+            },
+            {
+              "id": "sn51",
+              "citation": "SN 51",
+              "title": "SN 51",
+              "editions": {
+                "tipitaka2500": "tipitaka/14S5/7.md",
+                "pts": "sutta/sn/sn51.md",
+                "bjt": "sutta/sn/sn-7.md",
+                "cst": "mula/sutta/sn/s0305m.mul.md",
+                "siam-rath": "sutta/sn/vol19.md"
+              }
+            },
+            {
+              "id": "sn52",
+              "citation": "SN 52",
+              "title": "SN 52",
+              "editions": {
+                "tipitaka2500": "tipitaka/14S5/8.md",
+                "pts": "sutta/sn/sn52.md",
+                "bjt": "sutta/sn/sn-8.md",
+                "cst": "mula/sutta/sn/s0305m.mul.md",
+                "siam-rath": "sutta/sn/vol19.md"
+              }
+            },
+            {
+              "id": "sn53",
+              "citation": "SN 53",
+              "title": "SN 53",
+              "editions": {
+                "tipitaka2500": "tipitaka/14S5/9.md",
+                "pts": "sutta/sn/sn53.md",
+                "bjt": "sutta/sn/sn-9.md",
+                "cst": "mula/sutta/sn/s0305m.mul.md",
+                "siam-rath": "sutta/sn/vol19.md"
+              }
+            },
+            {
+              "id": "sn54",
+              "citation": "SN 54",
+              "title": "SN 54",
+              "editions": {
+                "tipitaka2500": "tipitaka/14S5/10.md",
+                "pts": "sutta/sn/sn54.md",
+                "bjt": "sutta/sn/sn-10.md",
+                "cst": "mula/sutta/sn/s0305m.mul.md",
+                "siam-rath": "sutta/sn/vol19.md"
+              }
+            },
+            {
+              "id": "sn55",
+              "citation": "SN 55",
+              "title": "SN 55",
+              "editions": {
+                "tipitaka2500": "tipitaka/14S5/11.md",
+                "pts": "sutta/sn/sn55.md",
+                "bjt": "sutta/sn/sn-11.md",
+                "cst": "mula/sutta/sn/s0305m.mul.md",
+                "siam-rath": "sutta/sn/vol19.md"
+              }
+            },
+            {
+              "id": "sn56",
+              "citation": "SN 56",
+              "title": "SN 56",
+              "editions": {
+                "tipitaka2500": "tipitaka/14S5/12.md",
+                "pts": "sutta/sn/sn56.md",
+                "bjt": "sutta/sn/sn-12.md",
+                "cst": "mula/sutta/sn/s0305m.mul.md",
+                "siam-rath": "sutta/sn/vol19.md"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "an",
+      "title": "Aṅguttaranikāya",
+      "pali_title": "Aṅguttaranikāya",
+      "description": "Numerical Discourses of the Buddha (11 Nipātas)",
+      "books": [
+        {
+          "code": "15A1",
+          "title": "AN 1 (Ekakanipāta)",
+          "pali_title": "Ekakanipāta",
+          "citation": "AN 1",
+          "nikaya": "Aṅguttaranikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/15A1.md",
+            "pts": "sutta/an/an01.md",
+            "bjt": "sutta/an/an-1.md",
+            "cst": "mula/sutta/an/s0401m.mul.md",
+            "siam-rath": "sutta/an/vol20.md"
+          }
+        },
+        {
+          "code": "15A2",
+          "title": "AN 2 (Dukanipāta)",
+          "pali_title": "Dukanipāta",
+          "citation": "AN 2",
+          "nikaya": "Aṅguttaranikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/15A2.md",
+            "pts": "sutta/an/an02.md",
+            "bjt": "sutta/an/an-2.md",
+            "cst": "mula/sutta/an/s0401m.mul.md",
+            "siam-rath": "sutta/an/vol20.md"
+          }
+        },
+        {
+          "code": "15A3",
+          "title": "AN 3 (Tikanipāta)",
+          "pali_title": "Tikanipāta",
+          "citation": "AN 3",
+          "nikaya": "Aṅguttaranikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/15A3.md",
+            "pts": "sutta/an/an03.md",
+            "bjt": "sutta/an/an-3.md",
+            "cst": "mula/sutta/an/s0401m.mul.md",
+            "siam-rath": "sutta/an/vol20.md"
+          }
+        },
+        {
+          "code": "15A4",
+          "title": "AN 4 (Catukkanipāta)",
+          "pali_title": "Catukkanipāta",
+          "citation": "AN 4",
+          "nikaya": "Aṅguttaranikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/15A4.md",
+            "pts": "sutta/an/an04.md",
+            "bjt": "sutta/an/an-4.md",
+            "cst": "mula/sutta/an/s0402m.mul.md",
+            "siam-rath": "sutta/an/vol21.md"
+          }
+        },
+        {
+          "code": "16A5",
+          "title": "AN 5 (Pañcakanipāta)",
+          "pali_title": "Pañcakanipāta",
+          "citation": "AN 5",
+          "nikaya": "Aṅguttaranikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/16A5.md",
+            "pts": "sutta/an/an05.md",
+            "bjt": "sutta/an/an-5.md",
+            "cst": "mula/sutta/an/s0403m.mul.md",
+            "siam-rath": "sutta/an/vol22.md"
+          }
+        },
+        {
+          "code": "16A6",
+          "title": "AN 6 (Chakkanipāta)",
+          "pali_title": "Chakkanipāta",
+          "citation": "AN 6",
+          "nikaya": "Aṅguttaranikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/16A6.md",
+            "pts": "sutta/an/an06.md",
+            "bjt": "sutta/an/an-6.md",
+            "cst": "mula/sutta/an/s0403m.mul.md",
+            "siam-rath": "sutta/an/vol22.md"
+          }
+        },
+        {
+          "code": "16A7",
+          "title": "AN 7 (Sattakanipāta)",
+          "pali_title": "Sattakanipāta",
+          "citation": "AN 7",
+          "nikaya": "Aṅguttaranikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/16A7.md",
+            "pts": "sutta/an/an07.md",
+            "bjt": "sutta/an/an-7.md",
+            "cst": "mula/sutta/an/s0404m.mul.md",
+            "siam-rath": "sutta/an/vol23.md"
+          }
+        },
+        {
+          "code": "17A8",
+          "title": "AN 8 (Aṭṭhakanipāta)",
+          "pali_title": "Aṭṭhakanipāta",
+          "citation": "AN 8",
+          "nikaya": "Aṅguttaranikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/17A8.md",
+            "pts": "sutta/an/an08.md",
+            "bjt": "sutta/an/an-8.md",
+            "cst": "mula/sutta/an/s0404m.mul.md",
+            "siam-rath": "sutta/an/vol23.md"
+          }
+        },
+        {
+          "code": "17A9",
+          "title": "AN 9 (Navakanipāta)",
+          "pali_title": "Navakanipāta",
+          "citation": "AN 9",
+          "nikaya": "Aṅguttaranikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/17A9.md",
+            "pts": "sutta/an/an09.md",
+            "bjt": "sutta/an/an-9.md",
+            "cst": "mula/sutta/an/s0404m.mul.md",
+            "siam-rath": "sutta/an/vol23.md"
+          }
+        },
+        {
+          "code": "17A10",
+          "title": "AN 10 (Dasakanipāta)",
+          "pali_title": "Dasakanipāta",
+          "citation": "AN 10",
+          "nikaya": "Aṅguttaranikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/17A10.md",
+            "pts": "sutta/an/an10.md",
+            "bjt": "sutta/an/an-10.md",
+            "cst": "mula/sutta/an/s0405m.mul.md",
+            "siam-rath": "sutta/an/vol24.md"
+          }
+        },
+        {
+          "code": "17A11",
+          "title": "AN 11 (Ekādasakanipāta)",
+          "pali_title": "Ekādasakanipāta",
+          "citation": "AN 11",
+          "nikaya": "Aṅguttaranikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/17A11.md",
+            "pts": "sutta/an/an11.md",
+            "bjt": "sutta/an/an-11.md",
+            "cst": "mula/sutta/an/s0405m.mul.md",
+            "siam-rath": "sutta/an/vol24.md"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kn",
+      "title": "Khuddakanikāya",
+      "pali_title": "Khuddakanikāya",
+      "description": "Minor Collection (15+ Books)",
+      "books": [
+        {
+          "code": "18Kh",
+          "title": "Khuddakapāṭha",
+          "pali_title": "Khuddakapāṭha",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/18Kh.md",
+            "pts": "sutta/kn/khp.md",
+            "bjt": "sutta/kn/kn-khp.md",
+            "cst": "mula/sutta/kn/s0501m.mul.md",
+            "siam-rath": "sutta/kn/vol25.md"
+          }
+        },
+        {
+          "code": "18Dh",
+          "title": "Dhammapada",
+          "pali_title": "Dhammapada",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/18Dh.md",
+            "pts": "sutta/kn/dhp.md",
+            "bjt": "sutta/kn/kn-dhp.md",
+            "cst": "mula/sutta/kn/s0501m.mul.md",
+            "siam-rath": "sutta/kn/vol25.md"
+          }
+        },
+        {
+          "code": "18Ud",
+          "title": "Udāna",
+          "pali_title": "Udāna",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/18Ud.md",
+            "pts": "sutta/kn/ud.md",
+            "bjt": "sutta/kn/kn-ud.md",
+            "cst": "mula/sutta/kn/s0501m.mul.md",
+            "siam-rath": "sutta/kn/vol25.md"
+          }
+        },
+        {
+          "code": "18It",
+          "title": "Itivuttaka",
+          "pali_title": "Itivuttaka",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/18It.md",
+            "pts": "sutta/kn/iti.md",
+            "bjt": "sutta/kn/kn-iti.md",
+            "cst": "mula/sutta/kn/s0501m.mul.md",
+            "siam-rath": "sutta/kn/vol25.md"
+          }
+        },
+        {
+          "code": "18Sn",
+          "title": "Suttanipāta",
+          "pali_title": "Suttanipāta",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/18Sn.md",
+            "pts": "sutta/kn/snp.md",
+            "bjt": "sutta/kn/kn-snp.md",
+            "cst": "mula/sutta/kn/s0501m.mul.md",
+            "siam-rath": "sutta/kn/vol25.md"
+          }
+        },
+        {
+          "code": "19Vv",
+          "title": "Vimānavatthu",
+          "pali_title": "Vimānavatthu",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/19Vv.md",
+            "pts": "sutta/kn/vv.md",
+            "bjt": "sutta/kn/kn-vv.md",
+            "cst": "mula/sutta/kn/s0502m.mul.md",
+            "siam-rath": "sutta/kn/vol26.md"
+          }
+        },
+        {
+          "code": "19Pv",
+          "title": "Petavatthu",
+          "pali_title": "Petavatthu",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/19Pv.md",
+            "pts": "sutta/kn/pv.md",
+            "bjt": "sutta/kn/kn-pv.md",
+            "cst": "mula/sutta/kn/s0502m.mul.md",
+            "siam-rath": "sutta/kn/vol26.md"
+          }
+        },
+        {
+          "code": "19Th1",
+          "title": "Theragāthā",
+          "pali_title": "Theragāthā",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/19Th1.md",
+            "pts": "sutta/kn/thag.md",
+            "bjt": "sutta/kn/kn-thag.md",
+            "cst": "mula/sutta/kn/s0502m.mul.md",
+            "siam-rath": "sutta/kn/vol26.md"
+          }
+        },
+        {
+          "code": "19Th2",
+          "title": "Therīgāthā",
+          "pali_title": "Therīgāthā",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/19Th2.md",
+            "pts": "sutta/kn/thig.md",
+            "bjt": "sutta/kn/kn-thig.md",
+            "cst": "mula/sutta/kn/s0502m.mul.md",
+            "siam-rath": "sutta/kn/vol26.md"
+          }
+        },
+        {
+          "code": "20J",
+          "title": "Jātaka Vol. 1",
+          "pali_title": "Jātaka Vol. 1",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/20J.md",
+            "pts": "sutta/kn/jat01.md",
+            "bjt": "sutta/kn/kn-jat-1.md",
+            "cst": "mula/sutta/kn/s0503m.mul.md",
+            "siam-rath": "sutta/kn/vol27.md"
+          }
+        },
+        {
+          "code": "21J",
+          "title": "Jātaka Vol. 2",
+          "pali_title": "Jātaka Vol. 2",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/21J.md",
+            "pts": "sutta/kn/jat02.md",
+            "bjt": "sutta/kn/kn-jat-2.md",
+            "cst": "mula/sutta/kn/s0504m.mul.md",
+            "siam-rath": "sutta/kn/vol28.md"
+          }
+        },
+        {
+          "code": "22J",
+          "title": "Jātaka Vol. 3",
+          "pali_title": "Jātaka Vol. 3",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/22J.md",
+            "pts": "sutta/kn/jat03.md",
+            "bjt": "sutta/kn/kn-jat-3.md",
+            "cst": "mula/sutta/kn/s0505m.mul.md",
+            "siam-rath": "sutta/kn/vol28.md"
+          }
+        },
+        {
+          "code": "23J",
+          "title": "Jātaka Vol. 4",
+          "pali_title": "Jātaka Vol. 4",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/23J.md",
+            "pts": "sutta/kn/jat04.md",
+            "bjt": "sutta/kn/kn-jat-4.md",
+            "cst": "mula/sutta/kn/s0506m.mul.md",
+            "siam-rath": "sutta/kn/vol28.md"
+          }
+        },
+        {
+          "code": "24J",
+          "title": "Jātaka Vol. 5",
+          "pali_title": "Jātaka Vol. 5",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/24J.md",
+            "pts": "sutta/kn/jat05.md",
+            "bjt": "sutta/kn/kn-jat-5.md",
+            "cst": "mula/sutta/kn/s0507m.mul.md",
+            "siam-rath": "sutta/kn/vol28.md"
+          }
+        },
+        {
+          "code": "25J",
+          "title": "Jātaka Vol. 6",
+          "pali_title": "Jātaka Vol. 6",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/25J.md",
+            "pts": "sutta/kn/jat06.md",
+            "bjt": "sutta/kn/kn-jat-6.md",
+            "cst": "mula/sutta/kn/s0508m.mul.md",
+            "siam-rath": "sutta/kn/vol28.md"
+          }
+        },
+        {
+          "code": "26N1",
+          "title": "Mahāniddesa",
+          "pali_title": "Mahāniddesa",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/26N1.md",
+            "pts": "sutta/kn/mnd.md",
+            "bjt": "sutta/kn/kn-mnd.md",
+            "cst": "mula/sutta/kn/s0509m.mul.md",
+            "siam-rath": "sutta/kn/vol29.md"
+          }
+        },
+        {
+          "code": "27N2",
+          "title": "Cūḷaniddesa",
+          "pali_title": "Cūḷaniddesa",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/27N2.md",
+            "pts": "sutta/kn/cnd.md",
+            "bjt": "sutta/kn/kn-cnd.md",
+            "cst": "mula/sutta/kn/s0510m.mul.md",
+            "siam-rath": "sutta/kn/vol30.md"
+          }
+        },
+        {
+          "code": "28P",
+          "title": "Paṭisambhidāmagga 1",
+          "pali_title": "Paṭisambhidāmagga 1",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/28P.md",
+            "pts": "sutta/kn/ps01.md",
+            "bjt": "sutta/kn/kn-ps-1.md",
+            "cst": "mula/sutta/kn/s0511m.mul.md",
+            "siam-rath": "sutta/kn/vol31.md"
+          }
+        },
+        {
+          "code": "29P",
+          "title": "Paṭisambhidāmagga 2",
+          "pali_title": "Paṭisambhidāmagga 2",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/29P.md",
+            "pts": "sutta/kn/ps02.md",
+            "bjt": "sutta/kn/kn-ps-2.md",
+            "cst": "mula/sutta/kn/s0512m.mul.md",
+            "siam-rath": "sutta/kn/vol31.md"
+          }
+        },
+        {
+          "code": "30A",
+          "title": "Apadāna 1",
+          "pali_title": "Apadāna 1",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/30A.md",
+            "pts": "sutta/kn/ap.md",
+            "bjt": "sutta/kn/kn-ap-1.md",
+            "cst": "mula/sutta/kn/s0513m.mul.md",
+            "siam-rath": "sutta/kn/vol32.md"
+          }
+        },
+        {
+          "code": "31A",
+          "title": "Apadāna 2",
+          "pali_title": "Apadāna 2",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/31A.md",
+            "pts": "sutta/kn/ap.md",
+            "bjt": "sutta/kn/kn-ap-2.md",
+            "cst": "mula/sutta/kn/s0514m.mul.md",
+            "siam-rath": "sutta/kn/vol33.md"
+          }
+        },
+        {
+          "code": "32Bv",
+          "title": "Buddhavaṃsa",
+          "pali_title": "Buddhavaṃsa",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/32Bv.md",
+            "pts": "sutta/kn/bv.md",
+            "bjt": "sutta/kn/kn-bv.md",
+            "cst": "mula/sutta/kn/s0515m.mul.md",
+            "siam-rath": "sutta/kn/vol33.md"
+          }
+        },
+        {
+          "code": "33Cp",
+          "title": "Cariyāpiṭaka",
+          "pali_title": "Cariyāpiṭaka",
+          "nikaya": "Khuddakanikāya",
+          "pitaka": "Suttantapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/33Cp.md",
+            "pts": "sutta/kn/cp.md",
+            "bjt": "sutta/kn/kn-cp.md",
+            "cst": "mula/sutta/kn/s0516m.mul.md",
+            "siam-rath": "sutta/kn/vol33.md"
+          }
+        }
+      ]
+    },
+    {
+      "id": "abhidhamma",
+      "title": "Abhidhammapiṭaka",
+      "pali_title": "Abhidhammapiṭaka",
+      "description": "Higher Teachings (7 Treatises)",
+      "books": [
+        {
+          "code": "34Dh",
+          "title": "Dhammasaṅgaṇī",
+          "pali_title": "Dhammasaṅgaṇī",
+          "pitaka": "Abhidhammapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/34Dh.md",
+            "pts": "abhidhamma/dhs.md",
+            "bjt": "abhidhamma/ap-ds.md",
+            "cst": "mula/abhidhamma/abh01m.mul.md",
+            "siam-rath": "abhidhamma/vol34.md"
+          }
+        },
+        {
+          "code": "35Vb",
+          "title": "Vibhaṅga",
+          "pali_title": "Vibhaṅga",
+          "pitaka": "Abhidhammapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/35Vb.md",
+            "pts": "abhidhamma/vbh01.md",
+            "bjt": "abhidhamma/ap-vb.md",
+            "cst": "mula/abhidhamma/abh02m.mul.md",
+            "siam-rath": "abhidhamma/vol35.md"
+          }
+        },
+        {
+          "code": "36Dh",
+          "title": "Dhātukathā",
+          "pali_title": "Dhātukathā",
+          "pitaka": "Abhidhammapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/36Dh.md",
+            "pts": "abhidhamma/dhk.md",
+            "bjt": "abhidhamma/ap-dt.md",
+            "cst": "mula/abhidhamma/abh03m.mul.md",
+            "siam-rath": "abhidhamma/vol36.md"
+          }
+        },
+        {
+          "code": "36Pu",
+          "title": "Puggalapaññatti",
+          "pali_title": "Puggalapaññatti",
+          "pitaka": "Abhidhammapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/36Pu.md",
+            "pts": "abhidhamma/pug.md",
+            "bjt": "abhidhamma/ap-pp.md",
+            "cst": "mula/abhidhamma/abh03m.mul.md",
+            "siam-rath": "abhidhamma/vol36.md"
+          }
+        },
+        {
+          "code": "37K",
+          "title": "Kathāvatthu",
+          "pali_title": "Kathāvatthu",
+          "pitaka": "Abhidhammapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/37K.md",
+            "pts": "abhidhamma/kvu.md",
+            "bjt": "abhidhamma/ap-kv.md",
+            "cst": "mula/abhidhamma/abh04m.mul.md",
+            "siam-rath": "abhidhamma/vol37.md"
+          }
+        },
+        {
+          "code": "38Y1",
+          "title": "Yamaka 1",
+          "pali_title": "Yamaka 1",
+          "pitaka": "Abhidhammapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/38Y1.md",
+            "pts": "abhidhamma/yam01.md",
+            "bjt": "abhidhamma/ap-ym-1.md",
+            "cst": "mula/abhidhamma/abh05m.mul.md",
+            "siam-rath": "abhidhamma/vol38.md"
+          }
+        },
+        {
+          "code": "38Y2",
+          "title": "Yamaka 2",
+          "pali_title": "Yamaka 2",
+          "pitaka": "Abhidhammapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/38Y2.md",
+            "pts": "abhidhamma/yam02.md",
+            "bjt": "abhidhamma/ap-ym-2.md",
+            "cst": "mula/abhidhamma/abh06m.mul.md",
+            "siam-rath": "abhidhamma/vol39.md"
+          }
+        },
+        {
+          "code": "39P1",
+          "title": "Paṭṭhāna 1 (Tikapaṭṭhāna)",
+          "pali_title": "Paṭṭhāna 1 (Tikapaṭṭhāna)",
+          "pitaka": "Abhidhammapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/39P1.md",
+            "pts": "abhidhamma/pat-tika1.md",
+            "bjt": "abhidhamma/ap-pt-1.md",
+            "cst": "mula/abhidhamma/abh07m.mul.md",
+            "siam-rath": "abhidhamma/vol40.md"
+          }
+        },
+        {
+          "code": "39P2",
+          "title": "Paṭṭhāna 2 (Dukapaṭṭhāna)",
+          "pali_title": "Paṭṭhāna 2 (Dukapaṭṭhāna)",
+          "pitaka": "Abhidhammapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/39P2.md",
+            "pts": "abhidhamma/pat-duka.md",
+            "bjt": "abhidhamma/ap-pt-2.md",
+            "cst": "mula/abhidhamma/abh08m.mul.md",
+            "siam-rath": "abhidhamma/vol41.md"
+          }
+        },
+        {
+          "code": "40P3",
+          "title": "Paṭṭhāna 3",
+          "pali_title": "Paṭṭhāna 3",
+          "pitaka": "Abhidhammapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/40P3.md",
+            "pts": "abhidhamma/pat-tika2.md",
+            "bjt": "abhidhamma/ap-pt-3.md",
+            "cst": "mula/abhidhamma/abh09m.mul.md",
+            "siam-rath": "abhidhamma/vol42.md"
+          }
+        },
+        {
+          "code": "40P4",
+          "title": "Paṭṭhāna 4",
+          "pali_title": "Paṭṭhāna 4",
+          "pitaka": "Abhidhammapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/40P4.md",
+            "pts": "abhidhamma/pat-tika3.md",
+            "bjt": "abhidhamma/ap-pt-4.md",
+            "cst": "mula/abhidhamma/abh10m.mul.md",
+            "siam-rath": "abhidhamma/vol43.md"
+          }
+        },
+        {
+          "code": "40P5",
+          "title": "Paṭṭhāna 5",
+          "pali_title": "Paṭṭhāna 5",
+          "pitaka": "Abhidhammapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/40P5.md",
+            "pts": "abhidhamma/pat-tika3.md",
+            "bjt": "abhidhamma/ap-pt-5.md",
+            "cst": "mula/abhidhamma/abh11m.mul.md",
+            "siam-rath": "abhidhamma/vol44.md"
+          }
+        },
+        {
+          "code": "40P6",
+          "title": "Paṭṭhāna 6",
+          "pali_title": "Paṭṭhāna 6",
+          "pitaka": "Abhidhammapiṭaka",
+          "editions": {
+            "tipitaka2500": "tipitaka/40P6.md",
+            "pts": "abhidhamma/pat-tika3.md",
+            "bjt": "abhidhamma/ap-pt-6.md",
+            "cst": "mula/abhidhamma/abh12m.mul.md",
+            "siam-rath": "abhidhamma/vol45.md"
+          }
+        }
+      ]
+    },
+    {
+      "id": "commentaries",
+      "title": "Aṭṭhakathā & Paracanonical",
+      "pali_title": "Aṭṭhakathā",
+      "description": "Post-Canonical Commentaries and Treatises",
+      "books": [
+        {
+          "code": "Mil",
+          "title": "Milindapañha",
+          "pali_title": "Milindapañha",
+          "editions": {
+            "pts": "paracanonical/milindapanha.md",
+            "cst": "mula/sutta/kn/s0519m.mul.md"
+          }
+        },
+        {
+          "code": "Vm",
+          "title": "Visuddhimagga",
+          "pali_title": "Visuddhimagga",
+          "editions": {
+            "pts": "commentary/visuddhimagga.md",
+            "bjt": "anya/anya-vm.md",
+            "cst": "mula/anya/anya01m.mul.md"
+          }
+        },
+        {
+          "code": "Smp",
+          "title": "Samantapāsādikā (Vinaya Commentary)",
+          "pali_title": "Samantapāsādikā",
+          "editions": {
+            "pts": "commentary/samantapasadika-01.md",
+            "bjt": "atthakatha/vinaya/atta-vp-prj.md",
+            "cst": "atthakatha/vinaya/vin01a.att.md"
+          }
+        },
+        {
+          "code": "Mhv",
+          "title": "Mahāvaṃsa (Great Chronicle)",
+          "pali_title": "Mahāvaṃsa",
+          "editions": {
+            "pts": "chronicles/mahavamsa.md"
+          }
+        },
+        {
+          "code": "Kacc",
+          "title": "Kaccāyanavyākaraṇa (Pāḷi Grammar)",
+          "pali_title": "Kaccāyana",
+          "editions": {
+            "pts": "treatises/grammar/kaccayana-01.md"
+          }
+        }
+      ]
+    }
+  ]
+}

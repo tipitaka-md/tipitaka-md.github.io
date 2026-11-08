@@ -1,0 +1,339 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Tipiṭaka Comparative Markdown Edition — tipitaka-md.github.io"
+  description="Comparative digital viewer for Pāḷi Tipiṭaka Markdown editions (World Tipiṭaka 2500, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath) with Rosely text variant highlighting and multi-script transliteration."
+  lang="en"
+>
+  <main>
+    <div class="hero-banner">
+      <h1>Tipiṭaka Comparative Markdown Edition</h1>
+      <p class="lead">
+        Multi-Edition Comparative Digital Viewer for Canonical Pāḷi Texts in Markdown with
+        Rosely Text Variant Diffing &amp; Multi-Script Transliteration
+      </p>
+      <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+        <a href="/reader.html?book=6D&sutta=dn1" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; color: #fff; background-color: var(--primary-color);">
+          <span>🚀 Launch Comparative Reader (DN 1)</span>
+        </a>
+        <a href="/reader.html?book=6D" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-tertiary);">
+          <span>📚 Browse Books</span>
+        </a>
+        <a href="https://github.com/tipitaka-md" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-body);">
+          <span>↗ View GitHub Repos</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="home-intro-layout">
+      <div>
+        <p>
+          <strong>tipitaka-md.github.io</strong> provides an interactive comparative reading environment
+          for the Theravāda Buddhist Canon across five international standard editions converted into
+          plain, version-controlled <strong>Markdown format</strong>. Using <strong>The World Tipiṭaka
+          Edition (B.E. 2500 / 2020 Edition)</strong> as the canonical base, this viewer allows scholars,
+          students, and practitioners to cross-examine textual variants, orthographical traditions,
+          and readings in real time.
+        </p>
+        <p>
+          Derived from the architecture of <a href="https://tipitaka2500.github.io" target="_blank" rel="noopener noreferrer"><strong>tipitaka2500.github.io</strong></a>
+          and styled using the <a href="https://rosely.hellotham.com" target="_blank" rel="noopener noreferrer"><strong>Rosely Design System</strong></a>,
+          the viewer highlights textual differences dynamically using harmonic Rosely color tokens:
+        </p>
+
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1.25rem 0;">
+          <span class="legend-badge legend-add" style="padding: 0.4rem 0.8rem; font-size: 0.88rem; border-radius: 6px;">
+            ● Light Green (Spearmint #64bfa4): Textual Addition
+          </span>
+          <span class="legend-badge legend-change" style="padding: 0.4rem 0.8rem; font-size: 0.88rem; border-radius: 6px;">
+            ● Light Yellow (Meadowlark #eada4f): Word Variant / Change
+          </span>
+          <span class="legend-badge legend-del" style="padding: 0.4rem 0.8rem; font-size: 0.88rem; border-radius: 6px;">
+            ● Light Pink (Rose Quartz #f7caca): Omission / Deletion
+          </span>
+        </div>
+
+        <p style="margin-bottom: 0;">
+          Select any book from the sidebar, compare two editions side-by-side with synchronized scrolling,
+          or transliterate dynamically between <strong>Roman (IAST)</strong>, <strong>Sinhala (සිංහල)</strong>,
+          <strong>Thai (ไทย)</strong>, <strong>Burmese (မြန်မာ)</strong>, and <strong>Devanagari (देवनागरी)</strong>.
+        </p>
+      </div>
+
+      <figure class="home-volume-figure">
+        <picture>
+          <source type="image/webp" srcset="/images/tipitaka-volumes.webp" />
+          <img
+            src="/images/tipitaka-volumes.jpg"
+            alt="The 40 volumes of the Roman-script World Tipiṭaka Edition arranged in a circle"
+            width="743"
+            height="575"
+            fetchpriority="high"
+            class="home-volume-img"
+          />
+        </picture>
+        <figcaption class="home-volume-caption">
+          Comparative collation across 5 international editions of the <em>Tipiṭaka</em>
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- Quick Sutta Launcher -->
+    <section aria-label="Canonical Highlights &amp; Sutta Launcher" style="margin: 2.5rem 0 2rem;">
+      <h2 style="font-size: 1.35rem; font-weight: 700; margin: 0 0 1rem; color: var(--text-emphasis); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+        ⚡ Canonical Highlights &amp; Sutta Directory
+      </h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.25rem;">
+        Jump straight into key discourses with multi-edition cross-referencing and Rosely diff highlighting active:
+      </p>
+
+      <div class="home-index-grid">
+        <a href="/reader.html?book=6D&sutta=dn1" class="home-index-card">
+          <div>
+            <h2>DN 1 Brahmajālasutta</h2>
+            <p>
+              The Supreme Net of Views: classification of all 62 philosophical and cosmological
+              doctrines of ancient India.
+            </p>
+          </div>
+          <span class="home-index-stat">Compare 5 Editions →</span>
+        </a>
+
+        <a href="/reader.html?book=6D&sutta=dn2" class="home-index-card">
+          <div>
+            <h2>DN 2 Sāmaññaphalasutta</h2>
+            <p>
+              The Fruits of the Contemplative Life: King Ajātasattu inquires about the tangible
+              benefits of monastic training.
+            </p>
+          </div>
+          <span class="home-index-stat">Compare 5 Editions →</span>
+        </a>
+
+        <a href="/reader.html?book=7D&sutta=dn16" class="home-index-card">
+          <div>
+            <h2>DN 16 Mahāparinibbānasutta</h2>
+            <p>
+              The Great Passing of the Buddha: final journey from Rājagaha to Kusinārā, instructions
+              to Ānanda, and the Four Great Authorities.
+            </p>
+          </div>
+          <span class="home-index-stat">Compare 5 Editions →</span>
+        </a>
+
+        <a href="/reader.html?book=9M&sutta=mn10" class="home-index-card">
+          <div>
+            <h2>MN 10 Satipaṭṭhānasutta</h2>
+            <p>
+              The Direct Path to Liberation: the Four Foundations of Mindfulness (body, feelings,
+              mind, and mental qualities).
+            </p>
+          </div>
+          <span class="home-index-stat">Compare 5 Editions →</span>
+        </a>
+
+        <a href="/reader.html?book=14S5&sutta=sn56_11" class="home-index-card">
+          <div>
+            <h2>SN 56.11 Dhammacakkappavattana</h2>
+            <p>
+              Setting the Wheel of Dhamma in Motion: the first sermon at the Deer Park in Bārāṇasī,
+              the Middle Way, and the Four Noble Truths.
+            </p>
+          </div>
+          <span class="home-index-stat">Compare 5 Editions →</span>
+        </a>
+
+        <a href="/reader.html?book=18Dh" class="home-index-card">
+          <div>
+            <h2>KN 2 Dhammapada</h2>
+            <p>
+              Treasury of Truth: 423 beloved aphorisms and verses of canonical Buddhist wisdom arranged
+              in 26 chapters (vaggas).
+            </p>
+          </div>
+          <span class="home-index-stat">Compare 5 Editions →</span>
+        </a>
+
+        <a href="/reader.html?book=1V" class="home-index-card">
+          <div>
+            <h2>1V Pārājikapāḷi</h2>
+            <p>
+              The Vinaya Monastic Rules of Defeat: origin stories and formulation of the major rules
+              for Buddhist monks (Bhikkhu Vinaya).
+            </p>
+          </div>
+          <span class="home-index-stat">Compare 5 Editions →</span>
+        </a>
+
+        <a href="/reader.html?book=34Dh" class="home-index-card">
+          <div>
+            <h2>34Dh Dhammasaṅgaṇī</h2>
+            <p>
+              Enumeration of Phenomena: the foundational philosophical book of the Abhidhammapiṭaka,
+              analyzing mind, consciousness, and matter.
+            </p>
+          </div>
+          <span class="home-index-stat">Compare 5 Editions →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- The 5 Editions Grid -->
+    <section aria-label="The Five Comparative Editions" style="margin: 2.5rem 0 2rem;">
+      <h2 style="font-size: 1.35rem; font-weight: 700; margin: 0 0 1rem; color: var(--text-emphasis); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+        📖 The Five Canonical Editions in Markdown
+      </h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.25rem;">
+        Each edition is independently hosted and maintained in clean GitHub repositories:
+      </p>
+
+      <div class="home-index-grid">
+        <a
+          href="https://github.com/tipitaka-md/tipitaka2500"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="home-index-card"
+        >
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.35rem;">
+              BASE REFERENCE EDITION
+            </div>
+            <h2>🌟 World Tipiṭaka 2500 (T2500)</h2>
+            <p>
+              The 40-volume Roman-script World Tipiṭaka Edition (B.E. 2500 / 2020 Edition), collated by canonical
+              scholars against 18 international editions with comprehensive critical apparatus variant footnotes.
+            </p>
+          </div>
+          <span class="home-index-stat">tipitaka-md/tipitaka2500 ↗</span>
+        </a>
+
+        <a
+          href="https://github.com/tipitaka-md/pts"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="home-index-card"
+        >
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: #165b48; margin-bottom: 0.35rem;">
+              LONDON / GRETIL EDITION
+            </div>
+            <h2>🇬🇧 Pali Text Society (PTS)</h2>
+            <p>
+              The pioneering European Roman-script edition founded by T.W. Rhys Davids in 1881. Converted from
+              GRETIL archival plain text with structured Markdown headers, section divisions, and clean typography.
+            </p>
+          </div>
+          <span class="home-index-stat">tipitaka-md/pts ↗</span>
+        </a>
+
+        <a
+          href="https://github.com/tipitaka-md/buddha-jayanthi"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="home-index-card"
+        >
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: #85677b; margin-bottom: 0.35rem;">
+              SRI LANKA B.E. 2500 COMMEMORATION
+            </div>
+            <h2>🇱🇰 Buddha Jayanthi (BJT)</h2>
+            <p>
+              The official Sri Lankan Government 57-volume Buddha Jayanthi Tripitaka Series (1956–1989). Converted
+              from SuttaCentral / AP95 Unicode sources with preserved BJT volume and page numbering anchors.
+            </p>
+          </div>
+          <span class="home-index-stat">tipitaka-md/buddha-jayanthi ↗</span>
+        </a>
+
+        <a
+          href="https://github.com/tipitaka-md/cst"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="home-index-card"
+        >
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: #695d08; margin-bottom: 0.35rem;">
+              SIXTH BUDDHIST COUNCIL (CST4)
+            </div>
+            <h2>🇲🇲 Chaṭṭha Saṅgāyana (CST)</h2>
+            <p>
+              The authoritative Sixth Buddhist Council text (1954–1956, Yangon, Myanmar) digitized by the Vipassana
+              Research Institute (VRI). Converted deterministically from tipitaka-xml covering Mūla, Aṭṭhakathā, and Ṭīkā.
+            </p>
+          </div>
+          <span class="home-index-stat">tipitaka-md/cst ↗</span>
+        </a>
+
+        <a
+          href="https://github.com/tipitaka-md/siam-rath"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="home-index-card"
+        >
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: #96254a; margin-bottom: 0.35rem;">
+              ROYAL THAI EDITION (RAMA VII)
+            </div>
+            <h2>🇹🇭 Siam Rath (Syāmaraṭṭha)</h2>
+            <p>
+              The prestigious 45-volume Royal Thai Syāmaraṭṭha Tepiṭakaṃ printed under King Prajadhipok (Rama VII, 1925–1928).
+              Converted deterministically from D-tipitaka with Thai volume &amp; item numbering.
+            </p>
+          </div>
+          <span class="home-index-stat">tipitaka-md/siam-rath ↗</span>
+        </a>
+
+        <a href="/reader.html?book=6D" class="home-index-card" style="border-style: dashed;">
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.35rem;">
+              INTERACTIVE VIEWER
+            </div>
+            <h2>⚡ Open Comparative Reader</h2>
+            <p>
+              Launch the multi-pane reading shell. Compare any book or sutta side-by-side with synchronized scrolling,
+              Rosely variant diffing, and live script transliteration.
+            </p>
+          </div>
+          <span class="home-index-stat">Open Reader →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Rosely Design System & Methodology -->
+    <section aria-label="Rosely Design &amp; Methodology" style="margin: 2.5rem 0 2rem;">
+      <h2 style="font-size: 1.35rem; font-weight: 700; margin: 0 0 1rem; color: var(--text-emphasis); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+        🎨 Rosely Text Variant Highlighting System
+      </h2>
+      <div style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; margin-top: 1rem;">
+        <p style="margin-top: 0;">
+          Textual variants in Pali manuscripts (such as orthographical differences between <em>Evaṁ</em> and <em>Evaṃ</em>,
+          or phrase-level expansions and omissions) are highlighted in real-time using colors sampled directly from the
+          <a href="https://rosely.hellotham.com" target="_blank" rel="noopener noreferrer"><strong>Rosely Design System</strong></a>:
+        </p>
+        <ul style="line-height: 1.8; margin-bottom: 0.5rem;">
+          <li>
+            <strong style="color: #165b48;">Spearmint (<code>roselyD</code> #64bfa4)</strong>: Identifies words or phrases present in the comparative edition but absent in the base World Tipiṭaka text.
+          </li>
+          <li>
+            <strong style="color: #695d08;">Meadowlark (<code>roselyF</code> #eada4f)</strong>: Identifies variant spellings, word inflections, or altered grammatical forms. Hovering over the highlighted word displays the reading from the base text.
+          </li>
+          <li>
+            <strong style="color: #96254a;">Rose Quartz (<code>rosely5</code> #f7caca / <code>rosely4</code> #ec809e)</strong>: Identifies words present in the base text that have been omitted or omitted in the comparative edition.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <p style="margin-top: 2rem;">
+      This website is created and maintained by <strong>Chris Tham</strong> (<a href="mailto:chris@christham.net">chris@christham.net</a>),
+      author of the online <a href="https://christham.net/buddhavacana/pali-textbook/0-status/" target="_blank" rel="noopener noreferrer">Pāḷi Textbook</a>.
+    </p>
+    <p>
+      <img src="/images/cc-zero.svg" alt="" aria-hidden="true" width="16" height="16" class="cc-icon" />
+      CC0: This work has been marked as dedicated to the public domain.{' '}
+      <a href="https://creativecommons.org/publicdomain/zero/1.0/">See the CC0 Deed</a>.
+    </p>
+  </main>
+</Layout>

@@ -1,0 +1,853 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Comparative Tipiṭaka Reader — tipitaka-md.github.io"
+  description="Read and compare canonical Pāḷi Tipiṭaka texts across 5 international editions (World Tipiṭaka 2500, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath) with Rosely text variant highlighting."
+  lang="pi"
+>
+  <div class="reader-wrapper">
+    <!-- Top Breadcrumb & Title Bar -->
+    <header class="reader-header">
+      <nav aria-label="Breadcrumb" class="reader-breadcrumb-nav">
+        <ol class="breadcrumb" id="reader-breadcrumbs">
+          <li><a href="/">Home</a></li>
+          <li id="bc-book"><a href="/reader.html?book=6D">6D Sīlakkhandhavaggapāḷi</a></li>
+          <li id="bc-sutta" aria-current="page">1. Brahmajālasutta</li>
+        </ol>
+      </nav>
+
+      <div class="reader-toolbar">
+        <!-- Edition Selector Tabs -->
+        <div class="edition-tabs" role="tablist" aria-label="Tipiṭaka Editions">
+          <button type="button" class="edition-tab active" data-edition="tipitaka2500" role="tab" aria-selected="true" title="World Tipiṭaka 2500 (Base Edition)">
+            🌟 T2500
+          </button>
+          <button type="button" class="edition-tab" data-edition="pts" role="tab" aria-selected="false" title="Pali Text Society (London / GRETIL)">
+            🇬🇧 PTS
+          </button>
+          <button type="button" class="edition-tab" data-edition="bjt" role="tab" aria-selected="false" title="Buddha Jayanthi (Sri Lanka B.E. 2500)">
+            🇱🇰 BJT
+          </button>
+          <button type="button" class="edition-tab" data-edition="cst" role="tab" aria-selected="false" title="Chaṭṭha Saṅgāyana (VRI Sixth Council)">
+            🇲🇲 CST4
+          </button>
+          <button type="button" class="edition-tab" data-edition="siam-rath" role="tab" aria-selected="false" title="Siam Rath (Royal Thai Rama VII)">
+            🇹🇭 Siam
+          </button>
+        </div>
+
+        <!-- Controls Group -->
+        <div class="reader-controls">
+          <!-- View Mode (Single vs Side-by-Side Compare) -->
+          <div class="control-group">
+            <label for="view-mode-select" class="visually-hidden">View Mode</label>
+            <select id="view-mode-select" class="reader-select" title="Toggle Single View or Side-by-Side Comparison">
+              <option value="single">📖 Single View</option>
+              <option value="split">⚖️ Side-by-Side (Compare)</option>
+            </select>
+          </div>
+
+          <!-- Comparative Edition (for Split Mode) -->
+          <div class="control-group" id="compare-edition-wrapper" style="display: none;">
+            <label for="compare-edition-select" class="visually-hidden">Compare with</label>
+            <select id="compare-edition-select" class="reader-select" title="Select comparative edition">
+              <option value="bjt">Compare: 🇱🇰 BJT</option>
+              <option value="pts">Compare: 🇬🇧 PTS</option>
+              <option value="cst">Compare: 🇲🇲 CST4</option>
+              <option value="siam-rath">Compare: 🇹🇭 Siam</option>
+            </select>
+          </div>
+
+          <!-- Rosely Diff Toggle -->
+          <button
+            type="button"
+            id="diff-toggle-btn"
+            class="diff-toggle-btn active"
+            aria-pressed="true"
+            title="Highlight textual differences against World Tipiṭaka 2500 using Rosely colors"
+          >
+            <span>✨ Rosely Diff</span>
+          </button>
+
+          <!-- Script Selector -->
+          <div class="control-group">
+            <label for="script-select" class="visually-hidden">Pāli Script</label>
+            <select id="script-select" class="reader-select" title="Transliterate Pāḷi script">
+              <option value="roman">🔤 Roman (IAST)</option>
+              <option value="sinhala">🇱🇰 සිංහල (Sinhala)</option>
+              <option value="thai">🇹🇭 ไทย (Thai)</option>
+              <option value="burmese">🇲🇲 မြန်မာ (Myanmar)</option>
+              <option value="devanagari">🇮🇳 देवनागरी (Devanagari)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rosely Diff Legend Bar -->
+      <div class="diff-legend" id="diff-legend" style="display: flex;">
+        <span class="diff-legend-title">Rosely Text Variants:</span>
+        <span class="legend-badge legend-add" title="Words or phrases present in this edition but absent in T2500">
+          ● Addition (Spearmint #64bfa4)
+        </span>
+        <span class="legend-badge legend-change" title="Variant reading or spelling compared to T2500">
+          ● Variant / Change (Meadowlark #eada4f)
+        </span>
+        <span class="legend-badge legend-del" title="Words present in T2500 but omitted in this edition">
+          ● Omission (Rose Quartz #f7caca)
+        </span>
+      </div>
+    </header>
+
+    <!-- Reading Display Area -->
+    <main class="reader-main">
+      <!-- Loading Indicator -->
+      <div id="reader-loading" class="reader-loading" style="display: none;">
+        <div class="spinner"></div>
+        <p>Loading canonical text…</p>
+      </div>
+
+      <!-- Single Pane Reading Container -->
+      <div id="single-pane-view" class="single-pane-content">
+        <article id="main-content" class="tipitaka-article" lang="pi">
+          <!-- Dynamically populated -->
+        </article>
+      </div>
+
+      <!-- Side-by-Side Dual Pane Comparison Container -->
+      <div id="split-panes-view" class="split-panes-container" style="display: none;">
+        <section class="split-pane" id="left-pane">
+          <div class="split-pane-header">
+            <h2 id="left-pane-title">🌟 World Tipiṭaka 2500 (Base)</h2>
+            <span class="pane-badge badge-base">Base Reference</span>
+          </div>
+          <article id="left-content" class="tipitaka-article" lang="pi">
+            <!-- Dynamically populated -->
+          </article>
+        </section>
+
+        <section class="split-pane" id="right-pane">
+          <div class="split-pane-header">
+            <h2 id="right-pane-title">Comparative Edition</h2>
+            <span class="pane-badge badge-compare" id="right-pane-badge">Comparative</span>
+          </div>
+          <article id="right-content" class="tipitaka-article" lang="pi">
+            <!-- Dynamically populated -->
+          </article>
+        </section>
+      </div>
+
+      <!-- Bottom Sutta Navigation -->
+      <nav aria-label="Sutta navigation" class="reader-nav-footer">
+        <a href="#" id="prev-sutta-btn" class="nav-btn prev-btn" style="visibility: hidden;">
+          ← Previous Sutta
+        </a>
+        <a href="#" id="parent-book-btn" class="nav-btn parent-btn">
+          ↑ Book Index
+        </a>
+        <a href="#" id="next-sutta-btn" class="nav-btn next-btn" style="visibility: hidden;">
+          Next Sutta →
+        </a>
+      </nav>
+    </main>
+  </div>
+</Layout>
+
+<style>
+  .reader-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 100%;
+  }
+
+  .reader-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .reader-breadcrumb-nav {
+    margin-bottom: 0.75rem;
+  }
+
+  .reader-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  .edition-tabs {
+    display: inline-flex;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 2px;
+    flex-wrap: wrap;
+  }
+
+  .edition-tab {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .edition-tab:hover {
+    color: var(--text-body);
+    background-color: var(--bg-hover);
+  }
+
+  .edition-tab.active {
+    background-color: var(--bg-body);
+    color: var(--primary-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .reader-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .reader-select {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.84rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-body);
+    color: var(--text-body);
+    cursor: pointer;
+    outline: none;
+  }
+
+  .reader-select:focus {
+    border-color: var(--primary-color);
+  }
+
+  .tipitaka-article {
+    line-height: 1.85;
+    font-size: 1.05rem;
+    color: var(--text-body);
+    word-break: break-word;
+  }
+
+  .tipitaka-article h1,
+  .tipitaka-article h2,
+  .tipitaka-article h3,
+  .tipitaka-article h4 {
+    color: var(--text-emphasis);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tipitaka-article p {
+    margin-bottom: 1.25rem;
+  }
+
+  .tipitaka-article blockquote {
+    border-left: 4px solid var(--primary-color);
+    background-color: var(--bg-secondary);
+    padding: 0.75rem 1.25rem;
+    border-radius: 0 6px 6px 0;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+
+  .reader-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary);
+    gap: 1rem;
+  }
+
+  .spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .pane-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .badge-base {
+    background-color: rgba(181, 101, 167, 0.15);
+    color: var(--primary-color);
+  }
+
+  .badge-compare {
+    background-color: rgba(100, 191, 164, 0.15);
+    color: #165b48;
+  }
+
+  .reader-nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.25rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-body);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background-color: var(--bg-tertiary);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+</style>
+
+<script>
+  import { marked } from 'marked';
+  import { highlightPaliDiff } from '../scripts/diff.js';
+  import { transliteratePali } from '../scripts/transliterator.js';
+
+  interface CatalogEdition {
+    name: string;
+    short_name: string;
+    repo: string;
+    branch: string;
+    base_path: string;
+    badge: string;
+    desc: string;
+  }
+
+  interface CatalogSutta {
+    id: string;
+    citation: string;
+    title: string;
+    pali_title: string;
+    editions: Record<string, string>;
+  }
+
+  interface CatalogBook {
+    code: string;
+    title: string;
+    pali_title: string;
+    nikaya?: string;
+    pitaka?: string;
+    editions?: Record<string, string>;
+    suttas?: CatalogSutta[];
+  }
+
+  interface CatalogData {
+    editions: Record<string, CatalogEdition>;
+    structure: Array<{
+      id: string;
+      title: string;
+      books: CatalogBook[];
+    }>;
+  }
+
+  let catalog: CatalogData | null = null;
+  const contentCache = new Map<string, string>();
+
+  // State
+  let currentEdition = 'tipitaka2500';
+  let compareEdition = 'bjt';
+  let currentBookCode = '6D';
+  let currentSuttaId = 'dn1';
+  let currentFilePath = 'tipitaka/6D/1.md';
+  let viewMode = 'single'; // 'single' | 'split'
+  let diffEnabled = true;
+  let currentScript = 'roman';
+
+  // Fallback map for popular books to initial file
+  const BOOK_FILE_MAP: Record<string, string> = {
+    '1V': 'tipitaka/1V.md',
+    '2V': 'tipitaka/2V.md',
+    '3V': 'tipitaka/3V.md',
+    '4V': 'tipitaka/4V.md',
+    '5V': 'tipitaka/5V.md',
+    '6D': 'tipitaka/6D/1.md',
+    '7D': 'tipitaka/7D/14.md',
+    '8D': 'tipitaka/8D/24.md',
+    '9M': 'tipitaka/9M/1.md',
+    '10M': 'tipitaka/10M/51.md',
+    '11M': 'tipitaka/11M/101.md',
+    '12S1': 'tipitaka/12S1/1.md',
+    '14S5': 'tipitaka/14S5/56.md',
+    '15A1': 'tipitaka/15A1/1.md',
+    '18Dh': 'tipitaka/18Dh/1.md',
+    '34Dh': 'tipitaka/34Dh/1.md',
+  };
+
+  /**
+   * Resolves relative markdown links (e.g. 1/1.1.md, ../6D.md, 0.md)
+   * into clean reader navigation URLs
+   */
+  function resolveMarkdownLink(href: string, fromFile: string, edition: string): string {
+    if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('#')) {
+      return href;
+    }
+    if (href === '/') {
+      return '/';
+    }
+
+    // Strip leading slash if any
+    const cleanHref = href.replace(/^\//, '');
+    const parts = (fromFile || 'tipitaka/6D/1.md').split('/');
+    parts.pop(); // remove current file name, keep directory
+
+    const hrefParts = cleanHref.split('/');
+    for (const part of hrefParts) {
+      if (part === '.' || part === '') continue;
+      if (part === '..') {
+        if (parts.length > 0) parts.pop();
+      } else {
+        parts.push(part);
+      }
+    }
+    const resolved = parts.join('/');
+    return `/reader.html?edition=${encodeURIComponent(edition)}&file=${encodeURIComponent(resolved)}`;
+  }
+
+  /**
+   * Custom marked renderer that transforms all Markdown links to reader routes
+   */
+  function createMarkedRenderer(fromFile: string, edition: string) {
+    const renderer = new marked.Renderer();
+    renderer.link = function ({ href, title, text }) {
+      const targetUrl = resolveMarkdownLink(href || '', fromFile, edition);
+      const isExternal = targetUrl.startsWith('http://') || targetUrl.startsWith('https://');
+      const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+      const titleAttr = title ? ` title="${title}"` : '';
+      return `<a href="${targetUrl}"${targetAttr}${titleAttr} data-reader-link="true">${text}</a>`;
+    };
+    return renderer;
+  }
+
+  /**
+   * Fetch markdown content from bundled local files or GitHub raw
+   */
+  async function fetchMarkdown(edition: string, filePath: string): Promise<string> {
+    const cacheKey = `${edition}:${filePath}`;
+    if (contentCache.has(cacheKey)) {
+      return contentCache.get(cacheKey)!;
+    }
+
+    const edConfig = catalog?.editions[edition];
+    const repo = edConfig ? edConfig.repo : 'tipitaka-md/tipitaka2500';
+    const branch = edConfig ? edConfig.branch : 'main';
+
+    // 1. Try local bundled content first for fast offline loading
+    try {
+      const localUrl = `/content/${edition}/${filePath}`;
+      const localRes = await fetch(localUrl);
+      if (localRes.ok) {
+        const text = await localRes.text();
+        if (text && !text.includes('<!DOCTYPE html>')) {
+          contentCache.set(cacheKey, text);
+          return text;
+        }
+      }
+    } catch {
+      // Fallback to GitHub raw
+    }
+
+    // 2. Fetch from GitHub raw
+    try {
+      const rawUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${filePath}`;
+      const res = await fetch(rawUrl);
+      if (res.ok) {
+        const text = await res.text();
+        contentCache.set(cacheKey, text);
+        return text;
+      }
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    } catch (err) {
+      console.warn(`Failed to fetch ${filePath} for ${edition}:`, err);
+      return `# Not Found\n\nCould not load \`${filePath}\` from \`${repo}\`.`;
+    }
+  }
+
+  /**
+   * Convert markdown string into HTML with link resolution and script transliteration
+   */
+  function convertMarkdownToHtml(markdown: string, filePath: string, edition: string): string {
+    const renderer = createMarkedRenderer(filePath, edition);
+    let html = marked.parse(markdown, { renderer }) as string;
+
+    if (currentScript !== 'roman') {
+      html = transliteratePali(html, currentScript);
+    }
+    return html;
+  }
+
+  /**
+   * Look up file path for a given sutta/book in an edition
+   */
+  function getFilePathForEdition(edition: string, bookCode: string, suttaId?: string): string {
+    if (!catalog) {
+      return BOOK_FILE_MAP[bookCode] || `tipitaka/${bookCode}.md`;
+    }
+
+    // If suttaId is provided, look in catalog
+    if (suttaId) {
+      for (const pitaka of catalog.structure) {
+        for (const book of pitaka.books) {
+          if (book.suttas) {
+            for (const s of book.suttas) {
+              if (s.id.toLowerCase() === suttaId.toLowerCase()) {
+                if (s.editions && s.editions[edition]) {
+                  return s.editions[edition];
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Fall back to book-level mapping
+    for (const pitaka of catalog.structure) {
+      for (const book of pitaka.books) {
+        if (book.code.toLowerCase() === bookCode.toLowerCase()) {
+          if (book.editions && book.editions[edition]) {
+            return book.editions[edition];
+          }
+          if (book.suttas && book.suttas.length > 0) {
+            const s0 = book.suttas[0];
+            if (s0.editions && s0.editions[edition]) {
+              return s0.editions[edition];
+            }
+          }
+        }
+      }
+    }
+
+    return BOOK_FILE_MAP[bookCode] || `tipitaka/${bookCode}.md`;
+  }
+
+  /**
+   * Render the reader view based on current state
+   */
+  async function updateView() {
+    const loadingEl = document.getElementById('reader-loading');
+    const singlePaneView = document.getElementById('single-pane-view');
+    const splitPanesView = document.getElementById('split-panes-view');
+    const mainContentEl = document.getElementById('main-content');
+    const leftContentEl = document.getElementById('left-content');
+    const rightContentEl = document.getElementById('right-content');
+    const diffLegend = document.getElementById('diff-legend');
+
+    if (loadingEl) loadingEl.style.display = 'flex';
+
+    // Update diff legend visibility
+    if (diffLegend) {
+      const showLegend = diffEnabled && (viewMode === 'split' || currentEdition !== 'tipitaka2500');
+      diffLegend.style.display = showLegend ? 'flex' : 'none';
+    }
+
+    // Update Breadcrumb text
+    const bcBook = document.getElementById('bc-book');
+    const bcSutta = document.getElementById('bc-sutta');
+    if (bcBook) {
+      bcBook.innerHTML = `<a href="/reader.html?book=${currentBookCode}">${currentBookCode}</a>`;
+    }
+    if (bcSutta) {
+      bcSutta.textContent = currentSuttaId.toUpperCase() || currentFilePath.split('/').pop() || '';
+    }
+
+    if (viewMode === 'split') {
+      if (singlePaneView) singlePaneView.style.display = 'none';
+      if (splitPanesView) splitPanesView.style.display = 'flex';
+
+      const leftFile = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
+      const rightFile = getFilePathForEdition(compareEdition, currentBookCode, currentSuttaId);
+
+      const [baseMd, compareMd] = await Promise.all([
+        fetchMarkdown('tipitaka2500', leftFile),
+        fetchMarkdown(compareEdition, rightFile),
+      ]);
+
+      let rightRenderMd = compareMd;
+      if (diffEnabled) {
+        rightRenderMd = highlightPaliDiff(compareMd, baseMd);
+      }
+
+      if (leftContentEl) {
+        leftContentEl.innerHTML = convertMarkdownToHtml(baseMd, leftFile, 'tipitaka2500');
+      }
+      if (rightContentEl) {
+        rightContentEl.innerHTML = convertMarkdownToHtml(rightRenderMd, rightFile, compareEdition);
+      }
+
+      // Update right pane header
+      const rightHeader = document.getElementById('right-pane-title');
+      const rightBadge = document.getElementById('right-pane-badge');
+      const edInfo = catalog?.editions[compareEdition];
+      if (rightHeader && edInfo) rightHeader.textContent = edInfo.badge;
+      if (rightBadge && edInfo) rightBadge.textContent = edInfo.short_name;
+
+    } else {
+      // Single pane view
+      if (splitPanesView) splitPanesView.style.display = 'none';
+      if (singlePaneView) singlePaneView.style.display = 'block';
+
+      const targetFile = currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+      const targetMd = await fetchMarkdown(currentEdition, targetFile);
+
+      let renderMd = targetMd;
+      if (diffEnabled && currentEdition !== 'tipitaka2500') {
+        const baseFile = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
+        const baseMd = await fetchMarkdown('tipitaka2500', baseFile);
+        renderMd = highlightPaliDiff(targetMd, baseMd);
+      }
+
+      if (mainContentEl) {
+        mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition);
+      }
+    }
+
+    if (loadingEl) loadingEl.style.display = 'none';
+    attachReaderLinkHandlers();
+    updateNavigationButtons();
+  }
+
+  /**
+   * Intercept clicks on links inside the rendered text so navigation remains smooth
+   */
+  function attachReaderLinkHandlers() {
+    const links = document.querySelectorAll('a[data-reader-link="true"]');
+    links.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const href = (link as HTMLAnchorElement).getAttribute('href');
+        if (!href || href === '/' || href.startsWith('http://') || href.startsWith('https://')) {
+          return;
+        }
+        e.preventDefault();
+        const url = new URL(href, window.location.origin);
+        const params = url.searchParams;
+
+        const newFile = params.get('file');
+        const newEdition = params.get('edition');
+        if (newFile) currentFilePath = newFile;
+        if (newEdition) currentEdition = newEdition;
+
+        // Extract book code from path if possible (e.g. tipitaka/6D/1/1.1.md -> 6D)
+        const match = (newFile || '').match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
+        if (match) {
+          currentBookCode = match[1];
+        }
+
+        window.history.pushState({}, '', `/reader.html?edition=${encodeURIComponent(currentEdition)}&file=${encodeURIComponent(currentFilePath)}&mode=${viewMode}&diff=${diffEnabled ? '1' : '0'}&script=${currentScript}`);
+        updateActiveEditionTabs();
+        updateView();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  }
+
+  /**
+   * Update bottom navigation buttons (previous, parent, next)
+   */
+  function updateNavigationButtons() {
+    const parentBtn = document.getElementById('parent-book-btn') as HTMLAnchorElement;
+    if (parentBtn) {
+      parentBtn.href = `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}`;
+      parentBtn.textContent = `↑ ${currentBookCode} Index`;
+    }
+  }
+
+  /**
+   * Update active UI states
+   */
+  function updateActiveEditionTabs() {
+    const tabs = document.querySelectorAll('.edition-tab');
+    tabs.forEach((tab) => {
+      const ed = tab.getAttribute('data-edition');
+      if (ed === currentEdition) {
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+      } else {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      }
+    });
+  }
+
+  // Setup Event Listeners
+  function setupEventListeners() {
+    // Edition Tabs
+    const tabs = document.querySelectorAll('.edition-tab');
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const ed = tab.getAttribute('data-edition');
+        if (ed && ed !== currentEdition) {
+          currentEdition = ed;
+          currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+          updateActiveEditionTabs();
+          updateView();
+        }
+      });
+    });
+
+    // View Mode Select
+    const viewModeSelect = document.getElementById('view-mode-select') as HTMLSelectElement;
+    const compareWrapper = document.getElementById('compare-edition-wrapper');
+    if (viewModeSelect) {
+      viewModeSelect.value = viewMode;
+      viewModeSelect.addEventListener('change', () => {
+        viewMode = viewModeSelect.value;
+        if (compareWrapper) {
+          compareWrapper.style.display = viewMode === 'split' ? 'block' : 'none';
+        }
+        updateView();
+      });
+    }
+
+    // Compare Edition Select
+    const compareSelect = document.getElementById('compare-edition-select') as HTMLSelectElement;
+    if (compareSelect) {
+      compareSelect.value = compareEdition;
+      compareSelect.addEventListener('change', () => {
+        compareEdition = compareSelect.value;
+        if (viewMode === 'split') updateView();
+      });
+    }
+
+    // Rosely Diff Toggle
+    const diffBtn = document.getElementById('diff-toggle-btn');
+    if (diffBtn) {
+      diffBtn.addEventListener('click', () => {
+        diffEnabled = !diffEnabled;
+        diffBtn.classList.toggle('active', diffEnabled);
+        diffBtn.setAttribute('aria-pressed', diffEnabled ? 'true' : 'false');
+        updateView();
+      });
+    }
+
+    // Script Select
+    const scriptSelect = document.getElementById('script-select') as HTMLSelectElement;
+    if (scriptSelect) {
+      scriptSelect.value = currentScript;
+      scriptSelect.addEventListener('change', () => {
+        currentScript = scriptSelect.value;
+        updateView();
+      });
+    }
+
+    // Synchronized Scrolling in Split Mode
+    const leftPane = document.getElementById('left-pane');
+    const rightPane = document.getElementById('right-pane');
+    let isSyncingLeft = false;
+    let isSyncingRight = false;
+
+    if (leftPane && rightPane) {
+      leftPane.addEventListener('scroll', () => {
+        if (isSyncingLeft) return;
+        isSyncingRight = true;
+        const percentage = leftPane.scrollTop / (leftPane.scrollHeight - leftPane.clientHeight || 1);
+        rightPane.scrollTop = percentage * (rightPane.scrollHeight - rightPane.clientHeight);
+        requestAnimationFrame(() => { isSyncingRight = false; });
+      });
+
+      rightPane.addEventListener('scroll', () => {
+        if (isSyncingRight) return;
+        isSyncingLeft = true;
+        const percentage = rightPane.scrollTop / (rightPane.scrollHeight - rightPane.clientHeight || 1);
+        leftPane.scrollTop = percentage * (leftPane.scrollHeight - leftPane.clientHeight);
+        requestAnimationFrame(() => { isSyncingLeft = false; });
+      });
+    }
+
+    // Handle Browser PopState (Back / Forward)
+    window.addEventListener('popstate', () => {
+      parseUrlParams();
+      updateActiveEditionTabs();
+      updateView();
+    });
+  }
+
+  /**
+   * Parse query parameters on initial page load
+   */
+  function parseUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('edition')) currentEdition = params.get('edition')!;
+    if (params.has('compare')) compareEdition = params.get('compare')!;
+    if (params.has('book')) currentBookCode = params.get('book')!;
+    if (params.has('sutta')) currentSuttaId = params.get('sutta')!;
+    if (params.has('file')) currentFilePath = params.get('file')!;
+    if (params.has('mode')) viewMode = params.get('mode')!;
+    if (params.has('diff')) diffEnabled = params.get('diff') === '1';
+    if (params.has('script')) currentScript = params.get('script')!;
+
+    // Infer current book from file path if book was not explicitly passed
+    if (currentFilePath && !params.has('book')) {
+      const m = currentFilePath.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
+      if (m) currentBookCode = m[1];
+    }
+  }
+
+  // Initialization
+  async function init() {
+    parseUrlParams();
+
+    try {
+      const res = await fetch('/catalog.json');
+      if (res.ok) {
+        catalog = await res.json();
+      }
+    } catch (err) {
+      console.warn('Could not load catalog.json:', err);
+    }
+
+    if (!currentFilePath) {
+      currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+    }
+
+    setupEventListeners();
+    updateActiveEditionTabs();
+    updateView();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>
