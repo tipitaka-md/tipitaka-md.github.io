@@ -13,7 +13,7 @@ import Layout from '../layouts/Layout.astro';
       <nav aria-label="Breadcrumb" class="reader-breadcrumb-nav">
         <ol class="breadcrumb" id="reader-breadcrumbs">
           <li><a href="/">Home</a></li>
-          <li id="bc-book"><a href="/reader.html?book=6D">6D</a></li>
+          <li id="bc-book"><a href="/reader.html?book=1V">1V</a></li>
           <li id="bc-sutta" aria-current="page">Loading…</li>
         </ol>
       </nav>
@@ -395,7 +395,7 @@ import Layout from '../layouts/Layout.astro';
   // State
   let currentEdition = 'tipitaka2500';
   let compareEdition = 'bjt';
-  let currentBookCode = '6D';
+  let currentBookCode = '1V';
   let currentSuttaId = '';
   let currentFilePath = '';
   let viewMode = 'single'; // 'single' | 'split'
@@ -915,9 +915,9 @@ import Layout from '../layouts/Layout.astro';
       currentSuttaId = '';
       currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, '');
     } else {
-      currentBookCode = '6D';
-      currentSuttaId = 'dn1';
-      currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+      currentBookCode = '1V';
+      currentSuttaId = '';
+      currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, '');
     }
   }
 

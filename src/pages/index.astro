@@ -15,11 +15,11 @@ import Layout from '../layouts/Layout.astro';
         Text Variant Highlighting &amp; Multi-Script Transliteration
       </p>
       <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
-        <a href="/reader.html?book=6D&sutta=dn1" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; color: #fff; background-color: var(--primary-color);">
-          <span>🚀 Launch Comparative Reader (DN 1)</span>
+        <a href="/reader.html?book=1V" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; color: #fff; background-color: var(--primary-color);">
+          <span>🚀 Launch Comparative Reader (1V Pārājikapāḷi)</span>
         </a>
-        <a href="/reader.html?book=6D" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-tertiary);">
-          <span>📚 Browse Books</span>
+        <a href="/reader.html?book=1V" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-tertiary);">
+          <span>📚 Browse Vinayapiṭaka</span>
         </a>
         <a href="https://github.com/tipitaka-md" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-body);">
           <span>↗ View GitHub Repos</span>
@@ -88,8 +88,33 @@ import Layout from '../layouts/Layout.astro';
       </p>
 
       <div class="home-index-grid">
+        <a href="/reader.html?book=1V" class="home-index-card">
+          <div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.25rem;">VINAYAPIṬAKA · BOOK 1</div>
+            <h2>1V Pārājikapāḷi</h2>
+            <p>
+              The opening book of the Tipiṭaka: Verañjakaṇḍa and the fundamental monastic rules
+              of training (Mahāvibhaṅga).
+            </p>
+          </div>
+          <span class="home-index-stat">Compare 5 Editions →</span>
+        </a>
+
+        <a href="/reader.html?book=3V" class="home-index-card">
+          <div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.25rem;">VINAYAPIṬAKA · BOOK 3</div>
+            <h2>3V Mahāvaggapāḷi</h2>
+            <p>
+              The Great Chapter: the awakening under the Bodhi tree (Bodhikathā) and the admission
+              into the Sangha.
+            </p>
+          </div>
+          <span class="home-index-stat">Compare 5 Editions →</span>
+        </a>
+
         <a href="/reader.html?book=6D&sutta=dn1" class="home-index-card">
           <div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">SUTTANTAPIṬAKA · DĪGHANIKĀYA</div>
             <h2>DN 1 Brahmajālasutta</h2>
             <p>
               The Supreme Net of Views: classification of all 62 philosophical and cosmological
@@ -101,6 +126,7 @@ import Layout from '../layouts/Layout.astro';
 
         <a href="/reader.html?book=6D&sutta=dn2" class="home-index-card">
           <div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">SUTTANTAPIṬAKA · DĪGHANIKĀYA</div>
             <h2>DN 2 Sāmaññaphalasutta</h2>
             <p>
               The Fruits of the Contemplative Life: King Ajātasattu inquires about the tangible
@@ -112,7 +138,8 @@ import Layout from '../layouts/Layout.astro';
 
         <a href="/reader.html?book=7D&sutta=dn16" class="home-index-card">
           <div>
-            <h2>DN 16 Mahāparinibbānasutta</h2>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">SUTTANTAPIṬAKA · DĪGHANIKĀYA</div>
+            <h2>DN 16 Mahāparinibbāna</h2>
             <p>
               The Great Passing of the Buddha: final journey from Rājagaha to Kusinārā, instructions
               to Ānanda, and the Four Great Authorities.
@@ -123,6 +150,7 @@ import Layout from '../layouts/Layout.astro';
 
         <a href="/reader.html?book=9M&sutta=mn10" class="home-index-card">
           <div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">SUTTANTAPIṬAKA · MAJJHIMANIKĀYA</div>
             <h2>MN 10 Satipaṭṭhānasutta</h2>
             <p>
               The Direct Path to Liberation: the Four Foundations of Mindfulness (body, feelings,
@@ -134,10 +162,11 @@ import Layout from '../layouts/Layout.astro';
 
         <a href="/reader.html?book=14S5&sutta=sn56_11" class="home-index-card">
           <div>
-            <h2>SN 56.11 Dhammacakkappavattana</h2>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">SUTTANTAPIṬAKA · SAṀYUTTANIKĀYA</div>
+            <h2>SN 56.11 Dhammacakka</h2>
             <p>
               Setting the Wheel of Dhamma in Motion: the first sermon at the Deer Park in Bārāṇasī,
-              the Middle Way, and the Four Noble Truths.
+              the Middle Way, and Four Noble Truths.
             </p>
           </div>
           <span class="home-index-stat">Compare 5 Editions →</span>
@@ -145,6 +174,7 @@ import Layout from '../layouts/Layout.astro';
 
         <a href="/reader.html?book=18Dh" class="home-index-card">
           <div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">SUTTANTAPIṬAKA · KHUDDAKANIKĀYA</div>
             <h2>KN 2 Dhammapada</h2>
             <p>
               Treasury of Truth: 423 beloved aphorisms and verses of canonical Buddhist wisdom arranged
@@ -154,23 +184,13 @@ import Layout from '../layouts/Layout.astro';
           <span class="home-index-stat">Compare 5 Editions →</span>
         </a>
 
-        <a href="/reader.html?book=1V" class="home-index-card">
-          <div>
-            <h2>1V Pārājikapāḷi</h2>
-            <p>
-              The Vinaya Monastic Rules of Defeat: origin stories and formulation of the major rules
-              for Buddhist monks (Bhikkhu Vinaya).
-            </p>
-          </div>
-          <span class="home-index-stat">Compare 5 Editions →</span>
-        </a>
-
         <a href="/reader.html?book=34Dh" class="home-index-card">
           <div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">ABHIDHAMMAPIṬAKA · BOOK 1</div>
             <h2>34Dh Dhammasaṅgaṇī</h2>
             <p>
-              Enumeration of Phenomena: the foundational philosophical book of the Abhidhammapiṭaka,
-              analyzing mind, consciousness, and matter.
+              Enumeration of Phenomena: the foundational philosophical treatise analyzing mental factors
+              and consciousness.
             </p>
           </div>
           <span class="home-index-stat">Compare 5 Editions →</span>
