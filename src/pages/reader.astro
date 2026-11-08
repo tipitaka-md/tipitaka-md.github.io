@@ -91,17 +91,6 @@ import Layout from '../layouts/Layout.astro';
             </select>
           </div>
 
-          <!-- Comparative Edition (for Split Mode) -->
-          <div class="control-group" id="compare-edition-wrapper" style="display: none;">
-            <label for="compare-edition-select" class="visually-hidden">Compare with</label>
-            <select id="compare-edition-select" class="reader-select" title="Select comparative edition">
-              <option value="bjt">Compare: 🇱🇰 BJT</option>
-              <option value="pts">Compare: 🇬🇧 PTS</option>
-              <option value="cst">Compare: 🇲🇲 CST4</option>
-              <option value="siam-rath">Compare: 🇹🇭 Siam</option>
-            </select>
-          </div>
-
           <!-- Variant Diff Toggle -->
           <button
             type="button"
@@ -1367,11 +1356,6 @@ import Layout from '../layouts/Layout.astro';
       }
     }
 
-    const compareWrapper = document.getElementById('compare-edition-wrapper');
-    if (compareWrapper) {
-      compareWrapper.style.display = (viewMode === 'split' || diffEnabled) ? 'block' : 'none';
-    }
-
     // Update Breadcrumbs and Document Title with extracted section/sutta title
     const activeMd = viewMode === 'split' ? currentLeftMd : currentSingleMd;
     const extractedTitle = extractTitleFromMarkdown(activeMd);
@@ -1443,6 +1427,9 @@ import Layout from '../layouts/Layout.astro';
         const ed = tab.getAttribute('data-edition');
         if (ed && ed !== currentEdition) {
           currentEdition = ed;
+          if (currentEdition !== 'tipitaka2500') {
+            compareEdition = currentEdition;
+          }
           singleShowFull = false;
           rightShowFull = false;
 
@@ -1467,13 +1454,9 @@ import Layout from '../layouts/Layout.astro';
 
     // View Mode Select
     const viewModeSelect = document.getElementById('view-mode-select') as HTMLSelectElement;
-    const compareWrapper = document.getElementById('compare-edition-wrapper');
     const diffLegend = document.getElementById('diff-legend');
 
     const updateControlsVisibility = () => {
-      if (compareWrapper) {
-        compareWrapper.style.display = (viewMode === 'split' || diffEnabled) ? 'block' : 'none';
-      }
       if (diffLegend) {
         diffLegend.style.display = (diffEnabled || viewMode === 'split') ? 'flex' : 'none';
       }
@@ -1486,19 +1469,6 @@ import Layout from '../layouts/Layout.astro';
         updateControlsVisibility();
         const newUrl = new URL(window.location.href);
         newUrl.searchParams.set('mode', viewMode);
-        window.history.pushState({}, '', newUrl.toString());
-        updateView();
-      });
-    }
-
-    // Compare Edition Select
-    const compareSelect = document.getElementById('compare-edition-select') as HTMLSelectElement;
-    if (compareSelect) {
-      compareSelect.value = compareEdition;
-      compareSelect.addEventListener('change', () => {
-        compareEdition = compareSelect.value;
-        const newUrl = new URL(window.location.href);
-        newUrl.searchParams.set('compare', compareEdition);
         window.history.pushState({}, '', newUrl.toString());
         updateView();
       });
@@ -1632,7 +1602,12 @@ import Layout from '../layouts/Layout.astro';
     rightShowFull = false;
 
     const params = new URLSearchParams(window.location.search);
-    if (params.has('edition')) currentEdition = params.get('edition')!;
+    if (params.has('edition')) {
+      currentEdition = params.get('edition')!;
+      if (currentEdition !== 'tipitaka2500') {
+        compareEdition = currentEdition;
+      }
+    }
     if (params.has('compare')) compareEdition = params.get('compare')!;
     if (params.has('mode')) viewMode = params.get('mode')!;
     if (params.has('diff')) diffEnabled = params.get('diff') === '1';
