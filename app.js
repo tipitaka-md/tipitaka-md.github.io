@@ -19,6 +19,7 @@ const state = {
   syncScroll: true,
   sidebarCollapsed: false,
   cache: new Map(),
+  currentPaths: { primary: null, compare: null },
   isScrolling: false,
   activeFootnote: null
 };
@@ -182,12 +183,13 @@ async function loadItem(item) {
   }
 }
 
-async function loadPaneContent(paneType, editionKey) {
+async function loadPaneContent(paneType, editionKey, specificPath = null) {
   const container = paneType === 'primary' ? elements.primaryContent : elements.compareContent;
   const item = state.currentItem;
   if (!item) return;
 
-  const editionPath = item.editions ? item.editions[editionKey] : null;
+  const editionPath = specificPath || (item.editions ? item.editions[editionKey] : null);
+  state.currentPaths[paneType] = editionPath;
 
   if (!editionPath) {
     container.innerHTML = `
@@ -208,24 +210,46 @@ async function loadPaneContent(paneType, editionKey) {
 
   try {
     const markdown = await fetchEditionMarkdown(editionKey, editionPath);
-    const html = parseMarkdown(markdown, editionKey);
+    const html = parseMarkdown(markdown, editionKey, paneType, editionPath);
     container.innerHTML = `<article class="article-body">${html}</article>`;
     container.scrollTop = 0;
     attachFootnoteListeners(container);
+    attachLinkListeners(container, paneType);
+    attachCombineSectionsListener(container, paneType, editionKey, editionPath, markdown);
   } catch (err) {
     container.innerHTML = `
       <div class="empty-state">
         <p style="color: #ef4444;">Failed to load text: ${err.message}</p>
-        <button class="nav-link-btn" style="margin-top: 12px;" onclick="window.retryLoad('${paneType}', '${editionKey}')">
+        <button class="nav-link-btn" style="margin-top: 12px;" onclick="window.retryLoad('${paneType}', '${editionKey}', '${editionPath}')">
           Retry
         </button>
       </div>`;
   }
 }
 
-window.retryLoad = function(paneType, editionKey) {
-  loadPaneContent(paneType, editionKey);
+window.retryLoad = function(paneType, editionKey, path) {
+  loadPaneContent(paneType, editionKey, path);
 };
+
+// Relative path resolver for links inside markdown files
+function resolveRelativePath(basePath, relativePath) {
+  if (!relativePath) return '';
+  if (relativePath.startsWith('/')) {
+    return relativePath.replace(/^\/+/, '');
+  }
+  const baseDir = basePath.substring(0, basePath.lastIndexOf('/') + 1);
+  const stack = baseDir.split('/').filter(Boolean);
+  const parts = relativePath.split('/');
+  for (const part of parts) {
+    if (part === '.' || part === '') continue;
+    if (part === '..') {
+      if (stack.length > 0) stack.pop();
+    } else {
+      stack.push(part);
+    }
+  }
+  return stack.join('/');
+}
 
 // Fetch markdown with CDN + raw fallback and caching
 async function fetchEditionMarkdown(editionKey, relativePath) {
@@ -261,7 +285,7 @@ async function fetchEditionMarkdown(editionKey, relativePath) {
 }
 
 // ==================== Markdown Parser ====================
-function parseMarkdown(md, editionKey) {
+function parseMarkdown(md, editionKey, paneType = 'primary', currentPath = '') {
   if (!md) return '';
 
   // Transliterate if needed before HTML escape / conversion
@@ -272,13 +296,32 @@ function parseMarkdown(md, editionKey) {
 
   // Pre-process Footnotes definitions: [^1]: Footnote content
   const footnotes = new Map();
-  text = text.replace(/^\[\^(\d+)\]:\s*(.*)$/gm, (_, id, content) => {
+  text = text.replace(/^\[\^([^\]]+)\]:\s*(.*)$/gm, (_, id, content) => {
     footnotes.set(id, content.trim());
     return '';
   });
 
+  // Detect section index links (e.g. * [1.1 ...](1/1.1.md))
+  const sectionLinks = [...md.matchAll(/[*+-]\s+\[([^\]]+)\]\(([^)]+\.md)\)/g)].map(m => ({ title: m[1], url: m[2] }));
+  let combineBarHtml = '';
+  if (editionKey === 'tipitaka2500' && sectionLinks.length > 1) {
+    combineBarHtml = `
+      <div class="combine-sections-bar">
+        <div>
+          <strong>📚 ${sectionLinks.length} Canonical Sections Available</strong>
+          <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+            Read section-by-section or load all sections continuously for side-by-side comparison.
+          </div>
+        </div>
+        <button class="combine-sections-btn" data-pane="${paneType}">
+          📖 Load Complete Sutta (${sectionLinks.length} Sections)
+        </button>
+      </div>
+    `;
+  }
+
   const lines = text.split('\n');
-  let html = '';
+  let html = combineBarHtml;
   let inBlockquote = false;
   let inList = false;
 
@@ -289,6 +332,22 @@ function parseMarkdown(md, editionKey) {
     if (!line.trim()) {
       if (inBlockquote) { html += '</blockquote>\n'; inBlockquote = false; }
       if (inList) { html += '</ul>\n'; inList = false; }
+      continue;
+    }
+
+    // Top breadcrumb navigation line: [Home](/) / [6D ...](../6D.md)
+    if (line.trim().startsWith('[Home](')) {
+      if (inBlockquote) { html += '</blockquote>\n'; inBlockquote = false; }
+      if (inList) { html += '</ul>\n'; inList = false; }
+      html += `<div class="article-breadcrumbs">${formatInline(line, paneType)}</div>\n`;
+      continue;
+    }
+
+    // Bottom navigation line: [Go to previous page ...]
+    if (line.trim().startsWith('[Go to previous page') || line.trim().startsWith('[Go to parent page') || line.trim().startsWith('[Go to next page')) {
+      if (inBlockquote) { html += '</blockquote>\n'; inBlockquote = false; }
+      if (inList) { html += '</ul>\n'; inList = false; }
+      html += `<div class="article-nav-bar">${formatInline(line, paneType)}</div>\n`;
       continue;
     }
 
@@ -304,7 +363,7 @@ function parseMarkdown(md, editionKey) {
     // Unordered List
     if (line.startsWith('- ') || line.startsWith('* ')) {
       if (!inList) { html += '<ul>'; inList = true; }
-      const itemText = formatInline(line.replace(/^[-*]\s+/, ''));
+      const itemText = formatInline(line.replace(/^[-*]\s+/, ''), paneType);
       html += `<li>${itemText}</li>`;
       continue;
     } else if (inList) {
@@ -317,7 +376,7 @@ function parseMarkdown(md, editionKey) {
       const match = line.match(/^(#{1,6})\s+(.*)$/);
       if (match) {
         const level = match[1].length;
-        const headingText = formatInline(match[2]);
+        const headingText = formatInline(match[2], paneType);
         const id = 'h_' + match[2].toLowerCase().replace(/[^a-z0-9]/g, '_');
         html += `<h${level} id="${id}">${headingText}</h${level}>\n`;
         continue;
@@ -332,12 +391,12 @@ function parseMarkdown(md, editionKey) {
 
     // Centered paragraph <p align="center">
     if (line.includes('align="center"')) {
-      html += `<p align="center">${formatInline(line.replace(/<[^>]+>/g, ''))}</p>\n`;
+      html += `<p align="center">${formatInline(line.replace(/<[^>]+>/g, ''), paneType)}</p>\n`;
       continue;
     }
 
     // Regular paragraph
-    html += `<p>${formatInline(line)}</p>\n`;
+    html += `<p>${formatInline(line, paneType)}</p>\n`;
   }
 
   if (inBlockquote) html += '</blockquote>\n';
@@ -350,7 +409,7 @@ function parseMarkdown(md, editionKey) {
       html += `
         <div class="footnote-item" id="fn-${fnId}">
           <span class="fn-num">[${fnId}]</span>
-          <span class="fn-content">${formatInline(fnText)}</span>
+          <span class="fn-content">${formatInline(fnText, paneType)}</span>
         </div>`;
     }
     html += '</div></section>';
@@ -359,8 +418,8 @@ function parseMarkdown(md, editionKey) {
   return html;
 }
 
-// Inline formatting (bold, italic, code, page citations, footnotes)
-function formatInline(str) {
+// Inline formatting (bold, italic, code, page citations, footnotes, links)
+function formatInline(str, paneType = 'primary') {
   if (!str) return '';
 
   return str
@@ -369,9 +428,15 @@ function formatInline(str) {
       const label = id.replace(/^p_/, '').replace(/_/g, ' ');
       return `<span class="page-anchor-chip" title="Page / Section ${label}">§ ${label}</span>`;
     })
-    // Footnote references [^1]
-    .replace(/\[\^(\d+)\]/g, (_, id) => {
+    // Footnote references [^1] or [^001-1] or [^p2-1]
+    .replace(/\[\^([^\]]+)\]/g, (_, id) => {
       return `<sup class="footnote-ref"><a href="#fn-${id}" data-fn="${id}">[${id}]</a></sup>`;
+    })
+    // Markdown links [text](url)
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, url) => {
+      const isNav = text.startsWith('Go to ') || text === 'Home';
+      const navClass = isNav ? 'md-nav-link' : 'md-link';
+      return `<a href="${url}" class="${navClass}" data-url="${url}" data-pane="${paneType}">${text}</a>`;
     })
     // Bold italic
     .replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>')
@@ -381,6 +446,105 @@ function formatInline(str) {
     .replace(/\*(.*?)\*/g, '<em>$1</em>')
     // Code
     .replace(/`([^`]+)`/g, '<code>$1</code>');
+}
+
+// Intercept markdown link clicks and navigate inside reader
+function attachLinkListeners(container, paneType) {
+  container.querySelectorAll('a[data-url]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const rawUrl = link.getAttribute('data-url');
+      if (!rawUrl) return;
+
+      // Allow external links to open normally
+      if (rawUrl.startsWith('http://') || rawUrl.startsWith('https://')) {
+        return;
+      }
+
+      e.preventDefault();
+
+      // Anchor link within document
+      if (rawUrl.startsWith('#')) {
+        const target = container.querySelector(rawUrl);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      // Home link
+      if (rawUrl === '/' || rawUrl === '/tipitaka' || rawUrl === '/tipitaka/') {
+        navigateToItem('dn1');
+        return;
+      }
+
+      const currentPath = state.currentPaths[paneType];
+      if (!currentPath) return;
+
+      const editionKey = paneType === 'primary' ? state.primaryEdition : state.compareEdition;
+      const resolvedPath = resolveRelativePath(currentPath, rawUrl);
+
+      // Check if resolvedPath corresponds to an item in catalog.json
+      const matchedItem = state.flatItems.find(it => it.editions && it.editions[editionKey] === resolvedPath);
+      if (matchedItem) {
+        navigateToItem(matchedItem.id || matchedItem.code);
+        return;
+      }
+
+      // Otherwise, load this specific sub-file into the pane!
+      loadPaneContent(paneType, editionKey, resolvedPath);
+    });
+  });
+}
+
+// "Load Complete Sutta" handler for tipitaka2500 sectioned texts
+function attachCombineSectionsListener(container, paneType, editionKey, currentPath, markdown) {
+  const btn = container.querySelector('.combine-sections-btn');
+  if (!btn) return;
+
+  btn.addEventListener('click', async () => {
+    btn.disabled = true;
+    btn.textContent = '⏳ Loading sections...';
+
+    const sectionLinks = [...markdown.matchAll(/[*+-]\s+\[([^\]]+)\]\(([^)]+\.md)\)/g)].map(m => ({ title: m[1], url: m[2] }));
+    try {
+      const combinedSections = await Promise.all(
+        sectionLinks.map(async (sec) => {
+          const secPath = resolveRelativePath(currentPath, sec.url);
+          const secMd = await fetchEditionMarkdown(editionKey, secPath);
+          // Strip top breadcrumbs and bottom nav
+          const cleanedLines = secMd.split('\n').filter(line => {
+            const trimmed = line.trim();
+            if (trimmed.startsWith('[Home](')) return false;
+            if (trimmed.startsWith('[Go to previous page')) return false;
+            if (trimmed.startsWith('[Go to parent page')) return false;
+            if (trimmed.startsWith('[Go to next page')) return false;
+            return true;
+          });
+          return cleanedLines.join('\n');
+        })
+      );
+
+      const fullMarkdown = combinedSections.join('\n\n---\n\n');
+      const html = parseMarkdown(fullMarkdown, editionKey, paneType, currentPath);
+
+      const revertBar = `
+        <div class="combine-sections-bar">
+          <div><strong>📖 Full Sutta Loaded (${sectionLinks.length} Sections Combined)</strong></div>
+          <button class="combine-sections-btn" style="background-color: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color);" id="revert-toc-btn">
+            📑 Show Table of Contents
+          </button>
+        </div>
+      `;
+      container.innerHTML = `<article class="article-body">${revertBar}${html}</article>`;
+      container.scrollTop = 0;
+      attachFootnoteListeners(container);
+      attachLinkListeners(container, paneType);
+      container.querySelector('#revert-toc-btn')?.addEventListener('click', () => {
+        loadPaneContent(paneType, editionKey, currentPath);
+      });
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = '❌ Failed to combine. Click to retry';
+    }
+  });
 }
 
 // Footnote interactions

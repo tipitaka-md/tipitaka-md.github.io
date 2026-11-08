@@ -104,11 +104,18 @@ export function transliteratePali(text, targetScript) {
   const virama = PALI_CHARS.virama[scriptKey];
   const niggahita = PALI_CHARS.niggahita[scriptKey];
 
+  // Protect markdown link URLs: keep the (url) target intact while allowing [text] to be transliterated
+  const savedUrls = [];
+  let protectedText = text.replace(/\]\(([^)]+)\)/g, (_, url) => {
+    savedUrls.push(url);
+    return `](__URL_${savedUrls.length - 1}__)`;
+  });
+
   // Regex for Pali syllables: (Consonant)?(Vowel|Niggahita)?
   // Tokenize preserving case and markdown/HTML structures
-  return text.replace(/(<[^>]+>|\[\^[^\]]+\]|\*\*.*?\*\*|`.*?`|[a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+)/g, (match) => {
-    // If HTML tag, footnote reference, or code, skip
-    if (match.startsWith('<') || match.startsWith('[^') || match.startsWith('`')) {
+  let result = protectedText.replace(/(<[^>]+>|\[\^[^\]]+\]|__URL_\d+__|\*\*.*?\*\*|`.*?`|[a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+)/g, (match) => {
+    // If HTML tag, footnote reference, protected URL, or code, skip
+    if (match.startsWith('<') || match.startsWith('[^') || match.startsWith('__URL_') || match.startsWith('`')) {
       return match;
     }
 
@@ -191,6 +198,13 @@ export function transliteratePali(text, targetScript) {
 
     return res;
   });
+
+  // Restore protected URLs
+  if (savedUrls.length > 0) {
+    result = result.replace(/__URL_(\d+)__/g, (_, idx) => savedUrls[parseInt(idx, 10)]);
+  }
+
+  return result;
 }
 
 if (typeof window !== 'undefined') {
