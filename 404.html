@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tipiṭaka Multi-Edition - Redirecting</title>
+  <script>
+    // GitHub Pages SPA router fallback
+    // Converts pathname to hash path on index.html
+    const segment = window.location.pathname.replace(/^\/+/g, '');
+    if (segment) {
+      window.location.replace('/#' + (segment.startsWith('view/') ? '/' : '/view/') + segment + window.location.search);
+    } else {
+      window.location.replace('/');
+    }
+  </script>
+</head>
+<body>
+  <p>Redirecting to Tipiṭaka viewer...</p>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "Tipiṭaka Multi-Edition Comparison",
+  "short_name": "Tipiṭaka",
+  "description": "Multi-edition Pali Tipiṭaka comparison viewer (World Tipiṭaka 2500, PTS, BJT, CST4, Siam Rath)",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#7e22ce",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☸️</text></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

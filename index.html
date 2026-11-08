@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipiṭaka Multi-Edition Comparison Viewer</title>
+  <meta name="description" content="Compare Pali Tipiṭaka texts across 5 major editions: World Tipiṭaka 2500, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath.">
+  <meta name="theme-color" content="#7e22ce">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☸️</text></svg>">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gentium+Plus:ital,wght@0,400;0,700;1,400&family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Application Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <button class="icon-btn" id="sidebar-toggle" title="Toggle Sidebar (B)" aria-label="Toggle Sidebar">☰</button>
+      <a href="#/view/dn1" class="brand">
+        <div class="brand-title">
+          Tipiṭaka <span class="badge">Multi-Edition</span>
+        </div>
+        <div class="brand-subtitle">World Tipiṭaka · PTS · BJT · CST4 · Siam Rath</div>
+      </a>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger" id="search-trigger" aria-label="Search canonical texts">
+        <span>🔍 Search suttas, books, citations...</span>
+        <span class="kbd-shortcut">⌘K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <button class="icon-btn" id="font-size-dec" title="Decrease font size" aria-label="Decrease font size">A-</button>
+      <button class="icon-btn" id="font-size-inc" title="Increase font size" aria-label="Increase font size">A+</button>
+      
+      <select class="control-select" id="script-select" title="Change script / transliteration" aria-label="Transliteration Script">
+        <option value="iast" selected>Roman (IAST)</option>
+        <option value="sinhala">සිංහල (Sinhala)</option>
+        <option value="thai">ไทย (Thai)</option>
+        <option value="myanmar">မြန်မာ (Myanmar)</option>
+        <option value="devanagari">देवनागरी (Devanagari)</option>
+      </select>
+
+      <button class="icon-btn" id="split-toggle" title="Compare Editions (Dual Pane)" aria-label="Toggle Split Comparison Mode">◫</button>
+      <button class="icon-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">📜</button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-search-box">
+        <input type="text" id="sidebar-filter" placeholder="Filter texts (e.g. DN 1, Dhp, vin)..." autocomplete="off">
+      </div>
+      <div class="sidebar-tree" id="sidebar-tree">
+        <!-- Canonical Tree dynamically rendered here -->
+      </div>
+    </aside>
+
+    <!-- Reader Container -->
+    <main class="reader-container">
+      <!-- Concordance & Breadcrumb Bar -->
+      <div class="concordance-bar">
+        <div class="breadcrumbs" id="breadcrumbs">
+          <span class="breadcrumb-item">Suttapiṭaka</span>
+          <span class="sep">/</span>
+          <span class="breadcrumb-item">Dīghanikāya</span>
+          <span class="sep">/</span>
+          <span class="breadcrumb-item">DN 1 Brahmajālasutta</span>
+        </div>
+        <div class="concordance-badges" id="concordance-badges">
+          <!-- Concordance edition tags -->
+        </div>
+      </div>
+
+      <!-- Dual / Single Panes Wrapper -->
+      <div class="panes-wrapper" id="panes-wrapper">
+        <!-- Primary Pane -->
+        <section class="pane" id="pane-primary">
+          <div class="pane-toolbar">
+            <div class="edition-tabs" id="primary-tabs">
+              <!-- Primary edition tabs -->
+            </div>
+            <div style="font-size: 11px; color: var(--text-muted); font-weight: 500;">
+              Primary Text
+            </div>
+          </div>
+          <div class="pane-content" id="primary-content">
+            <div class="loading-spinner">
+              <div class="spinner"></div>
+              <p style="margin-top: 12px; font-size: 14px;">Loading canonical text...</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Compare Pane -->
+        <section class="pane" id="pane-compare" style="display: none;">
+          <div class="pane-toolbar">
+            <div class="edition-tabs" id="compare-tabs">
+              <!-- Compare edition tabs -->
+            </div>
+            <div style="font-size: 11px; color: var(--accent-color); font-weight: 600;">
+              Comparison Text
+            </div>
+          </div>
+          <div class="pane-content" id="compare-content">
+            <!-- Compare content -->
+          </div>
+        </section>
+      </div>
+
+      <!-- Reader Navigation Footer -->
+      <div class="reader-footer-nav">
+        <button class="nav-link-btn" id="prev-btn" style="visibility: hidden;">← Previous</button>
+        <div style="font-size: 12px; color: var(--text-muted);">
+          tipitaka-md · Open Pali Canonical Texts
+        </div>
+        <button class="nav-link-btn" id="next-btn" style="visibility: hidden;">Next →</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="modal-backdrop" id="search-modal">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <span>🔍</span>
+        <input type="text" id="search-input" placeholder="Type sutta name, citation (DN 1, MN 10), or book..." autocomplete="off">
+        <button class="icon-btn" id="modal-close" style="width: 28px; height: 28px; font-size: 13px;">✕</button>
+      </div>
+      <div class="search-results" id="search-results">
+        <!-- Results rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footnote Drawer -->
+  <div class="footnote-drawer" id="footnote-drawer">
+    <div class="footnote-drawer-header">
+      <span id="footnote-title">Footnote</span>
+      <button class="icon-btn" id="footnote-close" style="width: 24px; height: 24px; font-size: 12px;">✕</button>
+    </div>
+    <div class="footnote-drawer-body" id="footnote-body"></div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => console.debug('SW reg failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
