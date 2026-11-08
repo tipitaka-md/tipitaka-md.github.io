@@ -679,6 +679,7 @@ import Layout from '../layouts/Layout.astro';
   let currentBookCode = '1V';
   let currentSuttaId = '';
   let currentFilePath = '';
+  let currentSectionRef = '';
   let viewMode = 'single'; // 'single' | 'split'
   let diffEnabled = true;
   let currentScript = 'roman';
@@ -1085,29 +1086,45 @@ import Layout from '../layouts/Layout.astro';
           const targetFile = url.searchParams.get('file');
           const targetSutta = url.searchParams.get('sutta');
 
+          singleShowFull = false;
+          rightShowFull = false;
+
           if (targetFile) {
-            currentFilePath = targetFile;
-            const m = currentFilePath.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
+            if (targetFile.startsWith('tipitaka/')) {
+              currentSectionRef = targetFile;
+            } else {
+              currentSectionRef = '';
+            }
+            const m = targetFile.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
             if (m) currentBookCode = m[1];
-            currentSuttaId = targetSutta || detectSuttaFromPath(currentFilePath);
+            currentSuttaId = targetSutta || detectSuttaFromPath(targetFile);
+
+            if (currentEdition === 'tipitaka2500' || !targetFile.startsWith('tipitaka/')) {
+              currentFilePath = targetFile;
+            } else {
+              currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+            }
           } else if (targetSutta) {
             currentSuttaId = targetSutta;
             if (targetBook) currentBookCode = targetBook;
             currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+            currentSectionRef = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
           } else if (targetBook) {
             currentBookCode = targetBook;
             currentSuttaId = '';
             currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, '');
+            currentSectionRef = '';
           }
 
           const drawerToggle = document.getElementById('sidebar-drawer-toggle') as HTMLInputElement;
           if (drawerToggle) drawerToggle.checked = false;
 
           updateActiveSidebarLink();
+          const targetRef = currentSectionRef || currentFilePath;
           window.history.pushState(
             {},
             '',
-            `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}&file=${encodeURIComponent(currentFilePath)}&mode=${viewMode}&diff=${diffEnabled ? '1' : '0'}&script=${currentScript}`
+            `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}${targetRef ? `&file=${encodeURIComponent(targetRef)}` : ''}&mode=${viewMode}&diff=${diffEnabled ? '1' : '0'}&script=${currentScript}`
           );
           updateView();
           window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1131,21 +1148,34 @@ import Layout from '../layouts/Layout.astro';
         const url = new URL(href, window.location.origin);
         const params = url.searchParams;
 
+        singleShowFull = false;
+        rightShowFull = false;
+
         const newFile = params.get('file');
         const newEdition = params.get('edition');
-        if (newFile) currentFilePath = newFile;
         if (newEdition) currentEdition = newEdition;
+        if (newFile) {
+          if (newFile.startsWith('tipitaka/')) {
+            currentSectionRef = newFile;
+          }
+          const match = newFile.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
+          if (match) {
+            currentBookCode = match[1];
+          }
+          currentSuttaId = detectSuttaFromPath(newFile);
 
-        const match = (newFile || '').match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
-        if (match) {
-          currentBookCode = match[1];
+          if (currentEdition === 'tipitaka2500' || !newFile.startsWith('tipitaka/')) {
+            currentFilePath = newFile;
+          } else {
+            currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+          }
         }
-        currentSuttaId = detectSuttaFromPath(currentFilePath);
 
+        const targetRef = currentSectionRef || currentFilePath;
         window.history.pushState(
           {},
           '',
-          `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}&file=${encodeURIComponent(currentFilePath)}&mode=${viewMode}&diff=${diffEnabled ? '1' : '0'}&script=${currentScript}`
+          `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}${targetRef ? `&file=${encodeURIComponent(targetRef)}` : ''}&mode=${viewMode}&diff=${diffEnabled ? '1' : '0'}&script=${currentScript}`
         );
         updateActiveSidebarLink();
         updateActiveEditionTabs();
@@ -1171,7 +1201,7 @@ import Layout from '../layouts/Layout.astro';
 
     // Update diff legend visibility
     if (diffLegend) {
-      const showLegend = diffEnabled && (viewMode === 'split' || currentEdition !== 'tipitaka2500');
+      const showLegend = diffEnabled || viewMode === 'split';
       diffLegend.style.display = showLegend ? 'flex' : 'none';
     }
 
@@ -1204,7 +1234,7 @@ import Layout from '../layouts/Layout.astro';
       if (singlePaneView) singlePaneView.style.display = 'none';
       if (splitPanesView) splitPanesView.style.display = 'flex';
 
-      const leftFile = currentFilePath || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
+      const leftFile = currentSectionRef || (currentEdition === 'tipitaka2500' ? currentFilePath : '') || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
       const rightFile = getFilePathForEdition(compareEdition, currentBookCode, currentSuttaId);
 
       const [baseMd, compareMd] = await Promise.all([
@@ -1249,7 +1279,7 @@ import Layout from '../layouts/Layout.astro';
 
       let rightRenderMd = rightRenderSource;
       if (diffEnabled) {
-        rightRenderMd = highlightPaliDiff(rightRenderSource, baseMd);
+        rightRenderMd = highlightPaliDiff(rightRenderSource, baseMd, 'T2500');
       }
 
       if (leftContentEl) {
@@ -1288,7 +1318,7 @@ import Layout from '../layouts/Layout.astro';
 
       let singleRenderSource = targetMd;
       if (!isRootBook && currentEdition !== 'tipitaka2500') {
-        const baseFile = currentFilePath || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
+        const baseFile = currentSectionRef || (currentFilePath.startsWith('tipitaka/') ? currentFilePath : '') || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
         const baseMd = await fetchMarkdown('tipitaka2500', baseFile);
         const sectionTitle = extractTitleFromMarkdown(baseMd) || (currentSuttaId ? currentSuttaId.toUpperCase() : cleanCurrentPath.split('/').pop() || '');
 
@@ -1304,7 +1334,7 @@ import Layout from '../layouts/Layout.astro';
         currentSingleMd = singleRenderSource;
         let renderMd = singleRenderSource;
         if (diffEnabled) {
-          renderMd = highlightPaliDiff(singleRenderSource, baseMd);
+          renderMd = highlightPaliDiff(singleRenderSource, baseMd, 'T2500');
         }
 
         if (mainContentEl) {
@@ -1315,12 +1345,16 @@ import Layout from '../layouts/Layout.astro';
           }
         }
       } else {
+        // currentEdition === 'tipitaka2500'
         currentSingleMd = targetMd;
         let renderMd = targetMd;
-        if (diffEnabled && currentEdition !== 'tipitaka2500') {
-          const baseFile = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
-          const baseMd = await fetchMarkdown('tipitaka2500', baseFile);
-          renderMd = highlightPaliDiff(targetMd, baseMd);
+        if (diffEnabled && !isRootBook) {
+          const compFile = getFilePathForEdition(compareEdition, currentBookCode, currentSuttaId);
+          const compMd = await fetchMarkdown(compareEdition, compFile);
+          const sectionTitle = extractTitleFromMarkdown(targetMd) || (currentSuttaId ? currentSuttaId.toUpperCase() : cleanCurrentPath.split('/').pop() || '');
+          const elidedComp = elideOtherEdition(targetMd, compMd, sectionTitle, 'compare');
+          const compBadge = catalog?.editions[compareEdition]?.short_name || compareEdition.toUpperCase();
+          renderMd = highlightPaliDiff(targetMd, elidedComp.content, compBadge);
         }
 
         if (mainContentEl) {
@@ -1331,6 +1365,11 @@ import Layout from '../layouts/Layout.astro';
           }
         }
       }
+    }
+
+    const compareWrapper = document.getElementById('compare-edition-wrapper');
+    if (compareWrapper) {
+      compareWrapper.style.display = (viewMode === 'split' || diffEnabled) ? 'block' : 'none';
     }
 
     // Update Breadcrumbs and Document Title with extracted section/sutta title
@@ -1404,7 +1443,22 @@ import Layout from '../layouts/Layout.astro';
         const ed = tab.getAttribute('data-edition');
         if (ed && ed !== currentEdition) {
           currentEdition = ed;
-          currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+          singleShowFull = false;
+          rightShowFull = false;
+
+          if (currentEdition === 'tipitaka2500' && currentSectionRef) {
+            currentFilePath = currentSectionRef;
+          } else {
+            currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+          }
+
+          const newUrl = new URL(window.location.href);
+          newUrl.searchParams.set('edition', currentEdition);
+          if (currentEdition === 'tipitaka2500' && currentSectionRef) {
+            newUrl.searchParams.set('file', currentSectionRef);
+          }
+          window.history.pushState({}, '', newUrl.toString());
+
           updateActiveEditionTabs();
           updateView();
         }
@@ -1414,13 +1468,25 @@ import Layout from '../layouts/Layout.astro';
     // View Mode Select
     const viewModeSelect = document.getElementById('view-mode-select') as HTMLSelectElement;
     const compareWrapper = document.getElementById('compare-edition-wrapper');
+    const diffLegend = document.getElementById('diff-legend');
+
+    const updateControlsVisibility = () => {
+      if (compareWrapper) {
+        compareWrapper.style.display = (viewMode === 'split' || diffEnabled) ? 'block' : 'none';
+      }
+      if (diffLegend) {
+        diffLegend.style.display = (diffEnabled || viewMode === 'split') ? 'flex' : 'none';
+      }
+    };
+
     if (viewModeSelect) {
       viewModeSelect.value = viewMode;
       viewModeSelect.addEventListener('change', () => {
         viewMode = viewModeSelect.value;
-        if (compareWrapper) {
-          compareWrapper.style.display = viewMode === 'split' ? 'block' : 'none';
-        }
+        updateControlsVisibility();
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.set('mode', viewMode);
+        window.history.pushState({}, '', newUrl.toString());
         updateView();
       });
     }
@@ -1431,20 +1497,31 @@ import Layout from '../layouts/Layout.astro';
       compareSelect.value = compareEdition;
       compareSelect.addEventListener('change', () => {
         compareEdition = compareSelect.value;
-        if (viewMode === 'split') updateView();
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.set('compare', compareEdition);
+        window.history.pushState({}, '', newUrl.toString());
+        updateView();
       });
     }
 
     // Variant Diff Toggle
     const diffBtn = document.getElementById('diff-toggle-btn');
     if (diffBtn) {
+      diffBtn.classList.toggle('active', diffEnabled);
+      diffBtn.setAttribute('aria-pressed', diffEnabled ? 'true' : 'false');
       diffBtn.addEventListener('click', () => {
         diffEnabled = !diffEnabled;
         diffBtn.classList.toggle('active', diffEnabled);
         diffBtn.setAttribute('aria-pressed', diffEnabled ? 'true' : 'false');
+        updateControlsVisibility();
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.set('diff', diffEnabled ? '1' : '0');
+        window.history.pushState({}, '', newUrl.toString());
         updateView();
       });
     }
+
+    updateControlsVisibility();
 
     // Script Select
     const scriptSelect = document.getElementById('script-select') as HTMLSelectElement;
@@ -1562,26 +1639,40 @@ import Layout from '../layouts/Layout.astro';
     if (params.has('script')) currentScript = params.get('script')!;
 
     if (params.has('file')) {
-      currentFilePath = params.get('file')!;
-      const m = currentFilePath.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
+      const paramFile = params.get('file')!;
+      if (paramFile.startsWith('tipitaka/')) {
+        currentSectionRef = paramFile;
+      } else {
+        currentSectionRef = '';
+      }
+      const m = paramFile.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
       if (m) {
         currentBookCode = m[1];
       }
-      currentSuttaId = params.get('sutta') || detectSuttaFromPath(currentFilePath);
+      currentSuttaId = params.get('sutta') || detectSuttaFromPath(paramFile);
+
+      if (currentEdition === 'tipitaka2500' || !paramFile.startsWith('tipitaka/')) {
+        currentFilePath = paramFile;
+      } else {
+        currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+      }
     } else if (params.has('sutta')) {
       currentSuttaId = params.get('sutta')!;
       if (params.has('book')) {
         currentBookCode = params.get('book')!;
       }
       currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+      currentSectionRef = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
     } else if (params.has('book')) {
       currentBookCode = params.get('book')!;
       currentSuttaId = '';
       currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, '');
+      currentSectionRef = '';
     } else {
       currentBookCode = '1V';
       currentSuttaId = '';
       currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, '');
+      currentSectionRef = '';
     }
   }
 

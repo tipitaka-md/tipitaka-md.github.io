@@ -164,14 +164,14 @@ function findBestMatchingBaseParagraph(targetPara, baseParas) {
  * - <span class="diff-change" title="...">change (light yellow)</span>
  * - <del class="diff-del" title="...">deletion (light pink)</del>
  */
-export function highlightPaliDiff(targetMarkdown, baseMarkdown) {
+export function highlightPaliDiff(targetMarkdown, baseMarkdown, baseLabel = 'Base') {
   if (!targetMarkdown || !baseMarkdown) return targetMarkdown;
 
   // Extract base paragraphs
   const baseParas = baseMarkdown
     .split(/\n\s*\n/)
     .map(p => p.trim())
-    .filter(p => p.length > 20 && !p.startsWith('#') && !p.startsWith('[Home](') && !p.startsWith('>'));
+    .filter(p => p.length > 20 && !p.startsWith('#') && !p.startsWith('[Home](') && !p.startsWith('>') && !p.startsWith('<div') && !p.startsWith('<!--'));
 
   if (baseParas.length === 0) return targetMarkdown;
 
@@ -181,10 +181,11 @@ export function highlightPaliDiff(targetMarkdown, baseMarkdown) {
   for (const block of targetBlocks) {
     const trimmed = block.trim();
 
-    // Skip headers, metadata blockquotes, breadcrumb/nav lines, page markers
+    // Skip headers, metadata blockquotes, breadcrumb/nav lines, page markers, elision notices
     if (!trimmed ||
         trimmed.startsWith('#') ||
         trimmed.startsWith('>') ||
+        trimmed.startsWith('<div') ||
         trimmed.startsWith('<!--') ||
         trimmed.startsWith('<a id=') ||
         trimmed.startsWith('[Home](') ||
@@ -214,17 +215,25 @@ export function highlightPaliDiff(targetMarkdown, baseMarkdown) {
         if (!op.text.trim() && !op.oldText.trim()) {
           paraHtml += op.text;
         } else {
-          paraHtml += `<span class="diff-change" title="T2500: ${escapeHtml(op.oldText)}">${op.text}</span>`;
+          paraHtml += `<span class="diff-change" title="${baseLabel}: ${escapeHtml(op.oldText)}">${op.text}</span>`;
         }
       } else if (op.type === 'add') {
         if (!op.text.trim()) {
           paraHtml += op.text;
         } else {
-          paraHtml += `<span class="diff-add" title="Added in this edition">${op.text}</span>`;
+          const cleanText = op.text.replace(/[\*\_\[\]\^\<\>]/g, '').trim();
+          if (cleanText) {
+            paraHtml += `<span class="diff-add" title="Added in this edition">${op.text}</span>`;
+          } else {
+            paraHtml += op.text;
+          }
         }
       } else if (op.type === 'delete') {
         if (op.oldText && op.oldText.trim()) {
-          paraHtml += `<del class="diff-del" title="Omitted in this edition (T2500: ${escapeHtml(op.oldText)})">${escapeHtml(op.oldText)}</del>`;
+          const cleanOld = op.oldText.replace(/[\*\_\[\]\^\<\>]/g, '').trim();
+          if (cleanOld && !cleanOld.startsWith('^p') && !cleanOld.startsWith('p')) {
+            paraHtml += `<del class="diff-del" title="Omitted in this edition (${baseLabel}: ${escapeHtml(op.oldText)})">${escapeHtml(op.oldText)}</del>`;
+          }
         }
       }
     }
