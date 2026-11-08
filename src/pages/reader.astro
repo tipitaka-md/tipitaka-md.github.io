@@ -961,11 +961,79 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /**
+   * Omit PTS paragraph numbers and page numbers dynamically for display
+   * so that text flows smoothly and reads naturally, while leaving the genuine
+   * raw Markdown intact for raw view and downloads.
+   */
+  function cleanPtsForDisplay(md: string): string {
+    if (!md) return '';
+    let body = md;
+    let footer = '';
+
+    if (body.includes('## Footnotes')) {
+      const parts = body.split('## Footnotes');
+      body = parts[0];
+      footer = '## Footnotes' + parts.slice(1).join('## Footnotes');
+    }
+
+    // 1. Hyphenated word break across page: word-\n...page...\nword -> wordword
+    body = body.replace(
+      /(\w+)-\s*\n+(?:<!--\s*PTS\s+Page\s*[^>]+-->\s*\n+)?(?:<a\s+id="page-[^"]+"><\/a>\s*\n+)?(?:#+\s*\*?\[PTS\s+Page\s*[^\]]+\]\*?\s*\n+)(\w+)/g,
+      '$1$2'
+    );
+
+    // 2. Page break block across text: connect with space if in sentence, or paragraph break if sentence ended
+    body = body.replace(
+      /(\S[^\n]*)\s*\n+(?:<!--\s*PTS\s+Page\s*[^>]+-->\s*\n+)?(?:<a\s+id="page-[^"]+"><\/a>\s*\n+)?(?:#+\s*\*?\[PTS\s+Page\s*[^\]]+\]\*?\s*\n+)([^\s\n])/g,
+      (_, pre: string, post: string) => {
+        const preNoFn = pre.replace(/\[\^[^\]]+\]$/, '').trimEnd();
+        if (/[.:;!?”"’']$/.test(preNoFn) || /^["“‘#]/.test(post)) {
+          return `${pre}\n\n${post}`;
+        }
+        return `${pre} ${post}`;
+      }
+    );
+
+    // Remaining standalone page markers / anchors
+    body = body.replace(/<!--\s*PTS\s+Page\s*[^>]+-->\s*/gi, '');
+    body = body.replace(/<a\s+id="page-[^"]+"><\/a>\s*/gi, '');
+    body = body.replace(/#+\s*\*?\[PTS\s+Page\s*[^\]]+\]\*?\s*/gi, '');
+    body = body.replace(/\[PTS\s+Page\s*[^\]]+\](?:\s*\[[\/\\a-zA-Z0-9 ]+\])?/gi, '');
+
+    // 3. Paragraph numbers in double pipes: ||1||, ||2||, ||15||23||, || 1 ||
+    body = body.replace(/\|\|\s*\d+(?:\s*\|\|\s*\d+)*\s*\|\|[ \t]*(?:  \n|\n|[ \t]+)?/g, ' ');
+
+    // 4. Verse / section IDs in pipes or slashes: || Th_1 ||, // Dhp_1 //, || Ja_I:1 ||
+    body = body.replace(/\|\|\s*(?:Ja|Th|Thī|Sn|Nidd|Ap|Cp|It|Vv|Pv|Dhp|Bv|F\.)_[^|\n]+?\s*\|\|[ \t]*/g, '');
+    body = body.replace(/\/\/\s*(?:Dhp|Bv)_[^/\n]+?\s*\/\/[ \t]*/g, '');
+    body = body.replace(/\b(?:JaNi_\d+|Ja_[A-Za-z0-9_.:]+):\s*/g, '');
+
+    // 5. Leading paragraph numbers in prose: 1., 2., 1.1., (1) at line start
+    body = body.replace(/^\s*(?:\d+(?:\.\d+)*\.|\(\d+\))\s+/gm, '');
+
+    // 6. Double dandas / pipe delimiters: || || -> . and || -> ,
+    body = body.replace(/\s*\|\|\s*\|\|\.?/g, '.');
+    body = body.replace(/\s*\|\|/g, ',');
+    body = body.replace(/,\s*,/g, ',');
+    body = body.replace(/\.\s*\./g, '.');
+
+    // 7. Normalize spaces and empty lines
+    body = body.replace(/[ \t]{2,}/g, ' ');
+    body = body.replace(/\n{3,}/g, '\n\n');
+
+    return body.trim() + (footer ? '\n\n' + footer : '');
+  }
+
+  /**
    * Convert markdown string into HTML with link resolution and script transliteration
    */
   function convertMarkdownToHtml(markdown: string, filePath: string, edition: string): string {
+    let mdToParse = markdown;
+    if (edition === 'pts') {
+      mdToParse = cleanPtsForDisplay(mdToParse);
+    }
     const renderer = createMarkedRenderer(filePath, edition);
-    let html = marked.parse(markdown, { renderer }) as string;
+    let html = marked.parse(mdToParse, { renderer }) as string;
 
     if (currentScript !== 'roman') {
       const notices: string[] = [];
@@ -1238,13 +1306,16 @@ import Layout from '../layouts/Layout.astro';
       const sectionTitle = extractTitleFromMarkdown(baseMd) || (currentSuttaId ? currentSuttaId.toUpperCase() : cleanCurrentPath.split('/').pop() || '');
 
       let rightRenderSource = compareMd;
+      if (compareEdition === 'pts') {
+        rightRenderSource = cleanPtsForDisplay(rightRenderSource);
+      }
       if (!isRootBook && !rightShowFull) {
-        const elided = elideOtherEdition(baseMd, compareMd, sectionTitle, 'right');
+        const elided = elideOtherEdition(baseMd, rightRenderSource, sectionTitle, 'right');
         if (elided.isElided) {
           rightRenderSource = elided.content;
         }
       } else if (!isRootBook && rightShowFull) {
-        rightRenderSource = `<div class="elision-notice elision-top"><span>Displaying complete file (${compareMd.split('\n').length} lines)</span><button type="button" class="btn-toggle-elision" data-pane="right">Elide non-relevant sections</button></div>\n\n` + compareMd;
+        rightRenderSource = `<div class="elision-notice elision-top"><span>Displaying complete file (${compareMd.split('\n').length} lines)</span><button type="button" class="btn-toggle-elision" data-pane="right">Elide non-relevant sections</button></div>\n\n` + rightRenderSource;
       }
 
       currentRightMd = rightRenderSource;
@@ -1280,7 +1351,7 @@ import Layout from '../layouts/Layout.astro';
       }
       if (rightContentEl) {
         if (showRawMarkdown) {
-          rightContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(rightRenderSource)}</code></pre>`;
+          rightContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(compareMd)}</code></pre>`;
         } else {
           rightContentEl.innerHTML = convertMarkdownToHtml(rightRenderMd, rightFile, compareEdition);
         }
@@ -1306,18 +1377,22 @@ import Layout from '../layouts/Layout.astro';
       currentSingleFullMd = targetMd;
 
       let singleRenderSource = targetMd;
+      if (currentEdition === 'pts') {
+        singleRenderSource = cleanPtsForDisplay(singleRenderSource);
+      }
+
       if (!isRootBook && currentEdition !== 'tipitaka2500') {
         const baseFile = currentSectionRef || (currentFilePath.startsWith('tipitaka/') ? currentFilePath : '') || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
         const baseMd = await fetchMarkdown('tipitaka2500', baseFile);
         const sectionTitle = extractTitleFromMarkdown(baseMd) || (currentSuttaId ? currentSuttaId.toUpperCase() : cleanCurrentPath.split('/').pop() || '');
 
         if (!singleShowFull) {
-          const elided = elideOtherEdition(baseMd, targetMd, sectionTitle, 'single');
+          const elided = elideOtherEdition(baseMd, singleRenderSource, sectionTitle, 'single');
           if (elided.isElided) {
             singleRenderSource = elided.content;
           }
         } else {
-          singleRenderSource = `<div class="elision-notice elision-top"><span>Displaying complete file (${targetMd.split('\n').length} lines)</span><button type="button" class="btn-toggle-elision" data-pane="single">Elide non-relevant sections</button></div>\n\n` + targetMd;
+          singleRenderSource = `<div class="elision-notice elision-top"><span>Displaying complete file (${targetMd.split('\n').length} lines)</span><button type="button" class="btn-toggle-elision" data-pane="single">Elide non-relevant sections</button></div>\n\n` + singleRenderSource;
         }
 
         currentSingleMd = singleRenderSource;
@@ -1328,7 +1403,7 @@ import Layout from '../layouts/Layout.astro';
 
         if (mainContentEl) {
           if (showRawMarkdown) {
-            mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(singleRenderSource)}</code></pre>`;
+            mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(targetMd)}</code></pre>`;
           } else {
             mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition);
           }
@@ -1339,7 +1414,10 @@ import Layout from '../layouts/Layout.astro';
         let renderMd = targetMd;
         if (diffEnabled && !isRootBook) {
           const compFile = getFilePathForEdition(compareEdition, currentBookCode, currentSuttaId);
-          const compMd = await fetchMarkdown(compareEdition, compFile);
+          let compMd = await fetchMarkdown(compareEdition, compFile);
+          if (compareEdition === 'pts') {
+            compMd = cleanPtsForDisplay(compMd);
+          }
           const sectionTitle = extractTitleFromMarkdown(targetMd) || (currentSuttaId ? currentSuttaId.toUpperCase() : cleanCurrentPath.split('/').pop() || '');
           const elidedComp = elideOtherEdition(targetMd, compMd, sectionTitle, 'compare');
           const compBadge = catalog?.editions[compareEdition]?.short_name || compareEdition.toUpperCase();
