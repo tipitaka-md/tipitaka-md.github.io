@@ -784,7 +784,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /**
-   * Fetch markdown content dynamically from bundled local content, jsDelivr CDN, or GitHub raw
+   * Fetch markdown content dynamically from GitHub raw or jsDelivr CDN
    */
   async function fetchMarkdown(edition: string, filePath: string): Promise<string> {
     const cleanPath = (filePath || '').replace(/^\/+/, '').replace(/\.html$/, '.md');
@@ -798,12 +798,12 @@ import Layout from '../layouts/Layout.astro';
     const repoShort = repo.replace(/^tipitaka-md\//, '');
     const branch = edConfig ? edConfig.branch : 'main';
 
-    // 1. Try local bundled content first for fast offline loading
+    // 1. Fetch dynamically from GitHub raw
     try {
-      const localUrl = `/content/${edition}/${cleanPath}`;
-      const localRes = await fetch(localUrl);
-      if (localRes.ok) {
-        const text = await localRes.text();
+      const rawUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${cleanPath}`;
+      const res = await fetch(rawUrl);
+      if (res.ok) {
+        const text = await res.text();
         if (text && !text.includes('<!DOCTYPE html>')) {
           contentCache.set(cacheKey, text);
           return text;
@@ -813,7 +813,7 @@ import Layout from '../layouts/Layout.astro';
       // Fallback
     }
 
-    // 2. Fetch dynamically from jsDelivr CDN
+    // 2. Fallback dynamically to jsDelivr CDN
     try {
       const cdnUrl = `https://cdn.jsdelivr.net/gh/tipitaka-md/${repoShort}@${branch}/${cleanPath}`;
       const res = await fetch(cdnUrl);
@@ -823,19 +823,6 @@ import Layout from '../layouts/Layout.astro';
           contentCache.set(cacheKey, text);
           return text;
         }
-      }
-    } catch {
-      // Fallback
-    }
-
-    // 3. Fallback dynamically to GitHub raw
-    try {
-      const rawUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${cleanPath}`;
-      const res = await fetch(rawUrl);
-      if (res.ok) {
-        const text = await res.text();
-        contentCache.set(cacheKey, text);
-        return text;
       }
       throw new Error(`HTTP ${res.status}: ${res.statusText}`);
     } catch (err) {
