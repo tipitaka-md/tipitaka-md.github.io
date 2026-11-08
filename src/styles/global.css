@@ -1968,3 +1968,42 @@ table.grammar_dict td:last-child {
   }
 }
 
+/* Section Elision Notice */
+.elision-notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  background-color: var(--bg-secondary);
+  border: 1px dashed var(--border-color);
+  border-radius: 6px;
+  padding: 0.5rem 0.85rem;
+  margin: 1.25rem 0;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+.elision-notice strong {
+  color: var(--text-emphasis);
+}
+
+.elision-notice .btn-toggle-elision {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--link-color);
+  padding: 0.25rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.elision-notice .btn-toggle-elision:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+}
+

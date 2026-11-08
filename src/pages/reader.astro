@@ -684,9 +684,16 @@ import Layout from '../layouts/Layout.astro';
   let currentScript = 'roman';
   let showRawMarkdown = false;
 
+  // Elision display state (whether user toggled to view full file)
+  let singleShowFull = false;
+  let rightShowFull = false;
+
   // Cached raw markdown for downloads and raw viewing
+  let currentSingleFullMd = '';
   let currentSingleMd = '';
+  let currentLeftFullMd = '';
   let currentLeftMd = '';
+  let currentRightFullMd = '';
   let currentRightMd = '';
 
   /**
@@ -711,6 +718,138 @@ import Layout from '../layouts/Layout.astro';
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
+  }
+
+  function cleanMarkdownText(str: string): string {
+    if (!str) return '';
+    return str
+      .replace(/\[\^[^\]]+\]/g, '')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/[*_#`]/g, ' ')
+      .replace(/[\x27\`\"\u2018\u2019\u201c\u201d]/g, '');
+  }
+
+  function normalizePaliForSearch(str: string): string {
+    return cleanMarkdownText(str)
+      .toLowerCase()
+      .replace(/[ṁṃ]/g, 'ṃ')
+      .replace(/[^a-zāīūñṅṇḍṭḷṃ\s]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  interface ElisionResult {
+    content: string;
+    isElided: boolean;
+    hasEarlier: boolean;
+    hasSubsequent: boolean;
+  }
+
+  /**
+   * Elide non-relevant sections from other editions to match the specific section in tipitaka2500
+   */
+  function elideOtherEdition(baseMd: string, otherMd: string, sectionTitle: string, paneId: string): ElisionResult {
+    const baseLines = (baseMd || '').split('\n')
+      .map(l => l.trim())
+      .filter(l => l && !l.startsWith('[') && !l.startsWith('*') && !l.startsWith('#') && !l.startsWith('<!--'));
+
+    const firstPara = baseLines.find(l => normalizePaliForSearch(l).length > 20) || baseLines[0];
+    const lastPara = [...baseLines].reverse().find(l => normalizePaliForSearch(l).length > 10) || baseLines[baseLines.length - 1];
+
+    if (!firstPara || !lastPara) {
+      return { content: otherMd, isElided: false, hasEarlier: false, hasSubsequent: false };
+    }
+
+    const normFirst = normalizePaliForSearch(firstPara);
+    const normLast = normalizePaliForSearch(lastPara);
+
+    const firstWords = normFirst.split(' ').filter(w => w.length > 2).slice(0, 5);
+    const lastWords = normLast.split(' ').filter(w => w.length > 2).slice(-4);
+
+    const otherLines = (otherMd || '').split('\n');
+    let startLine = -1;
+    let endLine = -1;
+
+    for (let i = 0; i < otherLines.length; i++) {
+      const norm = normalizePaliForSearch(otherLines[i]);
+      if (norm && firstWords.length > 0 && firstWords.every(w => norm.includes(w))) {
+        startLine = i;
+        break;
+      }
+    }
+
+    if (startLine !== -1) {
+      for (let i = startLine; i < otherLines.length; i++) {
+        const norm = normalizePaliForSearch(otherLines[i]);
+        if (norm && lastWords.length > 0 && lastWords.every(w => norm.includes(w))) {
+          endLine = i;
+          break;
+        }
+      }
+    }
+
+    if (startLine === -1 || endLine === -1) {
+      return { content: otherMd, isElided: false, hasEarlier: false, hasSubsequent: false };
+    }
+
+    // Check preceding lines for section heading or chapter title
+    let headingLine = startLine;
+    for (let k = startLine - 1; k >= Math.max(0, startLine - 4); k--) {
+      const line = otherLines[k].trim();
+      if (line.startsWith('#') || (line.startsWith('<p align="center">') && line.includes('kathā'))) {
+        headingLine = k;
+        break;
+      }
+      if (line !== '' && !line.startsWith('<!--') && !line.startsWith('<a id=')) {
+        break;
+      }
+    }
+
+    const hasEarlier = headingLine > 2;
+    const hasSubsequent = endLine < otherLines.length - 3;
+
+    if (!hasEarlier && !hasSubsequent) {
+      return { content: otherMd, isElided: false, hasEarlier: false, hasSubsequent: false };
+    }
+
+    // Check if line after endLine has concluding marker
+    let finalEndLine = endLine;
+    if (endLine + 1 < otherLines.length) {
+      const nextLine = otherLines[endLine + 1].trim();
+      if (nextLine.includes('niṭṭhitā') || nextLine.includes('niṭṭhito') || nextLine.includes('samattaṃ')) {
+        finalEndLine = endLine + 1;
+      }
+    }
+
+    const titleDisplay = sectionTitle ? escapeHtml(sectionTitle) : 'current section';
+    const elidedLines: string[] = [];
+
+    if (hasEarlier) {
+      elidedLines.push(
+        `<div class="elision-notice elision-top">` +
+        `<span>‹ Earlier sections elided (displaying text matching <strong>${titleDisplay}</strong>)</span>` +
+        `<button type="button" class="btn-toggle-elision" data-pane="${paneId}">Show complete file</button>` +
+        `</div>\n`
+      );
+    }
+
+    elidedLines.push(otherLines.slice(headingLine, finalEndLine + 1).join('\n'));
+
+    if (hasSubsequent) {
+      elidedLines.push(
+        `\n<div class="elision-notice elision-bottom">` +
+        `<span>‹ Subsequent sections elided</span>` +
+        `<button type="button" class="btn-toggle-elision" data-pane="${paneId}">Show complete file</button>` +
+        `</div>`
+      );
+    }
+
+    return {
+      content: elidedLines.join('\n'),
+      isElided: true,
+      hasEarlier,
+      hasSubsequent,
+    };
   }
 
   /**
@@ -839,7 +978,15 @@ import Layout from '../layouts/Layout.astro';
     let html = marked.parse(markdown, { renderer }) as string;
 
     if (currentScript !== 'roman') {
+      const notices: string[] = [];
+      html = html.replace(/<div class="elision-notice[\s\S]*?<\/div>/g, (m) => {
+        notices.push(m);
+        return `<!--ELISION_NOTICE_${notices.length - 1}-->`;
+      });
+
       html = transliteratePali(html, currentScript);
+
+      html = html.replace(/<!--ELISION_NOTICE_(\d+)-->/g, (_, idx) => notices[parseInt(idx, 10)]);
     }
     return html;
   }
@@ -1065,8 +1212,23 @@ import Layout from '../layouts/Layout.astro';
         fetchMarkdown(compareEdition, rightFile),
       ]);
 
+      currentLeftFullMd = baseMd;
+      currentRightFullMd = compareMd;
       currentLeftMd = baseMd;
-      currentRightMd = compareMd;
+
+      const sectionTitle = extractTitleFromMarkdown(baseMd) || (currentSuttaId ? currentSuttaId.toUpperCase() : cleanCurrentPath.split('/').pop() || '');
+
+      let rightRenderSource = compareMd;
+      if (!isRootBook && !rightShowFull) {
+        const elided = elideOtherEdition(baseMd, compareMd, sectionTitle, 'right');
+        if (elided.isElided) {
+          rightRenderSource = elided.content;
+        }
+      } else if (!isRootBook && rightShowFull) {
+        rightRenderSource = `<div class="elision-notice elision-top"><span>Displaying complete file (${compareMd.split('\n').length} lines)</span><button type="button" class="btn-toggle-elision" data-pane="right">Elide non-relevant sections</button></div>\n\n` + compareMd;
+      }
+
+      currentRightMd = rightRenderSource;
 
       // Update Left Pane links
       const leftClean = leftFile.replace(/^\/+/, '');
@@ -1085,9 +1247,9 @@ import Layout from '../layouts/Layout.astro';
       if (rightRawLink) rightRawLink.href = `https://raw.githubusercontent.com/${rightRepo}/${rightBranch}/${rightClean}`;
       if (rightGhLink) rightGhLink.href = `https://github.com/${rightRepo}/blob/${rightBranch}/${rightClean}`;
 
-      let rightRenderMd = compareMd;
+      let rightRenderMd = rightRenderSource;
       if (diffEnabled) {
-        rightRenderMd = highlightPaliDiff(compareMd, baseMd);
+        rightRenderMd = highlightPaliDiff(rightRenderSource, baseMd);
       }
 
       if (leftContentEl) {
@@ -1099,7 +1261,7 @@ import Layout from '../layouts/Layout.astro';
       }
       if (rightContentEl) {
         if (showRawMarkdown) {
-          rightContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(compareMd)}</code></pre>`;
+          rightContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(rightRenderSource)}</code></pre>`;
         } else {
           rightContentEl.innerHTML = convertMarkdownToHtml(rightRenderMd, rightFile, compareEdition);
         }
@@ -1122,20 +1284,51 @@ import Layout from '../layouts/Layout.astro';
 
       const targetFile = currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
       const targetMd = await fetchMarkdown(currentEdition, targetFile);
-      currentSingleMd = targetMd;
+      currentSingleFullMd = targetMd;
 
-      let renderMd = targetMd;
-      if (diffEnabled && currentEdition !== 'tipitaka2500') {
-        const baseFile = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
+      let singleRenderSource = targetMd;
+      if (!isRootBook && currentEdition !== 'tipitaka2500') {
+        const baseFile = currentFilePath || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
         const baseMd = await fetchMarkdown('tipitaka2500', baseFile);
-        renderMd = highlightPaliDiff(targetMd, baseMd);
-      }
+        const sectionTitle = extractTitleFromMarkdown(baseMd) || (currentSuttaId ? currentSuttaId.toUpperCase() : cleanCurrentPath.split('/').pop() || '');
 
-      if (mainContentEl) {
-        if (showRawMarkdown) {
-          mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(targetMd)}</code></pre>`;
+        if (!singleShowFull) {
+          const elided = elideOtherEdition(baseMd, targetMd, sectionTitle, 'single');
+          if (elided.isElided) {
+            singleRenderSource = elided.content;
+          }
         } else {
-          mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition);
+          singleRenderSource = `<div class="elision-notice elision-top"><span>Displaying complete file (${targetMd.split('\n').length} lines)</span><button type="button" class="btn-toggle-elision" data-pane="single">Elide non-relevant sections</button></div>\n\n` + targetMd;
+        }
+
+        currentSingleMd = singleRenderSource;
+        let renderMd = singleRenderSource;
+        if (diffEnabled) {
+          renderMd = highlightPaliDiff(singleRenderSource, baseMd);
+        }
+
+        if (mainContentEl) {
+          if (showRawMarkdown) {
+            mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(singleRenderSource)}</code></pre>`;
+          } else {
+            mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition);
+          }
+        }
+      } else {
+        currentSingleMd = targetMd;
+        let renderMd = targetMd;
+        if (diffEnabled && currentEdition !== 'tipitaka2500') {
+          const baseFile = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
+          const baseMd = await fetchMarkdown('tipitaka2500', baseFile);
+          renderMd = highlightPaliDiff(targetMd, baseMd);
+        }
+
+        if (mainContentEl) {
+          if (showRawMarkdown) {
+            mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(targetMd)}</code></pre>`;
+          } else {
+            mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition);
+          }
         }
       }
     }
@@ -1263,30 +1456,47 @@ import Layout from '../layouts/Layout.astro';
       });
     }
 
-    // Download Markdown file buttons
+    // Download Markdown file buttons (always downloads full genuine file from repository)
     const downloadBtn = document.getElementById('download-md-btn');
     if (downloadBtn) {
       downloadBtn.addEventListener('click', () => {
-        const fileName = (currentFilePath.split('/').pop() || `${currentBookCode}.md`).replace(/\.html$/, '.md');
-        downloadMarkdownFile(fileName, currentSingleMd);
+        const targetFile = currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+        const fileName = (targetFile.split('/').pop() || `${currentBookCode}.md`).replace(/\.html$/, '.md');
+        downloadMarkdownFile(fileName, currentSingleFullMd || currentSingleMd);
       });
     }
 
     const leftDownloadBtn = document.getElementById('left-download-btn');
     if (leftDownloadBtn) {
       leftDownloadBtn.addEventListener('click', () => {
-        const fileName = `${currentBookCode}_tipitaka2500.md`;
-        downloadMarkdownFile(fileName, currentLeftMd);
+        const leftFile = currentFilePath || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
+        const fileName = (leftFile.split('/').pop() || `${currentBookCode}_tipitaka2500.md`).replace(/\.html$/, '.md');
+        downloadMarkdownFile(fileName, currentLeftFullMd || currentLeftMd);
       });
     }
 
     const rightDownloadBtn = document.getElementById('right-download-btn');
     if (rightDownloadBtn) {
       rightDownloadBtn.addEventListener('click', () => {
-        const fileName = `${currentBookCode}_${compareEdition}.md`;
-        downloadMarkdownFile(fileName, currentRightMd);
+        const rightFile = getFilePathForEdition(compareEdition, currentBookCode, currentSuttaId);
+        const fileName = (rightFile.split('/').pop() || `${currentBookCode}_${compareEdition}.md`).replace(/\.html$/, '.md');
+        downloadMarkdownFile(fileName, currentRightFullMd || currentRightMd);
       });
     }
+
+    // Toggle Section Elision (Show full file / Elide non-relevant sections)
+    document.addEventListener('click', (e) => {
+      const target = (e.target as HTMLElement).closest('.btn-toggle-elision') as HTMLButtonElement;
+      if (!target) return;
+      const pane = target.getAttribute('data-pane');
+      if (pane === 'right') {
+        rightShowFull = !rightShowFull;
+        updateView();
+      } else if (pane === 'single') {
+        singleShowFull = !singleShowFull;
+        updateView();
+      }
+    });
 
     // Toggle Raw Markdown View
     const toggleRawBtn = document.getElementById('toggle-raw-btn');
@@ -1341,6 +1551,9 @@ import Layout from '../layouts/Layout.astro';
    * Parse query parameters on initial page load or popstate
    */
   function parseUrlParams() {
+    singleShowFull = false;
+    rightShowFull = false;
+
     const params = new URLSearchParams(window.location.search);
     if (params.has('edition')) currentEdition = params.get('edition')!;
     if (params.has('compare')) compareEdition = params.get('compare')!;

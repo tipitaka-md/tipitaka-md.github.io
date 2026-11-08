@@ -81,7 +81,7 @@
             "tipitaka2500": "tipitaka/2V.md",
             "pts": "vinaya/vb-pc.md",
             "bjt": "vinaya/vp-pct.md",
-            "cst": "mula/vinaya/vin02m.mul.md",
+            "cst": "mula/vinaya/vin02m1.mul.md",
             "siam-rath": "vinaya/vol02.md"
           },
           "sections": [
@@ -104,7 +104,7 @@
             "tipitaka2500": "tipitaka/3V.md",
             "pts": "vinaya/mv01.md",
             "bjt": "vinaya/vp-mv.md",
-            "cst": "mula/vinaya/vin03m.mul.md",
+            "cst": "mula/vinaya/vin02m2.mul.md",
             "siam-rath": "vinaya/vol04.md"
           },
           "sections": [
@@ -159,7 +159,7 @@
             "tipitaka2500": "tipitaka/4V.md",
             "pts": "vinaya/cv01.md",
             "bjt": "vinaya/vp-cv.md",
-            "cst": "mula/vinaya/vin04m.mul.md",
+            "cst": "mula/vinaya/vin02m3.mul.md",
             "siam-rath": "vinaya/vol06.md"
           },
           "sections": [
@@ -222,7 +222,7 @@
             "tipitaka2500": "tipitaka/5V.md",
             "pts": "vinaya/parivara.md",
             "bjt": "vinaya/vp-pv.md",
-            "cst": "mula/vinaya/vin05m.mul.md",
+            "cst": "mula/vinaya/vin02m4.mul.md",
             "siam-rath": "vinaya/vol08.md"
           },
           "sections": [
