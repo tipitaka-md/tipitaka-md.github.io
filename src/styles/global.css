@@ -1818,7 +1818,6 @@ table.grammar_dict td:last-child {
   border-bottom: 2px solid var(--diff-change-border);
   padding: 1px 3px;
   border-radius: 3px;
-  cursor: help;
   position: relative;
   transition: background-color 0.15s ease;
 }
@@ -1833,7 +1832,6 @@ table.grammar_dict td:last-child {
   font-size: 0.9em;
   opacity: 0.85;
   margin: 0 1px;
-  cursor: help;
   transition: background-color 0.15s ease;
 }
 

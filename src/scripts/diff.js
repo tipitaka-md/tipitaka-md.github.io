@@ -1,30 +1,27 @@
 /**
  * Pali Text Diff Engine
- * Compares comparative editions (PTS, BJT, CST4, Siam Rath) against World Tipitaka 2500 (T2500) base text.
+ * Compares comparative editions (PTS, BJT, CST4, Siam Rath) against base text.
  * Highlights:
- * - Light Green: Addition (text added in this edition)
- * - Light Yellow: Change / Variant (text differing from T2500)
- * - Light Pink: Deletion (text in T2500 omitted in this edition)
+ * - <span class="diff-add">addition</span> (text added in this edition)
+ * - <del class="diff-del">baseWord</del> <span class="diff-change">newWord</span> (variant/change displayed inline with strikethrough)
+ * - <del class="diff-del">omittedWord</del> (text omitted in this edition)
+ *
+ * Ignores:
+ * - Paragraph numbers (e.g. 1., 2\., (1.))
+ * - Punctuation (., ,, ;, :, —, -, quotes, parentheses)
+ * - Footnotes ([^...])
+ * - Markdown formatting (**, *, #, etc.)
+ * - Niggahīta orthography (ṁ vs ṃ)
+ *
+ * Avoids hover tooltips (title attributes) to prevent conflict with Pali dictionary lookup.
  */
 
-function tokenize(text) {
-  const tokens = [];
-  // Tokenize preserving HTML tags, markdown links, footnote citations, words, punctuation, whitespace
-  const regex = /(<[^>]+>|\[\^[^\]]+\]|\[[^\]]+\]\([^)]+\)|[a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+|[^a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ\s<\[]+|\s+)/g;
-  let m;
-  while ((m = regex.exec(text)) !== null) {
-    tokens.push(m[1]);
-  }
-  return tokens;
-}
-
-function normalizePali(w) {
+function normalizePaliWord(w) {
   if (!w) return '';
   return w
     .toLowerCase()
-    .replace(/[ṃṁ]/g, 'm')
-    .replace(/[ḷl]/g, 'l')
-    .replace(/[-_—–\.’'"]/g, '');
+    .replace(/[ṃṁ]/g, 'ṃ') // Normalize niggahīta so ṁ and ṃ are equal
+    .replace(/[’\x27\"“”‘’\-]/g, ''); // Ignore internal sandhi punctuation/hyphens
 }
 
 function escapeHtml(str) {
@@ -36,20 +33,93 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
-/**
- * Token-level Longest Common Subsequence Diff
- */
-export function diffPali(textBase, textTarget) {
-  const tokA = tokenize(textBase);
-  const tokB = tokenize(textTarget);
+const WORD_REGEX = /[a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+(?:[’\x27\-“”‘’][a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+)*/g;
 
-  const n = tokA.length;
-  const m = tokB.length;
+export function extractPaliWords(text) {
+  if (!text) return [];
+  const lines = text.split('\n');
+  const filtered = [];
+  for (const l of lines) {
+    const tr = l.trim();
+    if (
+      !tr ||
+      tr.startsWith('#') ||
+      tr.startsWith('>') ||
+      tr.startsWith('<!--') ||
+      tr.startsWith('<a id=') ||
+      tr.startsWith('<div') ||
+      tr.startsWith('<p align') ||
+      tr.startsWith('[Home](') ||
+      tr.startsWith('[Go to ') ||
+      /^\*+\s+[A-Za-z]/.test(tr) ||
+      /^\([0-9]+\.\)$/.test(tr)
+    ) {
+      continue;
+    }
+    filtered.push(l);
+  }
+
+  const clean = filtered.join('\n')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\[\^[^\]]+\]/g, ' ')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+
+  const words = [];
+  let m;
+  const re = new RegExp(WORD_REGEX.source, 'g');
+  while ((m = re.exec(clean)) !== null) {
+    if (m[0].length >= 1) {
+      words.push(m[0]);
+    }
+  }
+  return words;
+}
+
+/**
+ * Word-level Longest Common Subsequence Diff on Pali words
+ */
+export function diffWords(baseWords, targetWords) {
+  let start = 0;
+  while (
+    start < baseWords.length &&
+    start < targetWords.length &&
+    normalizePaliWord(baseWords[start]) === normalizePaliWord(targetWords[start])
+  ) {
+    start++;
+  }
+
+  let endBase = baseWords.length - 1;
+  let endTarget = targetWords.length - 1;
+  while (
+    endBase >= start &&
+    endTarget >= start &&
+    normalizePaliWord(baseWords[endBase]) === normalizePaliWord(targetWords[endTarget])
+  ) {
+    endBase--;
+    endTarget--;
+  }
+
+  const prefixOps = [];
+  for (let i = 0; i < start; i++) {
+    prefixOps.push({ type: 'equal', base: baseWords[i], target: targetWords[i] });
+  }
+
+  const suffixOps = [];
+  for (let i = endTarget + 1, k = endBase + 1; i < targetWords.length; i++, k++) {
+    suffixOps.push({ type: 'equal', base: baseWords[k], target: targetWords[i] });
+  }
+
+  const midBase = baseWords.slice(start, endBase + 1);
+  const midTarget = targetWords.slice(start, endTarget + 1);
+
+  const n = midBase.length;
+  const m = midTarget.length;
   const dp = Array.from({ length: n + 1 }, () => new Int32Array(m + 1));
 
   for (let i = 0; i < n; i++) {
+    const wA = normalizePaliWord(midBase[i]);
     for (let j = 0; j < m; j++) {
-      if (normalizePali(tokA[i]) === normalizePali(tokB[j])) {
+      if (wA === normalizePaliWord(midTarget[j])) {
         dp[i + 1][j + 1] = dp[i][j] + 1;
       } else {
         dp[i + 1][j + 1] = Math.max(dp[i + 1][j], dp[i][j + 1]);
@@ -58,187 +128,164 @@ export function diffPali(textBase, textTarget) {
   }
 
   let i = n, j = m;
-  const ops = [];
+  const midOps = [];
   while (i > 0 || j > 0) {
-    if (i > 0 && j > 0 && normalizePali(tokA[i - 1]) === normalizePali(tokB[j - 1])) {
-      // Check if exact same word (ignoring case only)
-      if (tokA[i - 1].toLowerCase() === tokB[j - 1].toLowerCase()) {
-        ops.push({ type: 'equal', text: tokB[j - 1] });
-      } else {
-        ops.push({ type: 'change', oldText: tokA[i - 1], text: tokB[j - 1] });
-      }
+    if (i > 0 && j > 0 && normalizePaliWord(midBase[i - 1]) === normalizePaliWord(midTarget[j - 1])) {
+      midOps.push({ type: 'equal', base: midBase[i - 1], target: midTarget[j - 1] });
       i--; j--;
     } else if (j > 0 && (i === 0 || dp[i][j - 1] >= dp[i - 1][j])) {
-      ops.push({ type: 'insert', text: tokB[j - 1] });
+      midOps.push({ type: 'add', target: midTarget[j - 1] });
       j--;
     } else {
-      ops.push({ type: 'delete', oldText: tokA[i - 1] });
+      midOps.push({ type: 'delete', base: midBase[i - 1] });
       i--;
     }
   }
-  ops.reverse();
+  midOps.reverse();
 
-  // Consolidate adjacent delete + insert into change
-  const consolidated = [];
-  let k = 0;
-  while (k < ops.length) {
-    if (ops[k].type === 'delete') {
-      const dels = [ops[k].oldText];
-      let l = k + 1;
-      while (l < ops.length && ops[l].type === 'delete') {
-        dels.push(ops[l].oldText);
-        l++;
-      }
-      const inss = [];
-      while (l < ops.length && ops[l].type === 'insert') {
-        inss.push(ops[l].text);
-        l++;
-      }
-      if (inss.length > 0) {
-        consolidated.push({
-          type: 'change',
-          oldText: dels.join(''),
-          text: inss.join('')
-        });
-        k = l;
-      } else {
-        consolidated.push({
-          type: 'delete',
-          oldText: dels.join('')
-        });
-        k = l;
-      }
-    } else if (ops[k].type === 'insert') {
-      const inss = [ops[k].text];
-      let l = k + 1;
-      while (l < ops.length && ops[l].type === 'insert') {
-        inss.push(ops[l].text);
-        l++;
-      }
-      consolidated.push({
-        type: 'add',
-        text: inss.join('')
-      });
-      k = l;
-    } else {
-      consolidated.push(ops[k]);
-      k++;
-    }
-  }
-
-  return consolidated;
-}
-
-function getWords(str) {
-  return (str.toLowerCase().match(/[a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+/g) || [])
-    .map(w => w.replace(/[ṃṁ]/g, 'm').replace(/[ḷl]/g, 'l'));
-}
-
-function findBestMatchingBaseParagraph(targetPara, baseParas) {
-  const targetWords = new Set(getWords(targetPara).slice(0, 15));
-  if (targetWords.size < 3) return null;
-
-  let bestMatch = null;
-  let bestScore = 0;
-
-  for (const base of baseParas) {
-    const baseWords = getWords(base);
-    if (baseWords.length < 3) continue;
-    let common = 0;
-    for (const w of baseWords.slice(0, 25)) {
-      if (targetWords.has(w)) common++;
-    }
-    const score = common / targetWords.size;
-    if (score > bestScore && score > 0.25) {
-      bestScore = score;
-      bestMatch = base;
-    }
-  }
-  return bestMatch;
+  return [...prefixOps, ...midOps, ...suffixOps];
 }
 
 /**
- * Highlights differences in targetMarkdown against baseMarkdown.
- * Produces diff HTML spans:
- * - <span class="diff-add">addition (light green)</span>
- * - <span class="diff-change" title="...">change (light yellow)</span>
- * - <del class="diff-del" title="...">deletion (light pink)</del>
+ * Highlights Pali text variants:
+ * - Compares only actual Pali words.
+ * - Preserves all paragraph numbers, punctuation, quotes, footnotes, and markdown formatting untouched.
+ * - Uses strikethrough (<del>) for variants and omissions rather than hover tooltips.
  */
-export function highlightPaliDiff(targetMarkdown, baseMarkdown, baseLabel = 'Base') {
+export function highlightPaliDiff(targetMarkdown, baseMarkdown) {
   if (!targetMarkdown || !baseMarkdown) return targetMarkdown;
 
-  // Extract base paragraphs
-  const baseParas = baseMarkdown
-    .split(/\n\s*\n/)
-    .map(p => p.trim())
-    .filter(p => p.length > 20 && !p.startsWith('#') && !p.startsWith('[Home](') && !p.startsWith('>') && !p.startsWith('<div') && !p.startsWith('<!--'));
+  const baseWords = extractPaliWords(baseMarkdown);
+  if (baseWords.length === 0) return targetMarkdown;
 
-  if (baseParas.length === 0) return targetMarkdown;
-
-  const targetBlocks = targetMarkdown.split(/\n\s*\n/);
+  const blocks = targetMarkdown.split(/\n\s*\n/);
   const resultBlocks = [];
 
-  for (const block of targetBlocks) {
+  const blockData = [];
+  const allTargetWords = [];
+
+  for (const block of blocks) {
     const trimmed = block.trim();
+    const isSkip =
+      !trimmed ||
+      trimmed.startsWith('#') ||
+      trimmed.startsWith('>') ||
+      trimmed.startsWith('<div') ||
+      trimmed.startsWith('<!--') ||
+      trimmed.startsWith('<a id=') ||
+      trimmed.startsWith('<p align') ||
+      trimmed.startsWith('[Home](') ||
+      trimmed.startsWith('[Go to ') ||
+      /^\*+\s+[A-Za-z]/.test(trimmed) ||
+      /^\([0-9]+\.\)$/.test(trimmed);
 
-    // Skip headers, metadata blockquotes, breadcrumb/nav lines, page markers, elision notices
-    if (!trimmed ||
-        trimmed.startsWith('#') ||
-        trimmed.startsWith('>') ||
-        trimmed.startsWith('<div') ||
-        trimmed.startsWith('<!--') ||
-        trimmed.startsWith('<a id=') ||
-        trimmed.startsWith('[Home](') ||
-        trimmed.startsWith('[Go to previous page') ||
-        trimmed.startsWith('[Go to parent page') ||
-        trimmed.startsWith('[Go to next page') ||
-        trimmed.length < 25) {
-      resultBlocks.push(block);
-      continue;
-    }
+    if (isSkip) {
+      blockData.push({ isSkip: true, original: block });
+    } else {
+      const tokenRegex = /(<[^>]+>|\[\^[^\]]+\]|[a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+(?:[’\x27\-“”‘’][a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+)*)/g;
+      const segments = [];
+      let lastIndex = 0;
+      let m;
 
-    const matchedBase = findBestMatchingBaseParagraph(trimmed, baseParas);
-    if (!matchedBase) {
-      resultBlocks.push(block);
-      continue;
-    }
-
-    // Diff matched paragraphs
-    const diffOps = diffPali(matchedBase, trimmed);
-
-    let paraHtml = '';
-    for (const op of diffOps) {
-      if (op.type === 'equal') {
-        paraHtml += op.text;
-      } else if (op.type === 'change') {
-        // If it's pure whitespace change, don't color
-        if (!op.text.trim() && !op.oldText.trim()) {
-          paraHtml += op.text;
-        } else {
-          paraHtml += `<span class="diff-change" title="${baseLabel}: ${escapeHtml(op.oldText)}">${op.text}</span>`;
+      while ((m = tokenRegex.exec(block)) !== null) {
+        if (m.index > lastIndex) {
+          segments.push({ isWord: false, text: block.slice(lastIndex, m.index) });
         }
-      } else if (op.type === 'add') {
-        if (!op.text.trim()) {
-          paraHtml += op.text;
+        const tok = m[0];
+        if (tok.startsWith('<') || tok.startsWith('[^')) {
+          segments.push({ isWord: false, text: tok });
         } else {
-          const cleanText = op.text.replace(/[\*\_\[\]\^\<\>]/g, '').trim();
-          if (cleanText) {
-            paraHtml += `<span class="diff-add" title="Added in this edition">${op.text}</span>`;
-          } else {
-            paraHtml += op.text;
+          segments.push({ isWord: true, text: tok });
+          allTargetWords.push(tok);
+        }
+        lastIndex = m.index + tok.length;
+      }
+      if (lastIndex < block.length) {
+        segments.push({ isWord: false, text: block.slice(lastIndex) });
+      }
+      blockData.push({ isSkip: false, segments });
+    }
+  }
+
+  const ops = diffWords(baseWords, allTargetWords);
+
+  const targetWordMap = new Map();
+  let targetIdx = 0;
+  let pendingDeletes = [];
+
+  for (const op of ops) {
+    if (op.type === 'delete') {
+      pendingDeletes.push(op.base);
+    } else if (op.type === 'equal') {
+      targetWordMap.set(targetIdx, {
+        type: 'equal',
+        target: op.target,
+        deletesBefore: pendingDeletes
+      });
+      pendingDeletes = [];
+      targetIdx++;
+    } else if (op.type === 'add') {
+      targetWordMap.set(targetIdx, {
+        type: 'add',
+        target: op.target,
+        deletesBefore: pendingDeletes
+      });
+      pendingDeletes = [];
+      targetIdx++;
+    }
+  }
+
+  const trailingDeletes = pendingDeletes;
+
+  let currentTargetWordIdx = 0;
+
+  for (const b of blockData) {
+    if (b.isSkip) {
+      resultBlocks.push(b.original);
+      continue;
+    }
+
+    let blockHtml = '';
+    for (const seg of b.segments) {
+      if (!seg.isWord) {
+        blockHtml += seg.text;
+      } else {
+        const opData = targetWordMap.get(currentTargetWordIdx);
+        currentTargetWordIdx++;
+
+        if (!opData) {
+          blockHtml += seg.text;
+          continue;
+        }
+
+        // Render omitted or previous variant words with strikethrough inline
+        if (opData.deletesBefore && opData.deletesBefore.length > 0) {
+          for (const delWord of opData.deletesBefore) {
+            blockHtml += `<del class="diff-del">${escapeHtml(delWord)}</del> `;
           }
         }
-      } else if (op.type === 'delete') {
-        if (op.oldText && op.oldText.trim()) {
-          const cleanOld = op.oldText.replace(/[\*\_\[\]\^\<\>]/g, '').trim();
-          if (cleanOld && !cleanOld.startsWith('^p') && !cleanOld.startsWith('p')) {
-            paraHtml += `<del class="diff-del" title="Omitted in this edition (${baseLabel}: ${escapeHtml(op.oldText)})">${escapeHtml(op.oldText)}</del>`;
+
+        if (opData.type === 'equal') {
+          blockHtml += seg.text;
+        } else if (opData.type === 'add') {
+          if (opData.deletesBefore && opData.deletesBefore.length > 0) {
+            blockHtml += `<span class="diff-change">${escapeHtml(seg.text)}</span>`;
+          } else {
+            blockHtml += `<span class="diff-add">${escapeHtml(seg.text)}</span>`;
           }
         }
       }
     }
+    resultBlocks.push(blockHtml);
+  }
 
-    resultBlocks.push(paraHtml);
+  // Trailing deletes if any
+  if (trailingDeletes.length > 0 && resultBlocks.length > 0) {
+    let trailingHtml = '';
+    for (const delWord of trailingDeletes) {
+      trailingHtml += ` <del class="diff-del">${escapeHtml(delWord)}</del>`;
+    }
+    resultBlocks[resultBlocks.length - 1] += trailingHtml;
   }
 
   return resultBlocks.join('\n\n');
