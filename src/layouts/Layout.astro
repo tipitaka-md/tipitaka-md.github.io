@@ -9,7 +9,7 @@ interface BreadcrumbItem {
 }
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
   currentBook?: string;
   tocSectionPath?: string;
@@ -25,18 +25,20 @@ interface Props {
 
 const {
   title,
-  description = 'Comparative digital viewer for Pāḷi Tipiṭaka Markdown editions across the tipitaka-md repositories (World Tipiṭaka 2500 base, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath) with text variant highlighting and multi-script transliteration.',
+  description = 'Tipitaka Editions in Markdown: comparative digital reader showcasing canonical Pāḷi Tipiṭaka texts across 5 open Markdown repositories (tipitaka2500 base, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath) with real-time variant highlighting, dictionary lookup, and multi-script transliteration.',
   currentBook = '',
   tocSectionPath = '',
   lang = 'en',
   ogType = 'website',
   ogImage = '/images/tipitaka-volumes.jpg',
   ogImageAlt = 'The 40 volumes of the Roman-script World Tipiṭaka Edition arranged in a circle',
-  keywords = 'Pāḷi Tipiṭaka, tipitaka-md, World Tipiṭaka 2500, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana, Siam Rath, Vinayapiṭaka, Suttantapiṭaka, Abhidhammapiṭaka, Markdown',
+  keywords = 'Tipitaka Editions in Markdown, Pāḷi Tipiṭaka, tipitaka-md, tipitaka2500, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana, Siam Rath, Vinayapiṭaka, Suttantapiṭaka, Abhidhammapiṭaka, Markdown',
   prevUrl = '',
   nextUrl = '',
   breadcrumbs = [],
 } = Astro.props;
+
+const pageTitle = title ? `${title} — Tipitaka Editions in Markdown` : 'Tipitaka Editions in Markdown';
 
 const siteOrigin = (Astro.site ? Astro.site.origin : 'https://tipitaka-md.github.io').replace(
   /\/$/,
@@ -57,10 +59,10 @@ const jsonLdGraph: Record<string, unknown>[] = [
     '@type': 'WebSite',
     '@id': `${siteOrigin}/#website`,
     url: `${siteOrigin}/`,
-    name: 'Tipiṭaka Multi-Edition Markdown',
+    name: 'Tipitaka Editions in Markdown',
     alternateName: 'tipitaka-md.github.io',
     description:
-      'Comparative digital viewer for Pāḷi Tipiṭaka Markdown editions across the tipitaka-md repositories with text variant highlighting and multi-script transliteration.',
+      'Comparative digital reader showcasing canonical Pāḷi Tipiṭaka texts converted to Markdown across the tipitaka-md repositories with text variant highlighting, dictionary lookup, and multi-script transliteration.',
     inLanguage: ['pi', 'en'],
     license: 'https://creativecommons.org/publicdomain/zero/1.0/',
   },
@@ -68,7 +70,7 @@ const jsonLdGraph: Record<string, unknown>[] = [
     '@type': ogType === 'article' ? 'Chapter' : 'WebPage',
     '@id': `${canonicalUrl}#webpage`,
     url: canonicalUrl,
-    name: title,
+    name: pageTitle,
     description,
     inLanguage: lang,
     isPartOf: { '@id': `${siteOrigin}/#website` },
@@ -106,7 +108,7 @@ const jsonLdString = JSON.stringify({
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <meta name="author" content="Chris Tham" />
@@ -116,11 +118,11 @@ const jsonLdString = JSON.stringify({
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalUrl} />
 
-    <!-- Google Fonts Noto Sans & Noto Serif with Pali diacritics support -->
+    <!-- Google Fonts: Noto Sans with complete Pali diacritics and Asian script support -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&family=Noto+Sans+Sinhala:wght@400;600;700&family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
       rel="stylesheet"
     />
 
@@ -129,10 +131,10 @@ const jsonLdString = JSON.stringify({
     {nextUrl && <link rel="next" href={nextUrl.startsWith('http') ? nextUrl : `${siteOrigin}${nextUrl}`} />}
 
     <!-- Open Graph -->
-    <meta property="og:site_name" content="tipitaka-md.github.io" />
+    <meta property="og:site_name" content="Tipitaka Editions in Markdown" />
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:alt" content={ogImageAlt} />
@@ -142,7 +144,7 @@ const jsonLdString = JSON.stringify({
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
@@ -155,7 +157,7 @@ const jsonLdString = JSON.stringify({
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Tipiṭaka MD" />
+    <meta name="apple-mobile-web-app-title" content="Tipitaka MD" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" sizes="180x180" />
     <link rel="icon" href="/images/logo.png" sizes="16x16" type="image/png" />
     <link rel="icon" href="/images/logo24.png" sizes="24x24" type="image/png" />
@@ -194,6 +196,19 @@ const jsonLdString = JSON.stringify({
     </svg>
 
     <div class="floating-tools-widget">
+      <!-- Dictionary Toggle Button -->
+      <button
+        type="button"
+        id="dict-hover-toggle-btn"
+        class="dict-hover-toggle-btn active"
+        aria-label="Toggle Dictionary Lookup"
+        aria-pressed="true"
+        title="Dictionary Lookup: ON (Click to toggle)"
+      >
+        <span class="dict-toggle-icon" aria-hidden="true">📖</span>
+        <span class="dict-toggle-label">Dict</span>
+      </button>
+
       <!-- Theme Switcher -->
       <div class="theme-toggle-widget">
         <details class="theme-toggle-details" id="theme-details">
@@ -254,8 +269,8 @@ const jsonLdString = JSON.stringify({
           </svg>
         </label>
         <a href="/" class="mobile-brand">
-          <img src="/images/logo48.png" alt="Tipiṭaka Multi-Edition" width="22" height="22" />
-          <span>tipitaka-md.github.io</span>
+          <img src="/images/logo48.png" alt="Tipitaka Editions in Markdown" width="22" height="22" />
+          <span>Tipitaka Editions in Markdown</span>
         </a>
       </header>
       <label for="sidebar-drawer-toggle" class="sidebar-backdrop" aria-hidden="true"></label>
@@ -291,6 +306,9 @@ const jsonLdString = JSON.stringify({
         <div id="quick-jump-results" class="quick-jump-results"></div>
       </div>
     </dialog>
+
+    <!-- Dictionary Hover Popover -->
+    <div id="dict-hover-popover" class="dict-hover-popover" role="region" aria-label="Dictionary Lookup" hidden></div>
 
     <script is:inline>
       // Color Scheme Switcher
@@ -525,6 +543,628 @@ const jsonLdString = JSON.stringify({
           if (!isEditing && e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey) {
             e.preventDefault();
             openQuickJump();
+          }
+        });
+      })();
+
+      // --- Pali Grammar Dictionary Hover & Tap Lookup System ---
+      (() => {
+        const toggleBtn = document.getElementById('dict-hover-toggle-btn');
+        const dictPopover = document.getElementById('dict-hover-popover');
+
+        let dictEnabled = true;
+        try {
+          const saved = localStorage.getItem('tipitaka_dict_hover');
+          if (saved !== null) dictEnabled = saved === 'true';
+        } catch {}
+
+        function updateToggleUI(enabled) {
+          if (toggleBtn) {
+            toggleBtn.classList.toggle('active', enabled);
+            toggleBtn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+            toggleBtn.title = `Dictionary Lookup: ${enabled ? 'ON' : 'OFF'} (Click to toggle)`;
+          }
+        }
+
+        function setDictEnabled(enabled) {
+          dictEnabled = enabled;
+          try {
+            localStorage.setItem('tipitaka_dict_hover', String(enabled));
+          } catch {}
+          updateToggleUI(enabled);
+          if (!enabled && dictPopover) {
+            hideDictPopover();
+          }
+        }
+
+        if (toggleBtn) {
+          toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setDictEnabled(!dictEnabled);
+          });
+        }
+
+        updateToggleUI(dictEnabled);
+        if (!dictPopover) return;
+
+        // Notation symbols from user's Pali Grammar Textbook
+        const TO_SYMBOL = {
+          nom: '①', acc: '②', instr: '③', dat: '④', abl: '⑤', gen: '⑥', loc: '⑦', voc: '⓪',
+          masc: '🚹', fem: '🚺', nt: '🚻', x: '⚧️', sg: '⨀', pl: '⨂', dual: '⨁',
+          act: '🟢', reflx: '🔵', pr: '▶️', fut: '⏭', aor: '⏮', opt: '⏯', imp: '⏹',
+          cond: '🔀', imperf: '↩️', perf: '🔄', '1st': '👆', '2nd': '🤘', '3rd': '🤟'
+        };
+
+        const TO_MEANING = {
+          nom: 'subject', acc: 'object', instr: 'by/with', dat: 'for',
+          abl: 'from', gen: 'of', loc: 'in/at/on', voc: 'vocative'
+        };
+
+        function getSymbols(grammar) {
+          if (grammar === 'in comps') return '🆎';
+          return grammar.split(' ').map((s) => TO_SYMBOL[s] || s).join('');
+        }
+
+        function getCaseUsage(grammar) {
+          return grammar.split(' ').map((p) => TO_MEANING[p] || '').join('');
+        }
+
+        function escapeHtml(str) {
+          if (!str) return '';
+          return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+        }
+
+        // Sharded dictionary cache and manifest
+        let manifest = null;
+        let manifestPromise = null;
+        const shardCache = new Map();
+
+        async function loadManifest() {
+          if (manifest) return manifest;
+          if (!manifestPromise) {
+            manifestPromise = fetch('/data/dpd/manifest.json')
+              .then((res) => {
+                if (!res.ok) throw new Error('Local manifest not found');
+                return res.json();
+              })
+              .catch(() => {
+                return fetch('https://tipitaka2500.github.io/data/dpd/manifest.json')
+                  .then((res) => {
+                    if (!res.ok) throw new Error('Remote manifest not found');
+                    return res.json();
+                  });
+              })
+              .then((data) => {
+                manifest = data;
+                return data;
+              })
+              .catch((err) => {
+                manifestPromise = null;
+                console.warn('Could not load Pali grammar dictionary manifest', err);
+                return null;
+              });
+          }
+          return manifestPromise;
+        }
+
+        function findShardFile(word, m) {
+          const boundaries = m.boundaries;
+          let low = 0;
+          let high = boundaries.length - 1;
+          let ans = 0;
+          while (low <= high) {
+            const mid = (low + high) >> 1;
+            if (boundaries[mid] <= word) {
+              ans = mid;
+              low = mid + 1;
+            } else {
+              high = mid - 1;
+            }
+          }
+          return m.files[ans];
+        }
+
+        async function loadShard(fileId) {
+          if (shardCache.has(fileId)) return shardCache.get(fileId);
+          try {
+            let res = await fetch(`/data/dpd/${fileId}.json`);
+            if (!res.ok) {
+              res = await fetch(`https://tipitaka2500.github.io/data/dpd/${fileId}.json`);
+            }
+            if (!res.ok) return null;
+            const data = await res.json();
+            shardCache.set(fileId, data);
+            return data;
+          } catch {
+            return null;
+          }
+        }
+
+        function normalizePali(raw) {
+          if (!raw) return '';
+          return raw
+            .toLowerCase()
+            .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"?।॥0-9—–«»\[\]{}]/g, '')
+            .trim();
+        }
+
+        function generateCandidates(word) {
+          const c = [word];
+          let k = word;
+          if (k.endsWith('ṃ')) {
+            c.push(k.slice(0, -1) + 'm');
+            c.push(k.slice(0, -1));
+          }
+          if (k.endsWith('ti')) {
+            c.push(k.slice(0, -2));
+            c.push(k.slice(0, -2) + 'ṃ');
+          }
+          if (k.endsWith('pi')) {
+            c.push(k.slice(0, -2));
+            c.push(k.slice(0, -2) + 'ṃ');
+          }
+          if (k.endsWith('ñca')) c.push(k.slice(0, -3) + 'ṃ');
+          if (k.endsWith('ca')) c.push(k.slice(0, -2), k.slice(0, -2) + 'ṃ');
+          if (k.endsWith('ñceva')) c.push(k.slice(0, -5) + 'ṃ');
+          if (k.endsWith('eva')) c.push(k.slice(0, -3), k.slice(0, -3) + 'ṃ');
+          if (k.endsWith('va')) c.push(k.slice(0, -2));
+          if (k.endsWith('n') || k.endsWith('m')) c.push(k.slice(0, -1) + 'ṃ');
+          return c;
+        }
+
+        async function lookupPaliWord(raw) {
+          const norm = normalizePali(raw);
+          if (!norm) return null;
+          const m = await loadManifest();
+          if (!m) return null;
+
+          // 1. Direct match
+          const fId = findShardFile(norm, m);
+          let shard = await loadShard(fId);
+          if (shard && shard[norm]) {
+            return { word: norm, entry: shard[norm], variant: null };
+          }
+
+          // 2. Candidate variations (sandhi, enclitics, anusvara)
+          const cand = generateCandidates(norm);
+          for (const alt of cand) {
+            if (alt === norm) continue;
+            const altFId = findShardFile(alt, m);
+            const altShard = altFId === fId ? shard : await loadShard(altFId);
+            if (altShard && altShard[alt]) {
+              return { word: alt, entry: altShard[alt], variant: norm };
+            }
+          }
+          return null;
+        }
+
+        function renderGrammarRow(pos, grammar, word) {
+          const sym = getSymbols(grammar);
+          const usage = getCaseUsage(grammar);
+          return `
+            <tr>
+              <td>${escapeHtml(pos)}</td>
+              <td>${escapeHtml(grammar)}</td>
+              <td class="symbol-col">${sym}</td>
+              <td class="badge-col"><span class="table-badge badge-grammar">${sym || escapeHtml(pos)}</span></td>
+              <td class="usage-col">${escapeHtml(usage)}</td>
+              <td>${escapeHtml(word)}</td>
+            </tr>
+          `;
+        }
+
+        let lookupHistory = [];
+
+        function renderPopoverHtml(res, rawWord) {
+          let hws = [];
+          let grammarList = [];
+          let deconstructions = [];
+
+          if (Array.isArray(res.entry)) {
+            if (res.entry.length > 0 && typeof res.entry[0] === 'string') {
+              deconstructions = res.entry;
+            } else {
+              hws = res.entry[0] || [];
+              grammarList = res.entry[1] || [];
+              deconstructions = res.entry[2] || [];
+            }
+          }
+
+          let headwordsHtml = '';
+          if (hws && hws.length > 0) {
+            headwordsHtml = `<ol class="dict-headwords">${hws
+              .map((h) => {
+                const l1 = h[0] ? `<i>${escapeHtml(h[0])}</i>` : '';
+                const l2 = h[1] ? ` (<i>${escapeHtml(h[1])}</i>)` : '';
+                const constr = h[2]
+                  ? ` <span class="dict-construction">[${escapeHtml(h[2])}]</span>`
+                  : '';
+                const meaning = h[3]
+                  ? `: <span class="dict-meaning">${h[3]}</span>`
+                  : '';
+                return `<li>${l1}${l2}${constr}${meaning}</li>`;
+              })
+              .join('')}</ol>`;
+          }
+
+          let grammarTableHtml = '';
+          if (grammarList && grammarList.length > 0) {
+            grammarTableHtml = `
+              <div class="dict-grammar-wrap">
+                <table class="dict-grammar-table">
+                  <thead>
+                    <tr>
+                      <th id="col1">pos</th>
+                      <th id="col2">grammar</th>
+                      <th id="col3">sym</th>
+                      <th id="col4">tag</th>
+                      <th id="col5">usage</th>
+                      <th id="col6">word</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${grammarList.map((g) => renderGrammarRow(g[0], g[1], g[2])).join('')}
+                  </tbody>
+                </table>
+              </div>
+            `;
+          }
+
+          let deconstructionHtml = '';
+          if (deconstructions && deconstructions.length > 0) {
+            const splitLines = deconstructions.map((splitStr) => {
+              const parts = splitStr.split(' + ').map((s) => s.trim()).filter(Boolean);
+              const pills = parts.map((p) => `<button type="button" class="dict-split-pill" data-lookup="${escapeHtml(p)}" title="Look up ${escapeHtml(p)}">${escapeHtml(p)}</button>`).join(' <span class="dict-split-plus">+</span> ');
+              return `<div class="dict-split-line">${pills}</div>`;
+            }).join('');
+
+            const isPureDecon = hws.length === 0 && grammarList.length === 0;
+            const summaryPlaceholder = isPureDecon ? '<div class="dict-parts-summary" id="dict-parts-summary"><em>Loading component meanings…</em></div>' : '';
+
+            deconstructionHtml = `
+              <div class="dict-decon-wrap">
+                <div class="dict-decon-title">🧩 Compound / Sandhi Deconstruction</div>
+                <div class="dict-splits">${splitLines}</div>
+                ${summaryPlaceholder}
+              </div>
+            `;
+          }
+
+          const variantNote = res.variant
+            ? `<span class="dict-match-note">(from <em>${escapeHtml(rawWord)}</em>)</span>`
+            : '';
+
+          const backBtn = lookupHistory.length > 0
+            ? `<button type="button" class="dict-back-btn" data-dict-back="true" title="Go back to ${escapeHtml(lookupHistory[lookupHistory.length - 1])}">← ${escapeHtml(lookupHistory[lookupHistory.length - 1])}</button>`
+            : '';
+
+          return `
+            <div class="dict-popover-header">
+              <div class="dict-popover-title">
+                ${backBtn}
+                <span class="dict-word">${escapeHtml(res.word)}</span>
+                ${variantNote}
+              </div>
+              <div class="dict-popover-tools">
+                <button type="button" class="dict-popover-close" aria-label="Close">✕</button>
+              </div>
+            </div>
+            <div class="dict-popover-body">
+              ${deconstructionHtml}
+              ${headwordsHtml}
+              ${grammarTableHtml}
+            </div>
+          `;
+        }
+
+        async function populateConstituentSummary(res) {
+          let deconstructions = [];
+          if (Array.isArray(res.entry)) {
+            if (res.entry.length > 0 && typeof res.entry[0] === 'string') {
+              deconstructions = res.entry;
+            } else if (res.entry[2]) {
+              deconstructions = res.entry[2];
+            }
+          }
+          if (!deconstructions || deconstructions.length === 0) return;
+
+          const summaryEl = dictPopover.querySelector('#dict-parts-summary');
+          if (!summaryEl) return;
+
+          const primarySplit = deconstructions[0];
+          const parts = primarySplit.split(' + ').map((s) => s.trim()).filter(Boolean);
+          if (parts.length === 0) return;
+
+          try {
+            const results = await Promise.all(parts.slice(0, 4).map((p) => lookupPaliWord(p)));
+            if (!dictPopover || dictPopover.hidden || !dictPopover.contains(summaryEl)) return;
+
+            const items = results.map((pr, idx) => {
+              const partName = parts[idx];
+              if (!pr) {
+                return `<div class="dict-part-item"><strong>${escapeHtml(partName)}</strong>: <span class="dict-construction">[unindexed]</span></div>`;
+              }
+              let pHws = [];
+              let pGram = [];
+              if (Array.isArray(pr.entry) && Array.isArray(pr.entry[0])) {
+                pHws = pr.entry[0];
+                pGram = pr.entry[1] || [];
+              }
+              const firstMeaning = (pHws[0] && pHws[0][3]) || (pGram[0] && pGram[0][0]) || '';
+              return `<div class="dict-part-item"><strong>${escapeHtml(partName)}</strong>: ${firstMeaning ? `<span class="dict-meaning">${firstMeaning}</span>` : '<em>indexed</em>'}</div>`;
+            });
+
+            summaryEl.innerHTML = items.join('');
+          } catch {}
+        }
+
+        function positionPopover(rect) {
+          dictPopover.hidden = false;
+          const popRect = dictPopover.getBoundingClientRect();
+          let top = rect.bottom + 6;
+          let left = rect.left;
+
+          if (left + popRect.width > window.innerWidth - 12) {
+            left = Math.max(12, window.innerWidth - popRect.width - 12);
+          }
+          if (top + popRect.height > window.innerHeight - 12) {
+            top = Math.max(12, rect.top - popRect.height - 6);
+          }
+
+          dictPopover.style.top = `${top}px`;
+          dictPopover.style.left = `${left}px`;
+        }
+
+        function hideDictPopover() {
+          if (dictPopover) {
+            dictPopover.hidden = true;
+          }
+          lookupHistory = [];
+          const oldMark = document.querySelector('mark.dict-hover-highlight');
+          if (oldMark) {
+            const parent = oldMark.parentNode;
+            while (oldMark.firstChild) parent.insertBefore(oldMark.firstChild, oldMark);
+            parent.removeChild(oldMark);
+            parent.normalize();
+          }
+        }
+
+        function highlightWordRange(range) {
+          const oldMark = document.querySelector('mark.dict-hover-highlight');
+          if (oldMark) {
+            const parent = oldMark.parentNode;
+            while (oldMark.firstChild) parent.insertBefore(oldMark.firstChild, oldMark);
+            parent.removeChild(oldMark);
+            parent.normalize();
+          }
+          if (!range) return;
+          try {
+            const mark = document.createElement('mark');
+            mark.className = 'dict-hover-highlight';
+            range.surroundContents(mark);
+          } catch {}
+        }
+
+        function getWordAtPoint(x, y) {
+          let range = null;
+          let textNode = null;
+          let offset = 0;
+
+          if (document.caretRangeFromPoint) {
+            range = document.caretRangeFromPoint(x, y);
+            if (range) {
+              textNode = range.startContainer;
+              offset = range.startOffset;
+            }
+          } else if (document.caretPositionFromPoint) {
+            const pos = document.caretPositionFromPoint(x, y);
+            if (pos) {
+              textNode = pos.offsetNode;
+              offset = pos.offset;
+            }
+          }
+
+          if (!textNode || textNode.nodeType !== Node.TEXT_NODE) return null;
+
+          const text = textNode.nodeValue || '';
+          if (!text.trim()) return null;
+
+          const isPaliChar = (ch) => /[A-Za-zāīūñṅṇṭḍḷṃĀĪŪÑṄṆṬḌḶṂ]/.test(ch);
+
+          let start = offset;
+          let end = offset;
+
+          while (start > 0 && isPaliChar(text[start - 1])) start--;
+          while (end < text.length && isPaliChar(text[end])) end++;
+
+          if (start === end) return null;
+          const word = text.slice(start, end);
+          if (word.length < 2) return null;
+
+          const wordRange = document.createRange();
+          wordRange.setStart(textNode, start);
+          wordRange.setEnd(textNode, end);
+
+          return { word, range: wordRange };
+        }
+
+        let hoverTimer = null;
+        let leaveTimer = null;
+        let currentRawWord = '';
+        let dismissedWord = '';
+        let dismissedUntil = 0;
+
+        dictPopover.addEventListener('mouseenter', () => {
+          if (leaveTimer) {
+            clearTimeout(leaveTimer);
+            leaveTimer = null;
+          }
+        });
+
+        dictPopover.addEventListener('mouseleave', () => {
+          leaveTimer = setTimeout(() => {
+            hideDictPopover();
+          }, 300);
+        });
+
+        dictPopover.addEventListener('click', async (e) => {
+          const closeBtn = e.target.closest('.dict-popover-close');
+          if (closeBtn) {
+            dismissedWord = currentRawWord;
+            dismissedUntil = Date.now() + 1500;
+            hideDictPopover();
+            return;
+          }
+
+          const pill = e.target.closest('.dict-split-pill');
+          if (pill) {
+            e.preventDefault();
+            e.stopPropagation();
+            const targetWord = pill.getAttribute('data-lookup');
+            if (targetWord) {
+              lookupHistory.push(currentRawWord);
+              const subRes = await lookupPaliWord(targetWord);
+              if (subRes) {
+                currentRawWord = targetWord;
+                dictPopover.innerHTML = renderPopoverHtml(subRes, targetWord);
+                populateConstituentSummary(subRes);
+              }
+            }
+            return;
+          }
+
+          const backBtn = e.target.closest('[data-dict-back]');
+          if (backBtn && lookupHistory.length > 0) {
+            e.preventDefault();
+            e.stopPropagation();
+            const prevWord = lookupHistory.pop();
+            const subRes = await lookupPaliWord(prevWord);
+            if (subRes) {
+              currentRawWord = prevWord;
+              dictPopover.innerHTML = renderPopoverHtml(subRes, prevWord);
+              populateConstituentSummary(subRes);
+            }
+            return;
+          }
+        });
+
+        // Hover & tap events attached to document body inside content areas
+        document.addEventListener('mousemove', (e) => {
+          if (!dictEnabled) return;
+
+          const inContent = e.target.closest('.tipitaka-article, .content-pane, main');
+          if (!inContent) {
+            if (!dictPopover.hidden && !dictPopover.contains(e.target) && !leaveTimer) {
+              leaveTimer = setTimeout(() => {
+                hideDictPopover();
+              }, 200);
+            }
+            return;
+          }
+
+          if (!dictPopover.hidden && dictPopover.contains(e.target)) return;
+
+          if (e.target.closest('a, button, select, input, .reader-toolbar, .dict-hover-popover')) {
+            if (hoverTimer) clearTimeout(hoverTimer);
+            if (!dictPopover.hidden && !leaveTimer) {
+              leaveTimer = setTimeout(() => {
+                hideDictPopover();
+              }, 120);
+            }
+            return;
+          }
+
+          if (hoverTimer) clearTimeout(hoverTimer);
+          if (leaveTimer) {
+            clearTimeout(leaveTimer);
+            leaveTimer = null;
+          }
+
+          hoverTimer = setTimeout(async () => {
+            if (Date.now() < dismissedUntil) return;
+            const match = getWordAtPoint(e.clientX, e.clientY);
+            if (!match) {
+              leaveTimer = setTimeout(() => {
+                hideDictPopover();
+              }, 250);
+              return;
+            }
+
+            const { word, range } = match;
+            if (word === dismissedWord) return;
+            dismissedWord = '';
+
+            if (word === currentRawWord && !dictPopover.hidden) return;
+
+            const res = await lookupPaliWord(word);
+            if (!res) {
+              leaveTimer = setTimeout(() => {
+                hideDictPopover();
+              }, 200);
+              return;
+            }
+
+            lookupHistory = [];
+            currentRawWord = word;
+            highlightWordRange(range);
+
+            dictPopover.innerHTML = renderPopoverHtml(res, word);
+            populateConstituentSummary(res);
+            positionPopover(range.getBoundingClientRect());
+          }, 120);
+        });
+
+        document.addEventListener('click', async (e) => {
+          if (!dictEnabled) return;
+          if (Date.now() < dismissedUntil) return;
+          if (e.target.closest('a, button, select, input, .reader-toolbar, .dict-hover-popover'))
+            return;
+
+          const inContent = e.target.closest('.tipitaka-article, .content-pane, main');
+          if (!inContent) return;
+
+          const match = getWordAtPoint(e.clientX, e.clientY);
+          if (!match) return;
+
+          const { word, range } = match;
+          if (word === dismissedWord) {
+            dismissedWord = '';
+            return;
+          }
+
+          const res = await lookupPaliWord(word);
+          if (!res) return;
+
+          lookupHistory = [];
+          currentRawWord = word;
+          highlightWordRange(range);
+
+          dictPopover.innerHTML = renderPopoverHtml(res, word);
+          populateConstituentSummary(res);
+          positionPopover(range.getBoundingClientRect());
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !dictPopover.hidden) {
+            dismissedWord = currentRawWord;
+            dismissedUntil = Date.now() + 1000;
+            hideDictPopover();
+          }
+        });
+
+        document.addEventListener('click', (e) => {
+          if (
+            !dictPopover.hidden &&
+            !dictPopover.contains(e.target) &&
+            !e.target.closest('.dict-hover-toggle-btn')
+          ) {
+            dismissedWord = currentRawWord;
+            dismissedUntil = Date.now() + 400;
+            hideDictPopover();
           }
         });
       })();

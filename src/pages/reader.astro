@@ -3,37 +3,79 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Comparative Tipiṭaka Reader — tipitaka-md.github.io"
-  description="Read and compare canonical Pāḷi Tipiṭaka texts across 5 international editions (World Tipiṭaka 2500, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath) with text variant highlighting."
+  title="Comparative Reader"
+  description="Read and compare canonical Pāḷi Tipiṭaka texts across 5 open Markdown repositories (World Tipiṭaka 2500 base, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath) with real-time text variant highlighting, dictionary lookup, and live script transliteration."
   lang="pi"
 >
   <div class="reader-wrapper">
     <!-- Top Breadcrumb & Title Bar -->
     <header class="reader-header">
-      <nav aria-label="Breadcrumb" class="reader-breadcrumb-nav">
-        <ol class="breadcrumb" id="reader-breadcrumbs">
-          <li><a href="/">Home</a></li>
-          <li id="bc-book"><a href="/reader.html?book=1V">1V</a></li>
-          <li id="bc-sutta" aria-current="page">Loading…</li>
-        </ol>
-      </nav>
+      <div class="reader-header-top">
+        <nav aria-label="Breadcrumb" class="reader-breadcrumb-nav">
+          <ol class="breadcrumb" id="reader-breadcrumbs">
+            <li><a href="/">Home</a></li>
+            <li id="bc-book"><a href="/reader.html?book=1V">1V</a></li>
+            <li id="bc-sutta" aria-current="page">Loading…</li>
+          </ol>
+        </nav>
+
+        <!-- Markdown Direct Actions for the Current Text -->
+        <div class="reader-md-actions" id="reader-md-actions" aria-label="Markdown Actions">
+          <a
+            href="#"
+            id="raw-md-link"
+            class="md-action-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Open raw Markdown text directly in a new tab"
+          >
+            <span>📄 View Markdown</span>
+          </a>
+          <button
+            type="button"
+            id="download-md-btn"
+            class="md-action-btn"
+            title="Download this canonical text directly as a .md file"
+          >
+            <span>⬇️ Download .md</span>
+          </button>
+          <a
+            href="#"
+            id="github-md-link"
+            class="md-action-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="View this Markdown file in its GitHub repository"
+          >
+            <span>↗ GitHub</span>
+          </a>
+          <button
+            type="button"
+            id="toggle-raw-btn"
+            class="md-action-btn"
+            title="Toggle between formatted text and raw Markdown source"
+          >
+            <span id="toggle-raw-label">👁️ Raw View</span>
+          </button>
+        </div>
+      </div>
 
       <div class="reader-toolbar">
         <!-- Edition Selector Tabs -->
         <div class="edition-tabs" role="tablist" aria-label="Tipiṭaka Editions">
-          <button type="button" class="edition-tab active" data-edition="tipitaka2500" role="tab" aria-selected="true" title="World Tipiṭaka 2500 (Base Edition)">
-            🌟 T2500
+          <button type="button" class="edition-tab active" data-edition="tipitaka2500" role="tab" aria-selected="true" title="World Tipiṭaka 2500 (Canonical Base Reference)">
+            🌟 T2500 (Base)
           </button>
-          <button type="button" class="edition-tab" data-edition="pts" role="tab" aria-selected="false" title="Pali Text Society (London / GRETIL)">
+          <button type="button" class="edition-tab" data-edition="pts" role="tab" aria-selected="false" title="Pali Text Society (London / GRETIL Archive)">
             🇬🇧 PTS
           </button>
-          <button type="button" class="edition-tab" data-edition="bjt" role="tab" aria-selected="false" title="Buddha Jayanthi (Sri Lanka B.E. 2500)">
+          <button type="button" class="edition-tab" data-edition="bjt" role="tab" aria-selected="false" title="Buddha Jayanthi (Sri Lanka B.E. 2500 Commemoration)">
             🇱🇰 BJT
           </button>
-          <button type="button" class="edition-tab" data-edition="cst" role="tab" aria-selected="false" title="Chaṭṭha Saṅgāyana (VRI Sixth Council)">
+          <button type="button" class="edition-tab" data-edition="cst" role="tab" aria-selected="false" title="Chaṭṭha Saṅgāyana (VRI Sixth Buddhist Council)">
             🇲🇲 CST4
           </button>
-          <button type="button" class="edition-tab" data-edition="siam-rath" role="tab" aria-selected="false" title="Siam Rath (Royal Thai Rama VII)">
+          <button type="button" class="edition-tab" data-edition="siam-rath" role="tab" aria-selected="false" title="Siam Rath (Royal Thai Rama VII Edition)">
             🇹🇭 Siam
           </button>
         </div>
@@ -105,7 +147,7 @@ import Layout from '../layouts/Layout.astro';
       <!-- Loading Indicator -->
       <div id="reader-loading" class="reader-loading" style="display: none;">
         <div class="spinner"></div>
-        <p>Loading canonical text…</p>
+        <p>Loading canonical Markdown text…</p>
       </div>
 
       <!-- Single Pane Reading Container -->
@@ -119,8 +161,15 @@ import Layout from '../layouts/Layout.astro';
       <div id="split-panes-view" class="split-panes-container" style="display: none;">
         <section class="split-pane" id="left-pane">
           <div class="split-pane-header">
-            <h2 id="left-pane-title">🌟 World Tipiṭaka 2500 (Base)</h2>
-            <span class="pane-badge badge-base">Base Reference</span>
+            <div class="split-pane-info">
+              <h2 id="left-pane-title">🌟 World Tipiṭaka 2500 (Base)</h2>
+              <span class="pane-badge badge-base">Base Reference</span>
+            </div>
+            <div class="split-pane-actions" id="left-pane-actions">
+              <a href="#" id="left-raw-link" target="_blank" rel="noopener noreferrer" class="pane-action-link" title="View raw Markdown">📄 Raw</a>
+              <button type="button" id="left-download-btn" class="pane-action-link" title="Download .md">⬇️ .md</button>
+              <a href="#" id="left-github-link" target="_blank" rel="noopener noreferrer" class="pane-action-link" title="View on GitHub">↗ GitHub</a>
+            </div>
           </div>
           <article id="left-content" class="tipitaka-article" lang="pi">
             <!-- Dynamically populated -->
@@ -129,8 +178,15 @@ import Layout from '../layouts/Layout.astro';
 
         <section class="split-pane" id="right-pane">
           <div class="split-pane-header">
-            <h2 id="right-pane-title">Comparative Edition</h2>
-            <span class="pane-badge badge-compare" id="right-pane-badge">Comparative</span>
+            <div class="split-pane-info">
+              <h2 id="right-pane-title">Comparative Edition</h2>
+              <span class="pane-badge badge-compare" id="right-pane-badge">Comparative</span>
+            </div>
+            <div class="split-pane-actions" id="right-pane-actions">
+              <a href="#" id="right-raw-link" target="_blank" rel="noopener noreferrer" class="pane-action-link" title="View raw Markdown">📄 Raw</a>
+              <button type="button" id="right-download-btn" class="pane-action-link" title="Download .md">⬇️ .md</button>
+              <a href="#" id="right-github-link" target="_blank" rel="noopener noreferrer" class="pane-action-link" title="View on GitHub">↗ GitHub</a>
+            </div>
           </div>
           <article id="right-content" class="tipitaka-article" lang="pi">
             <!-- Dynamically populated -->
@@ -138,7 +194,7 @@ import Layout from '../layouts/Layout.astro';
         </section>
       </div>
 
-      <!-- Bottom Sutta Navigation -->
+      <!-- Bottom Navigation -->
       <nav aria-label="Sutta navigation" class="reader-nav-footer">
         <a href="#" id="parent-book-btn" class="nav-btn parent-btn">
           ↑ Book Index
@@ -154,6 +210,7 @@ import Layout from '../layouts/Layout.astro';
     flex-direction: column;
     gap: 1.25rem;
     max-width: 100%;
+    font-family: var(--font-sans);
   }
 
   .reader-header {
@@ -162,8 +219,46 @@ import Layout from '../layouts/Layout.astro';
     margin-bottom: 0.5rem;
   }
 
-  .reader-breadcrumb-nav {
+  .reader-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
     margin-bottom: 0.75rem;
+  }
+
+  .reader-breadcrumb-nav {
+    margin-bottom: 0;
+  }
+
+  .reader-md-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .md-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-body);
+    background-color: var(--bg-body);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .md-action-btn:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background-color: var(--bg-hover);
   }
 
   .reader-toolbar {
@@ -189,6 +284,7 @@ import Layout from '../layouts/Layout.astro';
     padding: 0.35rem 0.75rem;
     font-size: 0.84rem;
     font-weight: 600;
+    font-family: var(--font-sans);
     border-radius: 6px;
     border: none;
     background: transparent;
@@ -218,6 +314,7 @@ import Layout from '../layouts/Layout.astro';
   .reader-select {
     padding: 0.35rem 0.65rem;
     font-size: 0.84rem;
+    font-family: var(--font-sans);
     border-radius: 6px;
     border: 1px solid var(--border-color);
     background-color: var(--bg-body);
@@ -230,9 +327,51 @@ import Layout from '../layouts/Layout.astro';
     border-color: var(--primary-color);
   }
 
+  .diff-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-body);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .diff-toggle-btn:hover {
+    color: var(--text-body);
+    border-color: var(--primary-color);
+  }
+
+  .diff-toggle-btn.active {
+    background-color: var(--badge-light-bg);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  .diff-legend {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    margin-top: 0.4rem;
+    color: var(--text-secondary);
+  }
+
+  .diff-legend-title {
+    font-weight: 600;
+  }
+
   .tipitaka-article {
     line-height: 1.85;
     font-size: 1.05rem;
+    font-family: var(--font-sans);
     color: var(--text-body);
     word-break: break-word;
   }
@@ -241,6 +380,7 @@ import Layout from '../layouts/Layout.astro';
   .tipitaka-article h2,
   .tipitaka-article h3,
   .tipitaka-article h4 {
+    font-family: var(--font-sans);
     color: var(--text-emphasis);
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
@@ -259,86 +399,140 @@ import Layout from '../layouts/Layout.astro';
     padding: 0.35rem 0;
   }
 
-  .tipitaka-article blockquote {
-    border-left: 4px solid var(--primary-color);
+  .raw-markdown-view {
     background-color: var(--bg-secondary);
-    padding: 0.75rem 1.25rem;
-    border-radius: 0 6px 6px 0;
-    margin: 1rem 0;
-    font-size: 0.95rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-body);
+    overflow-x: auto;
   }
 
-  .reader-loading {
+  .split-panes-container {
     display: flex;
-    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .split-pane {
+    flex: 1;
+    min-width: 0;
+    max-height: calc(100vh - 220px);
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+
+  .split-pane-header {
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-body);
+    padding: 0.6rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+    display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 3rem 1rem;
-    color: var(--text-secondary);
-    gap: 1rem;
+    justify-content: space-between;
+    gap: 0.5rem;
+    z-index: 10;
   }
 
-  .spinner {
-    width: 32px;
-    height: 32px;
-    border: 3px solid var(--border-color);
-    border-top-color: var(--primary-color);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
+  .split-pane-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
 
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
-  .pane-badge {
-    font-size: 0.75rem;
+  .split-pane-header h2 {
+    font-size: 1.1rem;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.2rem 0.5rem;
+    font-family: var(--font-sans);
+    margin: 0;
+    color: var(--text-emphasis);
+  }
+
+  .split-pane-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .pane-action-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.45rem;
     border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-body);
+    color: var(--text-secondary);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .pane-action-link:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
   }
 
   .badge-base {
-    background-color: rgba(181, 101, 167, 0.15);
-    color: var(--primary-color);
+    background-color: #d1e7dd;
+    color: #0f5132;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
   }
 
   .badge-compare {
-    background-color: rgba(100, 191, 164, 0.15);
-    color: #165b48;
+    background-color: #cff4fc;
+    color: #055160;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
   }
 
   .reader-nav-footer {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    border-top: 1px solid var(--border-color);
-    padding-top: 1.25rem;
+    justify-content: center;
     margin-top: 2rem;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
   }
 
   .nav-btn {
     display: inline-flex;
     align-items: center;
-    padding: 0.45rem 0.9rem;
-    font-size: 0.88rem;
-    font-weight: 600;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
     border-radius: 6px;
     border: 1px solid var(--border-color);
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-body);
     color: var(--text-body);
     text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
     transition: all 0.15s ease;
   }
 
   .nav-btn:hover {
-    background-color: var(--bg-tertiary);
-    border-color: var(--primary-color);
     color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  @media (max-width: 900px) {
+    .split-panes-container {
+      flex-direction: column;
+    }
+    .split-pane {
+      max-height: none;
+      overflow-y: visible;
+    }
   }
 </style>
 
@@ -401,10 +595,39 @@ import Layout from '../layouts/Layout.astro';
   let viewMode = 'single'; // 'single' | 'split'
   let diffEnabled = true;
   let currentScript = 'roman';
+  let showRawMarkdown = false;
+
+  // Cached raw markdown for downloads and raw viewing
+  let currentSingleMd = '';
+  let currentLeftMd = '';
+  let currentRightMd = '';
 
   /**
-   * Resolves relative markdown links (e.g. 1/1.1.md, ../3V.md, 3V/1.md, 0.md)
-   * into clean reader navigation URLs
+   * Helper to trigger direct browser download of Markdown text
+   */
+  function downloadMarkdownFile(filename: string, text: string) {
+    const cleanFilename = filename.endsWith('.md') ? filename : `${filename}.md`;
+    const blob = new Blob([text], { type: 'text/markdown;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = cleanFilename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function escapeHtml(str: string): string {
+    return (str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  /**
+   * Resolves relative markdown links into clean reader navigation URLs
    */
   function resolveMarkdownLink(href: string, fromFile: string, edition: string): string {
     if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('#')) {
@@ -474,7 +697,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /**
-   * Fetch markdown content from bundled local files, jsDelivr CDN, or GitHub raw
+   * Fetch markdown content dynamically from bundled local content, jsDelivr CDN, or GitHub raw
    */
   async function fetchMarkdown(edition: string, filePath: string): Promise<string> {
     const cleanPath = (filePath || '').replace(/^\/+/, '').replace(/\.html$/, '.md');
@@ -503,7 +726,7 @@ import Layout from '../layouts/Layout.astro';
       // Fallback
     }
 
-    // 2. Fetch from jsDelivr CDN
+    // 2. Fetch dynamically from jsDelivr CDN
     try {
       const cdnUrl = `https://cdn.jsdelivr.net/gh/tipitaka-md/${repoShort}@${branch}/${cleanPath}`;
       const res = await fetch(cdnUrl);
@@ -515,10 +738,10 @@ import Layout from '../layouts/Layout.astro';
         }
       }
     } catch {
-      // Fallback to GitHub raw
+      // Fallback
     }
 
-    // 3. Fallback to GitHub raw
+    // 3. Fallback dynamically to GitHub raw
     try {
       const rawUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${cleanPath}`;
       const res = await fetch(rawUrl);
@@ -612,7 +835,6 @@ import Layout from '../layouts/Layout.astro';
         link.classList.add('active');
         link.setAttribute('aria-current', 'page');
 
-        // Automatically expand ancestor details
         let parent = link.closest('details');
         while (parent) {
           parent.open = true;
@@ -646,7 +868,7 @@ import Layout from '../layouts/Layout.astro';
             currentFilePath = targetFile;
             const m = currentFilePath.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
             if (m) currentBookCode = m[1];
-            currentSuttaId = targetSutta || '';
+            currentSuttaId = targetSutta || detectSuttaFromPath(currentFilePath);
           } else if (targetSutta) {
             currentSuttaId = targetSutta;
             if (targetBook) currentBookCode = targetBook;
@@ -657,7 +879,6 @@ import Layout from '../layouts/Layout.astro';
             currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, '');
           }
 
-          // Close mobile drawer if open
           const drawerToggle = document.getElementById('sidebar-drawer-toggle') as HTMLInputElement;
           if (drawerToggle) drawerToggle.checked = false;
 
@@ -694,7 +915,6 @@ import Layout from '../layouts/Layout.astro';
         if (newFile) currentFilePath = newFile;
         if (newEdition) currentEdition = newEdition;
 
-        // Extract book code from path if possible (e.g. tipitaka/3V/1.md -> 3V)
         const match = (newFile || '').match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
         if (match) {
           currentBookCode = match[1];
@@ -715,7 +935,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /**
-   * Render the reader view based on current state
+   * Render the reader view dynamically based on current state
    */
   async function updateView() {
     const loadingEl = document.getElementById('reader-loading');
@@ -746,7 +966,22 @@ import Layout from '../layouts/Layout.astro';
     }
 
     // Update Document Title
-    document.title = `${currentBookCode} — Tipiṭaka Comparative Reader`;
+    document.title = `${currentBookCode} — Tipitaka Editions in Markdown`;
+
+    // Calculate file URLs for single and split panes
+    const edConfig = catalog?.editions[currentEdition];
+    const repo = edConfig ? edConfig.repo : 'tipitaka-md/tipitaka2500';
+    const branch = edConfig ? edConfig.branch : 'main';
+    const cleanCurrentPath = (currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId)).replace(/^\/+/, '');
+
+    const rawUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${cleanCurrentPath}`;
+    const githubUrl = `https://github.com/${repo}/blob/${branch}/${cleanCurrentPath}`;
+
+    // Update Single-Pane Markdown Action links
+    const rawLink = document.getElementById('raw-md-link') as HTMLAnchorElement;
+    const githubLink = document.getElementById('github-md-link') as HTMLAnchorElement;
+    if (rawLink) rawLink.href = rawUrl;
+    if (githubLink) githubLink.href = githubUrl;
 
     if (viewMode === 'split') {
       if (singlePaneView) singlePaneView.style.display = 'none';
@@ -760,19 +995,47 @@ import Layout from '../layouts/Layout.astro';
         fetchMarkdown(compareEdition, rightFile),
       ]);
 
+      currentLeftMd = baseMd;
+      currentRightMd = compareMd;
+
+      // Update Left Pane links
+      const leftClean = leftFile.replace(/^\/+/, '');
+      const leftRawLink = document.getElementById('left-raw-link') as HTMLAnchorElement;
+      const leftGhLink = document.getElementById('left-github-link') as HTMLAnchorElement;
+      if (leftRawLink) leftRawLink.href = `https://raw.githubusercontent.com/tipitaka-md/tipitaka2500/main/${leftClean}`;
+      if (leftGhLink) leftGhLink.href = `https://github.com/tipitaka-md/tipitaka2500/blob/main/${leftClean}`;
+
+      // Update Right Pane links
+      const rightConfig = catalog?.editions[compareEdition];
+      const rightRepo = rightConfig ? rightConfig.repo : 'tipitaka-md/buddha-jayanthi';
+      const rightBranch = rightConfig ? rightConfig.branch : 'main';
+      const rightClean = rightFile.replace(/^\/+/, '');
+      const rightRawLink = document.getElementById('right-raw-link') as HTMLAnchorElement;
+      const rightGhLink = document.getElementById('right-github-link') as HTMLAnchorElement;
+      if (rightRawLink) rightRawLink.href = `https://raw.githubusercontent.com/${rightRepo}/${rightBranch}/${rightClean}`;
+      if (rightGhLink) rightGhLink.href = `https://github.com/${rightRepo}/blob/${rightBranch}/${rightClean}`;
+
       let rightRenderMd = compareMd;
       if (diffEnabled) {
         rightRenderMd = highlightPaliDiff(compareMd, baseMd);
       }
 
       if (leftContentEl) {
-        leftContentEl.innerHTML = convertMarkdownToHtml(baseMd, leftFile, 'tipitaka2500');
+        if (showRawMarkdown) {
+          leftContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(baseMd)}</code></pre>`;
+        } else {
+          leftContentEl.innerHTML = convertMarkdownToHtml(baseMd, leftFile, 'tipitaka2500');
+        }
       }
       if (rightContentEl) {
-        rightContentEl.innerHTML = convertMarkdownToHtml(rightRenderMd, rightFile, compareEdition);
+        if (showRawMarkdown) {
+          rightContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(compareMd)}</code></pre>`;
+        } else {
+          rightContentEl.innerHTML = convertMarkdownToHtml(rightRenderMd, rightFile, compareEdition);
+        }
       }
 
-      // Update right pane header
+      // Update right pane header info
       const rightHeader = document.getElementById('right-pane-title');
       const rightBadge = document.getElementById('right-pane-badge');
       const edInfo = catalog?.editions[compareEdition];
@@ -786,6 +1049,7 @@ import Layout from '../layouts/Layout.astro';
 
       const targetFile = currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
       const targetMd = await fetchMarkdown(currentEdition, targetFile);
+      currentSingleMd = targetMd;
 
       let renderMd = targetMd;
       if (diffEnabled && currentEdition !== 'tipitaka2500') {
@@ -795,7 +1059,11 @@ import Layout from '../layouts/Layout.astro';
       }
 
       if (mainContentEl) {
-        mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition);
+        if (showRawMarkdown) {
+          mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(targetMd)}</code></pre>`;
+        } else {
+          mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition);
+        }
       }
     }
 
@@ -889,6 +1157,44 @@ import Layout from '../layouts/Layout.astro';
       scriptSelect.value = currentScript;
       scriptSelect.addEventListener('change', () => {
         currentScript = scriptSelect.value;
+        updateView();
+      });
+    }
+
+    // Download Markdown file buttons
+    const downloadBtn = document.getElementById('download-md-btn');
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', () => {
+        const fileName = (currentFilePath.split('/').pop() || `${currentBookCode}.md`).replace(/\.html$/, '.md');
+        downloadMarkdownFile(fileName, currentSingleMd);
+      });
+    }
+
+    const leftDownloadBtn = document.getElementById('left-download-btn');
+    if (leftDownloadBtn) {
+      leftDownloadBtn.addEventListener('click', () => {
+        const fileName = `${currentBookCode}_tipitaka2500.md`;
+        downloadMarkdownFile(fileName, currentLeftMd);
+      });
+    }
+
+    const rightDownloadBtn = document.getElementById('right-download-btn');
+    if (rightDownloadBtn) {
+      rightDownloadBtn.addEventListener('click', () => {
+        const fileName = `${currentBookCode}_${compareEdition}.md`;
+        downloadMarkdownFile(fileName, currentRightMd);
+      });
+    }
+
+    // Toggle Raw Markdown View
+    const toggleRawBtn = document.getElementById('toggle-raw-btn');
+    const toggleRawLabel = document.getElementById('toggle-raw-label');
+    if (toggleRawBtn) {
+      toggleRawBtn.addEventListener('click', () => {
+        showRawMarkdown = !showRawMarkdown;
+        if (toggleRawLabel) {
+          toggleRawLabel.textContent = showRawMarkdown ? '📖 Formatted' : '👁️ Raw View';
+        }
         updateView();
       });
     }

@@ -329,17 +329,17 @@ const CANON_SECTIONS: PitakaSection[] = [
 ---
 
 <Layout
-  title="Tipiṭaka Multi-Edition Markdown — tipitaka-md.github.io"
+  title="Tipitaka Editions in Markdown"
   description="Comparative digital reader showcasing canonical Pāḷi Tipiṭaka texts converted to Markdown across the tipitaka-md repositories: tipitaka2500 (base), Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath."
   lang="en"
 >
   <main>
     <!-- Hero Banner -->
     <div class="hero-banner">
-      <h1>Tipiṭaka Multi-Edition Markdown</h1>
+      <h1>Tipitaka Editions in Markdown</h1>
       <p class="lead">
         Open Markdown Editions of the Complete Pāḷi Canon Across 5 International Traditions
-        with Real-Time Variant Highlighting &amp; Multi-Script Transliteration
+        with Real-Time Variant Highlighting, Dictionary Lookup &amp; Direct Markdown Access
       </p>
       <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
         <a
@@ -362,7 +362,7 @@ const CANON_SECTIONS: PitakaSection[] = [
           rel="noopener noreferrer"
           style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-body);"
         >
-          <span>↗ tipitaka-md Organization</span>
+          <span>↗ tipitaka-md on GitHub</span>
         </a>
       </div>
     </div>
@@ -371,14 +371,20 @@ const CANON_SECTIONS: PitakaSection[] = [
     <div class="home-intro-layout">
       <div>
         <p>
-          <strong>tipitaka-md.github.io</strong> is an open-access comparative reader for the
+          <strong>Tipitaka Editions in Markdown</strong> is an open-access comparative reader for the
           entire Theravāda Buddhist Canon (<em>Tipiṭaka</em>) across five international editions
           converted into version-controlled <strong>Markdown format</strong>.
         </p>
         <p>
           Using <strong>The World Tipiṭaka Edition (B.E. 2500 / 2020 Edition)</strong> as the
-          canonical base text, this application allows readers to view any book or sutta in single
-          or side-by-side split view, dynamically highlighting textual variants:
+          canonical base text, the reader dynamically renders texts directly from the repositories,
+          with instant links to <strong>view raw Markdown</strong>, <strong>download .md files</strong>,
+          and explore on GitHub. Because the comparative viewer is dynamically constructed from what is
+          currently in the repos, the site remains lightweight, fast, and does not need to be rebuilt
+          when the underlying text files are updated.
+        </p>
+        <p>
+          Textual variants between editions are highlighted dynamically:
         </p>
 
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1.25rem 0;">
@@ -394,9 +400,10 @@ const CANON_SECTIONS: PitakaSection[] = [
         </div>
 
         <p style="margin-bottom: 0;">
-          The viewer includes client-side transliteration between <strong>Roman (IAST)</strong>,
+          The reader includes full <strong>Pāḷi grammar dictionary lookup</strong> on hover and tap,
+          as well as dynamic transliteration between <strong>Roman (IAST)</strong>,
           <strong>Sinhala (සිංහල)</strong>, <strong>Thai (ไทย)</strong>,
-          <strong>Burmese (မြန်မာ)</strong>, and <strong>Devanagari (देवनागरी)</strong> scripts.
+          <strong>Burmese (မြန်မာ)</strong>, and <strong>Devanagari (देवनागरी)</strong>.
         </p>
       </div>
 
