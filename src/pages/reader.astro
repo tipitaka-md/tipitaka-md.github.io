@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Comparative Tipiṭaka Reader — tipitaka-md.github.io"
-  description="Read and compare canonical Pāḷi Tipiṭaka texts across 5 international editions (World Tipiṭaka 2500, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath) with Rosely text variant highlighting."
+  description="Read and compare canonical Pāḷi Tipiṭaka texts across 5 international editions (World Tipiṭaka 2500, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath) with text variant highlighting."
   lang="pi"
 >
   <div class="reader-wrapper">
@@ -60,15 +60,15 @@ import Layout from '../layouts/Layout.astro';
             </select>
           </div>
 
-          <!-- Rosely Diff Toggle -->
+          <!-- Variant Diff Toggle -->
           <button
             type="button"
             id="diff-toggle-btn"
             class="diff-toggle-btn active"
             aria-pressed="true"
-            title="Highlight textual differences against World Tipiṭaka 2500 using Rosely colors"
+            title="Highlight textual differences against World Tipiṭaka 2500 base text"
           >
-            <span>✨ Rosely Diff</span>
+            <span>✨ Highlight Variants</span>
           </button>
 
           <!-- Script Selector -->
@@ -85,17 +85,17 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
-      <!-- Rosely Diff Legend Bar -->
+      <!-- Text Variant Legend Bar -->
       <div class="diff-legend" id="diff-legend" style="display: flex;">
-        <span class="diff-legend-title">Rosely Text Variants:</span>
+        <span class="diff-legend-title">Text Variants:</span>
         <span class="legend-badge legend-add" title="Words or phrases present in this edition but absent in T2500">
-          ● Addition (Spearmint #64bfa4)
+          ● Addition
         </span>
         <span class="legend-badge legend-change" title="Variant reading or spelling compared to T2500">
-          ● Variant / Change (Meadowlark #eada4f)
+          ● Variant / Change
         </span>
         <span class="legend-badge legend-del" title="Words present in T2500 but omitted in this edition">
-          ● Omission (Rose Quartz #f7caca)
+          ● Omission
         </span>
       </div>
     </header>
@@ -829,7 +829,7 @@ import Layout from '../layouts/Layout.astro';
       });
     }
 
-    // Rosely Diff Toggle
+    // Variant Diff Toggle
     const diffBtn = document.getElementById('diff-toggle-btn');
     if (diffBtn) {
       diffBtn.addEventListener('click', () => {

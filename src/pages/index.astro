@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Tipiṭaka Comparative Markdown Edition — tipitaka-md.github.io"
-  description="Comparative digital viewer for Pāḷi Tipiṭaka Markdown editions (World Tipiṭaka 2500, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath) with Rosely text variant highlighting and multi-script transliteration."
+  description="Comparative digital viewer for Pāḷi Tipiṭaka Markdown editions (World Tipiṭaka 2500, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath) with text variant highlighting and multi-script transliteration."
   lang="en"
 >
   <main>
@@ -12,7 +12,7 @@ import Layout from '../layouts/Layout.astro';
       <h1>Tipiṭaka Comparative Markdown Edition</h1>
       <p class="lead">
         Multi-Edition Comparative Digital Viewer for Canonical Pāḷi Texts in Markdown with
-        Rosely Text Variant Diffing &amp; Multi-Script Transliteration
+        Text Variant Highlighting &amp; Multi-Script Transliteration
       </p>
       <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
         <a href="/reader.html?book=6D&sutta=dn1" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; color: #fff; background-color: var(--primary-color);">
@@ -38,20 +38,18 @@ import Layout from '../layouts/Layout.astro';
           and readings in real time.
         </p>
         <p>
-          Derived from the architecture of <a href="https://tipitaka2500.github.io" target="_blank" rel="noopener noreferrer"><strong>tipitaka2500.github.io</strong></a>
-          and styled using the <a href="https://rosely.hellotham.com" target="_blank" rel="noopener noreferrer"><strong>Rosely Design System</strong></a>,
-          the viewer highlights textual differences dynamically using harmonic Rosely color tokens:
+          Textual differences between editions are highlighted dynamically:
         </p>
 
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1.25rem 0;">
           <span class="legend-badge legend-add" style="padding: 0.4rem 0.8rem; font-size: 0.88rem; border-radius: 6px;">
-            ● Light Green (Spearmint #64bfa4): Textual Addition
+            ● Addition: Text present in comparative edition
           </span>
           <span class="legend-badge legend-change" style="padding: 0.4rem 0.8rem; font-size: 0.88rem; border-radius: 6px;">
-            ● Light Yellow (Meadowlark #eada4f): Word Variant / Change
+            ● Variant / Change: Spelling or vocabulary difference
           </span>
           <span class="legend-badge legend-del" style="padding: 0.4rem 0.8rem; font-size: 0.88rem; border-radius: 6px;">
-            ● Light Pink (Rose Quartz #f7caca): Omission / Deletion
+            ● Omission: Text in base edition omitted
           </span>
         </div>
 
@@ -86,7 +84,7 @@ import Layout from '../layouts/Layout.astro';
         ⚡ Canonical Highlights &amp; Sutta Directory
       </h2>
       <p style="color: var(--text-secondary); margin-bottom: 1.25rem;">
-        Jump straight into key discourses with multi-edition cross-referencing and Rosely diff highlighting active:
+        Jump straight into key discourses with multi-edition cross-referencing and variant diff highlighting active:
       </p>
 
       <div class="home-index-grid">
@@ -293,36 +291,11 @@ import Layout from '../layouts/Layout.astro';
             <h2>⚡ Open Comparative Reader</h2>
             <p>
               Launch the multi-pane reading shell. Compare any book or sutta side-by-side with synchronized scrolling,
-              Rosely variant diffing, and live script transliteration.
+              variant diffing, and live script transliteration.
             </p>
           </div>
           <span class="home-index-stat">Open Reader →</span>
         </a>
-      </div>
-    </section>
-
-    <!-- Rosely Design System & Methodology -->
-    <section aria-label="Rosely Design &amp; Methodology" style="margin: 2.5rem 0 2rem;">
-      <h2 style="font-size: 1.35rem; font-weight: 700; margin: 0 0 1rem; color: var(--text-emphasis); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
-        🎨 Rosely Text Variant Highlighting System
-      </h2>
-      <div style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; margin-top: 1rem;">
-        <p style="margin-top: 0;">
-          Textual variants in Pali manuscripts (such as orthographical differences between <em>Evaṁ</em> and <em>Evaṃ</em>,
-          or phrase-level expansions and omissions) are highlighted in real-time using colors sampled directly from the
-          <a href="https://rosely.hellotham.com" target="_blank" rel="noopener noreferrer"><strong>Rosely Design System</strong></a>:
-        </p>
-        <ul style="line-height: 1.8; margin-bottom: 0.5rem;">
-          <li>
-            <strong style="color: #165b48;">Spearmint (<code>roselyD</code> #64bfa4)</strong>: Identifies words or phrases present in the comparative edition but absent in the base World Tipiṭaka text.
-          </li>
-          <li>
-            <strong style="color: #695d08;">Meadowlark (<code>roselyF</code> #eada4f)</strong>: Identifies variant spellings, word inflections, or altered grammatical forms. Hovering over the highlighted word displays the reading from the base text.
-          </li>
-          <li>
-            <strong style="color: #96254a;">Rose Quartz (<code>rosely5</code> #f7caca / <code>rosely4</code> #ec809e)</strong>: Identifies words present in the base text that have been omitted or omitted in the comparative edition.
-          </li>
-        </ul>
       </div>
     </section>
 
