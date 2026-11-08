@@ -583,6 +583,122 @@ import Layout from '../layouts/Layout.astro';
     }>;
   }
 
+  const BOOK_MAP: Record<string, { title: string; pitaka: string }> = {
+    '1V': { title: 'Pārājikapāḷi', pitaka: 'Vinayapiṭaka' },
+    '2V': { title: 'Pācittiyapāḷi', pitaka: 'Vinayapiṭaka' },
+    '3V': { title: 'Mahāvaggapāḷi', pitaka: 'Vinayapiṭaka' },
+    '4V': { title: 'Cūḷavaggapāḷi', pitaka: 'Vinayapiṭaka' },
+    '5V': { title: 'Parivārapāḷi', pitaka: 'Vinayapiṭaka' },
+    '6D': { title: 'Sīlakkhandhavaggapāḷi', pitaka: 'Dīghanikāya' },
+    '7D': { title: 'Mahāvaggapāḷi', pitaka: 'Dīghanikāya' },
+    '8D': { title: 'Pāthikavaggapāḷi', pitaka: 'Dīghanikāya' },
+    '9M': { title: 'Mūlapaṇṇāsapāḷi', pitaka: 'Majjhimanikāya' },
+    '10M': { title: 'Majjhimapaṇṇāsapāḷi', pitaka: 'Majjhimanikāya' },
+    '11M': { title: 'Uparipaṇṇāsapāḷi', pitaka: 'Majjhimanikāya' },
+    '12S1': { title: 'Sagāthāvaggasaṁyuttapāḷi', pitaka: 'Saṁyuttanikāya' },
+    '12S2': { title: 'Nidānavaggasaṁyuttapāḷi', pitaka: 'Saṁyuttanikāya' },
+    '13S3': { title: 'Khandhavaggasaṁyuttapāḷi', pitaka: 'Saṁyuttanikāya' },
+    '13S4': { title: 'Saḷāyatanavaggasaṁyuttapāḷi', pitaka: 'Saṁyuttanikāya' },
+    '14S5': { title: 'Mahāvaggasaṁyuttapāḷi', pitaka: 'Saṁyuttanikāya' },
+    '15A1': { title: 'Ekakanipātapāḷi', pitaka: 'Aṅguttaranikāya' },
+    '15A2': { title: 'Dukanipātapāḷi', pitaka: 'Aṅguttaranikāya' },
+    '15A3': { title: 'Tikanipātapāḷi', pitaka: 'Aṅguttaranikāya' },
+    '15A4': { title: 'Catukkanipātapāḷi', pitaka: 'Aṅguttaranikāya' },
+    '16A5': { title: 'Pañcakanipātapāḷi', pitaka: 'Aṅguttaranikāya' },
+    '16A6': { title: 'Chakkanipātapāḷi', pitaka: 'Aṅguttaranikāya' },
+    '16A7': { title: 'Sattakanipātapāḷi', pitaka: 'Aṅguttaranikāya' },
+    '17A8': { title: 'Aṭṭhakanipātapāḷi', pitaka: 'Aṅguttaranikāya' },
+    '17A9': { title: 'Navakanipātapāḷi', pitaka: 'Aṅguttaranikāya' },
+    '17A10': { title: 'Dasakanipātapāḷi', pitaka: 'Aṅguttaranikāya' },
+    '17A11': { title: 'Ekādasakanipātapāḷi', pitaka: 'Aṅguttaranikāya' },
+    '18Kh': { title: 'Khuddakapāṭhapāḷi', pitaka: 'Khuddakanikāya' },
+    '18Dh': { title: 'Dhammapadapāḷi', pitaka: 'Khuddakanikāya' },
+    '18Ud': { title: 'Udānapāḷi', pitaka: 'Khuddakanikāya' },
+    '18It': { title: 'Itivuttakapāḷi', pitaka: 'Khuddakanikāya' },
+    '18Sn': { title: 'Suttanipātapāḷi', pitaka: 'Khuddakanikāya' },
+    '19Vv': { title: 'Vimānavatthupāḷi', pitaka: 'Khuddakanikāya' },
+    '19Pv': { title: 'Petavatthupāḷi', pitaka: 'Khuddakanikāya' },
+    '19Th1': { title: 'Theragāthāpāḷi', pitaka: 'Khuddakanikāya' },
+    '19Th2': { title: 'Therīgāthāpāḷi', pitaka: 'Khuddakanikāya' },
+    '20Ap1': { title: 'Therāpadānapāḷi', pitaka: 'Khuddakanikāya' },
+    '20Ap2': { title: 'Therīapadānapāḷi', pitaka: 'Khuddakanikāya' },
+    '21Bu': { title: 'Buddhavaṁsapāḷi', pitaka: 'Khuddakanikāya' },
+    '21Cp': { title: 'Cariyāpiṭakapāḷi', pitaka: 'Khuddakanikāya' },
+    '22J': { title: 'Jātakapāḷi (Vol 1)', pitaka: 'Khuddakanikāya' },
+    '23J': { title: 'Jātakapāḷi (Vol 2)', pitaka: 'Khuddakanikāya' },
+    '24Mn': { title: 'Mahāniddesapāḷi', pitaka: 'Khuddakanikāya' },
+    '25Cn': { title: 'Cūḷaniddesapāḷi', pitaka: 'Khuddakanikāya' },
+    '26Ps': { title: 'Paṭisambhidāmaggapāḷi', pitaka: 'Khuddakanikāya' },
+    '27Ne': { title: 'Nettippakaraṇapāḷi', pitaka: 'Khuddakanikāya' },
+    '27Pe': { title: 'Peṭakopadesapāḷi', pitaka: 'Khuddakanikāya' },
+    '28Mi': { title: 'Milindapañhapāḷi', pitaka: 'Khuddakanikāya' },
+    '34Dh': { title: 'Dhammasaṅgaṇīpāḷi', pitaka: 'Abhidhammapiṭaka' },
+    '35Vbh': { title: 'Vibhaṅgapāḷi', pitaka: 'Abhidhammapiṭaka' },
+    '36Dht': { title: 'Dhātukathāpāḷi', pitaka: 'Abhidhammapiṭaka' },
+    '36Pu': { title: 'Puggalapaññattipāḷi', pitaka: 'Abhidhammapiṭaka' },
+    '37Kv': { title: 'Kathāvatthupāḷi', pitaka: 'Abhidhammapiṭaka' },
+    '38Y1': { title: 'Yamakapāḷi 1', pitaka: 'Abhidhammapiṭaka' },
+    '38Y2': { title: 'Yamakapāḷi 2', pitaka: 'Abhidhammapiṭaka' },
+    '38Y3': { title: 'Yamakapāḷi 3', pitaka: 'Abhidhammapiṭaka' },
+    '39P1': { title: 'Tikapaṭṭhānapāḷi 1', pitaka: 'Abhidhammapiṭaka' },
+    '39P2': { title: 'Tikapaṭṭhānapāḷi 2', pitaka: 'Abhidhammapiṭaka' },
+    '40P3': { title: 'Dukapaṭṭhānapāḷi', pitaka: 'Abhidhammapiṭaka' },
+    '40P4': { title: 'Dukapaṭṭhānapāḷi 2', pitaka: 'Abhidhammapiṭaka' },
+    '40P5': { title: 'Dukatikapaṭṭhānapāḷi', pitaka: 'Abhidhammapiṭaka' },
+  };
+
+  function getBookInfo(bookCode: string) {
+    if (BOOK_MAP[bookCode]) return BOOK_MAP[bookCode];
+    if (catalog) {
+      for (const p of catalog.structure) {
+        for (const b of p.books) {
+          if (b.code.toLowerCase() === bookCode.toLowerCase()) {
+            return { title: b.title, pitaka: p.title };
+          }
+        }
+      }
+    }
+    return { title: bookCode, pitaka: '' };
+  }
+
+  function extractTitleFromMarkdown(markdown: string): string {
+    const match = (markdown || '').match(/^\s*#\s+([^\n]+)/m);
+    if (match) {
+      return match[1].replace(/[#*_`]/g, '').trim();
+    }
+    return '';
+  }
+
+  /**
+   * Ensures that canonical text always has an H1 title heading
+   */
+  function ensureMarkdownTitle(markdown: string, filePath: string, bookCode: string): string {
+    const trimmed = (markdown || '').trim();
+    const topLines = trimmed.split('\n').slice(0, 25).join('\n');
+    if (/^\s*#\s+[^\n]+/m.test(topLines)) {
+      return markdown;
+    }
+
+    const info = getBookInfo(bookCode);
+    const bookTitleStr = info ? `${bookCode} ${info.title}` : bookCode;
+
+    // Check if markdown starts with breadcrumb navigation lines like [Home](/) / ...
+    const lines = markdown.split('\n');
+    let insertIndex = 0;
+    while (insertIndex < lines.length && (lines[insertIndex].trim().startsWith('[Home]') || lines[insertIndex].trim() === '')) {
+      insertIndex++;
+    }
+
+    const headerMd = `# ${bookTitleStr}\n\n`;
+    if (insertIndex > 0) {
+      const before = lines.slice(0, insertIndex).join('\n');
+      const after = lines.slice(insertIndex).join('\n');
+      return `${before}\n\n${headerMd}${after}`;
+    }
+
+    return `${headerMd}${markdown}`;
+  }
+
   let catalog: CatalogData | null = null;
   const contentCache = new Map<string, string>();
 
@@ -954,25 +1070,21 @@ import Layout from '../layouts/Layout.astro';
       diffLegend.style.display = showLegend ? 'flex' : 'none';
     }
 
-    // Update Breadcrumbs
-    const bcBook = document.getElementById('bc-book');
-    const bcSutta = document.getElementById('bc-sutta');
-    if (bcBook) {
-      bcBook.innerHTML = `<a href="/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}">${currentBookCode}</a>`;
-    }
-    if (bcSutta) {
-      const fileName = currentFilePath.split('/').pop() || '';
-      bcSutta.textContent = currentSuttaId ? currentSuttaId.toUpperCase() : fileName;
-    }
+    // Retrieve Book and Pitaka metadata
+    const bookInfo = getBookInfo(currentBookCode);
+    const bookTitleStr = bookInfo ? `${currentBookCode} ${bookInfo.title}` : currentBookCode;
+    const pitakaStr = bookInfo ? bookInfo.pitaka : '';
 
-    // Update Document Title
-    document.title = `${currentBookCode} — Tipitaka Editions in Markdown`;
+    const cleanCurrentPath = (currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId)).replace(/^\/+/, '');
+    const isRootBook =
+      !currentFilePath ||
+      cleanCurrentPath === `tipitaka/${currentBookCode}.md` ||
+      cleanCurrentPath.endsWith(`/${currentBookCode}.md`);
 
     // Calculate file URLs for single and split panes
     const edConfig = catalog?.editions[currentEdition];
     const repo = edConfig ? edConfig.repo : 'tipitaka-md/tipitaka2500';
     const branch = edConfig ? edConfig.branch : 'main';
-    const cleanCurrentPath = (currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId)).replace(/^\/+/, '');
 
     const rawUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${cleanCurrentPath}`;
     const githubUrl = `https://github.com/${repo}/blob/${branch}/${cleanCurrentPath}`;
@@ -995,8 +1107,11 @@ import Layout from '../layouts/Layout.astro';
         fetchMarkdown(compareEdition, rightFile),
       ]);
 
-      currentLeftMd = baseMd;
-      currentRightMd = compareMd;
+      const baseWithTitle = ensureMarkdownTitle(baseMd, leftFile, currentBookCode);
+      const compareWithTitle = ensureMarkdownTitle(compareMd, rightFile, currentBookCode);
+
+      currentLeftMd = baseWithTitle;
+      currentRightMd = compareWithTitle;
 
       // Update Left Pane links
       const leftClean = leftFile.replace(/^\/+/, '');
@@ -1015,31 +1130,34 @@ import Layout from '../layouts/Layout.astro';
       if (rightRawLink) rightRawLink.href = `https://raw.githubusercontent.com/${rightRepo}/${rightBranch}/${rightClean}`;
       if (rightGhLink) rightGhLink.href = `https://github.com/${rightRepo}/blob/${rightBranch}/${rightClean}`;
 
-      let rightRenderMd = compareMd;
+      let rightRenderMd = compareWithTitle;
       if (diffEnabled) {
-        rightRenderMd = highlightPaliDiff(compareMd, baseMd);
+        rightRenderMd = highlightPaliDiff(compareWithTitle, baseWithTitle);
       }
 
       if (leftContentEl) {
         if (showRawMarkdown) {
-          leftContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(baseMd)}</code></pre>`;
+          leftContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(baseWithTitle)}</code></pre>`;
         } else {
-          leftContentEl.innerHTML = convertMarkdownToHtml(baseMd, leftFile, 'tipitaka2500');
+          leftContentEl.innerHTML = convertMarkdownToHtml(baseWithTitle, leftFile, 'tipitaka2500');
         }
       }
       if (rightContentEl) {
         if (showRawMarkdown) {
-          rightContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(compareMd)}</code></pre>`;
+          rightContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(compareWithTitle)}</code></pre>`;
         } else {
           rightContentEl.innerHTML = convertMarkdownToHtml(rightRenderMd, rightFile, compareEdition);
         }
       }
 
-      // Update right pane header info
+      // Update pane headers
+      const leftHeader = document.getElementById('left-pane-title');
+      if (leftHeader) leftHeader.textContent = `🌟 ${bookTitleStr} · T2500 (Base)`;
+
       const rightHeader = document.getElementById('right-pane-title');
       const rightBadge = document.getElementById('right-pane-badge');
       const edInfo = catalog?.editions[compareEdition];
-      if (rightHeader && edInfo) rightHeader.textContent = edInfo.badge;
+      if (rightHeader && edInfo) rightHeader.textContent = `${edInfo.badge} ${bookTitleStr}`;
       if (rightBadge && edInfo) rightBadge.textContent = edInfo.short_name;
 
     } else {
@@ -1049,22 +1167,53 @@ import Layout from '../layouts/Layout.astro';
 
       const targetFile = currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
       const targetMd = await fetchMarkdown(currentEdition, targetFile);
-      currentSingleMd = targetMd;
+      const targetWithTitle = ensureMarkdownTitle(targetMd, targetFile, currentBookCode);
+      currentSingleMd = targetWithTitle;
 
-      let renderMd = targetMd;
+      let renderMd = targetWithTitle;
       if (diffEnabled && currentEdition !== 'tipitaka2500') {
         const baseFile = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
         const baseMd = await fetchMarkdown('tipitaka2500', baseFile);
-        renderMd = highlightPaliDiff(targetMd, baseMd);
+        const baseWithTitle = ensureMarkdownTitle(baseMd, baseFile, currentBookCode);
+        renderMd = highlightPaliDiff(targetWithTitle, baseWithTitle);
       }
 
       if (mainContentEl) {
         if (showRawMarkdown) {
-          mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(targetMd)}</code></pre>`;
+          mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(targetWithTitle)}</code></pre>`;
         } else {
           mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition);
         }
       }
+    }
+
+    // Update Breadcrumbs and Document Title with extracted section/sutta title
+    const activeMd = viewMode === 'split' ? currentLeftMd : currentSingleMd;
+    const extractedTitle = extractTitleFromMarkdown(activeMd);
+    const subTitle = extractedTitle || (currentSuttaId ? currentSuttaId.toUpperCase() : cleanCurrentPath.split('/').pop() || '');
+
+    const breadcrumbsEl = document.getElementById('reader-breadcrumbs');
+    if (breadcrumbsEl) {
+      if (isRootBook) {
+        breadcrumbsEl.innerHTML = `
+          <li><a href="/">Home</a></li>
+          ${pitakaStr ? `<li><a href="/#canon-directory">${pitakaStr}</a></li>` : ''}
+          <li aria-current="page">${bookTitleStr}</li>
+        `;
+      } else {
+        breadcrumbsEl.innerHTML = `
+          <li><a href="/">Home</a></li>
+          <li><a href="/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}">${bookTitleStr}</a></li>
+          <li aria-current="page">${subTitle}</li>
+        `;
+      }
+    }
+
+    // Update Document Title
+    if (isRootBook) {
+      document.title = `${bookTitleStr} — Tipitaka Editions in Markdown`;
+    } else {
+      document.title = `${subTitle} · ${bookTitleStr} — Tipitaka Editions in Markdown`;
     }
 
     if (loadingEl) loadingEl.style.display = 'none';
