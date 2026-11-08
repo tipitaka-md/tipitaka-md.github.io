@@ -329,7 +329,9 @@
           "editions": {
             "tipitaka2500": "tipitaka/6D.md",
             "cst": "mula/sutta/dn/s0101m.mul.md",
-            "siam-rath": "sutta/dn/vol09.md"
+            "siam-rath": "sutta/dn/vol09.md",
+            "pts": "sutta/dn/dn01.md",
+            "bjt": "sutta/dn/dn-1.md"
           },
           "suttas": [
             {
@@ -512,7 +514,9 @@
           "editions": {
             "tipitaka2500": "tipitaka/7D.md",
             "cst": "mula/sutta/dn/s0102m.mul.md",
-            "siam-rath": "sutta/dn/vol10.md"
+            "siam-rath": "sutta/dn/vol10.md",
+            "pts": "sutta/dn/dn14.md",
+            "bjt": "sutta/dn/dn-2.md"
           },
           "suttas": [
             {
@@ -656,7 +660,9 @@
           "editions": {
             "tipitaka2500": "tipitaka/8D.md",
             "cst": "mula/sutta/dn/s0103m.mul.md",
-            "siam-rath": "sutta/dn/vol11.md"
+            "siam-rath": "sutta/dn/vol11.md",
+            "pts": "sutta/dn/dn24.md",
+            "bjt": "sutta/dn/dn-3.md"
           },
           "suttas": [
             {
@@ -821,7 +827,9 @@
           "editions": {
             "tipitaka2500": "tipitaka/9M.md",
             "cst": "mula/sutta/mn/s0201m.mul.md",
-            "siam-rath": "sutta/mn/vol12.md"
+            "siam-rath": "sutta/mn/vol12.md",
+            "pts": "sutta/mn/mn01.md",
+            "bjt": "sutta/mn/mn-1.md"
           },
           "suttas": [
             {
@@ -1435,7 +1443,9 @@
           "editions": {
             "tipitaka2500": "tipitaka/10M.md",
             "cst": "mula/sutta/mn/s0202m.mul.md",
-            "siam-rath": "sutta/mn/vol13.md"
+            "siam-rath": "sutta/mn/vol13.md",
+            "pts": "sutta/mn/mn51.md",
+            "bjt": "sutta/mn/mn-2.md"
           },
           "suttas": [
             {
@@ -2049,7 +2059,9 @@
           "editions": {
             "tipitaka2500": "tipitaka/11M.md",
             "cst": "mula/sutta/mn/s0203m.mul.md",
-            "siam-rath": "sutta/mn/vol14.md"
+            "siam-rath": "sutta/mn/vol14.md",
+            "pts": "sutta/mn/mn101.md",
+            "bjt": "sutta/mn/mn-3.md"
           },
           "suttas": [
             {
@@ -2695,7 +2707,9 @@
           "editions": {
             "tipitaka2500": "tipitaka/12S1.md",
             "cst": "mula/sutta/sn/s0301m.mul.md",
-            "siam-rath": "sutta/sn/vol15.md"
+            "siam-rath": "sutta/sn/vol15.md",
+            "pts": "sutta/sn/sn01.md",
+            "bjt": "sutta/sn/sn-1.md"
           },
           "samyuttas": [
             {
@@ -2841,7 +2855,9 @@
           "editions": {
             "tipitaka2500": "tipitaka/12S2.md",
             "cst": "mula/sutta/sn/s0302m.mul.md",
-            "siam-rath": "sutta/sn/vol16.md"
+            "siam-rath": "sutta/sn/vol16.md",
+            "pts": "sutta/sn/sn12.md",
+            "bjt": "sutta/sn/sn-2.md"
           },
           "samyuttas": [
             {
@@ -2975,7 +2991,9 @@
           "editions": {
             "tipitaka2500": "tipitaka/13S3.md",
             "cst": "mula/sutta/sn/s0303m.mul.md",
-            "siam-rath": "sutta/sn/vol17.md"
+            "siam-rath": "sutta/sn/vol17.md",
+            "pts": "sutta/sn/sn22.md",
+            "bjt": "sutta/sn/sn-3.md"
           },
           "samyuttas": [
             {
@@ -3145,7 +3163,9 @@
           "editions": {
             "tipitaka2500": "tipitaka/13S4.md",
             "cst": "mula/sutta/sn/s0304m.mul.md",
-            "siam-rath": "sutta/sn/vol18.md"
+            "siam-rath": "sutta/sn/vol18.md",
+            "pts": "sutta/sn/sn35.md",
+            "bjt": "sutta/sn/sn-4.md"
           },
           "samyuttas": [
             {
@@ -3279,7 +3299,9 @@
           "editions": {
             "tipitaka2500": "tipitaka/14S5.md",
             "cst": "mula/sutta/sn/s0305m.mul.md",
-            "siam-rath": "sutta/sn/vol19.md"
+            "siam-rath": "sutta/sn/vol19.md",
+            "pts": "sutta/sn/sn45.md",
+            "bjt": "sutta/sn/sn-5.md"
           },
           "samyuttas": [
             {

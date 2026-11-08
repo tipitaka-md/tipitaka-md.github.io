@@ -447,7 +447,34 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /**
-   * Fetch markdown content from bundled local files or GitHub raw
+   * Detect sutta ID from a markdown file path using catalog mapping
+   */
+  function detectSuttaFromPath(filePath: string): string {
+    if (!catalog || !filePath) return '';
+    const clean = filePath.replace(/^\/+/, '');
+    for (const pitaka of catalog.structure) {
+      for (const book of pitaka.books) {
+        if (book.suttas) {
+          for (const s of book.suttas) {
+            for (const ed in s.editions) {
+              const edPath = s.editions[ed].replace(/^\/+/, '');
+              if (
+                clean === edPath ||
+                clean.startsWith(edPath.replace(/\.md$/, '/')) ||
+                clean.replace(/\.md$/, '') === edPath.replace(/\.md$/, '')
+              ) {
+                return s.id;
+              }
+            }
+          }
+        }
+      }
+    }
+    return '';
+  }
+
+  /**
+   * Fetch markdown content from bundled local files, jsDelivr CDN, or GitHub raw
    */
   async function fetchMarkdown(edition: string, filePath: string): Promise<string> {
     const cleanPath = (filePath || '').replace(/^\/+/, '').replace(/\.html$/, '.md');
@@ -458,6 +485,7 @@ import Layout from '../layouts/Layout.astro';
 
     const edConfig = catalog?.editions[edition];
     const repo = edConfig ? edConfig.repo : 'tipitaka-md/tipitaka2500';
+    const repoShort = repo.replace(/^tipitaka-md\//, '');
     const branch = edConfig ? edConfig.branch : 'main';
 
     // 1. Try local bundled content first for fast offline loading
@@ -472,10 +500,25 @@ import Layout from '../layouts/Layout.astro';
         }
       }
     } catch {
+      // Fallback
+    }
+
+    // 2. Fetch from jsDelivr CDN
+    try {
+      const cdnUrl = `https://cdn.jsdelivr.net/gh/tipitaka-md/${repoShort}@${branch}/${cleanPath}`;
+      const res = await fetch(cdnUrl);
+      if (res.ok) {
+        const text = await res.text();
+        if (text && !text.includes('<!DOCTYPE html>')) {
+          contentCache.set(cacheKey, text);
+          return text;
+        }
+      }
+    } catch {
       // Fallback to GitHub raw
     }
 
-    // 2. Fetch from GitHub raw
+    // 3. Fallback to GitHub raw
     try {
       const rawUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${cleanPath}`;
       const res = await fetch(rawUrl);
@@ -656,7 +699,7 @@ import Layout from '../layouts/Layout.astro';
         if (match) {
           currentBookCode = match[1];
         }
-        currentSuttaId = '';
+        currentSuttaId = detectSuttaFromPath(currentFilePath);
 
         window.history.pushState(
           {},
@@ -903,7 +946,7 @@ import Layout from '../layouts/Layout.astro';
       if (m) {
         currentBookCode = m[1];
       }
-      currentSuttaId = params.get('sutta') || '';
+      currentSuttaId = params.get('sutta') || detectSuttaFromPath(currentFilePath);
     } else if (params.has('sutta')) {
       currentSuttaId = params.get('sutta')!;
       if (params.has('book')) {

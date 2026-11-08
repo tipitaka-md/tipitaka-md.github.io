@@ -1,62 +1,402 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+interface BookSummary {
+  code: string;
+  title: string;
+  pali: string;
+  desc: string;
+}
+
+interface PitakaSection {
+  id: string;
+  name: string;
+  badge: string;
+  desc: string;
+  books: BookSummary[];
+}
+
+const CANON_SECTIONS: PitakaSection[] = [
+  {
+    id: 'vinaya',
+    name: 'Vinayapiṭaka (Monastic Law)',
+    badge: '5 Books',
+    desc: 'The disciplinary rules, moral precepts, and communal legal proceedings of the monastic Sangha.',
+    books: [
+      {
+        code: '1V',
+        title: 'Pārājikapāḷi',
+        pali: 'Mahāvibhaṅga 1',
+        desc: 'Verañjakaṇḍa and the fundamental rules of defeat (Pārājika), Sanghādisesa, Aniyata, and Nissaggiya Pācittiya.',
+      },
+      {
+        code: '2V',
+        title: 'Pācittiyapāḷi',
+        pali: 'Mahāvibhaṅga 2 & Bhikkhunīvibhaṅga',
+        desc: 'Rules requiring expiation (Pācittiya), confession (Pāṭidesanīya), and the comprehensive training rules for nuns.',
+      },
+      {
+        code: '3V',
+        title: 'Mahāvaggapāḷi',
+        pali: 'Khandhaka 1',
+        desc: 'The awakening under the Bodhi tree, first sermon (Dhammacakkappavattanasutta), and rules on ordination, Uposatha, and rains-residence.',
+      },
+      {
+        code: '4V',
+        title: 'Cūḷavaggapāḷi',
+        pali: 'Khandhaka 2',
+        desc: 'Rules for dwellings, schisms, handling grievances, and the historic chronicles of the First and Second Buddhist Councils.',
+      },
+      {
+        code: '5V',
+        title: 'Parivārapāḷi',
+        pali: 'Epitome & Analysis',
+        desc: 'Analytical compendium and catechism summarizing all monastic disciplines and ecclesiastical rulings.',
+      },
+    ],
+  },
+  {
+    id: 'digha',
+    name: 'Suttantapiṭaka · Dīghanikāya (Long Discourses)',
+    badge: '3 Books · 34 Suttas',
+    desc: 'The collection of lengthy discourses establishing Buddhist ontology, ethics, and cosmological frameworks.',
+    books: [
+      {
+        code: '6D',
+        title: 'Sīlakkhandhavaggapāḷi',
+        pali: 'DN 1–13',
+        desc: 'The Section on Moral Discipline, including the Brahmajālasutta (all 62 views) and Sāmaññaphalasutta.',
+      },
+      {
+        code: '7D',
+        title: 'Mahāvaggapāḷi',
+        pali: 'DN 14–23',
+        desc: 'The Great Section, including Mahāparinibbānasutta (the Buddha’s final days) and Mahāsatipaṭṭhānasutta.',
+      },
+      {
+        code: '8D',
+        title: 'Pāthikavaggapāḷi',
+        pali: 'DN 24–34',
+        desc: 'The Pāthika Section, including Cakkavattisīhanādasutta, Sigālovādasutta (lay ethics), and Saṅgītisutta.',
+      },
+    ],
+  },
+  {
+    id: 'majjhima',
+    name: 'Suttantapiṭaka · Majjhimanikāya (Middle-Length Discourses)',
+    badge: '3 Books · 152 Suttas',
+    desc: 'The heart of canonical meditation, psychology, and philosophical dialogues.',
+    books: [
+      {
+        code: '9M',
+        title: 'Mūlapaṇṇāsapāḷi',
+        pali: 'MN 1–50',
+        desc: 'The Root 50 discourses: Mūlapariyāyasutta, Satipaṭṭhānasutta, Bhayabheravasutta, and Ariyapariyesanasutta.',
+      },
+      {
+        code: '10M',
+        title: 'Majjhimapaṇṇāsapāḷi',
+        pali: 'MN 51–100',
+        desc: 'The Middle 50 discourses: discussions with householders, non-Buddhists, kings, and the conversion of Aṅgulimāla.',
+      },
+      {
+        code: '11M',
+        title: 'Uparipaṇṇāsapāḷi',
+        pali: 'MN 101–152',
+        desc: 'The Final 52 discourses: profound teachings on emptiness (Suññatā), mindfulness of breathing (Ānāpānassati), and Dhamma analysis.',
+      },
+    ],
+  },
+  {
+    id: 'samyutta',
+    name: 'Suttantapiṭaka · Saṁyuttanikāya (Connected Discourses)',
+    badge: '5 Books · 56 Saṁyuttas',
+    desc: 'Discourses thematic grouping across dependent origination, the five aggregates, sense bases, and the noble path.',
+    books: [
+      {
+        code: '12S1',
+        title: 'Sagāthāvaggasaṁyuttapāḷi',
+        pali: 'SN 1–11',
+        desc: 'Connected discourses with verses: dialogues with devas, Sakka, Māra, and the Kosala Saṁyutta.',
+      },
+      {
+        code: '12S2',
+        title: 'Nidānavaggasaṁyuttapāḷi',
+        pali: 'SN 12–21',
+        desc: 'Connected discourses on causation: the 12 links of Dependent Origination (Paṭiccasamuppāda).',
+      },
+      {
+        code: '13S3',
+        title: 'Khandhavaggasaṁyuttapāḷi',
+        pali: 'SN 22–34',
+        desc: 'Connected discourses on the Five Aggregates (Khandha): form, feeling, perception, choices, and consciousness.',
+      },
+      {
+        code: '13S4',
+        title: 'Saḷāyatanavaggasaṁyuttapāḷi',
+        pali: 'SN 35–44',
+        desc: 'Connected discourses on the Six Sense Bases (Saḷāyatana) and the unmanifested (Asaṅkhata).',
+      },
+      {
+        code: '14S5',
+        title: 'Mahāvaggasaṁyuttapāḷi',
+        pali: 'SN 45–56',
+        desc: 'The Great Section on the wings to awakening: Noble Eightfold Path, Bojjhaṅgas, Satipaṭṭhāna, and the Four Noble Truths (Saccasaṁyutta).',
+      },
+    ],
+  },
+  {
+    id: 'anguttara',
+    name: 'Suttantapiṭaka · Aṅguttaranikāya (Numerical Discourses)',
+    badge: '3 Volumes · 11 Nipātas',
+    desc: 'Discourses arranged numerically from the Book of the Ones up to the Book of the Elevens.',
+    books: [
+      {
+        code: '15A1',
+        title: 'Ekaka–Catukkanipātapāḷi',
+        pali: 'AN 1–4 (Vol 15)',
+        desc: 'Books of the Ones, Twos, Threes (including the famous Kālāmasutta AN 3.65), and Fours.',
+      },
+      {
+        code: '16A5',
+        title: 'Pañcaka–Sattakanipātapāḷi',
+        pali: 'AN 5–7 (Vol 16)',
+        desc: 'Books of the Fives (e.g. Five Daily Recollections), Sixes, and Sevens.',
+      },
+      {
+        code: '17A8',
+        title: 'Aṭṭhaka–Ekādasakanipātapāḷi',
+        pali: 'AN 8–11 (Vol 17)',
+        desc: 'Books of the Eights, Nines, Tens (e.g. Ten Fetters), and Elevens.',
+      },
+    ],
+  },
+  {
+    id: 'khuddaka',
+    name: 'Suttantapiṭaka · Khuddakanikāya (Minor Collection)',
+    badge: '15 Major Collections / 15 Volumes',
+    desc: 'The diverse collection of devotional, poetic, doctrinal, and analytical texts.',
+    books: [
+      {
+        code: '18Kh',
+        title: 'Khuddakapāṭhapāḷi',
+        pali: '18Kh',
+        desc: 'The Short Passages: Mangalasutta, Ratanasutta, and Tirokuḍḍasutta.',
+      },
+      {
+        code: '18Dh',
+        title: 'Dhammapadapāḷi',
+        pali: '18Dh · 423 Verses',
+        desc: 'The immortal 423 verses of the Buddha organized into 26 vaggas.',
+      },
+      {
+        code: '18Ud',
+        title: 'Udānapāḷi',
+        pali: '18Ud · 80 Verses of Joy',
+        desc: 'Exclamations of joy and inspired utterances, including the parable of the blind men and the elephant.',
+      },
+      {
+        code: '18It',
+        title: 'Itivuttakapāḷi',
+        pali: '18It · 112 Discourses',
+        desc: 'Thus Was It Said: short memorable discourses beginning with “vuttaṁ hetaṁ bhagavatā”.',
+      },
+      {
+        code: '18Sn',
+        title: 'Suttanipātapāḷi',
+        pali: '18Sn',
+        desc: 'Poetic masterpieces from early Buddhism: Uragavagga, Cūḷavagga, Mahāvagga, Aṭṭhakavagga, and Pārāyanavagga.',
+      },
+      {
+        code: '19Vv',
+        title: 'Vimānavatthupāḷi',
+        pali: '19Vv',
+        desc: 'Stories of celestial mansions attained through virtuous deeds and generosity.',
+      },
+      {
+        code: '19Pv',
+        title: 'Petavatthupāḷi',
+        pali: '19Pv',
+        desc: 'Stories of the hungry shades demonstrating the karmic consequences of unwholesome actions.',
+      },
+      {
+        code: '19Th1',
+        title: 'Theragāthāpāḷi',
+        pali: '19Th1 · 1,279 Verses',
+        desc: 'Verses of the Elder Monks celebrating liberation, solitude in nature, and meditative insight.',
+      },
+      {
+        code: '19Th2',
+        title: 'Therīgāthāpāḷi',
+        pali: '19Th2 · 522 Verses',
+        desc: 'Verses of the Elder Nuns commemorating their spiritual attainments and freedom.',
+      },
+      {
+        code: '20Ap1',
+        title: 'Therāpadānapāḷi',
+        pali: '20Ap1 & 20Ap2',
+        desc: 'Biographical chronicles in verse of the foremost elder disciples and arahats.',
+      },
+      {
+        code: '21Bu',
+        title: 'Buddhavaṁsapāḷi',
+        pali: '21Bu',
+        desc: 'The Chronicle of the Buddhas: life accounts of the 24 historical Buddhas preceding Gotama.',
+      },
+      {
+        code: '21Cp',
+        title: 'Cariyāpiṭakapāḷi',
+        pali: '21Cp',
+        desc: 'The Basket of Conduct: 35 stories illustrating the Bodhisatta’s perfection of the Ten Pāramīs.',
+      },
+      {
+        code: '22J',
+        title: 'Jātakapāḷi (Vols 22 & 23)',
+        pali: '22J & 23J',
+        desc: 'The 547 canonical birth stories in verse recounting previous lives of the Bodhisatta.',
+      },
+      {
+        code: '24Mn',
+        title: 'Mahāniddesapāḷi & Cūḷaniddesa',
+        pali: '24Mn & 25Cn',
+        desc: 'The ancient canonical exegetical commentary attributed to Venerable Sāriputta on the Suttanipāta.',
+      },
+      {
+        code: '26Ps',
+        title: 'Paṭisambhidāmaggapāḷi',
+        pali: '26Ps',
+        desc: 'The Path of Discrimination: systematic exposition of the four analytical knowledges and insight meditation.',
+      },
+      {
+        code: '28Mi',
+        title: 'Milindapañhapāḷi & Paracanonical',
+        pali: '27Ne, 27Pe, 28Mi',
+        desc: 'Questions of King Menander with Ven. Nāgasena, alongside Nettippakaraṇa and Peṭakopadesa.',
+      },
+    ],
+  },
+  {
+    id: 'abhidhamma',
+    name: 'Abhidhammapiṭaka (Higher Teachings)',
+    badge: '7 Treatises · 12 Volumes',
+    desc: 'The ultimate philosophical and phenomenological analysis of consciousness, mental factors, matter, and Nibbāna.',
+    books: [
+      {
+        code: '34Dh',
+        title: 'Dhammasaṅgaṇīpāḷi',
+        pali: 'Enumeration of Phenomena',
+        desc: 'The fundamental matrix of ultimate realities: classification of consciousness (Citta), mental factors (Cetasika), and matter (Rūpa).',
+      },
+      {
+        code: '35Vbh',
+        title: 'Vibhaṅgapāḷi',
+        pali: 'Book of Analysis (18 Chapters)',
+        desc: 'Detailed analytical expositions of aggregates, sense bases, elements, truths, faculties, and dependent origination.',
+      },
+      {
+        code: '36Dht',
+        title: 'Dhātukathāpāḷi',
+        pali: 'Discussion with Reference to Elements',
+        desc: 'Precise catechism determining whether mental phenomena are included in or associated with elements and sense spheres.',
+      },
+      {
+        code: '36Pu',
+        title: 'Puggalapaññattipāḷi',
+        pali: 'Designation of Human Types',
+        desc: 'Systematic characterization of human individuals and stages of spiritual attainment modeled on the Aṅguttaranikāya.',
+      },
+      {
+        code: '37Kv',
+        title: 'Kathāvatthupāḷi',
+        pali: 'Points of Controversy (Third Council)',
+        desc: 'Refutation of 216 sectarian doctrinal heresies composed by Ven. Moggaliputtatissa at the Third Council.',
+      },
+      {
+        code: '38Y',
+        title: 'Yamakapāḷi (Vols 38Y1, 38Y2, 38Y3)',
+        pali: 'The Book of Pairs',
+        desc: 'Rigorous two-way logical inquiries testing the scope and definitions of canonical psychological concepts.',
+      },
+      {
+        code: '39P',
+        title: 'Paṭṭhānapāḷi (Vols 39P1, 39P2, 40P3, 40P4, 40P5)',
+        pali: 'The Book of Conditional Relations',
+        desc: 'The monumental pinnacle of Abhidhamma: universal conditional relations across 24 causal conditions (Paccaya).',
+      },
+    ],
+  },
+];
 ---
 
 <Layout
-  title="Tipiṭaka Comparative Markdown Edition — tipitaka-md.github.io"
-  description="Comparative digital viewer for Pāḷi Tipiṭaka Markdown editions (World Tipiṭaka 2500, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath) with text variant highlighting and multi-script transliteration."
+  title="Tipiṭaka Multi-Edition Markdown — tipitaka-md.github.io"
+  description="Comparative digital reader showcasing canonical Pāḷi Tipiṭaka texts converted to Markdown across the tipitaka-md repositories: tipitaka2500 (base), Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath."
   lang="en"
 >
   <main>
+    <!-- Hero Banner -->
     <div class="hero-banner">
-      <h1>Tipiṭaka Comparative Markdown Edition</h1>
+      <h1>Tipiṭaka Multi-Edition Markdown</h1>
       <p class="lead">
-        Multi-Edition Comparative Digital Viewer for Canonical Pāḷi Texts in Markdown with
-        Text Variant Highlighting &amp; Multi-Script Transliteration
+        Open Markdown Editions of the Complete Pāḷi Canon Across 5 International Traditions
+        with Real-Time Variant Highlighting &amp; Multi-Script Transliteration
       </p>
       <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
-        <a href="/reader.html?book=1V" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; color: #fff; background-color: var(--primary-color);">
-          <span>🚀 Launch Comparative Reader (1V Pārājikapāḷi)</span>
+        <a
+          href="/reader.html?book=1V"
+          class="btn-primary"
+          style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; color: #fff; background-color: var(--primary-color);"
+        >
+          <span>🚀 Open Reader (Vinayapiṭaka 1V)</span>
         </a>
-        <a href="/reader.html?book=1V" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-tertiary);">
-          <span>📚 Browse Vinayapiṭaka</span>
+        <a
+          href="#canon-directory"
+          class="btn-secondary"
+          style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-tertiary);"
+        >
+          <span>📚 Browse Complete Canon</span>
         </a>
-        <a href="https://github.com/tipitaka-md" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-body);">
-          <span>↗ View GitHub Repos</span>
+        <a
+          href="https://github.com/tipitaka-md"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-body);"
+        >
+          <span>↗ tipitaka-md Organization</span>
         </a>
       </div>
     </div>
 
+    <!-- Project Overview -->
     <div class="home-intro-layout">
       <div>
         <p>
-          <strong>tipitaka-md.github.io</strong> provides an interactive comparative reading environment
-          for the Theravāda Buddhist Canon across five international standard editions converted into
-          plain, version-controlled <strong>Markdown format</strong>. Using <strong>The World Tipiṭaka
-          Edition (B.E. 2500 / 2020 Edition)</strong> as the canonical base, this viewer allows scholars,
-          students, and practitioners to cross-examine textual variants, orthographical traditions,
-          and readings in real time.
+          <strong>tipitaka-md.github.io</strong> is an open-access comparative reader for the
+          entire Theravāda Buddhist Canon (<em>Tipiṭaka</em>) across five international editions
+          converted into version-controlled <strong>Markdown format</strong>.
         </p>
         <p>
-          Textual differences between editions are highlighted dynamically:
+          Using <strong>The World Tipiṭaka Edition (B.E. 2500 / 2020 Edition)</strong> as the
+          canonical base text, this application allows readers to view any book or sutta in single
+          or side-by-side split view, dynamically highlighting textual variants:
         </p>
 
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1.25rem 0;">
           <span class="legend-badge legend-add" style="padding: 0.4rem 0.8rem; font-size: 0.88rem; border-radius: 6px;">
-            ● Addition: Text present in comparative edition
+            ● Addition: Word or phrase present in comparative edition
           </span>
           <span class="legend-badge legend-change" style="padding: 0.4rem 0.8rem; font-size: 0.88rem; border-radius: 6px;">
-            ● Variant / Change: Spelling or vocabulary difference
+            ● Variant / Change: Orthographical or reading difference
           </span>
           <span class="legend-badge legend-del" style="padding: 0.4rem 0.8rem; font-size: 0.88rem; border-radius: 6px;">
-            ● Omission: Text in base edition omitted
+            ● Omission: Word present in base edition omitted
           </span>
         </div>
 
         <p style="margin-bottom: 0;">
-          Select any book from the sidebar, compare two editions side-by-side with synchronized scrolling,
-          or transliterate dynamically between <strong>Roman (IAST)</strong>, <strong>Sinhala (සිංහල)</strong>,
-          <strong>Thai (ไทย)</strong>, <strong>Burmese (မြန်မာ)</strong>, and <strong>Devanagari (देवनागरी)</strong>.
+          The viewer includes client-side transliteration between <strong>Roman (IAST)</strong>,
+          <strong>Sinhala (සිංහල)</strong>, <strong>Thai (ไทย)</strong>,
+          <strong>Burmese (မြန်မာ)</strong>, and <strong>Devanagari (देवनागरी)</strong> scripts.
         </p>
       </div>
 
@@ -78,133 +418,14 @@ import Layout from '../layouts/Layout.astro';
       </figure>
     </div>
 
-    <!-- Quick Sutta Launcher -->
-    <section aria-label="Canonical Highlights &amp; Sutta Launcher" style="margin: 2.5rem 0 2rem;">
-      <h2 style="font-size: 1.35rem; font-weight: 700; margin: 0 0 1rem; color: var(--text-emphasis); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
-        ⚡ Canonical Highlights &amp; Sutta Directory
+    <!-- The 5 Markdown Repositories of tipitaka-md -->
+    <section aria-label="The 5 Repositories of tipitaka-md" style="margin: 3rem 0 2rem;">
+      <h2 style="font-size: 1.4rem; font-weight: 700; margin: 0 0 0.5rem; color: var(--text-emphasis); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+        🏛️ The 5 Repositories of the tipitaka-md Organization
       </h2>
-      <p style="color: var(--text-secondary); margin-bottom: 1.25rem;">
-        Jump straight into key discourses with multi-edition cross-referencing and variant diff highlighting active:
-      </p>
-
-      <div class="home-index-grid">
-        <a href="/reader.html?book=1V" class="home-index-card">
-          <div>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.25rem;">VINAYAPIṬAKA · BOOK 1</div>
-            <h2>1V Pārājikapāḷi</h2>
-            <p>
-              The opening book of the Tipiṭaka: Verañjakaṇḍa and the fundamental monastic rules
-              of training (Mahāvibhaṅga).
-            </p>
-          </div>
-          <span class="home-index-stat">Compare 5 Editions →</span>
-        </a>
-
-        <a href="/reader.html?book=3V" class="home-index-card">
-          <div>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.25rem;">VINAYAPIṬAKA · BOOK 3</div>
-            <h2>3V Mahāvaggapāḷi</h2>
-            <p>
-              The Great Chapter: the awakening under the Bodhi tree (Bodhikathā) and the admission
-              into the Sangha.
-            </p>
-          </div>
-          <span class="home-index-stat">Compare 5 Editions →</span>
-        </a>
-
-        <a href="/reader.html?book=6D&sutta=dn1" class="home-index-card">
-          <div>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">SUTTANTAPIṬAKA · DĪGHANIKĀYA</div>
-            <h2>DN 1 Brahmajālasutta</h2>
-            <p>
-              The Supreme Net of Views: classification of all 62 philosophical and cosmological
-              doctrines of ancient India.
-            </p>
-          </div>
-          <span class="home-index-stat">Compare 5 Editions →</span>
-        </a>
-
-        <a href="/reader.html?book=6D&sutta=dn2" class="home-index-card">
-          <div>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">SUTTANTAPIṬAKA · DĪGHANIKĀYA</div>
-            <h2>DN 2 Sāmaññaphalasutta</h2>
-            <p>
-              The Fruits of the Contemplative Life: King Ajātasattu inquires about the tangible
-              benefits of monastic training.
-            </p>
-          </div>
-          <span class="home-index-stat">Compare 5 Editions →</span>
-        </a>
-
-        <a href="/reader.html?book=7D&sutta=dn16" class="home-index-card">
-          <div>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">SUTTANTAPIṬAKA · DĪGHANIKĀYA</div>
-            <h2>DN 16 Mahāparinibbāna</h2>
-            <p>
-              The Great Passing of the Buddha: final journey from Rājagaha to Kusinārā, instructions
-              to Ānanda, and the Four Great Authorities.
-            </p>
-          </div>
-          <span class="home-index-stat">Compare 5 Editions →</span>
-        </a>
-
-        <a href="/reader.html?book=9M&sutta=mn10" class="home-index-card">
-          <div>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">SUTTANTAPIṬAKA · MAJJHIMANIKĀYA</div>
-            <h2>MN 10 Satipaṭṭhānasutta</h2>
-            <p>
-              The Direct Path to Liberation: the Four Foundations of Mindfulness (body, feelings,
-              mind, and mental qualities).
-            </p>
-          </div>
-          <span class="home-index-stat">Compare 5 Editions →</span>
-        </a>
-
-        <a href="/reader.html?book=14S5&sutta=sn56_11" class="home-index-card">
-          <div>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">SUTTANTAPIṬAKA · SAṀYUTTANIKĀYA</div>
-            <h2>SN 56.11 Dhammacakka</h2>
-            <p>
-              Setting the Wheel of Dhamma in Motion: the first sermon at the Deer Park in Bārāṇasī,
-              the Middle Way, and Four Noble Truths.
-            </p>
-          </div>
-          <span class="home-index-stat">Compare 5 Editions →</span>
-        </a>
-
-        <a href="/reader.html?book=18Dh" class="home-index-card">
-          <div>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">SUTTANTAPIṬAKA · KHUDDAKANIKĀYA</div>
-            <h2>KN 2 Dhammapada</h2>
-            <p>
-              Treasury of Truth: 423 beloved aphorisms and verses of canonical Buddhist wisdom arranged
-              in 26 chapters (vaggas).
-            </p>
-          </div>
-          <span class="home-index-stat">Compare 5 Editions →</span>
-        </a>
-
-        <a href="/reader.html?book=34Dh" class="home-index-card">
-          <div>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.25rem;">ABHIDHAMMAPIṬAKA · BOOK 1</div>
-            <h2>34Dh Dhammasaṅgaṇī</h2>
-            <p>
-              Enumeration of Phenomena: the foundational philosophical treatise analyzing mental factors
-              and consciousness.
-            </p>
-          </div>
-          <span class="home-index-stat">Compare 5 Editions →</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- The 5 Editions Grid -->
-    <section aria-label="The Five Comparative Editions" style="margin: 2.5rem 0 2rem;">
-      <h2 style="font-size: 1.35rem; font-weight: 700; margin: 0 0 1rem; color: var(--text-emphasis); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
-        📖 The Five Canonical Editions in Markdown
-      </h2>
-      <p style="color: var(--text-secondary); margin-bottom: 1.25rem;">
-        Each edition is independently hosted and maintained in clean GitHub repositories:
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+        All canonical texts are published in open Markdown format across the repositories of the
+        <a href="https://github.com/tipitaka-md" target="_blank" rel="noopener noreferrer">tipitaka-md GitHub organization</a>:
       </p>
 
       <div class="home-index-grid">
@@ -213,15 +434,16 @@ import Layout from '../layouts/Layout.astro';
           target="_blank"
           rel="noopener noreferrer"
           class="home-index-card"
+          style="border-left: 4px solid var(--primary-color);"
         >
           <div>
             <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.35rem;">
-              BASE REFERENCE EDITION
+              BASE TEXT FOR COMPARISON
             </div>
-            <h2>🌟 World Tipiṭaka 2500 (T2500)</h2>
+            <h2>🌟 tipitaka2500 (Base Edition)</h2>
             <p>
-              The 40-volume Roman-script World Tipiṭaka Edition (B.E. 2500 / 2020 Edition), collated by canonical
-              scholars against 18 international editions with comprehensive critical apparatus variant footnotes.
+              The complete 40-volume Roman-script World Tipiṭaka Edition (Mahāsaṅgīti Tipiṭaka Buddhavasse 2500 / 2020 Edition).
+              Converted into 20,190+ individual Markdown files covering the entire Canon.
             </p>
           </div>
           <span class="home-index-stat">tipitaka-md/tipitaka2500 ↗</span>
@@ -232,10 +454,11 @@ import Layout from '../layouts/Layout.astro';
           target="_blank"
           rel="noopener noreferrer"
           class="home-index-card"
+          style="border-left: 4px solid #165b48;"
         >
           <div>
             <div style="font-size: 0.85rem; font-weight: 700; color: #165b48; margin-bottom: 0.35rem;">
-              LONDON / GRETIL EDITION
+              LONDON / GRETIL ARCHIVE
             </div>
             <h2>🇬🇧 Pali Text Society (PTS)</h2>
             <p>
@@ -251,6 +474,7 @@ import Layout from '../layouts/Layout.astro';
           target="_blank"
           rel="noopener noreferrer"
           class="home-index-card"
+          style="border-left: 4px solid #85677b;"
         >
           <div>
             <div style="font-size: 0.85rem; font-weight: 700; color: #85677b; margin-bottom: 0.35rem;">
@@ -259,7 +483,7 @@ import Layout from '../layouts/Layout.astro';
             <h2>🇱🇰 Buddha Jayanthi (BJT)</h2>
             <p>
               The official Sri Lankan Government 57-volume Buddha Jayanthi Tripitaka Series (1956–1989). Converted
-              from SuttaCentral / AP95 Unicode sources with preserved BJT volume and page numbering anchors.
+              from SuttaCentral and AP95 Unicode sources with preserved BJT volume and page numbering.
             </p>
           </div>
           <span class="home-index-stat">tipitaka-md/buddha-jayanthi ↗</span>
@@ -270,6 +494,7 @@ import Layout from '../layouts/Layout.astro';
           target="_blank"
           rel="noopener noreferrer"
           class="home-index-card"
+          style="border-left: 4px solid #695d08;"
         >
           <div>
             <div style="font-size: 0.85rem; font-weight: 700; color: #695d08; margin-bottom: 0.35rem;">
@@ -289,6 +514,7 @@ import Layout from '../layouts/Layout.astro';
           target="_blank"
           rel="noopener noreferrer"
           class="home-index-card"
+          style="border-left: 4px solid #96254a;"
         >
           <div>
             <div style="font-size: 0.85rem; font-weight: 700; color: #96254a; margin-bottom: 0.35rem;">
@@ -303,30 +529,91 @@ import Layout from '../layouts/Layout.astro';
           <span class="home-index-stat">tipitaka-md/siam-rath ↗</span>
         </a>
 
-        <a href="/reader.html?book=6D" class="home-index-card" style="border-style: dashed;">
+        <a
+          href="/reader.html?book=1V&mode=split"
+          class="home-index-card"
+          style="border-left: 4px solid #3d6889; background: var(--bg-secondary);"
+        >
           <div>
-            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.35rem;">
-              INTERACTIVE VIEWER
+            <div style="font-size: 0.85rem; font-weight: 700; color: #3d6889; margin-bottom: 0.35rem;">
+              DUAL-PANE COLLATOR
             </div>
-            <h2>⚡ Open Comparative Reader</h2>
+            <h2>⚖️ Side-by-Side Comparison</h2>
             <p>
-              Launch the multi-pane reading shell. Compare any book or sutta side-by-side with synchronized scrolling,
-              variant diffing, and live script transliteration.
+              Open any two editions side-by-side with synchronized scrolling, real-time variant highlighting,
+              and synchronized chapter navigation across all 5 repositories.
             </p>
           </div>
-          <span class="home-index-stat">Open Reader →</span>
+          <span class="home-index-stat">Open Dual-Pane Reader →</span>
         </a>
       </div>
     </section>
 
-    <p style="margin-top: 2rem;">
-      This website is created and maintained by <strong>Chris Tham</strong> (<a href="mailto:chris@christham.net">chris@christham.net</a>),
-      author of the online <a href="https://christham.net/buddhavacana/pali-textbook/0-status/" target="_blank" rel="noopener noreferrer">Pāḷi Textbook</a>.
-    </p>
-    <p>
-      <img src="/images/cc-zero.svg" alt="" aria-hidden="true" width="16" height="16" class="cc-icon" />
-      CC0: This work has been marked as dedicated to the public domain.{' '}
-      <a href="https://creativecommons.org/publicdomain/zero/1.0/">See the CC0 Deed</a>.
-    </p>
+    <!-- Complete Canon Showcase (All 3 Pitakas / All Books) -->
+    <section id="canon-directory" aria-label="Complete Canon Directory" style="margin: 3.5rem 0 2.5rem;">
+      <div style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+        <h2 style="font-size: 1.45rem; font-weight: 700; margin: 0 0 0.35rem; color: var(--text-emphasis);">
+          📖 Complete Tipiṭaka Directory
+        </h2>
+        <p style="color: var(--text-secondary); margin: 0;">
+          Explore and compare every book of the Tipiṭaka across the 5 Markdown editions. Click any book to launch the comparative viewer:
+        </p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 2.5rem;">
+        {CANON_SECTIONS.map((section) => (
+          <div class="canon-section-block">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0; color: var(--text-emphasis);">
+                {section.name}
+              </h3>
+              <span class="badge-pill" style="font-size: 0.8rem;">{section.badge}</span>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem;">
+              {section.desc}
+            </p>
+
+            <div class="home-index-grid">
+              {section.books.map((book) => (
+                <a
+                  href={`/reader.html?book=${encodeURIComponent(book.code)}`}
+                  class="home-index-card"
+                  title={`Open ${book.title} (${book.code}) in Comparative Reader`}
+                >
+                  <div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.35rem;">
+                      <span class="badge-code" style="font-size: 0.82rem; font-weight: 700;">
+                        {book.code}
+                      </span>
+                      <span style="font-size: 0.8rem; color: var(--text-secondary); font-style: italic;">
+                        {book.pali}
+                      </span>
+                    </div>
+                    <h4 style="font-size: 1.05rem; font-weight: 700; margin: 0 0 0.35rem; color: var(--text-emphasis);">
+                      {book.title}
+                    </h4>
+                    <p style="font-size: 0.88rem; line-height: 1.5; margin: 0;">
+                      {book.desc}
+                    </p>
+                  </div>
+                  <span class="home-index-stat">Compare 5 Editions →</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <footer style="margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); font-size: 0.9rem; color: var(--text-secondary);">
+      <p>
+        <strong>tipitaka-md</strong> is an open-source project dedicated to preserving, structuring, and comparing canonical Pāḷi literature in plain text Markdown.
+        Created and maintained by <strong>Chris Tham</strong> (<a href="mailto:chris@christham.net">chris@christham.net</a>).
+      </p>
+      <p style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+        <img src="/images/cc-zero.svg" alt="" aria-hidden="true" width="16" height="16" class="cc-icon" />
+        <span>CC0: Dedicated to the public domain. <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">See CC0 1.0 Universal Deed</a>.</span>
+      </p>
+    </footer>
   </main>
 </Layout>
