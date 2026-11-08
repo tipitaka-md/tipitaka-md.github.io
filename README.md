@@ -29,7 +29,14 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
    - Switch editions on the fly in either pane with instant tab switching.
    - Synchronized scrolling between parallel panes.
 
-2. **On-the-Fly Script Transliteration**
+2. **Text Variant Highlighting against Base (World Tipiṭaka 2500)**
+   - Automatically diffs any comparative edition (`PTS`, `BJT`, `CST4`, `Siam Rath`) against the base `T2500` text in real time:
+     - 🟩 **Light Green**: **Addition** (words/phrases present in the edition that are not in T2500).
+     - 🟨 **Light Yellow**: **Change / Variant** (variant readings, sandhi, orthography, and spelling variants with hover tooltip showing the T2500 reading).
+     - 🟥 **Light Pink**: **Deletion** (words in T2500 omitted in this edition, shown with strikethrough).
+   - One-click toggle (`✨ Diff`) in the header toolbar to turn diff highlighting on/off.
+
+3. **On-the-Fly Script Transliteration**
    - Bidirectional client-side transliteration engine (`transliterator.js`):
      - **IAST Roman**
      - **Sinhala** (සිංහල)

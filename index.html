@@ -45,6 +45,7 @@
         <option value="devanagari">देवनागरी (Devanagari)</option>
       </select>
 
+      <button class="icon-btn diff-toggle-btn active" id="diff-toggle" title="Toggle Variant Highlighting vs T2500 (Green: Add, Yellow: Change, Pink: Del)" aria-label="Toggle Variant Highlighting">✨</button>
       <button class="icon-btn" id="split-toggle" title="Compare Editions (Dual Pane)" aria-label="Toggle Split Comparison Mode">◫</button>
       <button class="icon-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">📜</button>
     </div>
@@ -86,8 +87,8 @@
             <div class="edition-tabs" id="primary-tabs">
               <!-- Primary edition tabs -->
             </div>
-            <div style="font-size: 11px; color: var(--text-muted); font-weight: 500;">
-              Primary Text
+            <div class="pane-toolbar-meta" id="primary-toolbar-meta">
+              <!-- Diff Legend or Metadata -->
             </div>
           </div>
           <div class="pane-content" id="primary-content">
@@ -104,8 +105,8 @@
             <div class="edition-tabs" id="compare-tabs">
               <!-- Compare edition tabs -->
             </div>
-            <div style="font-size: 11px; color: var(--accent-color); font-weight: 600;">
-              Comparison Text
+            <div class="pane-toolbar-meta" id="compare-toolbar-meta">
+              <!-- Diff Legend or Metadata -->
             </div>
           </div>
           <div class="pane-content" id="compare-content">

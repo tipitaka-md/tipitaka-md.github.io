@@ -40,6 +40,19 @@
   --verse-bg: rgba(126, 34, 206, 0.04);
   --page-marker-bg: #f8fafc;
   --page-marker-border: #cbd5e1;
+
+  /* Text Variant Diff Colors (Light) */
+  --diff-add-bg: #dcfce7;
+  --diff-add-text: #14532d;
+  --diff-add-border: #86efac;
+
+  --diff-change-bg: #fef08a;
+  --diff-change-text: #713f12;
+  --diff-change-border: #fde047;
+
+  --diff-del-bg: #fce7f3;
+  --diff-del-text: #831843;
+  --diff-del-border: #f9a8d4;
 }
 
 [data-theme="sepia"] {
@@ -68,6 +81,19 @@
   --verse-bg: rgba(135, 62, 22, 0.05);
   --page-marker-bg: #ebd7ae;
   --page-marker-border: #d5bd90;
+
+  /* Text Variant Diff Colors (Sepia) */
+  --diff-add-bg: #cdecd2;
+  --diff-add-text: #1a4d25;
+  --diff-add-border: #8edaa0;
+
+  --diff-change-bg: #f5e8b0;
+  --diff-change-text: #614609;
+  --diff-change-border: #e6cb6c;
+
+  --diff-del-bg: #f5d4e4;
+  --diff-del-text: #6d1b46;
+  --diff-del-border: #e69abf;
 }
 
 [data-theme="dark"] {
@@ -96,6 +122,19 @@
   --verse-bg: rgba(168, 85, 247, 0.08);
   --page-marker-bg: #1e293b;
   --page-marker-border: #475569;
+
+  /* Text Variant Diff Colors (Dark) */
+  --diff-add-bg: rgba(34, 197, 94, 0.28);
+  --diff-add-text: #86efac;
+  --diff-add-border: rgba(74, 222, 128, 0.5);
+
+  --diff-change-bg: rgba(234, 179, 8, 0.28);
+  --diff-change-text: #fef08a;
+  --diff-change-border: rgba(250, 204, 21, 0.5);
+
+  --diff-del-bg: rgba(244, 63, 94, 0.28);
+  --diff-del-text: #fbcfe8;
+  --diff-del-border: rgba(251, 113, 133, 0.5);
 }
 
 * {
@@ -875,6 +914,88 @@ sup.footnote-ref a:hover {
   font-size: 13px;
   line-height: 1.6;
   color: var(--text-secondary);
+}
+
+/* ==================== Diff Highlighting ==================== */
+.diff-add {
+  background-color: var(--diff-add-bg);
+  color: var(--diff-add-text);
+  border-bottom: 2px solid var(--diff-add-border);
+  padding: 1px 3px;
+  border-radius: 3px;
+  font-weight: 500;
+  transition: background-color 0.15s ease;
+}
+
+.diff-change {
+  background-color: var(--diff-change-bg);
+  color: var(--diff-change-text);
+  border-bottom: 2px solid var(--diff-change-border);
+  padding: 1px 3px;
+  border-radius: 3px;
+  cursor: help;
+  position: relative;
+  transition: background-color 0.15s ease;
+}
+
+.diff-del {
+  background-color: var(--diff-del-bg);
+  color: var(--diff-del-text);
+  border-bottom: 2px solid var(--diff-del-border);
+  text-decoration: line-through;
+  padding: 1px 3px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  opacity: 0.85;
+  margin: 0 1px;
+  cursor: help;
+  transition: background-color 0.15s ease;
+}
+
+.diff-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+.legend-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.3px;
+  user-select: none;
+}
+
+.legend-badge.legend-add {
+  background-color: var(--diff-add-bg);
+  color: var(--diff-add-text);
+  border: 1px solid var(--diff-add-border);
+}
+
+.legend-badge.legend-change {
+  background-color: var(--diff-change-bg);
+  color: var(--diff-change-text);
+  border: 1px solid var(--diff-change-border);
+}
+
+.legend-badge.legend-del {
+  background-color: var(--diff-del-bg);
+  color: var(--diff-del-text);
+  border: 1px solid var(--diff-del-border);
+}
+
+.diff-toggle-btn {
+  font-weight: 600;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.diff-toggle-btn.active {
+  background-color: var(--accent-light);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 /* ==================== Responsive ==================== */

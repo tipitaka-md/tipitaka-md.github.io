@@ -4,6 +4,7 @@
  */
 
 import { transliteratePali } from './transliterator.js';
+import { highlightPaliDiff } from './diff.js';
 
 // Application State
 const state = {
@@ -13,12 +14,14 @@ const state = {
   primaryEdition: 'tipitaka2500',
   compareEdition: 'pts',
   splitMode: false,
+  highlightDiff: localStorage.getItem('tipitaka_diff') !== 'false',
   targetScript: 'iast',
   theme: localStorage.getItem('tipitaka_theme') || 'light',
   fontSize: parseInt(localStorage.getItem('tipitaka_fontsize') || '18', 10),
   syncScroll: true,
   sidebarCollapsed: false,
   cache: new Map(),
+  t2500Cache: new Map(),
   currentPaths: { primary: null, compare: null },
   isScrolling: false,
   activeFootnote: null
@@ -36,6 +39,7 @@ const REPO_MAP = {
 // UI Element References
 const elements = {
   themeToggle: document.getElementById('theme-toggle'),
+  diffToggle: document.getElementById('diff-toggle'),
   fontSizeDec: document.getElementById('font-size-dec'),
   fontSizeInc: document.getElementById('font-size-inc'),
   scriptSelect: document.getElementById('script-select'),
@@ -199,6 +203,7 @@ async function loadPaneContent(paneType, editionKey, specificPath = null) {
           Select another edition from the tabs above.
         </p>
       </div>`;
+    updatePaneToolbarLegend(paneType, editionKey);
     return;
   }
 
@@ -209,13 +214,23 @@ async function loadPaneContent(paneType, editionKey, specificPath = null) {
     </div>`;
 
   try {
-    const markdown = await fetchEditionMarkdown(editionKey, editionPath);
+    let markdown = await fetchEditionMarkdown(editionKey, editionPath);
+
+    // For editions other than tipitaka2500: apply variant diff highlights vs T2500
+    if (editionKey !== 'tipitaka2500' && state.highlightDiff) {
+      const baseT2500 = await getT2500BaseMarkdown(item);
+      if (baseT2500) {
+        markdown = highlightPaliDiff(markdown, baseT2500);
+      }
+    }
+
     const html = parseMarkdown(markdown, editionKey, paneType, editionPath);
     container.innerHTML = `<article class="article-body">${html}</article>`;
     container.scrollTop = 0;
     attachFootnoteListeners(container);
     attachLinkListeners(container, paneType);
     attachCombineSectionsListener(container, paneType, editionKey, editionPath, markdown);
+    updatePaneToolbarLegend(paneType, editionKey);
   } catch (err) {
     container.innerHTML = `
       <div class="empty-state">
@@ -224,6 +239,77 @@ async function loadPaneContent(paneType, editionKey, specificPath = null) {
           Retry
         </button>
       </div>`;
+    updatePaneToolbarLegend(paneType, editionKey);
+  }
+}
+
+// Update the legend and metadata on the right side of the pane toolbar
+function updatePaneToolbarLegend(paneType, editionKey) {
+  const metaEl = paneType === 'primary' 
+    ? document.getElementById('primary-toolbar-meta') 
+    : document.getElementById('compare-toolbar-meta');
+  if (!metaEl) return;
+
+  if (editionKey === 'tipitaka2500') {
+    metaEl.innerHTML = `
+      <span style="font-size: 11px; color: var(--accent-color); font-weight: 600;">
+        🌟 Base Edition (T2500)
+      </span>
+    `;
+  } else if (state.highlightDiff) {
+    metaEl.innerHTML = `
+      <div class="diff-legend" title="Text variant highlights against World Tipiṭaka 2500">
+        <span class="legend-badge legend-add" title="Text added in this edition (Light Green)">+Add</span>
+        <span class="legend-badge legend-change" title="Variant reading / spelling change (Light Yellow)">~Var</span>
+        <span class="legend-badge legend-del" title="Text omitted in this edition (Light Pink)">-Del</span>
+      </div>
+    `;
+  } else {
+    metaEl.innerHTML = `
+      <span style="font-size: 11px; color: var(--text-muted);">
+        ${paneType === 'primary' ? 'Primary Text' : 'Comparison Text'}
+      </span>
+    `;
+  }
+}
+
+// Retrieve base T2500 markdown for diffing (combining sections if index)
+async function getT2500BaseMarkdown(item) {
+  if (!item || !item.editions || !item.editions.tipitaka2500) return null;
+  const t2500Path = item.editions.tipitaka2500;
+  const itemId = item.id || item.code;
+
+  if (state.t2500Cache.has(itemId)) {
+    return state.t2500Cache.get(itemId);
+  }
+
+  try {
+    const rawMd = await fetchEditionMarkdown('tipitaka2500', t2500Path);
+    const sectionLinks = [...rawMd.matchAll(/[*+-]\s+\[([^\]]+)\]\(([^)]+\.md)\)/g)].map(m => ({ title: m[1], url: m[2] }));
+    let fullMd = rawMd;
+
+    if (sectionLinks.length > 1) {
+      const sections = await Promise.all(
+        sectionLinks.map(async (sec) => {
+          const secPath = resolveRelativePath(t2500Path, sec.url);
+          const secMd = await fetchEditionMarkdown('tipitaka2500', secPath);
+          return secMd.split('\n').filter(l => {
+            const t = l.trim();
+            return !t.startsWith('[Home](') && 
+                   !t.startsWith('[Go to previous page') && 
+                   !t.startsWith('[Go to parent page') && 
+                   !t.startsWith('[Go to next page');
+          }).join('\n');
+        })
+      );
+      fullMd = sections.join('\n\n');
+    }
+
+    state.t2500Cache.set(itemId, fullMd);
+    return fullMd;
+  } catch (err) {
+    console.warn('Could not fetch T2500 base for diff:', err);
+    return null;
   }
 }
 
@@ -911,6 +997,20 @@ function applyFontSize(size) {
 function setupEventListeners() {
   // Theme toggle
   elements.themeToggle.addEventListener('click', toggleTheme);
+
+  // Diff variant highlighting toggle
+  if (elements.diffToggle) {
+    elements.diffToggle.classList.toggle('active', state.highlightDiff);
+    elements.diffToggle.addEventListener('click', () => {
+      state.highlightDiff = !state.highlightDiff;
+      localStorage.setItem('tipitaka_diff', state.highlightDiff);
+      elements.diffToggle.classList.toggle('active', state.highlightDiff);
+      if (state.currentItem) {
+        loadPaneContent('primary', state.primaryEdition);
+        if (state.splitMode) loadPaneContent('compare', state.compareEdition);
+      }
+    });
+  }
 
   // Font size buttons
   elements.fontSizeDec.addEventListener('click', () => applyFontSize(state.fontSize - 1));
