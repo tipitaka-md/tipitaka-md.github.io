@@ -427,13 +427,13 @@ const jsonLdString = JSON.stringify({
 
         function resolveCitationUrl(data, bookCode, pnum) {
           const ranges = data.ranges[bookCode];
-          if (!ranges) return null;
+          if (!ranges) return `/reader.html?book=${bookCode}`;
           for (const [start, end, shortPage] of ranges) {
             if (pnum >= start && pnum <= end) {
-              return `/tipitaka/${shortPage}.html#p_${bookCode}_${pnum}`;
+              return `/reader.html?file=tipitaka/${shortPage}.md#p_${bookCode}_${pnum}`;
             }
           }
-          return `/tipitaka/${bookCode}.html`;
+          return `/reader.html?book=${bookCode}`;
         }
 
         async function renderQuickJump(rawQuery) {
