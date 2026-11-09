@@ -178,9 +178,9 @@ def build_catalog():
             # Sub-index in tipitaka2500 (e.g. 6D/1.md)
             local_idx = snum if bcode == '6D' else (snum - 13 if bcode == '7D' else snum - 23)
             s_entry = {
-                "id": f"dn{snum}",
-                "citation": f"DN {snum}",
-                "title": f"{snum}. {s_name}",
+                "id": f"{bcode.lower()}_{local_idx}",
+                "citation": f"{bcode}/{local_idx}",
+                "title": f"{local_idx}. {s_name}",
                 "pali_title": s_name,
                 "editions": {
                     "tipitaka2500": f"tipitaka/{bcode}/{local_idx}.md",
@@ -234,9 +234,9 @@ def build_catalog():
             bjt_sub = f"sutta/mn/mn-{vol_idx}.md" if v_idx == 1 else f"sutta/mn/mn-{vol_idx}-{v_idx}.md"
 
             s_entry = {
-                "id": f"mn{snum}",
-                "citation": f"MN {snum}",
-                "title": f"MN {snum}",
+                "id": f"{bcode.lower()}_{v_idx}_{s_idx}",
+                "citation": f"{bcode}/{v_idx}.{s_idx}",
+                "title": f"{btitle} · {v_idx}.{s_idx}",
                 "editions": {
                     "tipitaka2500": t2500_sub,
                     "pts": f"sutta/mn/mn{snum:03d}.md",
@@ -306,9 +306,9 @@ def build_catalog():
         for snum in s_range:
             local_idx = snum - s_range[0] + 1
             s_entry = {
-                "id": f"sn{snum}",
-                "citation": f"SN {snum}",
-                "title": f"SN {snum}",
+                "id": f"{bcode.lower()}_{local_idx}",
+                "citation": f"{bcode}/{local_idx}",
+                "title": f"{btitle} · Saṁyutta {local_idx}",
                 "editions": {
                     "tipitaka2500": f"tipitaka/{bcode}/{local_idx}.md",
                     "pts": f"sutta/sn/sn{snum:02d}.md",
@@ -348,9 +348,9 @@ def build_catalog():
     for bcode, btitle, t2500_file, n_num, pts_file, bjt_file, cst_file, sr_file in an_volumes:
         b_entry = {
             "code": bcode,
-            "title": f"AN {n_num} ({btitle})",
+            "title": f"{bcode} {btitle}",
             "pali_title": btitle,
-            "citation": f"AN {n_num}",
+            "citation": f"{bcode}",
             "nikaya": "Aṅguttaranikāya",
             "pitaka": "Suttantapiṭaka",
             "editions": {

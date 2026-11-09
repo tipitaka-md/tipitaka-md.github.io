@@ -285,20 +285,20 @@ const jsonLdString = JSON.stringify({
     <!-- Quick Jump Modal for searching books and suttas -->
     <dialog id="quick-jump-dialog" class="modal-dialog" aria-labelledby="quick-jump-title">
       <div class="modal-header">
-        <h2 id="quick-jump-title" class="modal-title">Quick Jump to Book or Sutta</h2>
+        <h2 id="quick-jump-title" class="modal-title">Quick Jump to Paragraph, Book, or Sutta</h2>
         <button type="button" class="modal-close-btn" id="close-quick-jump" aria-label="Close dialog">
           ✕
         </button>
       </div>
       <div class="modal-body">
         <label for="quick-jump-input" class="form-label">
-          Search by book code (e.g. <code>1V</code>, <code>6D</code>, <code>18Dh</code>), sutta title, or citation:
+          Search by WTK volume &amp; paragraph (e.g. <code>1V:0001</code>, <code>6D:0001</code>), book code (e.g. <code>1V</code>, <code>6D</code>), or title:
         </label>
         <input
           type="search"
           id="quick-jump-input"
           class="form-input"
-          placeholder="Type 1V, 6D, Brahmajāla, Dhammapada, or Mahāvibhaṅga…"
+          placeholder="Type 1V:0001, 6D:0001, 18Dh, Brahmajāla, or Mahāvibhaṅga…"
           autocomplete="off"
           spellcheck="false"
         />
@@ -384,6 +384,18 @@ const jsonLdString = JSON.stringify({
           return catalogData;
         }
 
+        let wtkParagraphs = null;
+        async function ensureWtkParagraphs() {
+          if (wtkParagraphs) return wtkParagraphs;
+          try {
+            const res = await fetch('/wtk_paragraphs.json');
+            wtkParagraphs = await res.json();
+          } catch {
+            wtkParagraphs = {};
+          }
+          return wtkParagraphs;
+        }
+
         function stripDiacritics(str) {
           return (str || '')
             .normalize('NFKD')
@@ -392,12 +404,49 @@ const jsonLdString = JSON.stringify({
         }
 
         async function renderQuickJump(rawQuery) {
-          const data = await ensureCatalogData();
           const q = (rawQuery || '').trim();
           const qNorm = stripDiacritics(q);
           const htmlParts = [];
+          let wtkMatchCount = 0;
 
-          if (!data || !data.structure) return;
+          // Check for WTK volume:paragraph citation (e.g. "1V:0001", "1V:41", "6D:0189", "6D:189")
+          const wtkMatch = q.match(/^([0-9]{1,2}[A-Za-z0-9]+)\s*[:.]\s*(\d+)$/i);
+          if (wtkMatch) {
+            const volCode = wtkMatch[1].toUpperCase();
+            const parNum = parseInt(wtkMatch[2], 10);
+            const wtkData = await ensureWtkParagraphs();
+            const matchedKey = Object.keys(wtkData).find((k) => k.toUpperCase() === volCode);
+            if (matchedKey && Array.isArray(wtkData[matchedKey])) {
+              const sections = wtkData[matchedKey];
+              const foundSec = sections.find(([start, end]) => parNum >= start && parNum <= end);
+              if (foundSec) {
+                const [start, end, filePath, title] = foundSec;
+                wtkMatchCount = 1;
+                const paddedPar = String(parNum).padStart(4, '0');
+                const targetUrl = `/reader.html?edition=tipitaka2500&book=${encodeURIComponent(matchedKey)}&file=${encodeURIComponent(filePath)}#p${parNum}`;
+                htmlParts.push(`
+                  <div class="quick-jump-group">
+                    <div class="quick-jump-group-title">WTK Citation Match</div>
+                    <a href="${targetUrl}" class="quick-jump-item" style="border-left: 3px solid var(--primary-color);">
+                      <div>
+                        <strong>WTK ${matchedKey}:${paddedPar}</strong> <span class="badge-code">${matchedKey} § ${start}–${end}</span>
+                        <div class="quick-jump-sub">${title}</div>
+                      </div>
+                      <span class="badge-pill">Jump to Paragraph →</span>
+                    </a>
+                  </div>
+                `);
+              }
+            }
+          }
+
+          const data = await ensureCatalogData();
+          if (!data || !data.structure) {
+            if (htmlParts.length > 0) {
+              resultsEl.innerHTML = htmlParts.join('');
+            }
+            return;
+          }
 
           // Collect all books and suttas
           const allBooks = [];
@@ -488,7 +537,7 @@ const jsonLdString = JSON.stringify({
 
           resultsEl.innerHTML = htmlParts.join('');
           if (statusEl) {
-            statusEl.textContent = `${matchingBooks.length + matchingSuttas.length} results shown.`;
+            statusEl.textContent = `${wtkMatchCount + matchingBooks.length + matchingSuttas.length} results shown.`;
           }
         }
 

@@ -333,8 +333,8 @@
           },
           "suttas": [
             {
-              "id": "dn1",
-              "citation": "DN 1",
+              "id": "6d_1",
+              "citation": "6D/1",
               "title": "1. Brahmajālasutta",
               "pali_title": "Brahmajālasutta",
               "editions": {
@@ -346,8 +346,8 @@
               }
             },
             {
-              "id": "dn2",
-              "citation": "DN 2",
+              "id": "6d_2",
+              "citation": "6D/2",
               "title": "2. Sāmaññaphalasutta",
               "pali_title": "Sāmaññaphalasutta",
               "editions": {
@@ -359,8 +359,8 @@
               }
             },
             {
-              "id": "dn3",
-              "citation": "DN 3",
+              "id": "6d_3",
+              "citation": "6D/3",
               "title": "3. Ambaṭṭhasutta",
               "pali_title": "Ambaṭṭhasutta",
               "editions": {
@@ -372,8 +372,8 @@
               }
             },
             {
-              "id": "dn4",
-              "citation": "DN 4",
+              "id": "6d_4",
+              "citation": "6D/4",
               "title": "4. Soṇadaṇḍasutta",
               "pali_title": "Soṇadaṇḍasutta",
               "editions": {
@@ -385,8 +385,8 @@
               }
             },
             {
-              "id": "dn5",
-              "citation": "DN 5",
+              "id": "6d_5",
+              "citation": "6D/5",
               "title": "5. Kūṭadantasutta",
               "pali_title": "Kūṭadantasutta",
               "editions": {
@@ -398,8 +398,8 @@
               }
             },
             {
-              "id": "dn6",
-              "citation": "DN 6",
+              "id": "6d_6",
+              "citation": "6D/6",
               "title": "6. Mahālisutta",
               "pali_title": "Mahālisutta",
               "editions": {
@@ -411,8 +411,8 @@
               }
             },
             {
-              "id": "dn7",
-              "citation": "DN 7",
+              "id": "6d_7",
+              "citation": "6D/7",
               "title": "7. Jāliyasutta",
               "pali_title": "Jāliyasutta",
               "editions": {
@@ -424,8 +424,8 @@
               }
             },
             {
-              "id": "dn8",
-              "citation": "DN 8",
+              "id": "6d_8",
+              "citation": "6D/8",
               "title": "8. Mahāsīhanādasutta",
               "pali_title": "Mahāsīhanādasutta",
               "editions": {
@@ -437,8 +437,8 @@
               }
             },
             {
-              "id": "dn9",
-              "citation": "DN 9",
+              "id": "6d_9",
+              "citation": "6D/9",
               "title": "9. Poṭṭhapādasutta",
               "pali_title": "Poṭṭhapādasutta",
               "editions": {
@@ -450,8 +450,8 @@
               }
             },
             {
-              "id": "dn10",
-              "citation": "DN 10",
+              "id": "6d_10",
+              "citation": "6D/10",
               "title": "10. Subhasutta",
               "pali_title": "Subhasutta",
               "editions": {
@@ -463,8 +463,8 @@
               }
             },
             {
-              "id": "dn11",
-              "citation": "DN 11",
+              "id": "6d_11",
+              "citation": "6D/11",
               "title": "11. Kevaṭṭasutta",
               "pali_title": "Kevaṭṭasutta",
               "editions": {
@@ -476,8 +476,8 @@
               }
             },
             {
-              "id": "dn12",
-              "citation": "DN 12",
+              "id": "6d_12",
+              "citation": "6D/12",
               "title": "12. Lohiccasutta",
               "pali_title": "Lohiccasutta",
               "editions": {
@@ -489,8 +489,8 @@
               }
             },
             {
-              "id": "dn13",
-              "citation": "DN 13",
+              "id": "6d_13",
+              "citation": "6D/13",
               "title": "13. Tevijjasutta",
               "pali_title": "Tevijjasutta",
               "editions": {
@@ -516,9 +516,9 @@
           },
           "suttas": [
             {
-              "id": "dn14",
-              "citation": "DN 14",
-              "title": "14. Mahāpadānasutta",
+              "id": "7d_1",
+              "citation": "7D/1",
+              "title": "1. Mahāpadānasutta",
               "pali_title": "Mahāpadānasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/7D/1.md",
@@ -529,9 +529,9 @@
               }
             },
             {
-              "id": "dn15",
-              "citation": "DN 15",
-              "title": "15. Mahānidānasutta",
+              "id": "7d_2",
+              "citation": "7D/2",
+              "title": "2. Mahānidānasutta",
               "pali_title": "Mahānidānasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/7D/2.md",
@@ -542,9 +542,9 @@
               }
             },
             {
-              "id": "dn16",
-              "citation": "DN 16",
-              "title": "16. Mahāparinibbānasutta",
+              "id": "7d_3",
+              "citation": "7D/3",
+              "title": "3. Mahāparinibbānasutta",
               "pali_title": "Mahāparinibbānasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/7D/3.md",
@@ -555,9 +555,9 @@
               }
             },
             {
-              "id": "dn17",
-              "citation": "DN 17",
-              "title": "17. Mahāsudassanasutta",
+              "id": "7d_4",
+              "citation": "7D/4",
+              "title": "4. Mahāsudassanasutta",
               "pali_title": "Mahāsudassanasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/7D/4.md",
@@ -568,9 +568,9 @@
               }
             },
             {
-              "id": "dn18",
-              "citation": "DN 18",
-              "title": "18. Janavasabhasutta",
+              "id": "7d_5",
+              "citation": "7D/5",
+              "title": "5. Janavasabhasutta",
               "pali_title": "Janavasabhasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/7D/5.md",
@@ -581,9 +581,9 @@
               }
             },
             {
-              "id": "dn19",
-              "citation": "DN 19",
-              "title": "19. Mahāgovindasutta",
+              "id": "7d_6",
+              "citation": "7D/6",
+              "title": "6. Mahāgovindasutta",
               "pali_title": "Mahāgovindasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/7D/6.md",
@@ -594,9 +594,9 @@
               }
             },
             {
-              "id": "dn20",
-              "citation": "DN 20",
-              "title": "20. Mahāsamayasutta",
+              "id": "7d_7",
+              "citation": "7D/7",
+              "title": "7. Mahāsamayasutta",
               "pali_title": "Mahāsamayasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/7D/7.md",
@@ -607,9 +607,9 @@
               }
             },
             {
-              "id": "dn21",
-              "citation": "DN 21",
-              "title": "21. Sakkapañhasutta",
+              "id": "7d_8",
+              "citation": "7D/8",
+              "title": "8. Sakkapañhasutta",
               "pali_title": "Sakkapañhasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/7D/8.md",
@@ -620,9 +620,9 @@
               }
             },
             {
-              "id": "dn22",
-              "citation": "DN 22",
-              "title": "22. Mahāsatipaṭṭhānasutta",
+              "id": "7d_9",
+              "citation": "7D/9",
+              "title": "9. Mahāsatipaṭṭhānasutta",
               "pali_title": "Mahāsatipaṭṭhānasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/7D/9.md",
@@ -633,9 +633,9 @@
               }
             },
             {
-              "id": "dn23",
-              "citation": "DN 23",
-              "title": "23. Pāyāsisutta",
+              "id": "7d_10",
+              "citation": "7D/10",
+              "title": "10. Pāyāsisutta",
               "pali_title": "Pāyāsisutta",
               "editions": {
                 "tipitaka2500": "tipitaka/7D/10.md",
@@ -660,9 +660,9 @@
           },
           "suttas": [
             {
-              "id": "dn24",
-              "citation": "DN 24",
-              "title": "24. Pāthikasutta",
+              "id": "8d_1",
+              "citation": "8D/1",
+              "title": "1. Pāthikasutta",
               "pali_title": "Pāthikasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/8D/1.md",
@@ -673,9 +673,9 @@
               }
             },
             {
-              "id": "dn25",
-              "citation": "DN 25",
-              "title": "25. Udumbarikasutta",
+              "id": "8d_2",
+              "citation": "8D/2",
+              "title": "2. Udumbarikasutta",
               "pali_title": "Udumbarikasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/8D/2.md",
@@ -686,9 +686,9 @@
               }
             },
             {
-              "id": "dn26",
-              "citation": "DN 26",
-              "title": "26. Cakkavattisutta",
+              "id": "8d_3",
+              "citation": "8D/3",
+              "title": "3. Cakkavattisutta",
               "pali_title": "Cakkavattisutta",
               "editions": {
                 "tipitaka2500": "tipitaka/8D/3.md",
@@ -699,9 +699,9 @@
               }
             },
             {
-              "id": "dn27",
-              "citation": "DN 27",
-              "title": "27. Aggaññasutta",
+              "id": "8d_4",
+              "citation": "8D/4",
+              "title": "4. Aggaññasutta",
               "pali_title": "Aggaññasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/8D/4.md",
@@ -712,9 +712,9 @@
               }
             },
             {
-              "id": "dn28",
-              "citation": "DN 28",
-              "title": "28. Sampasādanīyasutta",
+              "id": "8d_5",
+              "citation": "8D/5",
+              "title": "5. Sampasādanīyasutta",
               "pali_title": "Sampasādanīyasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/8D/5.md",
@@ -725,9 +725,9 @@
               }
             },
             {
-              "id": "dn29",
-              "citation": "DN 29",
-              "title": "29. Pāsādikasutta",
+              "id": "8d_6",
+              "citation": "8D/6",
+              "title": "6. Pāsādikasutta",
               "pali_title": "Pāsādikasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/8D/6.md",
@@ -738,9 +738,9 @@
               }
             },
             {
-              "id": "dn30",
-              "citation": "DN 30",
-              "title": "30. Lakkhaṇasutta",
+              "id": "8d_7",
+              "citation": "8D/7",
+              "title": "7. Lakkhaṇasutta",
               "pali_title": "Lakkhaṇasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/8D/7.md",
@@ -751,9 +751,9 @@
               }
             },
             {
-              "id": "dn31",
-              "citation": "DN 31",
-              "title": "31. Siṅgālasutta",
+              "id": "8d_8",
+              "citation": "8D/8",
+              "title": "8. Siṅgālasutta",
               "pali_title": "Siṅgālasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/8D/8.md",
@@ -764,9 +764,9 @@
               }
             },
             {
-              "id": "dn32",
-              "citation": "DN 32",
-              "title": "32. Āṭānāṭiyasutta",
+              "id": "8d_9",
+              "citation": "8D/9",
+              "title": "9. Āṭānāṭiyasutta",
               "pali_title": "Āṭānāṭiyasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/8D/9.md",
@@ -777,9 +777,9 @@
               }
             },
             {
-              "id": "dn33",
-              "citation": "DN 33",
-              "title": "33. Saṅgītisutta",
+              "id": "8d_10",
+              "citation": "8D/10",
+              "title": "10. Saṅgītisutta",
               "pali_title": "Saṅgītisutta",
               "editions": {
                 "tipitaka2500": "tipitaka/8D/10.md",
@@ -790,9 +790,9 @@
               }
             },
             {
-              "id": "dn34",
-              "citation": "DN 34",
-              "title": "34. Dasuttarasutta",
+              "id": "8d_11",
+              "citation": "8D/11",
+              "title": "11. Dasuttarasutta",
               "pali_title": "Dasuttarasutta",
               "editions": {
                 "tipitaka2500": "tipitaka/8D/11.md",
@@ -825,9 +825,9 @@
           },
           "suttas": [
             {
-              "id": "mn1",
-              "citation": "MN 1",
-              "title": "MN 1",
+              "id": "9m_1_1",
+              "citation": "9M/1.1",
+              "title": "Mūlapaṇṇāsapāḷi · 1.1",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/1/1.1.md",
                 "pts": "sutta/mn/mn001.md",
@@ -837,9 +837,9 @@
               }
             },
             {
-              "id": "mn2",
-              "citation": "MN 2",
-              "title": "MN 2",
+              "id": "9m_1_2",
+              "citation": "9M/1.2",
+              "title": "Mūlapaṇṇāsapāḷi · 1.2",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/1/1.2.md",
                 "pts": "sutta/mn/mn002.md",
@@ -849,9 +849,9 @@
               }
             },
             {
-              "id": "mn3",
-              "citation": "MN 3",
-              "title": "MN 3",
+              "id": "9m_1_3",
+              "citation": "9M/1.3",
+              "title": "Mūlapaṇṇāsapāḷi · 1.3",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/1/1.3.md",
                 "pts": "sutta/mn/mn003.md",
@@ -861,9 +861,9 @@
               }
             },
             {
-              "id": "mn4",
-              "citation": "MN 4",
-              "title": "MN 4",
+              "id": "9m_1_4",
+              "citation": "9M/1.4",
+              "title": "Mūlapaṇṇāsapāḷi · 1.4",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/1/1.4.md",
                 "pts": "sutta/mn/mn004.md",
@@ -873,9 +873,9 @@
               }
             },
             {
-              "id": "mn5",
-              "citation": "MN 5",
-              "title": "MN 5",
+              "id": "9m_1_5",
+              "citation": "9M/1.5",
+              "title": "Mūlapaṇṇāsapāḷi · 1.5",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/1/1.5.md",
                 "pts": "sutta/mn/mn005.md",
@@ -885,9 +885,9 @@
               }
             },
             {
-              "id": "mn6",
-              "citation": "MN 6",
-              "title": "MN 6",
+              "id": "9m_1_6",
+              "citation": "9M/1.6",
+              "title": "Mūlapaṇṇāsapāḷi · 1.6",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/1/1.6.md",
                 "pts": "sutta/mn/mn006.md",
@@ -897,9 +897,9 @@
               }
             },
             {
-              "id": "mn7",
-              "citation": "MN 7",
-              "title": "MN 7",
+              "id": "9m_1_7",
+              "citation": "9M/1.7",
+              "title": "Mūlapaṇṇāsapāḷi · 1.7",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/1/1.7.md",
                 "pts": "sutta/mn/mn007.md",
@@ -909,9 +909,9 @@
               }
             },
             {
-              "id": "mn8",
-              "citation": "MN 8",
-              "title": "MN 8",
+              "id": "9m_1_8",
+              "citation": "9M/1.8",
+              "title": "Mūlapaṇṇāsapāḷi · 1.8",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/1/1.8.md",
                 "pts": "sutta/mn/mn008.md",
@@ -921,9 +921,9 @@
               }
             },
             {
-              "id": "mn9",
-              "citation": "MN 9",
-              "title": "MN 9",
+              "id": "9m_1_9",
+              "citation": "9M/1.9",
+              "title": "Mūlapaṇṇāsapāḷi · 1.9",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/1/1.9.md",
                 "pts": "sutta/mn/mn009.md",
@@ -933,9 +933,9 @@
               }
             },
             {
-              "id": "mn10",
-              "citation": "MN 10",
-              "title": "MN 10",
+              "id": "9m_1_10",
+              "citation": "9M/1.10",
+              "title": "Mūlapaṇṇāsapāḷi · 1.10",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/1/1.10.md",
                 "pts": "sutta/mn/mn010.md",
@@ -945,9 +945,9 @@
               }
             },
             {
-              "id": "mn11",
-              "citation": "MN 11",
-              "title": "MN 11",
+              "id": "9m_2_1",
+              "citation": "9M/2.1",
+              "title": "Mūlapaṇṇāsapāḷi · 2.1",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/2/2.1.md",
                 "pts": "sutta/mn/mn011.md",
@@ -957,9 +957,9 @@
               }
             },
             {
-              "id": "mn12",
-              "citation": "MN 12",
-              "title": "MN 12",
+              "id": "9m_2_2",
+              "citation": "9M/2.2",
+              "title": "Mūlapaṇṇāsapāḷi · 2.2",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/2/2.2.md",
                 "pts": "sutta/mn/mn012.md",
@@ -969,9 +969,9 @@
               }
             },
             {
-              "id": "mn13",
-              "citation": "MN 13",
-              "title": "MN 13",
+              "id": "9m_2_3",
+              "citation": "9M/2.3",
+              "title": "Mūlapaṇṇāsapāḷi · 2.3",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/2/2.3.md",
                 "pts": "sutta/mn/mn013.md",
@@ -981,9 +981,9 @@
               }
             },
             {
-              "id": "mn14",
-              "citation": "MN 14",
-              "title": "MN 14",
+              "id": "9m_2_4",
+              "citation": "9M/2.4",
+              "title": "Mūlapaṇṇāsapāḷi · 2.4",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/2/2.4.md",
                 "pts": "sutta/mn/mn014.md",
@@ -993,9 +993,9 @@
               }
             },
             {
-              "id": "mn15",
-              "citation": "MN 15",
-              "title": "MN 15",
+              "id": "9m_2_5",
+              "citation": "9M/2.5",
+              "title": "Mūlapaṇṇāsapāḷi · 2.5",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/2/2.5.md",
                 "pts": "sutta/mn/mn015.md",
@@ -1005,9 +1005,9 @@
               }
             },
             {
-              "id": "mn16",
-              "citation": "MN 16",
-              "title": "MN 16",
+              "id": "9m_2_6",
+              "citation": "9M/2.6",
+              "title": "Mūlapaṇṇāsapāḷi · 2.6",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/2/2.6.md",
                 "pts": "sutta/mn/mn016.md",
@@ -1017,9 +1017,9 @@
               }
             },
             {
-              "id": "mn17",
-              "citation": "MN 17",
-              "title": "MN 17",
+              "id": "9m_2_7",
+              "citation": "9M/2.7",
+              "title": "Mūlapaṇṇāsapāḷi · 2.7",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/2/2.7.md",
                 "pts": "sutta/mn/mn017.md",
@@ -1029,9 +1029,9 @@
               }
             },
             {
-              "id": "mn18",
-              "citation": "MN 18",
-              "title": "MN 18",
+              "id": "9m_2_8",
+              "citation": "9M/2.8",
+              "title": "Mūlapaṇṇāsapāḷi · 2.8",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/2/2.8.md",
                 "pts": "sutta/mn/mn018.md",
@@ -1041,9 +1041,9 @@
               }
             },
             {
-              "id": "mn19",
-              "citation": "MN 19",
-              "title": "MN 19",
+              "id": "9m_2_9",
+              "citation": "9M/2.9",
+              "title": "Mūlapaṇṇāsapāḷi · 2.9",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/2/2.9.md",
                 "pts": "sutta/mn/mn019.md",
@@ -1053,9 +1053,9 @@
               }
             },
             {
-              "id": "mn20",
-              "citation": "MN 20",
-              "title": "MN 20",
+              "id": "9m_2_10",
+              "citation": "9M/2.10",
+              "title": "Mūlapaṇṇāsapāḷi · 2.10",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/2/2.10.md",
                 "pts": "sutta/mn/mn020.md",
@@ -1065,9 +1065,9 @@
               }
             },
             {
-              "id": "mn21",
-              "citation": "MN 21",
-              "title": "MN 21",
+              "id": "9m_3_1",
+              "citation": "9M/3.1",
+              "title": "Mūlapaṇṇāsapāḷi · 3.1",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/3/3.1.md",
                 "pts": "sutta/mn/mn021.md",
@@ -1077,9 +1077,9 @@
               }
             },
             {
-              "id": "mn22",
-              "citation": "MN 22",
-              "title": "MN 22",
+              "id": "9m_3_2",
+              "citation": "9M/3.2",
+              "title": "Mūlapaṇṇāsapāḷi · 3.2",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/3/3.2.md",
                 "pts": "sutta/mn/mn022.md",
@@ -1089,9 +1089,9 @@
               }
             },
             {
-              "id": "mn23",
-              "citation": "MN 23",
-              "title": "MN 23",
+              "id": "9m_3_3",
+              "citation": "9M/3.3",
+              "title": "Mūlapaṇṇāsapāḷi · 3.3",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/3/3.3.md",
                 "pts": "sutta/mn/mn023.md",
@@ -1101,9 +1101,9 @@
               }
             },
             {
-              "id": "mn24",
-              "citation": "MN 24",
-              "title": "MN 24",
+              "id": "9m_3_4",
+              "citation": "9M/3.4",
+              "title": "Mūlapaṇṇāsapāḷi · 3.4",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/3/3.4.md",
                 "pts": "sutta/mn/mn024.md",
@@ -1113,9 +1113,9 @@
               }
             },
             {
-              "id": "mn25",
-              "citation": "MN 25",
-              "title": "MN 25",
+              "id": "9m_3_5",
+              "citation": "9M/3.5",
+              "title": "Mūlapaṇṇāsapāḷi · 3.5",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/3/3.5.md",
                 "pts": "sutta/mn/mn025.md",
@@ -1125,9 +1125,9 @@
               }
             },
             {
-              "id": "mn26",
-              "citation": "MN 26",
-              "title": "MN 26",
+              "id": "9m_3_6",
+              "citation": "9M/3.6",
+              "title": "Mūlapaṇṇāsapāḷi · 3.6",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/3/3.6.md",
                 "pts": "sutta/mn/mn026.md",
@@ -1137,9 +1137,9 @@
               }
             },
             {
-              "id": "mn27",
-              "citation": "MN 27",
-              "title": "MN 27",
+              "id": "9m_3_7",
+              "citation": "9M/3.7",
+              "title": "Mūlapaṇṇāsapāḷi · 3.7",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/3/3.7.md",
                 "pts": "sutta/mn/mn027.md",
@@ -1149,9 +1149,9 @@
               }
             },
             {
-              "id": "mn28",
-              "citation": "MN 28",
-              "title": "MN 28",
+              "id": "9m_3_8",
+              "citation": "9M/3.8",
+              "title": "Mūlapaṇṇāsapāḷi · 3.8",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/3/3.8.md",
                 "pts": "sutta/mn/mn028.md",
@@ -1161,9 +1161,9 @@
               }
             },
             {
-              "id": "mn29",
-              "citation": "MN 29",
-              "title": "MN 29",
+              "id": "9m_3_9",
+              "citation": "9M/3.9",
+              "title": "Mūlapaṇṇāsapāḷi · 3.9",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/3/3.9.md",
                 "pts": "sutta/mn/mn029.md",
@@ -1173,9 +1173,9 @@
               }
             },
             {
-              "id": "mn30",
-              "citation": "MN 30",
-              "title": "MN 30",
+              "id": "9m_3_10",
+              "citation": "9M/3.10",
+              "title": "Mūlapaṇṇāsapāḷi · 3.10",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/3/3.10.md",
                 "pts": "sutta/mn/mn030.md",
@@ -1185,9 +1185,9 @@
               }
             },
             {
-              "id": "mn31",
-              "citation": "MN 31",
-              "title": "MN 31",
+              "id": "9m_4_1",
+              "citation": "9M/4.1",
+              "title": "Mūlapaṇṇāsapāḷi · 4.1",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/4/4.1.md",
                 "pts": "sutta/mn/mn031.md",
@@ -1197,9 +1197,9 @@
               }
             },
             {
-              "id": "mn32",
-              "citation": "MN 32",
-              "title": "MN 32",
+              "id": "9m_4_2",
+              "citation": "9M/4.2",
+              "title": "Mūlapaṇṇāsapāḷi · 4.2",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/4/4.2.md",
                 "pts": "sutta/mn/mn032.md",
@@ -1209,9 +1209,9 @@
               }
             },
             {
-              "id": "mn33",
-              "citation": "MN 33",
-              "title": "MN 33",
+              "id": "9m_4_3",
+              "citation": "9M/4.3",
+              "title": "Mūlapaṇṇāsapāḷi · 4.3",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/4/4.3.md",
                 "pts": "sutta/mn/mn033.md",
@@ -1221,9 +1221,9 @@
               }
             },
             {
-              "id": "mn34",
-              "citation": "MN 34",
-              "title": "MN 34",
+              "id": "9m_4_4",
+              "citation": "9M/4.4",
+              "title": "Mūlapaṇṇāsapāḷi · 4.4",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/4/4.4.md",
                 "pts": "sutta/mn/mn034.md",
@@ -1233,9 +1233,9 @@
               }
             },
             {
-              "id": "mn35",
-              "citation": "MN 35",
-              "title": "MN 35",
+              "id": "9m_4_5",
+              "citation": "9M/4.5",
+              "title": "Mūlapaṇṇāsapāḷi · 4.5",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/4/4.5.md",
                 "pts": "sutta/mn/mn035.md",
@@ -1245,9 +1245,9 @@
               }
             },
             {
-              "id": "mn36",
-              "citation": "MN 36",
-              "title": "MN 36",
+              "id": "9m_4_6",
+              "citation": "9M/4.6",
+              "title": "Mūlapaṇṇāsapāḷi · 4.6",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/4/4.6.md",
                 "pts": "sutta/mn/mn036.md",
@@ -1257,9 +1257,9 @@
               }
             },
             {
-              "id": "mn37",
-              "citation": "MN 37",
-              "title": "MN 37",
+              "id": "9m_4_7",
+              "citation": "9M/4.7",
+              "title": "Mūlapaṇṇāsapāḷi · 4.7",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/4/4.7.md",
                 "pts": "sutta/mn/mn037.md",
@@ -1269,9 +1269,9 @@
               }
             },
             {
-              "id": "mn38",
-              "citation": "MN 38",
-              "title": "MN 38",
+              "id": "9m_4_8",
+              "citation": "9M/4.8",
+              "title": "Mūlapaṇṇāsapāḷi · 4.8",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/4/4.8.md",
                 "pts": "sutta/mn/mn038.md",
@@ -1281,9 +1281,9 @@
               }
             },
             {
-              "id": "mn39",
-              "citation": "MN 39",
-              "title": "MN 39",
+              "id": "9m_4_9",
+              "citation": "9M/4.9",
+              "title": "Mūlapaṇṇāsapāḷi · 4.9",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/4/4.9.md",
                 "pts": "sutta/mn/mn039.md",
@@ -1293,9 +1293,9 @@
               }
             },
             {
-              "id": "mn40",
-              "citation": "MN 40",
-              "title": "MN 40",
+              "id": "9m_4_10",
+              "citation": "9M/4.10",
+              "title": "Mūlapaṇṇāsapāḷi · 4.10",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/4/4.10.md",
                 "pts": "sutta/mn/mn040.md",
@@ -1305,9 +1305,9 @@
               }
             },
             {
-              "id": "mn41",
-              "citation": "MN 41",
-              "title": "MN 41",
+              "id": "9m_5_1",
+              "citation": "9M/5.1",
+              "title": "Mūlapaṇṇāsapāḷi · 5.1",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/5/5.1.md",
                 "pts": "sutta/mn/mn041.md",
@@ -1317,9 +1317,9 @@
               }
             },
             {
-              "id": "mn42",
-              "citation": "MN 42",
-              "title": "MN 42",
+              "id": "9m_5_2",
+              "citation": "9M/5.2",
+              "title": "Mūlapaṇṇāsapāḷi · 5.2",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/5/5.2.md",
                 "pts": "sutta/mn/mn042.md",
@@ -1329,9 +1329,9 @@
               }
             },
             {
-              "id": "mn43",
-              "citation": "MN 43",
-              "title": "MN 43",
+              "id": "9m_5_3",
+              "citation": "9M/5.3",
+              "title": "Mūlapaṇṇāsapāḷi · 5.3",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/5/5.3.md",
                 "pts": "sutta/mn/mn043.md",
@@ -1341,9 +1341,9 @@
               }
             },
             {
-              "id": "mn44",
-              "citation": "MN 44",
-              "title": "MN 44",
+              "id": "9m_5_4",
+              "citation": "9M/5.4",
+              "title": "Mūlapaṇṇāsapāḷi · 5.4",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/5/5.4.md",
                 "pts": "sutta/mn/mn044.md",
@@ -1353,9 +1353,9 @@
               }
             },
             {
-              "id": "mn45",
-              "citation": "MN 45",
-              "title": "MN 45",
+              "id": "9m_5_5",
+              "citation": "9M/5.5",
+              "title": "Mūlapaṇṇāsapāḷi · 5.5",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/5/5.5.md",
                 "pts": "sutta/mn/mn045.md",
@@ -1365,9 +1365,9 @@
               }
             },
             {
-              "id": "mn46",
-              "citation": "MN 46",
-              "title": "MN 46",
+              "id": "9m_5_6",
+              "citation": "9M/5.6",
+              "title": "Mūlapaṇṇāsapāḷi · 5.6",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/5/5.6.md",
                 "pts": "sutta/mn/mn046.md",
@@ -1377,9 +1377,9 @@
               }
             },
             {
-              "id": "mn47",
-              "citation": "MN 47",
-              "title": "MN 47",
+              "id": "9m_5_7",
+              "citation": "9M/5.7",
+              "title": "Mūlapaṇṇāsapāḷi · 5.7",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/5/5.7.md",
                 "pts": "sutta/mn/mn047.md",
@@ -1389,9 +1389,9 @@
               }
             },
             {
-              "id": "mn48",
-              "citation": "MN 48",
-              "title": "MN 48",
+              "id": "9m_5_8",
+              "citation": "9M/5.8",
+              "title": "Mūlapaṇṇāsapāḷi · 5.8",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/5/5.8.md",
                 "pts": "sutta/mn/mn048.md",
@@ -1401,9 +1401,9 @@
               }
             },
             {
-              "id": "mn49",
-              "citation": "MN 49",
-              "title": "MN 49",
+              "id": "9m_5_9",
+              "citation": "9M/5.9",
+              "title": "Mūlapaṇṇāsapāḷi · 5.9",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/5/5.9.md",
                 "pts": "sutta/mn/mn049.md",
@@ -1413,9 +1413,9 @@
               }
             },
             {
-              "id": "mn50",
-              "citation": "MN 50",
-              "title": "MN 50",
+              "id": "9m_5_10",
+              "citation": "9M/5.10",
+              "title": "Mūlapaṇṇāsapāḷi · 5.10",
               "editions": {
                 "tipitaka2500": "tipitaka/9M/5/5.10.md",
                 "pts": "sutta/mn/mn050.md",
@@ -1439,9 +1439,9 @@
           },
           "suttas": [
             {
-              "id": "mn51",
-              "citation": "MN 51",
-              "title": "MN 51",
+              "id": "10m_1_1",
+              "citation": "10M/1.1",
+              "title": "Majjhimapaṇṇāsapāḷi · 1.1",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/1/1.1.md",
                 "pts": "sutta/mn/mn051.md",
@@ -1451,9 +1451,9 @@
               }
             },
             {
-              "id": "mn52",
-              "citation": "MN 52",
-              "title": "MN 52",
+              "id": "10m_1_2",
+              "citation": "10M/1.2",
+              "title": "Majjhimapaṇṇāsapāḷi · 1.2",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/1/1.2.md",
                 "pts": "sutta/mn/mn052.md",
@@ -1463,9 +1463,9 @@
               }
             },
             {
-              "id": "mn53",
-              "citation": "MN 53",
-              "title": "MN 53",
+              "id": "10m_1_3",
+              "citation": "10M/1.3",
+              "title": "Majjhimapaṇṇāsapāḷi · 1.3",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/1/1.3.md",
                 "pts": "sutta/mn/mn053.md",
@@ -1475,9 +1475,9 @@
               }
             },
             {
-              "id": "mn54",
-              "citation": "MN 54",
-              "title": "MN 54",
+              "id": "10m_1_4",
+              "citation": "10M/1.4",
+              "title": "Majjhimapaṇṇāsapāḷi · 1.4",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/1/1.4.md",
                 "pts": "sutta/mn/mn054.md",
@@ -1487,9 +1487,9 @@
               }
             },
             {
-              "id": "mn55",
-              "citation": "MN 55",
-              "title": "MN 55",
+              "id": "10m_1_5",
+              "citation": "10M/1.5",
+              "title": "Majjhimapaṇṇāsapāḷi · 1.5",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/1/1.5.md",
                 "pts": "sutta/mn/mn055.md",
@@ -1499,9 +1499,9 @@
               }
             },
             {
-              "id": "mn56",
-              "citation": "MN 56",
-              "title": "MN 56",
+              "id": "10m_1_6",
+              "citation": "10M/1.6",
+              "title": "Majjhimapaṇṇāsapāḷi · 1.6",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/1/1.6.md",
                 "pts": "sutta/mn/mn056.md",
@@ -1511,9 +1511,9 @@
               }
             },
             {
-              "id": "mn57",
-              "citation": "MN 57",
-              "title": "MN 57",
+              "id": "10m_1_7",
+              "citation": "10M/1.7",
+              "title": "Majjhimapaṇṇāsapāḷi · 1.7",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/1/1.7.md",
                 "pts": "sutta/mn/mn057.md",
@@ -1523,9 +1523,9 @@
               }
             },
             {
-              "id": "mn58",
-              "citation": "MN 58",
-              "title": "MN 58",
+              "id": "10m_1_8",
+              "citation": "10M/1.8",
+              "title": "Majjhimapaṇṇāsapāḷi · 1.8",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/1/1.8.md",
                 "pts": "sutta/mn/mn058.md",
@@ -1535,9 +1535,9 @@
               }
             },
             {
-              "id": "mn59",
-              "citation": "MN 59",
-              "title": "MN 59",
+              "id": "10m_1_9",
+              "citation": "10M/1.9",
+              "title": "Majjhimapaṇṇāsapāḷi · 1.9",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/1/1.9.md",
                 "pts": "sutta/mn/mn059.md",
@@ -1547,9 +1547,9 @@
               }
             },
             {
-              "id": "mn60",
-              "citation": "MN 60",
-              "title": "MN 60",
+              "id": "10m_1_10",
+              "citation": "10M/1.10",
+              "title": "Majjhimapaṇṇāsapāḷi · 1.10",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/1/1.10.md",
                 "pts": "sutta/mn/mn060.md",
@@ -1559,9 +1559,9 @@
               }
             },
             {
-              "id": "mn61",
-              "citation": "MN 61",
-              "title": "MN 61",
+              "id": "10m_2_1",
+              "citation": "10M/2.1",
+              "title": "Majjhimapaṇṇāsapāḷi · 2.1",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/2/2.1.md",
                 "pts": "sutta/mn/mn061.md",
@@ -1571,9 +1571,9 @@
               }
             },
             {
-              "id": "mn62",
-              "citation": "MN 62",
-              "title": "MN 62",
+              "id": "10m_2_2",
+              "citation": "10M/2.2",
+              "title": "Majjhimapaṇṇāsapāḷi · 2.2",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/2/2.2.md",
                 "pts": "sutta/mn/mn062.md",
@@ -1583,9 +1583,9 @@
               }
             },
             {
-              "id": "mn63",
-              "citation": "MN 63",
-              "title": "MN 63",
+              "id": "10m_2_3",
+              "citation": "10M/2.3",
+              "title": "Majjhimapaṇṇāsapāḷi · 2.3",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/2/2.3.md",
                 "pts": "sutta/mn/mn063.md",
@@ -1595,9 +1595,9 @@
               }
             },
             {
-              "id": "mn64",
-              "citation": "MN 64",
-              "title": "MN 64",
+              "id": "10m_2_4",
+              "citation": "10M/2.4",
+              "title": "Majjhimapaṇṇāsapāḷi · 2.4",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/2/2.4.md",
                 "pts": "sutta/mn/mn064.md",
@@ -1607,9 +1607,9 @@
               }
             },
             {
-              "id": "mn65",
-              "citation": "MN 65",
-              "title": "MN 65",
+              "id": "10m_2_5",
+              "citation": "10M/2.5",
+              "title": "Majjhimapaṇṇāsapāḷi · 2.5",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/2/2.5.md",
                 "pts": "sutta/mn/mn065.md",
@@ -1619,9 +1619,9 @@
               }
             },
             {
-              "id": "mn66",
-              "citation": "MN 66",
-              "title": "MN 66",
+              "id": "10m_2_6",
+              "citation": "10M/2.6",
+              "title": "Majjhimapaṇṇāsapāḷi · 2.6",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/2/2.6.md",
                 "pts": "sutta/mn/mn066.md",
@@ -1631,9 +1631,9 @@
               }
             },
             {
-              "id": "mn67",
-              "citation": "MN 67",
-              "title": "MN 67",
+              "id": "10m_2_7",
+              "citation": "10M/2.7",
+              "title": "Majjhimapaṇṇāsapāḷi · 2.7",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/2/2.7.md",
                 "pts": "sutta/mn/mn067.md",
@@ -1643,9 +1643,9 @@
               }
             },
             {
-              "id": "mn68",
-              "citation": "MN 68",
-              "title": "MN 68",
+              "id": "10m_2_8",
+              "citation": "10M/2.8",
+              "title": "Majjhimapaṇṇāsapāḷi · 2.8",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/2/2.8.md",
                 "pts": "sutta/mn/mn068.md",
@@ -1655,9 +1655,9 @@
               }
             },
             {
-              "id": "mn69",
-              "citation": "MN 69",
-              "title": "MN 69",
+              "id": "10m_2_9",
+              "citation": "10M/2.9",
+              "title": "Majjhimapaṇṇāsapāḷi · 2.9",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/2/2.9.md",
                 "pts": "sutta/mn/mn069.md",
@@ -1667,9 +1667,9 @@
               }
             },
             {
-              "id": "mn70",
-              "citation": "MN 70",
-              "title": "MN 70",
+              "id": "10m_2_10",
+              "citation": "10M/2.10",
+              "title": "Majjhimapaṇṇāsapāḷi · 2.10",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/2/2.10.md",
                 "pts": "sutta/mn/mn070.md",
@@ -1679,9 +1679,9 @@
               }
             },
             {
-              "id": "mn71",
-              "citation": "MN 71",
-              "title": "MN 71",
+              "id": "10m_3_1",
+              "citation": "10M/3.1",
+              "title": "Majjhimapaṇṇāsapāḷi · 3.1",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/3/3.1.md",
                 "pts": "sutta/mn/mn071.md",
@@ -1691,9 +1691,9 @@
               }
             },
             {
-              "id": "mn72",
-              "citation": "MN 72",
-              "title": "MN 72",
+              "id": "10m_3_2",
+              "citation": "10M/3.2",
+              "title": "Majjhimapaṇṇāsapāḷi · 3.2",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/3/3.2.md",
                 "pts": "sutta/mn/mn072.md",
@@ -1703,9 +1703,9 @@
               }
             },
             {
-              "id": "mn73",
-              "citation": "MN 73",
-              "title": "MN 73",
+              "id": "10m_3_3",
+              "citation": "10M/3.3",
+              "title": "Majjhimapaṇṇāsapāḷi · 3.3",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/3/3.3.md",
                 "pts": "sutta/mn/mn073.md",
@@ -1715,9 +1715,9 @@
               }
             },
             {
-              "id": "mn74",
-              "citation": "MN 74",
-              "title": "MN 74",
+              "id": "10m_3_4",
+              "citation": "10M/3.4",
+              "title": "Majjhimapaṇṇāsapāḷi · 3.4",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/3/3.4.md",
                 "pts": "sutta/mn/mn074.md",
@@ -1727,9 +1727,9 @@
               }
             },
             {
-              "id": "mn75",
-              "citation": "MN 75",
-              "title": "MN 75",
+              "id": "10m_3_5",
+              "citation": "10M/3.5",
+              "title": "Majjhimapaṇṇāsapāḷi · 3.5",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/3/3.5.md",
                 "pts": "sutta/mn/mn075.md",
@@ -1739,9 +1739,9 @@
               }
             },
             {
-              "id": "mn76",
-              "citation": "MN 76",
-              "title": "MN 76",
+              "id": "10m_3_6",
+              "citation": "10M/3.6",
+              "title": "Majjhimapaṇṇāsapāḷi · 3.6",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/3/3.6.md",
                 "pts": "sutta/mn/mn076.md",
@@ -1751,9 +1751,9 @@
               }
             },
             {
-              "id": "mn77",
-              "citation": "MN 77",
-              "title": "MN 77",
+              "id": "10m_3_7",
+              "citation": "10M/3.7",
+              "title": "Majjhimapaṇṇāsapāḷi · 3.7",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/3/3.7.md",
                 "pts": "sutta/mn/mn077.md",
@@ -1763,9 +1763,9 @@
               }
             },
             {
-              "id": "mn78",
-              "citation": "MN 78",
-              "title": "MN 78",
+              "id": "10m_3_8",
+              "citation": "10M/3.8",
+              "title": "Majjhimapaṇṇāsapāḷi · 3.8",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/3/3.8.md",
                 "pts": "sutta/mn/mn078.md",
@@ -1775,9 +1775,9 @@
               }
             },
             {
-              "id": "mn79",
-              "citation": "MN 79",
-              "title": "MN 79",
+              "id": "10m_3_9",
+              "citation": "10M/3.9",
+              "title": "Majjhimapaṇṇāsapāḷi · 3.9",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/3/3.9.md",
                 "pts": "sutta/mn/mn079.md",
@@ -1787,9 +1787,9 @@
               }
             },
             {
-              "id": "mn80",
-              "citation": "MN 80",
-              "title": "MN 80",
+              "id": "10m_3_10",
+              "citation": "10M/3.10",
+              "title": "Majjhimapaṇṇāsapāḷi · 3.10",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/3/3.10.md",
                 "pts": "sutta/mn/mn080.md",
@@ -1799,9 +1799,9 @@
               }
             },
             {
-              "id": "mn81",
-              "citation": "MN 81",
-              "title": "MN 81",
+              "id": "10m_4_1",
+              "citation": "10M/4.1",
+              "title": "Majjhimapaṇṇāsapāḷi · 4.1",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/4/4.1.md",
                 "pts": "sutta/mn/mn081.md",
@@ -1811,9 +1811,9 @@
               }
             },
             {
-              "id": "mn82",
-              "citation": "MN 82",
-              "title": "MN 82",
+              "id": "10m_4_2",
+              "citation": "10M/4.2",
+              "title": "Majjhimapaṇṇāsapāḷi · 4.2",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/4/4.2.md",
                 "pts": "sutta/mn/mn082.md",
@@ -1823,9 +1823,9 @@
               }
             },
             {
-              "id": "mn83",
-              "citation": "MN 83",
-              "title": "MN 83",
+              "id": "10m_4_3",
+              "citation": "10M/4.3",
+              "title": "Majjhimapaṇṇāsapāḷi · 4.3",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/4/4.3.md",
                 "pts": "sutta/mn/mn083.md",
@@ -1835,9 +1835,9 @@
               }
             },
             {
-              "id": "mn84",
-              "citation": "MN 84",
-              "title": "MN 84",
+              "id": "10m_4_4",
+              "citation": "10M/4.4",
+              "title": "Majjhimapaṇṇāsapāḷi · 4.4",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/4/4.4.md",
                 "pts": "sutta/mn/mn084.md",
@@ -1847,9 +1847,9 @@
               }
             },
             {
-              "id": "mn85",
-              "citation": "MN 85",
-              "title": "MN 85",
+              "id": "10m_4_5",
+              "citation": "10M/4.5",
+              "title": "Majjhimapaṇṇāsapāḷi · 4.5",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/4/4.5.md",
                 "pts": "sutta/mn/mn085.md",
@@ -1859,9 +1859,9 @@
               }
             },
             {
-              "id": "mn86",
-              "citation": "MN 86",
-              "title": "MN 86",
+              "id": "10m_4_6",
+              "citation": "10M/4.6",
+              "title": "Majjhimapaṇṇāsapāḷi · 4.6",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/4/4.6.md",
                 "pts": "sutta/mn/mn086.md",
@@ -1871,9 +1871,9 @@
               }
             },
             {
-              "id": "mn87",
-              "citation": "MN 87",
-              "title": "MN 87",
+              "id": "10m_4_7",
+              "citation": "10M/4.7",
+              "title": "Majjhimapaṇṇāsapāḷi · 4.7",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/4/4.7.md",
                 "pts": "sutta/mn/mn087.md",
@@ -1883,9 +1883,9 @@
               }
             },
             {
-              "id": "mn88",
-              "citation": "MN 88",
-              "title": "MN 88",
+              "id": "10m_4_8",
+              "citation": "10M/4.8",
+              "title": "Majjhimapaṇṇāsapāḷi · 4.8",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/4/4.8.md",
                 "pts": "sutta/mn/mn088.md",
@@ -1895,9 +1895,9 @@
               }
             },
             {
-              "id": "mn89",
-              "citation": "MN 89",
-              "title": "MN 89",
+              "id": "10m_4_9",
+              "citation": "10M/4.9",
+              "title": "Majjhimapaṇṇāsapāḷi · 4.9",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/4/4.9.md",
                 "pts": "sutta/mn/mn089.md",
@@ -1907,9 +1907,9 @@
               }
             },
             {
-              "id": "mn90",
-              "citation": "MN 90",
-              "title": "MN 90",
+              "id": "10m_4_10",
+              "citation": "10M/4.10",
+              "title": "Majjhimapaṇṇāsapāḷi · 4.10",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/4/4.10.md",
                 "pts": "sutta/mn/mn090.md",
@@ -1919,9 +1919,9 @@
               }
             },
             {
-              "id": "mn91",
-              "citation": "MN 91",
-              "title": "MN 91",
+              "id": "10m_5_1",
+              "citation": "10M/5.1",
+              "title": "Majjhimapaṇṇāsapāḷi · 5.1",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/5/5.1.md",
                 "pts": "sutta/mn/mn091.md",
@@ -1931,9 +1931,9 @@
               }
             },
             {
-              "id": "mn92",
-              "citation": "MN 92",
-              "title": "MN 92",
+              "id": "10m_5_2",
+              "citation": "10M/5.2",
+              "title": "Majjhimapaṇṇāsapāḷi · 5.2",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/5/5.2.md",
                 "pts": "sutta/mn/mn092.md",
@@ -1943,9 +1943,9 @@
               }
             },
             {
-              "id": "mn93",
-              "citation": "MN 93",
-              "title": "MN 93",
+              "id": "10m_5_3",
+              "citation": "10M/5.3",
+              "title": "Majjhimapaṇṇāsapāḷi · 5.3",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/5/5.3.md",
                 "pts": "sutta/mn/mn093.md",
@@ -1955,9 +1955,9 @@
               }
             },
             {
-              "id": "mn94",
-              "citation": "MN 94",
-              "title": "MN 94",
+              "id": "10m_5_4",
+              "citation": "10M/5.4",
+              "title": "Majjhimapaṇṇāsapāḷi · 5.4",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/5/5.4.md",
                 "pts": "sutta/mn/mn094.md",
@@ -1967,9 +1967,9 @@
               }
             },
             {
-              "id": "mn95",
-              "citation": "MN 95",
-              "title": "MN 95",
+              "id": "10m_5_5",
+              "citation": "10M/5.5",
+              "title": "Majjhimapaṇṇāsapāḷi · 5.5",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/5/5.5.md",
                 "pts": "sutta/mn/mn095.md",
@@ -1979,9 +1979,9 @@
               }
             },
             {
-              "id": "mn96",
-              "citation": "MN 96",
-              "title": "MN 96",
+              "id": "10m_5_6",
+              "citation": "10M/5.6",
+              "title": "Majjhimapaṇṇāsapāḷi · 5.6",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/5/5.6.md",
                 "pts": "sutta/mn/mn096.md",
@@ -1991,9 +1991,9 @@
               }
             },
             {
-              "id": "mn97",
-              "citation": "MN 97",
-              "title": "MN 97",
+              "id": "10m_5_7",
+              "citation": "10M/5.7",
+              "title": "Majjhimapaṇṇāsapāḷi · 5.7",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/5/5.7.md",
                 "pts": "sutta/mn/mn097.md",
@@ -2003,9 +2003,9 @@
               }
             },
             {
-              "id": "mn98",
-              "citation": "MN 98",
-              "title": "MN 98",
+              "id": "10m_5_8",
+              "citation": "10M/5.8",
+              "title": "Majjhimapaṇṇāsapāḷi · 5.8",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/5/5.8.md",
                 "pts": "sutta/mn/mn098.md",
@@ -2015,9 +2015,9 @@
               }
             },
             {
-              "id": "mn99",
-              "citation": "MN 99",
-              "title": "MN 99",
+              "id": "10m_5_9",
+              "citation": "10M/5.9",
+              "title": "Majjhimapaṇṇāsapāḷi · 5.9",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/5/5.9.md",
                 "pts": "sutta/mn/mn099.md",
@@ -2027,9 +2027,9 @@
               }
             },
             {
-              "id": "mn100",
-              "citation": "MN 100",
-              "title": "MN 100",
+              "id": "10m_5_10",
+              "citation": "10M/5.10",
+              "title": "Majjhimapaṇṇāsapāḷi · 5.10",
               "editions": {
                 "tipitaka2500": "tipitaka/10M/5/5.10.md",
                 "pts": "sutta/mn/mn100.md",
@@ -2053,9 +2053,9 @@
           },
           "suttas": [
             {
-              "id": "mn101",
-              "citation": "MN 101",
-              "title": "MN 101",
+              "id": "11m_1_1",
+              "citation": "11M/1.1",
+              "title": "Uparipaṇṇāsapāḷi · 1.1",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/1/1.1.md",
                 "pts": "sutta/mn/mn101.md",
@@ -2065,9 +2065,9 @@
               }
             },
             {
-              "id": "mn102",
-              "citation": "MN 102",
-              "title": "MN 102",
+              "id": "11m_1_2",
+              "citation": "11M/1.2",
+              "title": "Uparipaṇṇāsapāḷi · 1.2",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/1/1.2.md",
                 "pts": "sutta/mn/mn102.md",
@@ -2077,9 +2077,9 @@
               }
             },
             {
-              "id": "mn103",
-              "citation": "MN 103",
-              "title": "MN 103",
+              "id": "11m_1_3",
+              "citation": "11M/1.3",
+              "title": "Uparipaṇṇāsapāḷi · 1.3",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/1/1.3.md",
                 "pts": "sutta/mn/mn103.md",
@@ -2089,9 +2089,9 @@
               }
             },
             {
-              "id": "mn104",
-              "citation": "MN 104",
-              "title": "MN 104",
+              "id": "11m_1_4",
+              "citation": "11M/1.4",
+              "title": "Uparipaṇṇāsapāḷi · 1.4",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/1/1.4.md",
                 "pts": "sutta/mn/mn104.md",
@@ -2101,9 +2101,9 @@
               }
             },
             {
-              "id": "mn105",
-              "citation": "MN 105",
-              "title": "MN 105",
+              "id": "11m_1_5",
+              "citation": "11M/1.5",
+              "title": "Uparipaṇṇāsapāḷi · 1.5",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/1/1.5.md",
                 "pts": "sutta/mn/mn105.md",
@@ -2113,9 +2113,9 @@
               }
             },
             {
-              "id": "mn106",
-              "citation": "MN 106",
-              "title": "MN 106",
+              "id": "11m_1_6",
+              "citation": "11M/1.6",
+              "title": "Uparipaṇṇāsapāḷi · 1.6",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/1/1.6.md",
                 "pts": "sutta/mn/mn106.md",
@@ -2125,9 +2125,9 @@
               }
             },
             {
-              "id": "mn107",
-              "citation": "MN 107",
-              "title": "MN 107",
+              "id": "11m_1_7",
+              "citation": "11M/1.7",
+              "title": "Uparipaṇṇāsapāḷi · 1.7",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/1/1.7.md",
                 "pts": "sutta/mn/mn107.md",
@@ -2137,9 +2137,9 @@
               }
             },
             {
-              "id": "mn108",
-              "citation": "MN 108",
-              "title": "MN 108",
+              "id": "11m_1_8",
+              "citation": "11M/1.8",
+              "title": "Uparipaṇṇāsapāḷi · 1.8",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/1/1.8.md",
                 "pts": "sutta/mn/mn108.md",
@@ -2149,9 +2149,9 @@
               }
             },
             {
-              "id": "mn109",
-              "citation": "MN 109",
-              "title": "MN 109",
+              "id": "11m_1_9",
+              "citation": "11M/1.9",
+              "title": "Uparipaṇṇāsapāḷi · 1.9",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/1/1.9.md",
                 "pts": "sutta/mn/mn109.md",
@@ -2161,9 +2161,9 @@
               }
             },
             {
-              "id": "mn110",
-              "citation": "MN 110",
-              "title": "MN 110",
+              "id": "11m_1_10",
+              "citation": "11M/1.10",
+              "title": "Uparipaṇṇāsapāḷi · 1.10",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/1/1.10.md",
                 "pts": "sutta/mn/mn110.md",
@@ -2173,9 +2173,9 @@
               }
             },
             {
-              "id": "mn111",
-              "citation": "MN 111",
-              "title": "MN 111",
+              "id": "11m_2_1",
+              "citation": "11M/2.1",
+              "title": "Uparipaṇṇāsapāḷi · 2.1",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/2/2.1.md",
                 "pts": "sutta/mn/mn111.md",
@@ -2185,9 +2185,9 @@
               }
             },
             {
-              "id": "mn112",
-              "citation": "MN 112",
-              "title": "MN 112",
+              "id": "11m_2_2",
+              "citation": "11M/2.2",
+              "title": "Uparipaṇṇāsapāḷi · 2.2",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/2/2.2.md",
                 "pts": "sutta/mn/mn112.md",
@@ -2197,9 +2197,9 @@
               }
             },
             {
-              "id": "mn113",
-              "citation": "MN 113",
-              "title": "MN 113",
+              "id": "11m_2_3",
+              "citation": "11M/2.3",
+              "title": "Uparipaṇṇāsapāḷi · 2.3",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/2/2.3.md",
                 "pts": "sutta/mn/mn113.md",
@@ -2209,9 +2209,9 @@
               }
             },
             {
-              "id": "mn114",
-              "citation": "MN 114",
-              "title": "MN 114",
+              "id": "11m_2_4",
+              "citation": "11M/2.4",
+              "title": "Uparipaṇṇāsapāḷi · 2.4",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/2/2.4.md",
                 "pts": "sutta/mn/mn114.md",
@@ -2221,9 +2221,9 @@
               }
             },
             {
-              "id": "mn115",
-              "citation": "MN 115",
-              "title": "MN 115",
+              "id": "11m_2_5",
+              "citation": "11M/2.5",
+              "title": "Uparipaṇṇāsapāḷi · 2.5",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/2/2.5.md",
                 "pts": "sutta/mn/mn115.md",
@@ -2233,9 +2233,9 @@
               }
             },
             {
-              "id": "mn116",
-              "citation": "MN 116",
-              "title": "MN 116",
+              "id": "11m_2_6",
+              "citation": "11M/2.6",
+              "title": "Uparipaṇṇāsapāḷi · 2.6",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/2/2.6.md",
                 "pts": "sutta/mn/mn116.md",
@@ -2245,9 +2245,9 @@
               }
             },
             {
-              "id": "mn117",
-              "citation": "MN 117",
-              "title": "MN 117",
+              "id": "11m_2_7",
+              "citation": "11M/2.7",
+              "title": "Uparipaṇṇāsapāḷi · 2.7",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/2/2.7.md",
                 "pts": "sutta/mn/mn117.md",
@@ -2257,9 +2257,9 @@
               }
             },
             {
-              "id": "mn118",
-              "citation": "MN 118",
-              "title": "MN 118",
+              "id": "11m_2_8",
+              "citation": "11M/2.8",
+              "title": "Uparipaṇṇāsapāḷi · 2.8",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/2/2.8.md",
                 "pts": "sutta/mn/mn118.md",
@@ -2269,9 +2269,9 @@
               }
             },
             {
-              "id": "mn119",
-              "citation": "MN 119",
-              "title": "MN 119",
+              "id": "11m_2_9",
+              "citation": "11M/2.9",
+              "title": "Uparipaṇṇāsapāḷi · 2.9",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/2/2.9.md",
                 "pts": "sutta/mn/mn119.md",
@@ -2281,9 +2281,9 @@
               }
             },
             {
-              "id": "mn120",
-              "citation": "MN 120",
-              "title": "MN 120",
+              "id": "11m_2_10",
+              "citation": "11M/2.10",
+              "title": "Uparipaṇṇāsapāḷi · 2.10",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/2/2.10.md",
                 "pts": "sutta/mn/mn120.md",
@@ -2293,9 +2293,9 @@
               }
             },
             {
-              "id": "mn121",
-              "citation": "MN 121",
-              "title": "MN 121",
+              "id": "11m_3_1",
+              "citation": "11M/3.1",
+              "title": "Uparipaṇṇāsapāḷi · 3.1",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/3/3.1.md",
                 "pts": "sutta/mn/mn121.md",
@@ -2305,9 +2305,9 @@
               }
             },
             {
-              "id": "mn122",
-              "citation": "MN 122",
-              "title": "MN 122",
+              "id": "11m_3_2",
+              "citation": "11M/3.2",
+              "title": "Uparipaṇṇāsapāḷi · 3.2",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/3/3.2.md",
                 "pts": "sutta/mn/mn122.md",
@@ -2317,9 +2317,9 @@
               }
             },
             {
-              "id": "mn123",
-              "citation": "MN 123",
-              "title": "MN 123",
+              "id": "11m_3_3",
+              "citation": "11M/3.3",
+              "title": "Uparipaṇṇāsapāḷi · 3.3",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/3/3.3.md",
                 "pts": "sutta/mn/mn123.md",
@@ -2329,9 +2329,9 @@
               }
             },
             {
-              "id": "mn124",
-              "citation": "MN 124",
-              "title": "MN 124",
+              "id": "11m_3_4",
+              "citation": "11M/3.4",
+              "title": "Uparipaṇṇāsapāḷi · 3.4",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/3/3.4.md",
                 "pts": "sutta/mn/mn124.md",
@@ -2341,9 +2341,9 @@
               }
             },
             {
-              "id": "mn125",
-              "citation": "MN 125",
-              "title": "MN 125",
+              "id": "11m_3_5",
+              "citation": "11M/3.5",
+              "title": "Uparipaṇṇāsapāḷi · 3.5",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/3/3.5.md",
                 "pts": "sutta/mn/mn125.md",
@@ -2353,9 +2353,9 @@
               }
             },
             {
-              "id": "mn126",
-              "citation": "MN 126",
-              "title": "MN 126",
+              "id": "11m_3_6",
+              "citation": "11M/3.6",
+              "title": "Uparipaṇṇāsapāḷi · 3.6",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/3/3.6.md",
                 "pts": "sutta/mn/mn126.md",
@@ -2365,9 +2365,9 @@
               }
             },
             {
-              "id": "mn127",
-              "citation": "MN 127",
-              "title": "MN 127",
+              "id": "11m_3_7",
+              "citation": "11M/3.7",
+              "title": "Uparipaṇṇāsapāḷi · 3.7",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/3/3.7.md",
                 "pts": "sutta/mn/mn127.md",
@@ -2377,9 +2377,9 @@
               }
             },
             {
-              "id": "mn128",
-              "citation": "MN 128",
-              "title": "MN 128",
+              "id": "11m_3_8",
+              "citation": "11M/3.8",
+              "title": "Uparipaṇṇāsapāḷi · 3.8",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/3/3.8.md",
                 "pts": "sutta/mn/mn128.md",
@@ -2389,9 +2389,9 @@
               }
             },
             {
-              "id": "mn129",
-              "citation": "MN 129",
-              "title": "MN 129",
+              "id": "11m_3_9",
+              "citation": "11M/3.9",
+              "title": "Uparipaṇṇāsapāḷi · 3.9",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/3/3.9.md",
                 "pts": "sutta/mn/mn129.md",
@@ -2401,9 +2401,9 @@
               }
             },
             {
-              "id": "mn130",
-              "citation": "MN 130",
-              "title": "MN 130",
+              "id": "11m_3_10",
+              "citation": "11M/3.10",
+              "title": "Uparipaṇṇāsapāḷi · 3.10",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/3/3.10.md",
                 "pts": "sutta/mn/mn130.md",
@@ -2413,9 +2413,9 @@
               }
             },
             {
-              "id": "mn131",
-              "citation": "MN 131",
-              "title": "MN 131",
+              "id": "11m_4_1",
+              "citation": "11M/4.1",
+              "title": "Uparipaṇṇāsapāḷi · 4.1",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/4/4.1.md",
                 "pts": "sutta/mn/mn131.md",
@@ -2425,9 +2425,9 @@
               }
             },
             {
-              "id": "mn132",
-              "citation": "MN 132",
-              "title": "MN 132",
+              "id": "11m_4_2",
+              "citation": "11M/4.2",
+              "title": "Uparipaṇṇāsapāḷi · 4.2",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/4/4.2.md",
                 "pts": "sutta/mn/mn132.md",
@@ -2437,9 +2437,9 @@
               }
             },
             {
-              "id": "mn133",
-              "citation": "MN 133",
-              "title": "MN 133",
+              "id": "11m_4_3",
+              "citation": "11M/4.3",
+              "title": "Uparipaṇṇāsapāḷi · 4.3",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/4/4.3.md",
                 "pts": "sutta/mn/mn133.md",
@@ -2449,9 +2449,9 @@
               }
             },
             {
-              "id": "mn134",
-              "citation": "MN 134",
-              "title": "MN 134",
+              "id": "11m_4_4",
+              "citation": "11M/4.4",
+              "title": "Uparipaṇṇāsapāḷi · 4.4",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/4/4.4.md",
                 "pts": "sutta/mn/mn134.md",
@@ -2461,9 +2461,9 @@
               }
             },
             {
-              "id": "mn135",
-              "citation": "MN 135",
-              "title": "MN 135",
+              "id": "11m_4_5",
+              "citation": "11M/4.5",
+              "title": "Uparipaṇṇāsapāḷi · 4.5",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/4/4.5.md",
                 "pts": "sutta/mn/mn135.md",
@@ -2473,9 +2473,9 @@
               }
             },
             {
-              "id": "mn136",
-              "citation": "MN 136",
-              "title": "MN 136",
+              "id": "11m_4_6",
+              "citation": "11M/4.6",
+              "title": "Uparipaṇṇāsapāḷi · 4.6",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/4/4.6.md",
                 "pts": "sutta/mn/mn136.md",
@@ -2485,9 +2485,9 @@
               }
             },
             {
-              "id": "mn137",
-              "citation": "MN 137",
-              "title": "MN 137",
+              "id": "11m_4_7",
+              "citation": "11M/4.7",
+              "title": "Uparipaṇṇāsapāḷi · 4.7",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/4/4.7.md",
                 "pts": "sutta/mn/mn137.md",
@@ -2497,9 +2497,9 @@
               }
             },
             {
-              "id": "mn138",
-              "citation": "MN 138",
-              "title": "MN 138",
+              "id": "11m_4_8",
+              "citation": "11M/4.8",
+              "title": "Uparipaṇṇāsapāḷi · 4.8",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/4/4.8.md",
                 "pts": "sutta/mn/mn138.md",
@@ -2509,9 +2509,9 @@
               }
             },
             {
-              "id": "mn139",
-              "citation": "MN 139",
-              "title": "MN 139",
+              "id": "11m_4_9",
+              "citation": "11M/4.9",
+              "title": "Uparipaṇṇāsapāḷi · 4.9",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/4/4.9.md",
                 "pts": "sutta/mn/mn139.md",
@@ -2521,9 +2521,9 @@
               }
             },
             {
-              "id": "mn140",
-              "citation": "MN 140",
-              "title": "MN 140",
+              "id": "11m_4_10",
+              "citation": "11M/4.10",
+              "title": "Uparipaṇṇāsapāḷi · 4.10",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/4/4.10.md",
                 "pts": "sutta/mn/mn140.md",
@@ -2533,9 +2533,9 @@
               }
             },
             {
-              "id": "mn141",
-              "citation": "MN 141",
-              "title": "MN 141",
+              "id": "11m_5_1",
+              "citation": "11M/5.1",
+              "title": "Uparipaṇṇāsapāḷi · 5.1",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/5/5.1.md",
                 "pts": "sutta/mn/mn141.md",
@@ -2545,9 +2545,9 @@
               }
             },
             {
-              "id": "mn142",
-              "citation": "MN 142",
-              "title": "MN 142",
+              "id": "11m_5_2",
+              "citation": "11M/5.2",
+              "title": "Uparipaṇṇāsapāḷi · 5.2",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/5/5.2.md",
                 "pts": "sutta/mn/mn142.md",
@@ -2557,9 +2557,9 @@
               }
             },
             {
-              "id": "mn143",
-              "citation": "MN 143",
-              "title": "MN 143",
+              "id": "11m_5_3",
+              "citation": "11M/5.3",
+              "title": "Uparipaṇṇāsapāḷi · 5.3",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/5/5.3.md",
                 "pts": "sutta/mn/mn143.md",
@@ -2569,9 +2569,9 @@
               }
             },
             {
-              "id": "mn144",
-              "citation": "MN 144",
-              "title": "MN 144",
+              "id": "11m_5_4",
+              "citation": "11M/5.4",
+              "title": "Uparipaṇṇāsapāḷi · 5.4",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/5/5.4.md",
                 "pts": "sutta/mn/mn144.md",
@@ -2581,9 +2581,9 @@
               }
             },
             {
-              "id": "mn145",
-              "citation": "MN 145",
-              "title": "MN 145",
+              "id": "11m_5_5",
+              "citation": "11M/5.5",
+              "title": "Uparipaṇṇāsapāḷi · 5.5",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/5/5.5.md",
                 "pts": "sutta/mn/mn145.md",
@@ -2593,9 +2593,9 @@
               }
             },
             {
-              "id": "mn146",
-              "citation": "MN 146",
-              "title": "MN 146",
+              "id": "11m_5_6",
+              "citation": "11M/5.6",
+              "title": "Uparipaṇṇāsapāḷi · 5.6",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/5/5.6.md",
                 "pts": "sutta/mn/mn146.md",
@@ -2605,9 +2605,9 @@
               }
             },
             {
-              "id": "mn147",
-              "citation": "MN 147",
-              "title": "MN 147",
+              "id": "11m_5_7",
+              "citation": "11M/5.7",
+              "title": "Uparipaṇṇāsapāḷi · 5.7",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/5/5.7.md",
                 "pts": "sutta/mn/mn147.md",
@@ -2617,9 +2617,9 @@
               }
             },
             {
-              "id": "mn148",
-              "citation": "MN 148",
-              "title": "MN 148",
+              "id": "11m_5_8",
+              "citation": "11M/5.8",
+              "title": "Uparipaṇṇāsapāḷi · 5.8",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/5/5.8.md",
                 "pts": "sutta/mn/mn148.md",
@@ -2629,9 +2629,9 @@
               }
             },
             {
-              "id": "mn149",
-              "citation": "MN 149",
-              "title": "MN 149",
+              "id": "11m_5_9",
+              "citation": "11M/5.9",
+              "title": "Uparipaṇṇāsapāḷi · 5.9",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/5/5.9.md",
                 "pts": "sutta/mn/mn149.md",
@@ -2641,9 +2641,9 @@
               }
             },
             {
-              "id": "mn150",
-              "citation": "MN 150",
-              "title": "MN 150",
+              "id": "11m_5_10",
+              "citation": "11M/5.10",
+              "title": "Uparipaṇṇāsapāḷi · 5.10",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/5/5.10.md",
                 "pts": "sutta/mn/mn150.md",
@@ -2653,9 +2653,9 @@
               }
             },
             {
-              "id": "mn151",
-              "citation": "MN 151",
-              "title": "MN 151",
+              "id": "11m_1_1",
+              "citation": "11M/1.1",
+              "title": "Uparipaṇṇāsapāḷi · 1.1",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/1/1.1.md",
                 "pts": "sutta/mn/mn151.md",
@@ -2665,9 +2665,9 @@
               }
             },
             {
-              "id": "mn152",
-              "citation": "MN 152",
-              "title": "MN 152",
+              "id": "11m_1_2",
+              "citation": "11M/1.2",
+              "title": "Uparipaṇṇāsapāḷi · 1.2",
               "editions": {
                 "tipitaka2500": "tipitaka/11M/1/1.2.md",
                 "pts": "sutta/mn/mn152.md",
@@ -2699,9 +2699,9 @@
           },
           "samyuttas": [
             {
-              "id": "sn1",
-              "citation": "SN 1",
-              "title": "SN 1",
+              "id": "12s1_1",
+              "citation": "12S1/1",
+              "title": "Sagāthāvaggasaṃyutta · Saṁyutta 1",
               "editions": {
                 "tipitaka2500": "tipitaka/12S1/1.md",
                 "pts": "sutta/sn/sn01.md",
@@ -2711,9 +2711,9 @@
               }
             },
             {
-              "id": "sn2",
-              "citation": "SN 2",
-              "title": "SN 2",
+              "id": "12s1_2",
+              "citation": "12S1/2",
+              "title": "Sagāthāvaggasaṃyutta · Saṁyutta 2",
               "editions": {
                 "tipitaka2500": "tipitaka/12S1/2.md",
                 "pts": "sutta/sn/sn02.md",
@@ -2723,9 +2723,9 @@
               }
             },
             {
-              "id": "sn3",
-              "citation": "SN 3",
-              "title": "SN 3",
+              "id": "12s1_3",
+              "citation": "12S1/3",
+              "title": "Sagāthāvaggasaṃyutta · Saṁyutta 3",
               "editions": {
                 "tipitaka2500": "tipitaka/12S1/3.md",
                 "pts": "sutta/sn/sn03.md",
@@ -2735,9 +2735,9 @@
               }
             },
             {
-              "id": "sn4",
-              "citation": "SN 4",
-              "title": "SN 4",
+              "id": "12s1_4",
+              "citation": "12S1/4",
+              "title": "Sagāthāvaggasaṃyutta · Saṁyutta 4",
               "editions": {
                 "tipitaka2500": "tipitaka/12S1/4.md",
                 "pts": "sutta/sn/sn04.md",
@@ -2747,9 +2747,9 @@
               }
             },
             {
-              "id": "sn5",
-              "citation": "SN 5",
-              "title": "SN 5",
+              "id": "12s1_5",
+              "citation": "12S1/5",
+              "title": "Sagāthāvaggasaṃyutta · Saṁyutta 5",
               "editions": {
                 "tipitaka2500": "tipitaka/12S1/5.md",
                 "pts": "sutta/sn/sn05.md",
@@ -2759,9 +2759,9 @@
               }
             },
             {
-              "id": "sn6",
-              "citation": "SN 6",
-              "title": "SN 6",
+              "id": "12s1_6",
+              "citation": "12S1/6",
+              "title": "Sagāthāvaggasaṃyutta · Saṁyutta 6",
               "editions": {
                 "tipitaka2500": "tipitaka/12S1/6.md",
                 "pts": "sutta/sn/sn06.md",
@@ -2771,9 +2771,9 @@
               }
             },
             {
-              "id": "sn7",
-              "citation": "SN 7",
-              "title": "SN 7",
+              "id": "12s1_7",
+              "citation": "12S1/7",
+              "title": "Sagāthāvaggasaṃyutta · Saṁyutta 7",
               "editions": {
                 "tipitaka2500": "tipitaka/12S1/7.md",
                 "pts": "sutta/sn/sn07.md",
@@ -2783,9 +2783,9 @@
               }
             },
             {
-              "id": "sn8",
-              "citation": "SN 8",
-              "title": "SN 8",
+              "id": "12s1_8",
+              "citation": "12S1/8",
+              "title": "Sagāthāvaggasaṃyutta · Saṁyutta 8",
               "editions": {
                 "tipitaka2500": "tipitaka/12S1/8.md",
                 "pts": "sutta/sn/sn08.md",
@@ -2795,9 +2795,9 @@
               }
             },
             {
-              "id": "sn9",
-              "citation": "SN 9",
-              "title": "SN 9",
+              "id": "12s1_9",
+              "citation": "12S1/9",
+              "title": "Sagāthāvaggasaṃyutta · Saṁyutta 9",
               "editions": {
                 "tipitaka2500": "tipitaka/12S1/9.md",
                 "pts": "sutta/sn/sn09.md",
@@ -2807,9 +2807,9 @@
               }
             },
             {
-              "id": "sn10",
-              "citation": "SN 10",
-              "title": "SN 10",
+              "id": "12s1_10",
+              "citation": "12S1/10",
+              "title": "Sagāthāvaggasaṃyutta · Saṁyutta 10",
               "editions": {
                 "tipitaka2500": "tipitaka/12S1/10.md",
                 "pts": "sutta/sn/sn10.md",
@@ -2819,9 +2819,9 @@
               }
             },
             {
-              "id": "sn11",
-              "citation": "SN 11",
-              "title": "SN 11",
+              "id": "12s1_11",
+              "citation": "12S1/11",
+              "title": "Sagāthāvaggasaṃyutta · Saṁyutta 11",
               "editions": {
                 "tipitaka2500": "tipitaka/12S1/11.md",
                 "pts": "sutta/sn/sn11.md",
@@ -2845,9 +2845,9 @@
           },
           "samyuttas": [
             {
-              "id": "sn12",
-              "citation": "SN 12",
-              "title": "SN 12",
+              "id": "12s2_1",
+              "citation": "12S2/1",
+              "title": "Nidānavaggasaṃyutta · Saṁyutta 1",
               "editions": {
                 "tipitaka2500": "tipitaka/12S2/1.md",
                 "pts": "sutta/sn/sn12.md",
@@ -2857,9 +2857,9 @@
               }
             },
             {
-              "id": "sn13",
-              "citation": "SN 13",
-              "title": "SN 13",
+              "id": "12s2_2",
+              "citation": "12S2/2",
+              "title": "Nidānavaggasaṃyutta · Saṁyutta 2",
               "editions": {
                 "tipitaka2500": "tipitaka/12S2/2.md",
                 "pts": "sutta/sn/sn13.md",
@@ -2869,9 +2869,9 @@
               }
             },
             {
-              "id": "sn14",
-              "citation": "SN 14",
-              "title": "SN 14",
+              "id": "12s2_3",
+              "citation": "12S2/3",
+              "title": "Nidānavaggasaṃyutta · Saṁyutta 3",
               "editions": {
                 "tipitaka2500": "tipitaka/12S2/3.md",
                 "pts": "sutta/sn/sn14.md",
@@ -2881,9 +2881,9 @@
               }
             },
             {
-              "id": "sn15",
-              "citation": "SN 15",
-              "title": "SN 15",
+              "id": "12s2_4",
+              "citation": "12S2/4",
+              "title": "Nidānavaggasaṃyutta · Saṁyutta 4",
               "editions": {
                 "tipitaka2500": "tipitaka/12S2/4.md",
                 "pts": "sutta/sn/sn15.md",
@@ -2893,9 +2893,9 @@
               }
             },
             {
-              "id": "sn16",
-              "citation": "SN 16",
-              "title": "SN 16",
+              "id": "12s2_5",
+              "citation": "12S2/5",
+              "title": "Nidānavaggasaṃyutta · Saṁyutta 5",
               "editions": {
                 "tipitaka2500": "tipitaka/12S2/5.md",
                 "pts": "sutta/sn/sn16.md",
@@ -2905,9 +2905,9 @@
               }
             },
             {
-              "id": "sn17",
-              "citation": "SN 17",
-              "title": "SN 17",
+              "id": "12s2_6",
+              "citation": "12S2/6",
+              "title": "Nidānavaggasaṃyutta · Saṁyutta 6",
               "editions": {
                 "tipitaka2500": "tipitaka/12S2/6.md",
                 "pts": "sutta/sn/sn17.md",
@@ -2917,9 +2917,9 @@
               }
             },
             {
-              "id": "sn18",
-              "citation": "SN 18",
-              "title": "SN 18",
+              "id": "12s2_7",
+              "citation": "12S2/7",
+              "title": "Nidānavaggasaṃyutta · Saṁyutta 7",
               "editions": {
                 "tipitaka2500": "tipitaka/12S2/7.md",
                 "pts": "sutta/sn/sn18.md",
@@ -2929,9 +2929,9 @@
               }
             },
             {
-              "id": "sn19",
-              "citation": "SN 19",
-              "title": "SN 19",
+              "id": "12s2_8",
+              "citation": "12S2/8",
+              "title": "Nidānavaggasaṃyutta · Saṁyutta 8",
               "editions": {
                 "tipitaka2500": "tipitaka/12S2/8.md",
                 "pts": "sutta/sn/sn19.md",
@@ -2941,9 +2941,9 @@
               }
             },
             {
-              "id": "sn20",
-              "citation": "SN 20",
-              "title": "SN 20",
+              "id": "12s2_9",
+              "citation": "12S2/9",
+              "title": "Nidānavaggasaṃyutta · Saṁyutta 9",
               "editions": {
                 "tipitaka2500": "tipitaka/12S2/9.md",
                 "pts": "sutta/sn/sn20.md",
@@ -2953,9 +2953,9 @@
               }
             },
             {
-              "id": "sn21",
-              "citation": "SN 21",
-              "title": "SN 21",
+              "id": "12s2_10",
+              "citation": "12S2/10",
+              "title": "Nidānavaggasaṃyutta · Saṁyutta 10",
               "editions": {
                 "tipitaka2500": "tipitaka/12S2/10.md",
                 "pts": "sutta/sn/sn21.md",
@@ -2979,9 +2979,9 @@
           },
           "samyuttas": [
             {
-              "id": "sn22",
-              "citation": "SN 22",
-              "title": "SN 22",
+              "id": "13s3_1",
+              "citation": "13S3/1",
+              "title": "Khandhavaggasaṃyutta · Saṁyutta 1",
               "editions": {
                 "tipitaka2500": "tipitaka/13S3/1.md",
                 "pts": "sutta/sn/sn22.md",
@@ -2991,9 +2991,9 @@
               }
             },
             {
-              "id": "sn23",
-              "citation": "SN 23",
-              "title": "SN 23",
+              "id": "13s3_2",
+              "citation": "13S3/2",
+              "title": "Khandhavaggasaṃyutta · Saṁyutta 2",
               "editions": {
                 "tipitaka2500": "tipitaka/13S3/2.md",
                 "pts": "sutta/sn/sn23.md",
@@ -3003,9 +3003,9 @@
               }
             },
             {
-              "id": "sn24",
-              "citation": "SN 24",
-              "title": "SN 24",
+              "id": "13s3_3",
+              "citation": "13S3/3",
+              "title": "Khandhavaggasaṃyutta · Saṁyutta 3",
               "editions": {
                 "tipitaka2500": "tipitaka/13S3/3.md",
                 "pts": "sutta/sn/sn24.md",
@@ -3015,9 +3015,9 @@
               }
             },
             {
-              "id": "sn25",
-              "citation": "SN 25",
-              "title": "SN 25",
+              "id": "13s3_4",
+              "citation": "13S3/4",
+              "title": "Khandhavaggasaṃyutta · Saṁyutta 4",
               "editions": {
                 "tipitaka2500": "tipitaka/13S3/4.md",
                 "pts": "sutta/sn/sn25.md",
@@ -3027,9 +3027,9 @@
               }
             },
             {
-              "id": "sn26",
-              "citation": "SN 26",
-              "title": "SN 26",
+              "id": "13s3_5",
+              "citation": "13S3/5",
+              "title": "Khandhavaggasaṃyutta · Saṁyutta 5",
               "editions": {
                 "tipitaka2500": "tipitaka/13S3/5.md",
                 "pts": "sutta/sn/sn26.md",
@@ -3039,9 +3039,9 @@
               }
             },
             {
-              "id": "sn27",
-              "citation": "SN 27",
-              "title": "SN 27",
+              "id": "13s3_6",
+              "citation": "13S3/6",
+              "title": "Khandhavaggasaṃyutta · Saṁyutta 6",
               "editions": {
                 "tipitaka2500": "tipitaka/13S3/6.md",
                 "pts": "sutta/sn/sn27.md",
@@ -3051,9 +3051,9 @@
               }
             },
             {
-              "id": "sn28",
-              "citation": "SN 28",
-              "title": "SN 28",
+              "id": "13s3_7",
+              "citation": "13S3/7",
+              "title": "Khandhavaggasaṃyutta · Saṁyutta 7",
               "editions": {
                 "tipitaka2500": "tipitaka/13S3/7.md",
                 "pts": "sutta/sn/sn28.md",
@@ -3063,9 +3063,9 @@
               }
             },
             {
-              "id": "sn29",
-              "citation": "SN 29",
-              "title": "SN 29",
+              "id": "13s3_8",
+              "citation": "13S3/8",
+              "title": "Khandhavaggasaṃyutta · Saṁyutta 8",
               "editions": {
                 "tipitaka2500": "tipitaka/13S3/8.md",
                 "pts": "sutta/sn/sn29.md",
@@ -3075,9 +3075,9 @@
               }
             },
             {
-              "id": "sn30",
-              "citation": "SN 30",
-              "title": "SN 30",
+              "id": "13s3_9",
+              "citation": "13S3/9",
+              "title": "Khandhavaggasaṃyutta · Saṁyutta 9",
               "editions": {
                 "tipitaka2500": "tipitaka/13S3/9.md",
                 "pts": "sutta/sn/sn30.md",
@@ -3087,9 +3087,9 @@
               }
             },
             {
-              "id": "sn31",
-              "citation": "SN 31",
-              "title": "SN 31",
+              "id": "13s3_10",
+              "citation": "13S3/10",
+              "title": "Khandhavaggasaṃyutta · Saṁyutta 10",
               "editions": {
                 "tipitaka2500": "tipitaka/13S3/10.md",
                 "pts": "sutta/sn/sn31.md",
@@ -3099,9 +3099,9 @@
               }
             },
             {
-              "id": "sn32",
-              "citation": "SN 32",
-              "title": "SN 32",
+              "id": "13s3_11",
+              "citation": "13S3/11",
+              "title": "Khandhavaggasaṃyutta · Saṁyutta 11",
               "editions": {
                 "tipitaka2500": "tipitaka/13S3/11.md",
                 "pts": "sutta/sn/sn32.md",
@@ -3111,9 +3111,9 @@
               }
             },
             {
-              "id": "sn33",
-              "citation": "SN 33",
-              "title": "SN 33",
+              "id": "13s3_12",
+              "citation": "13S3/12",
+              "title": "Khandhavaggasaṃyutta · Saṁyutta 12",
               "editions": {
                 "tipitaka2500": "tipitaka/13S3/12.md",
                 "pts": "sutta/sn/sn33.md",
@@ -3123,9 +3123,9 @@
               }
             },
             {
-              "id": "sn34",
-              "citation": "SN 34",
-              "title": "SN 34",
+              "id": "13s3_13",
+              "citation": "13S3/13",
+              "title": "Khandhavaggasaṃyutta · Saṁyutta 13",
               "editions": {
                 "tipitaka2500": "tipitaka/13S3/13.md",
                 "pts": "sutta/sn/sn34.md",
@@ -3149,9 +3149,9 @@
           },
           "samyuttas": [
             {
-              "id": "sn35",
-              "citation": "SN 35",
-              "title": "SN 35",
+              "id": "13s4_1",
+              "citation": "13S4/1",
+              "title": "Saḷāyatanavaggasaṃyutta · Saṁyutta 1",
               "editions": {
                 "tipitaka2500": "tipitaka/13S4/1.md",
                 "pts": "sutta/sn/sn35.md",
@@ -3161,9 +3161,9 @@
               }
             },
             {
-              "id": "sn36",
-              "citation": "SN 36",
-              "title": "SN 36",
+              "id": "13s4_2",
+              "citation": "13S4/2",
+              "title": "Saḷāyatanavaggasaṃyutta · Saṁyutta 2",
               "editions": {
                 "tipitaka2500": "tipitaka/13S4/2.md",
                 "pts": "sutta/sn/sn36.md",
@@ -3173,9 +3173,9 @@
               }
             },
             {
-              "id": "sn37",
-              "citation": "SN 37",
-              "title": "SN 37",
+              "id": "13s4_3",
+              "citation": "13S4/3",
+              "title": "Saḷāyatanavaggasaṃyutta · Saṁyutta 3",
               "editions": {
                 "tipitaka2500": "tipitaka/13S4/3.md",
                 "pts": "sutta/sn/sn37.md",
@@ -3185,9 +3185,9 @@
               }
             },
             {
-              "id": "sn38",
-              "citation": "SN 38",
-              "title": "SN 38",
+              "id": "13s4_4",
+              "citation": "13S4/4",
+              "title": "Saḷāyatanavaggasaṃyutta · Saṁyutta 4",
               "editions": {
                 "tipitaka2500": "tipitaka/13S4/4.md",
                 "pts": "sutta/sn/sn38.md",
@@ -3197,9 +3197,9 @@
               }
             },
             {
-              "id": "sn39",
-              "citation": "SN 39",
-              "title": "SN 39",
+              "id": "13s4_5",
+              "citation": "13S4/5",
+              "title": "Saḷāyatanavaggasaṃyutta · Saṁyutta 5",
               "editions": {
                 "tipitaka2500": "tipitaka/13S4/5.md",
                 "pts": "sutta/sn/sn39.md",
@@ -3209,9 +3209,9 @@
               }
             },
             {
-              "id": "sn40",
-              "citation": "SN 40",
-              "title": "SN 40",
+              "id": "13s4_6",
+              "citation": "13S4/6",
+              "title": "Saḷāyatanavaggasaṃyutta · Saṁyutta 6",
               "editions": {
                 "tipitaka2500": "tipitaka/13S4/6.md",
                 "pts": "sutta/sn/sn40.md",
@@ -3221,9 +3221,9 @@
               }
             },
             {
-              "id": "sn41",
-              "citation": "SN 41",
-              "title": "SN 41",
+              "id": "13s4_7",
+              "citation": "13S4/7",
+              "title": "Saḷāyatanavaggasaṃyutta · Saṁyutta 7",
               "editions": {
                 "tipitaka2500": "tipitaka/13S4/7.md",
                 "pts": "sutta/sn/sn41.md",
@@ -3233,9 +3233,9 @@
               }
             },
             {
-              "id": "sn42",
-              "citation": "SN 42",
-              "title": "SN 42",
+              "id": "13s4_8",
+              "citation": "13S4/8",
+              "title": "Saḷāyatanavaggasaṃyutta · Saṁyutta 8",
               "editions": {
                 "tipitaka2500": "tipitaka/13S4/8.md",
                 "pts": "sutta/sn/sn42.md",
@@ -3245,9 +3245,9 @@
               }
             },
             {
-              "id": "sn43",
-              "citation": "SN 43",
-              "title": "SN 43",
+              "id": "13s4_9",
+              "citation": "13S4/9",
+              "title": "Saḷāyatanavaggasaṃyutta · Saṁyutta 9",
               "editions": {
                 "tipitaka2500": "tipitaka/13S4/9.md",
                 "pts": "sutta/sn/sn43.md",
@@ -3257,9 +3257,9 @@
               }
             },
             {
-              "id": "sn44",
-              "citation": "SN 44",
-              "title": "SN 44",
+              "id": "13s4_10",
+              "citation": "13S4/10",
+              "title": "Saḷāyatanavaggasaṃyutta · Saṁyutta 10",
               "editions": {
                 "tipitaka2500": "tipitaka/13S4/10.md",
                 "pts": "sutta/sn/sn44.md",
@@ -3283,9 +3283,9 @@
           },
           "samyuttas": [
             {
-              "id": "sn45",
-              "citation": "SN 45",
-              "title": "SN 45",
+              "id": "14s5_1",
+              "citation": "14S5/1",
+              "title": "Mahāvaggasaṃyutta · Saṁyutta 1",
               "editions": {
                 "tipitaka2500": "tipitaka/14S5/1.md",
                 "pts": "sutta/sn/sn45.md",
@@ -3295,9 +3295,9 @@
               }
             },
             {
-              "id": "sn46",
-              "citation": "SN 46",
-              "title": "SN 46",
+              "id": "14s5_2",
+              "citation": "14S5/2",
+              "title": "Mahāvaggasaṃyutta · Saṁyutta 2",
               "editions": {
                 "tipitaka2500": "tipitaka/14S5/2.md",
                 "pts": "sutta/sn/sn46.md",
@@ -3307,9 +3307,9 @@
               }
             },
             {
-              "id": "sn47",
-              "citation": "SN 47",
-              "title": "SN 47",
+              "id": "14s5_3",
+              "citation": "14S5/3",
+              "title": "Mahāvaggasaṃyutta · Saṁyutta 3",
               "editions": {
                 "tipitaka2500": "tipitaka/14S5/3.md",
                 "pts": "sutta/sn/sn47.md",
@@ -3319,9 +3319,9 @@
               }
             },
             {
-              "id": "sn48",
-              "citation": "SN 48",
-              "title": "SN 48",
+              "id": "14s5_4",
+              "citation": "14S5/4",
+              "title": "Mahāvaggasaṃyutta · Saṁyutta 4",
               "editions": {
                 "tipitaka2500": "tipitaka/14S5/4.md",
                 "pts": "sutta/sn/sn48.md",
@@ -3331,9 +3331,9 @@
               }
             },
             {
-              "id": "sn49",
-              "citation": "SN 49",
-              "title": "SN 49",
+              "id": "14s5_5",
+              "citation": "14S5/5",
+              "title": "Mahāvaggasaṃyutta · Saṁyutta 5",
               "editions": {
                 "tipitaka2500": "tipitaka/14S5/5.md",
                 "pts": "sutta/sn/sn49.md",
@@ -3343,9 +3343,9 @@
               }
             },
             {
-              "id": "sn50",
-              "citation": "SN 50",
-              "title": "SN 50",
+              "id": "14s5_6",
+              "citation": "14S5/6",
+              "title": "Mahāvaggasaṃyutta · Saṁyutta 6",
               "editions": {
                 "tipitaka2500": "tipitaka/14S5/6.md",
                 "pts": "sutta/sn/sn50.md",
@@ -3355,9 +3355,9 @@
               }
             },
             {
-              "id": "sn51",
-              "citation": "SN 51",
-              "title": "SN 51",
+              "id": "14s5_7",
+              "citation": "14S5/7",
+              "title": "Mahāvaggasaṃyutta · Saṁyutta 7",
               "editions": {
                 "tipitaka2500": "tipitaka/14S5/7.md",
                 "pts": "sutta/sn/sn51.md",
@@ -3367,9 +3367,9 @@
               }
             },
             {
-              "id": "sn52",
-              "citation": "SN 52",
-              "title": "SN 52",
+              "id": "14s5_8",
+              "citation": "14S5/8",
+              "title": "Mahāvaggasaṃyutta · Saṁyutta 8",
               "editions": {
                 "tipitaka2500": "tipitaka/14S5/8.md",
                 "pts": "sutta/sn/sn52.md",
@@ -3379,9 +3379,9 @@
               }
             },
             {
-              "id": "sn53",
-              "citation": "SN 53",
-              "title": "SN 53",
+              "id": "14s5_9",
+              "citation": "14S5/9",
+              "title": "Mahāvaggasaṃyutta · Saṁyutta 9",
               "editions": {
                 "tipitaka2500": "tipitaka/14S5/9.md",
                 "pts": "sutta/sn/sn53.md",
@@ -3391,9 +3391,9 @@
               }
             },
             {
-              "id": "sn54",
-              "citation": "SN 54",
-              "title": "SN 54",
+              "id": "14s5_10",
+              "citation": "14S5/10",
+              "title": "Mahāvaggasaṃyutta · Saṁyutta 10",
               "editions": {
                 "tipitaka2500": "tipitaka/14S5/10.md",
                 "pts": "sutta/sn/sn54.md",
@@ -3403,9 +3403,9 @@
               }
             },
             {
-              "id": "sn55",
-              "citation": "SN 55",
-              "title": "SN 55",
+              "id": "14s5_11",
+              "citation": "14S5/11",
+              "title": "Mahāvaggasaṃyutta · Saṁyutta 11",
               "editions": {
                 "tipitaka2500": "tipitaka/14S5/11.md",
                 "pts": "sutta/sn/sn55.md",
@@ -3415,9 +3415,9 @@
               }
             },
             {
-              "id": "sn56",
-              "citation": "SN 56",
-              "title": "SN 56",
+              "id": "14s5_12",
+              "citation": "14S5/12",
+              "title": "Mahāvaggasaṃyutta · Saṁyutta 12",
               "editions": {
                 "tipitaka2500": "tipitaka/14S5/12.md",
                 "pts": "sutta/sn/sn56.md",
@@ -3438,9 +3438,9 @@
       "books": [
         {
           "code": "15A1",
-          "title": "AN 1 (Ekakanipāta)",
+          "title": "15A1 Ekakanipāta",
           "pali_title": "Ekakanipāta",
-          "citation": "AN 1",
+          "citation": "15A1",
           "nikaya": "Aṅguttaranikāya",
           "pitaka": "Suttantapiṭaka",
           "editions": {
@@ -3453,9 +3453,9 @@
         },
         {
           "code": "15A2",
-          "title": "AN 2 (Dukanipāta)",
+          "title": "15A2 Dukanipāta",
           "pali_title": "Dukanipāta",
-          "citation": "AN 2",
+          "citation": "15A2",
           "nikaya": "Aṅguttaranikāya",
           "pitaka": "Suttantapiṭaka",
           "editions": {
@@ -3468,9 +3468,9 @@
         },
         {
           "code": "15A3",
-          "title": "AN 3 (Tikanipāta)",
+          "title": "15A3 Tikanipāta",
           "pali_title": "Tikanipāta",
-          "citation": "AN 3",
+          "citation": "15A3",
           "nikaya": "Aṅguttaranikāya",
           "pitaka": "Suttantapiṭaka",
           "editions": {
@@ -3483,9 +3483,9 @@
         },
         {
           "code": "15A4",
-          "title": "AN 4 (Catukkanipāta)",
+          "title": "15A4 Catukkanipāta",
           "pali_title": "Catukkanipāta",
-          "citation": "AN 4",
+          "citation": "15A4",
           "nikaya": "Aṅguttaranikāya",
           "pitaka": "Suttantapiṭaka",
           "editions": {
@@ -3498,9 +3498,9 @@
         },
         {
           "code": "16A5",
-          "title": "AN 5 (Pañcakanipāta)",
+          "title": "16A5 Pañcakanipāta",
           "pali_title": "Pañcakanipāta",
-          "citation": "AN 5",
+          "citation": "16A5",
           "nikaya": "Aṅguttaranikāya",
           "pitaka": "Suttantapiṭaka",
           "editions": {
@@ -3513,9 +3513,9 @@
         },
         {
           "code": "16A6",
-          "title": "AN 6 (Chakkanipāta)",
+          "title": "16A6 Chakkanipāta",
           "pali_title": "Chakkanipāta",
-          "citation": "AN 6",
+          "citation": "16A6",
           "nikaya": "Aṅguttaranikāya",
           "pitaka": "Suttantapiṭaka",
           "editions": {
@@ -3528,9 +3528,9 @@
         },
         {
           "code": "16A7",
-          "title": "AN 7 (Sattakanipāta)",
+          "title": "16A7 Sattakanipāta",
           "pali_title": "Sattakanipāta",
-          "citation": "AN 7",
+          "citation": "16A7",
           "nikaya": "Aṅguttaranikāya",
           "pitaka": "Suttantapiṭaka",
           "editions": {
@@ -3543,9 +3543,9 @@
         },
         {
           "code": "17A8",
-          "title": "AN 8 (Aṭṭhakanipāta)",
+          "title": "17A8 Aṭṭhakanipāta",
           "pali_title": "Aṭṭhakanipāta",
-          "citation": "AN 8",
+          "citation": "17A8",
           "nikaya": "Aṅguttaranikāya",
           "pitaka": "Suttantapiṭaka",
           "editions": {
@@ -3558,9 +3558,9 @@
         },
         {
           "code": "17A9",
-          "title": "AN 9 (Navakanipāta)",
+          "title": "17A9 Navakanipāta",
           "pali_title": "Navakanipāta",
-          "citation": "AN 9",
+          "citation": "17A9",
           "nikaya": "Aṅguttaranikāya",
           "pitaka": "Suttantapiṭaka",
           "editions": {
@@ -3573,9 +3573,9 @@
         },
         {
           "code": "17A10",
-          "title": "AN 10 (Dasakanipāta)",
+          "title": "17A10 Dasakanipāta",
           "pali_title": "Dasakanipāta",
-          "citation": "AN 10",
+          "citation": "17A10",
           "nikaya": "Aṅguttaranikāya",
           "pitaka": "Suttantapiṭaka",
           "editions": {
@@ -3588,9 +3588,9 @@
         },
         {
           "code": "17A11",
-          "title": "AN 11 (Ekādasakanipāta)",
+          "title": "17A11 Ekādasakanipāta",
           "pali_title": "Ekādasakanipāta",
-          "citation": "AN 11",
+          "citation": "17A11",
           "nikaya": "Aṅguttaranikāya",
           "pitaka": "Suttantapiṭaka",
           "editions": {

@@ -389,6 +389,36 @@ import Layout from '../layouts/Layout.astro';
     padding: 0.35rem 0;
   }
 
+  .tipitaka-article .wtk-par-list {
+    list-style-type: decimal;
+    padding-left: 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .tipitaka-article .wtk-par-item {
+    padding: 0.25rem 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .tipitaka-article .wtk-paragraph {
+    margin-bottom: 1.25rem;
+  }
+
+  .tipitaka-article .wtk-par-num {
+    font-weight: 700;
+    color: var(--primary-color, #ea580c);
+    margin-right: 0.35rem;
+  }
+
+  .wtk-paragraph-highlight {
+    background-color: rgba(245, 158, 11, 0.22) !important;
+    border-left: 4px solid var(--primary-color, #ea580c) !important;
+    padding-left: 0.75rem !important;
+    border-radius: 4px;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+    transition: background-color 1.5s ease-out, box-shadow 1.5s ease-out;
+  }
+
   .raw-markdown-view {
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
@@ -1104,7 +1134,9 @@ import Layout from '../layouts/Layout.astro';
       return '/';
     }
 
-    const cleanHref = href.replace(/^\//, '');
+    const [pathPart, hashPart] = href.split('#');
+    const hashSuffix = hashPart ? `#${hashPart}` : '';
+    const cleanHref = pathPart.replace(/^\//, '');
     const parts = (fromFile || 'tipitaka/index.md').split('/');
     parts.pop(); // remove current file name, keep directory
 
@@ -1118,11 +1150,12 @@ import Layout from '../layouts/Layout.astro';
       }
     }
     const resolved = parts.join('/');
-    return `/reader.html?edition=${encodeURIComponent(edition)}&file=${encodeURIComponent(resolved)}`;
+    return `/reader.html?edition=${encodeURIComponent(edition)}&file=${encodeURIComponent(resolved)}${hashSuffix}`;
   }
 
   /**
    * Custom marked renderer that transforms all Markdown links to reader routes
+   * and preserves paragraph anchors for WTK volume & paragraph numbering
    */
   function createMarkedRenderer(fromFile: string, edition: string) {
     const renderer = new marked.Renderer();
@@ -1133,6 +1166,35 @@ import Layout from '../layouts/Layout.astro';
       const titleAttr = title ? ` title="${title}"` : '';
       return `<a href="${targetUrl}"${targetAttr}${titleAttr} data-reader-link="true">${text}</a>`;
     };
+
+    renderer.list = function (token: any) {
+      if (token.ordered && typeof token.start === 'number' && token.start > 0) {
+        const start = token.start;
+        const body = token.items.map((item: any, idx: number) => {
+          const parNum = start + idx;
+          const parsedItem = this.listitem(item);
+          return parsedItem.replace(/^<li([^>]*)>/, `<li$1 id="p${parNum}" class="wtk-par-item" data-par="${parNum}">`);
+        }).join('\n');
+        return `<ol start="${start}" class="wtk-par-list">\n${body}\n</ol>\n`;
+      }
+      const ordered = token.ordered;
+      const start = token.start;
+      const tag = ordered ? 'ol' : 'ul';
+      const startAttr = ordered && start !== 1 ? ` start="${start}"` : '';
+      const body = token.items.map((item: any) => this.listitem(item)).join('\n');
+      return `<${tag}${startAttr}>\n${body}\n</${tag}>\n`;
+    };
+
+    renderer.paragraph = function ({ text }: { text: string }) {
+      const match = text.match(/^(\d+)\.\s+/);
+      if (match) {
+        const parNum = match[1];
+        const rest = text.slice(match[0].length);
+        return `<p id="p${parNum}" class="wtk-paragraph" data-par="${parNum}"><span class="wtk-par-num" id="par-${parNum}">${parNum}.</span> ${rest}</p>\n`;
+      }
+      return `<p>${text}</p>\n`;
+    };
+
     return renderer;
   }
 
@@ -1487,13 +1549,16 @@ import Layout from '../layouts/Layout.astro';
 
           updateActiveSidebarLink();
           const targetRef = currentSectionRef || currentFilePath;
+          const hashStr = url.hash || '';
           window.history.pushState(
             {},
             '',
-            `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}${targetRef ? `&file=${encodeURIComponent(targetRef)}` : ''}&mode=${viewMode}&diff=${diffEnabled ? '1' : '0'}&script=${currentScript}`
+            `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}${targetRef ? `&file=${encodeURIComponent(targetRef)}` : ''}&mode=${viewMode}&diff=${diffEnabled ? '1' : '0'}&script=${currentScript}${hashStr}`
           );
           updateView();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          if (!hashStr) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
         }
       });
     });
@@ -1538,15 +1603,18 @@ import Layout from '../layouts/Layout.astro';
         }
 
         const targetRef = currentSectionRef || currentFilePath;
+        const hashStr = url.hash || '';
         window.history.pushState(
           {},
           '',
-          `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}${targetRef ? `&file=${encodeURIComponent(targetRef)}` : ''}&mode=${viewMode}&diff=${diffEnabled ? '1' : '0'}&script=${currentScript}`
+          `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}${targetRef ? `&file=${encodeURIComponent(targetRef)}` : ''}&mode=${viewMode}&diff=${diffEnabled ? '1' : '0'}&script=${currentScript}${hashStr}`
         );
         updateActiveSidebarLink();
         updateActiveEditionTabs();
         updateView();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (!hashStr) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       });
     });
   }
@@ -1775,6 +1843,34 @@ import Layout from '../layouts/Layout.astro';
     if (loadingEl) loadingEl.style.display = 'none';
     attachReaderLinkHandlers();
     updateNavigationButtons();
+    scrollToParagraphHash();
+  }
+
+  /**
+   * Scroll to and highlight paragraph anchor if URL hash is present (e.g. #p41 or #p0041)
+   */
+  function scrollToParagraphHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const match = hash.match(/^#p(?:ar-)?0*(\d+)$/i);
+    if (match) {
+      const num = parseInt(match[1], 10);
+      setTimeout(() => {
+        const target =
+          document.getElementById(`p${num}`) ||
+          document.querySelector(`[data-par="${num}"]`) ||
+          document.getElementById(`par-${num}`);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.classList.remove('wtk-paragraph-highlight');
+          void (target as HTMLElement).offsetWidth;
+          target.classList.add('wtk-paragraph-highlight');
+          setTimeout(() => {
+            target.classList.remove('wtk-paragraph-highlight');
+          }, 4500);
+        }
+      }, 150);
+    }
   }
 
   /**
@@ -2030,7 +2126,11 @@ import Layout from '../layouts/Layout.astro';
       updateActiveSidebarLink();
       updateActiveEditionTabs();
       updateView();
+      scrollToParagraphHash();
     });
+
+    // Handle hash change for paragraph deep linking
+    window.addEventListener('hashchange', scrollToParagraphHash);
   }
 
   /**
