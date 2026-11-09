@@ -1406,6 +1406,36 @@ details[open] > .btn-toggle::before {
   color: var(--text-emphasis);
 }
 
+.home-edition-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background-color: var(--badge-light-bg);
+  color: var(--text-body);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.home-edition-card:hover {
+  border-color: var(--primary-color);
+}
+
+.home-edition-card h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-emphasis);
+}
+
+.home-edition-card p {
+  margin: 0 0 0.85rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
 /* Floating Dict Toggle Button */
 .dict-hover-toggle-btn {
   display: flex;
