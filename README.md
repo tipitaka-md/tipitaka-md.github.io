@@ -50,7 +50,7 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
    - Concordance badges in the header showing edition coverage for the open text.
 
 4. **Instant Quick-Jump & Full Canonical Search (`⌘K` / `/`)**
-   - Command palette modal to instantly jump to any Sutta or Book by name or standard citation (e.g., `DN 1`, `MN 10`, `SN 56.11`, `Dhp`, `Brahmajala`).
+   - Command palette modal to instantly jump to any book or sutta by code or title (e.g., `1V`, `6D`, `18Dh`, `Brahmajāla`, `Mahāparinibbāna`).
 
 5. **Footnote & Variant Reader**
    - Clickable footnote superscripts open notes in a bottom drawer without disturbing reading flow.
