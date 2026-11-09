@@ -527,6 +527,21 @@ const jsonLdString = JSON.stringify({
             `);
           }
 
+          if (q) {
+            htmlParts.push(`
+              <div class="quick-jump-group">
+                <div class="quick-jump-group-title">Pāḷi Word Index (Padabhājanīya)</div>
+                <a href="/words.html?q=${encodeURIComponent(q)}" class="quick-jump-item">
+                  <div>
+                    <strong>Search “${q.replace(/[<>&"]/g, '')}” in Pāḷi Word Index →</strong>
+                    <div class="quick-jump-sub">Lookup in 146,693 canonical Pāḷi headwords across 88 books</div>
+                  </div>
+                  <span class="badge-pill">Word Index →</span>
+                </a>
+              </div>
+            `);
+          }
+
           if (htmlParts.length === 0) {
             htmlParts.push(`
               <div style="padding: 1rem; color: var(--text-secondary); text-align: center;">
