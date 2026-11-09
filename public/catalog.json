@@ -29,7 +29,7 @@
     },
     "cst": {
       "name": "Chaṭṭha Saṅgāyana",
-      "short_name": "CST4",
+      "short_name": "CST",
       "repo": "tipitaka-md/cst",
       "branch": "main",
       "base_path": "",

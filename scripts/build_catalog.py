@@ -4,7 +4,7 @@ Generate complete cross-edition catalog for tipitaka-md.github.io.
 Maps canonical divisions across:
 - tipitaka2500 (World Tipitaka Base)
 - buddha-jayanthi (BJT)
-- cst (Chattha Sangayana CST4)
+- cst (Chattha Sangayana CST)
 - siam-rath (Royal Thai Edition)
 - pts (Pali Text Society)
 """
@@ -47,7 +47,7 @@ def build_catalog():
             },
             "cst": {
                 "name": "Chaṭṭha Saṅgāyana",
-                "short_name": "CST4",
+                "short_name": "CST",
                 "repo": "tipitaka-md/cst",
                 "branch": "main",
                 "base_path": "",

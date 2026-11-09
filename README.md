@@ -14,10 +14,10 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
 
 | Edition | Code | Base Repository | Description |
 |:---|:---:|:---|:---|
-| **World Tipiṭaka 2500** | `T2500` | [`tipitaka-md/tipitaka2500`](https://github.com/tipitaka-md/tipitaka2500) | Roman Script 2005 / 2020 Edition (Mahāsaṅgīti Tipiṭaka Buddhavasse 2500) — **Base text** |
+| **World Tipiṭaka Edition** | `WTK` | [`tipitaka-md/tipitaka2500`](https://github.com/tipitaka-md/tipitaka2500) | Roman Script Mahāsaṅgīti Tipiṭaka Buddhavasse 2500 (2020 Edition) — **Base text** |
 | **Pali Text Society** | `PTS` | [`tipitaka-md/pts`](https://github.com/tipitaka-md/pts) | Pali Text Society Roman Edition (London / GRETIL) with PTS volume/page concordances |
 | **Buddha Jayanthi** | `BJT` | [`tipitaka-md/buddha-jayanthi`](https://github.com/tipitaka-md/buddha-jayanthi) | Sri Lanka Buddha Jayanthi Tripitaka Series (B.E. 2500) with footnotes and variants |
-| **Chaṭṭha Saṅgāyana** | `CST4` | [`tipitaka-md/cst`](https://github.com/tipitaka-md/cst) | Sixth Buddhist Council Edition (Vipassana Research Institute XML corpus) |
+| **Chaṭṭha Saṅgāyana** | `CST` | [`tipitaka-md/cst`](https://github.com/tipitaka-md/cst) | Sixth Buddhist Council Edition (Vipassana Research Institute XML corpus) |
 | **Siam Rath** | `Siam` | [`tipitaka-md/siam-rath`](https://github.com/tipitaka-md/siam-rath) | Royal Thai Syāmaraṭṭha Tepiṭakaṃ (King Rama VII) with 45 volumes and page markers |
 
 ---
@@ -25,15 +25,15 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
 ## ✨ Key Features
 
 1. **Dual-Pane Split Comparison**
-   - Read any two editions side-by-side (e.g. World Tipiṭaka 2500 vs. Pali Text Society, or Buddha Jayanthi vs. CST4).
+   - Read any two editions side-by-side (e.g. World Tipiṭaka Edition vs. Pali Text Society, or Buddha Jayanthi vs. CST).
    - Switch editions on the fly in either pane with instant tab switching.
    - Synchronized scrolling between parallel panes.
 
-2. **Text Variant Highlighting against Base (World Tipiṭaka 2500)**
-   - Automatically diffs any comparative edition (`PTS`, `BJT`, `CST4`, `Siam Rath`) against the base `T2500` text in real time:
-     - 🟩 **Light Green**: **Addition** (words/phrases present in the edition that are not in T2500).
-     - 🟨 **Light Yellow**: **Change / Variant** (variant readings, sandhi, orthography, and spelling variants with hover tooltip showing the T2500 reading).
-     - 🟥 **Light Pink**: **Deletion** (words in T2500 omitted in this edition, shown with strikethrough).
+2. **Text Variant Highlighting against Base (World Tipiṭaka Edition)**
+   - Automatically diffs any comparative edition (`PTS`, `BJT`, `CST`, `Siam Rath`) against the base `WTK` text in real time:
+     - 🟩 **Light Green**: **Addition** (words/phrases present in the edition that are not in WTK).
+     - 🟨 **Light Yellow**: **Change / Variant** (variant readings, sandhi, orthography, and spelling variants).
+     - 🟥 **Light Pink**: **Deletion** (words in WTK omitted in this edition, shown with strikethrough).
    - One-click toggle (`✨ Diff`) in the header toolbar to turn diff highlighting on/off.
 
 3. **On-the-Fly Script Transliteration**
