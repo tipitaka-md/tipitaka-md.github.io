@@ -1246,18 +1246,18 @@ import Layout from '../layouts/Layout.astro';
     );
 
     // Remaining standalone page markers / anchors
-    body = body.replace(/<!--\s*PTS\s+Page\s*[^>]+-->\s*/gi, '');
-    body = body.replace(/<a\s+id="page-[^"]+"><\/a>\s*/gi, '');
-    body = body.replace(/#+\s*\*?\[PTS\s+Page\s*[^\]]+\]\*?\s*/gi, '');
-    body = body.replace(/\[PTS\s+Page\s*[^\]]+\](?:\s*\[[\/\\a-zA-Z0-9 ]+\])?/gi, '');
+    body = body.replace(/<!--\s*PTS\s+Page\s*[^>]+-->\s*/gi, ' ');
+    body = body.replace(/<a\s+id="page-[^"]+"><\/a>\s*/gi, ' ');
+    body = body.replace(/#+\s*\*?\[PTS\s+Page\s*[^\]]+\]\*?\s*/gi, ' ');
+    body = body.replace(/\[PTS\s+Page\s*[^\]]+\](?:\s*\[[\/\\a-zA-Z0-9 ]+\])?/gi, ' ');
 
     // 3. Paragraph numbers in double pipes: ||1||, ||2||, ||15||23||, || 1 ||
     body = body.replace(/\|\|\s*\d+(?:\s*\|\|\s*\d+)*\s*\|\|[ \t]*(?:  \n|\n|[ \t]+)?/g, ' ');
 
     // 4. Verse / section IDs in pipes or slashes: || Th_1 ||, // Dhp_1 //, || Ja_I:1 ||
-    body = body.replace(/\|\|\s*(?:Ja|Th|Thī|Sn|Nidd|Ap|Cp|It|Vv|Pv|Dhp|Bv|F\.)_[^|\n]+?\s*\|\|[ \t]*/g, '');
-    body = body.replace(/\/\/\s*(?:Dhp|Bv)_[^/\n]+?\s*\/\/[ \t]*/g, '');
-    body = body.replace(/\b(?:JaNi_\d+|Ja_[A-Za-z0-9_.:]+):\s*/g, '');
+    body = body.replace(/\|\|\s*(?:Ja|Th|Thī|Sn|Nidd|Ap|Cp|It|Vv|Pv|Dhp|Bv|F\.)_[^|\n]+?\s*\|\|[ \t]*/g, ' ');
+    body = body.replace(/\/\/\s*(?:Dhp|Bv)_[^/\n]+?\s*\/\/[ \t]*/g, ' ');
+    body = body.replace(/\b(?:JaNi_\d+|Ja_[A-Za-z0-9_.:]+):\s*/g, ' ');
 
     // 5. Leading paragraph numbers in prose: 1., 2., 1.1., (1) at line start
     body = body.replace(/^\s*(?:\d+(?:\.\d+)*\.|\(\d+\))\s+/gm, '');
