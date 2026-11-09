@@ -18,7 +18,7 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
 | **Pali Text Society** | `PTS` | [`tipitaka-md/pts`](https://github.com/tipitaka-md/pts) | Pali Text Society Roman Edition (London / GRETIL) with PTS volume/page concordances |
 | **Buddha Jayanthi** | `BJT` | [`tipitaka-md/buddha-jayanthi`](https://github.com/tipitaka-md/buddha-jayanthi) | Sri Lanka Buddha Jayanthi Tripitaka Series (B.E. 2500) with footnotes and variants |
 | **Chaṭṭha Saṅgāyana** | `CST` | [`tipitaka-md/cst`](https://github.com/tipitaka-md/cst) | Sixth Buddhist Council Edition (Vipassana Research Institute XML corpus) |
-| **Siam Rath** | `Siam` | [`tipitaka-md/siam-rath`](https://github.com/tipitaka-md/siam-rath) | Royal Thai Syāmaraṭṭha Tepiṭakaṃ (King Rama VII) with 45 volumes and page markers |
+| **Royal Thai Edition** | `RTE` | [`tipitaka-md/siam-rath`](https://github.com/tipitaka-md/siam-rath) | Royal Thai Syāmaraṭṭha Tepiṭakaṃ (King Rama VII) with 45 volumes and page markers |
 
 ---
 
@@ -30,7 +30,7 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
    - Synchronized scrolling between parallel panes.
 
 2. **Text Variant Highlighting against Base (World Tipiṭaka Edition)**
-   - Automatically diffs any comparative edition (`PTS`, `BJT`, `CST`, `Siam Rath`) against the base `WTK` text in real time:
+   - Automatically diffs any comparative edition (`PTS`, `BJT`, `CST`, `RTE`) against the base `WTK` text in real time:
      - 🟩 **Light Green**: **Addition** (words/phrases present in the edition that are not in WTK).
      - 🟨 **Light Yellow**: **Change / Variant** (variant readings, sandhi, orthography, and spelling variants).
      - 🟥 **Light Pink**: **Deletion** (words in WTK omitted in this edition, shown with strikethrough).

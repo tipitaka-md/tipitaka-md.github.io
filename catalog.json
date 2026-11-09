@@ -37,12 +37,12 @@
       "desc": "Sixth Buddhist Council Edition (Vipassana Research Institute)"
     },
     "siam-rath": {
-      "name": "Siam Rath",
-      "short_name": "Siam",
+      "name": "Royal Thai Edition",
+      "short_name": "RTE",
       "repo": "tipitaka-md/siam-rath",
       "branch": "main",
       "base_path": "",
-      "badge": "🇹🇭 Siam Rath",
+      "badge": "🇹🇭 Royal Thai Edition",
       "desc": "Royal Thai Syāmaraṭṭha Tepiṭakaṃ (King Rama VII)"
     }
   },

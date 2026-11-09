@@ -1,6 +1,6 @@
 /**
  * Pali Text Diff Engine
- * Compares comparative editions (PTS, BJT, CST, Siam Rath) against base text.
+ * Compares comparative editions (PTS, BJT, CST, RTE) against base text.
  * Highlights:
  * - <span class="diff-add">addition</span> (text added in this edition)
  * - <del class="diff-del">baseWord</del> <span class="diff-change">newWord</span> (variant/change displayed inline with strikethrough)
