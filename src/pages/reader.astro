@@ -514,6 +514,97 @@ import Layout from '../layouts/Layout.astro';
     border-color: var(--primary-color);
   }
 
+  /* Footnote Reference in Text */
+  .footnote-ref {
+    font-size: 0.8em;
+    vertical-align: super;
+    line-height: 0;
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+  }
+
+  .footnote-link {
+    color: var(--primary-color, #0969da);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0 0.15rem;
+    border-radius: 3px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .footnote-link:hover {
+    text-decoration: underline;
+    background-color: rgba(9, 105, 218, 0.12);
+  }
+
+  /* Footnotes Section at Document Bottom */
+  .footnotes-section {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: var(--text-body);
+  }
+
+  .footnotes-sep {
+    display: none;
+  }
+
+  .footnotes-heading {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.85rem;
+    color: var(--text-body);
+  }
+
+  .footnotes-list {
+    padding-left: 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footnote-item {
+    line-height: 1.55;
+    padding: 0.2rem 0.35rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .footnote-label {
+    color: var(--primary-color, #0969da);
+    margin-right: 0.4rem;
+    font-size: 0.9em;
+  }
+
+  .footnote-text {
+    color: var(--text-body);
+  }
+
+  .footnote-backref {
+    color: var(--primary-color, #0969da);
+    text-decoration: none;
+    font-size: 0.95em;
+    font-weight: bold;
+    margin-left: 0.45rem;
+    display: inline-block;
+    transition: transform 0.15s ease;
+  }
+
+  .footnote-backref:hover {
+    transform: scale(1.25);
+  }
+
+  @keyframes footnotePulse {
+    0% { background-color: rgba(255, 224, 102, 0.7); }
+    100% { background-color: transparent; }
+  }
+
+  .footnote-target-highlight {
+    animation: footnotePulse 1.8s ease-out;
+  }
+
   @media (max-width: 900px) {
     .split-panes-container {
       flex-direction: column;
@@ -735,6 +826,84 @@ import Layout from '../layouts/Layout.astro';
     hasSubsequent: boolean;
   }
 
+  interface ExtractedFootnotes {
+    body: string;
+    definitions: Map<string, string>;
+  }
+
+  /**
+   * Extract footnote definitions from ## Footnotes section, inline definitions,
+   * and page-level note lines (e.g. Siam Rath #[^...]) across all editions.
+   */
+  function extractFootnotes(md: string): ExtractedFootnotes {
+    const definitions = new Map<string, string>();
+    let body = md || '';
+    let fnSection = '';
+
+    const fnHeadingMatch = body.match(/^##\s+Footnotes\s*$/m);
+    if (fnHeadingMatch && fnHeadingMatch.index !== undefined) {
+      fnSection = body.slice(fnHeadingMatch.index);
+      body = body.slice(0, fnHeadingMatch.index);
+    }
+
+    function addDef(rawId: string, rawText: string) {
+      const id = rawId.trim();
+      const text = rawText.trim().replace(/\s+/g, ' ');
+      if (!id || !text) return;
+      if (!definitions.has(id)) definitions.set(id, text);
+      if (id.startsWith('p') && id.includes('-')) {
+        const noP = id.slice(1);
+        if (!definitions.has(noP)) definitions.set(noP, text);
+      } else if (!id.startsWith('p')) {
+        const withP = 'p' + id;
+        if (!definitions.has(withP)) definitions.set(withP, text);
+      }
+    }
+
+    // 1. Parse definitions from ## Footnotes section
+    if (fnSection) {
+      const lines = fnSection.split('\n');
+      let curId: string | null = null;
+      let curBuf: string[] = [];
+
+      for (const line of lines) {
+        const defMatch = line.match(/^\s*\[\^([^\]]+)\]:\s*(.*)$/);
+        if (defMatch) {
+          if (curId) addDef(curId, curBuf.join(' '));
+          curId = defMatch[1];
+          curBuf = [defMatch[2]];
+        } else if (curId && line.trim() && !line.startsWith('#')) {
+          curBuf.push(line.trim());
+        } else if (line.trim().startsWith('#') || line.trim() === '---') {
+          if (curId) {
+            addDef(curId, curBuf.join(' '));
+            curId = null;
+            curBuf = [];
+          }
+        }
+      }
+      if (curId) addDef(curId, curBuf.join(' '));
+    }
+
+    // 2. Parse inline #+...[^ lines (e.g. Siam Rath #[^2-1] ...)
+    body = body.replace(/^\s*#+.*\[\^.*$/gm, (line) => {
+      const itemRegex = /\[\^([^\]]+)\]\s*([^\[]+)/g;
+      let m: RegExpExecArray | null;
+      while ((m = itemRegex.exec(line)) !== null) {
+        addDef(m[1], m[2]);
+      }
+      return '';
+    });
+
+    // 3. Parse any standalone [^id]: definitions in body
+    body = body.replace(/^\s*\[\^([^\]]+)\]:\s*(.*)$/gm, (_, id, text) => {
+      addDef(id, text);
+      return '';
+    });
+
+    return { body: body.trim(), definitions };
+  }
+
   /**
    * Elide non-relevant sections from other editions to match the specific section in tipitaka2500
    */
@@ -823,7 +992,36 @@ import Layout from '../layouts/Layout.astro';
       );
     }
 
-    elidedLines.push(otherLines.slice(headingLine, finalEndLine + 1).join('\n'));
+    const slicedSection = otherLines.slice(headingLine, finalEndLine + 1).join('\n');
+    elidedLines.push(slicedSection);
+
+    // Extract footnote definitions from the full source markdown
+    const { definitions } = extractFootnotes(otherMd);
+    const sliceRefs = new Set<string>();
+    const calloutRegex = /\[\^([^\]]+)\]/g;
+    let cm: RegExpExecArray | null;
+    while ((cm = calloutRegex.exec(slicedSection)) !== null) {
+      sliceRefs.add(cm[1]);
+    }
+
+    if (sliceRefs.size > 0 && definitions.size > 0) {
+      const relevantDefs: Array<[string, string]> = [];
+      const seen = new Set<string>();
+      for (const ref of sliceRefs) {
+        const norm = ref.startsWith('p') && ref.includes('-') ? ref.slice(1) : ref;
+        const text = definitions.get(ref) || definitions.get(norm) || definitions.get('p' + ref);
+        if (text && !seen.has(norm)) {
+          seen.add(norm);
+          relevantDefs.push([ref, text]);
+        }
+      }
+      if (relevantDefs.length > 0) {
+        elidedLines.push('\n\n---\n\n## Footnotes\n');
+        for (const [fid, ftext] of relevantDefs) {
+          elidedLines.push(`[^${fid}]: ${ftext}`);
+        }
+      }
+    }
 
     if (hasSubsequent) {
       elidedLines.push(
@@ -1025,15 +1223,68 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /**
-   * Convert markdown string into HTML with link resolution and script transliteration
+   * Convert markdown string into HTML with link resolution, footnote rendering, and script transliteration
    */
-  function convertMarkdownToHtml(markdown: string, filePath: string, edition: string): string {
+  function convertMarkdownToHtml(markdown: string, filePath: string, edition: string, paneId: string = 'single'): string {
     let mdToParse = markdown;
     if (edition === 'pts') {
       mdToParse = cleanPtsForDisplay(mdToParse);
     }
+
+    const { body: cleanedBody, definitions } = extractFootnotes(mdToParse);
+
+    const usedFootnotes: Array<{ id: string; safeId: string; label: string; text: string }> = [];
+    const seenRefs = new Set<string>();
+
+    const renderedBody = cleanedBody.replace(/\[\^([^\]]+)\]/g, (_, rawId) => {
+      const id = rawId.trim();
+      const def = definitions.get(id) || definitions.get('p' + id) || (id.startsWith('p') ? definitions.get(id.slice(1)) : undefined) || '';
+      const label = id.endsWith('-star') || id === 'star' ? '*' : id.replace(/^p0*|^0+/, '').replace(/^p/, '');
+      const safeId = encodeURIComponent(id).replace(/%/g, '_');
+
+      if (!seenRefs.has(id)) {
+        seenRefs.add(id);
+        usedFootnotes.push({ id, safeId, label: label || id, text: def });
+      }
+
+      const tooltipAttr = def ? ` title="${escapeHtml(def)}"` : '';
+      return `<sup class="footnote-ref" id="fnref-${paneId}-${safeId}"><a href="#fn-${paneId}-${safeId}" class="footnote-link" data-footnote-ref="true" data-pane="${paneId}"${tooltipAttr}>[${escapeHtml(label || id)}]</a></sup>`;
+    });
+
     const renderer = createMarkedRenderer(filePath, edition);
-    let html = marked.parse(mdToParse, { renderer }) as string;
+    let html = marked.parse(renderedBody, { renderer }) as string;
+
+    if (usedFootnotes.length > 0) {
+      const itemsHtml = usedFootnotes.map(fn => {
+        return `<li id="fn-${paneId}-${fn.safeId}" class="footnote-item">` +
+          `<span class="footnote-label"><strong>[${escapeHtml(fn.label)}]</strong></span> ` +
+          `<span class="footnote-text">${escapeHtml(fn.text)}</span> ` +
+          `<a href="#fnref-${paneId}-${fn.safeId}" class="footnote-backref" data-footnote-backref="true" data-pane="${paneId}" title="Back to text">↩</a>` +
+          `</li>`;
+      }).join('\n');
+
+      html += `\n<div class="footnotes-section" role="doc-endnotes">\n<hr class="footnotes-sep" />\n<h4 class="footnotes-heading">Footnotes</h4>\n<ol class="footnotes-list">\n${itemsHtml}\n</ol>\n</div>`;
+    } else if (definitions.size > 0) {
+      const uniqueDefs = new Map<string, string>();
+      for (const [k, v] of definitions.entries()) {
+        const normKey = k.startsWith('p') && k.includes('-') ? k.slice(1) : k;
+        if (!uniqueDefs.has(normKey)) {
+          uniqueDefs.set(normKey, v);
+        }
+      }
+      const itemsHtml = Array.from(uniqueDefs.entries()).map(([id, text]) => {
+        const label = id.endsWith('-star') || id === 'star' ? '*' : id.replace(/^p0*|^0+/, '').replace(/^p/, '');
+        const safeId = encodeURIComponent(id).replace(/%/g, '_');
+        return `<li id="fn-${paneId}-${safeId}" class="footnote-item">` +
+          `<span class="footnote-label"><strong>[${escapeHtml(label || id)}]</strong></span> ` +
+          `<span class="footnote-text">${escapeHtml(text)}</span>` +
+          `</li>`;
+      }).join('\n');
+
+      if (itemsHtml) {
+        html += `\n<div class="footnotes-section" role="doc-endnotes">\n<hr class="footnotes-sep" />\n<h4 class="footnotes-heading">Footnotes</h4>\n<ol class="footnotes-list">\n${itemsHtml}\n</ol>\n</div>`;
+      }
+    }
 
     if (currentScript !== 'roman') {
       const notices: string[] = [];
@@ -1346,14 +1597,14 @@ import Layout from '../layouts/Layout.astro';
         if (showRawMarkdown) {
           leftContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(baseMd)}</code></pre>`;
         } else {
-          leftContentEl.innerHTML = convertMarkdownToHtml(baseMd, leftFile, 'tipitaka2500');
+          leftContentEl.innerHTML = convertMarkdownToHtml(baseMd, leftFile, 'tipitaka2500', 'left');
         }
       }
       if (rightContentEl) {
         if (showRawMarkdown) {
           rightContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(compareMd)}</code></pre>`;
         } else {
-          rightContentEl.innerHTML = convertMarkdownToHtml(rightRenderMd, rightFile, compareEdition);
+          rightContentEl.innerHTML = convertMarkdownToHtml(rightRenderMd, rightFile, compareEdition, 'right');
         }
       }
 
@@ -1405,7 +1656,7 @@ import Layout from '../layouts/Layout.astro';
           if (showRawMarkdown) {
             mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(targetMd)}</code></pre>`;
           } else {
-            mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition);
+            mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition, 'single');
           }
         }
       } else {
@@ -1428,7 +1679,7 @@ import Layout from '../layouts/Layout.astro';
           if (showRawMarkdown) {
             mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(targetMd)}</code></pre>`;
           } else {
-            mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition);
+            mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition, 'single');
           }
         }
       }
@@ -1620,6 +1871,26 @@ import Layout from '../layouts/Layout.astro';
       } else if (pane === 'single') {
         singleShowFull = !singleShowFull;
         updateView();
+      }
+    });
+
+    // Smooth navigation and highlight for Footnote Callouts and Backlinks
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement | null;
+      const fnLink = target?.closest('a[data-footnote-ref], a[data-footnote-backref]') as HTMLAnchorElement | null;
+      if (fnLink) {
+        const href = fnLink.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const targetId = href.slice(1);
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            targetEl.classList.remove('footnote-target-highlight');
+            void targetEl.offsetWidth; // Trigger reflow to restart pulse
+            targetEl.classList.add('footnote-target-highlight');
+          }
+        }
       }
     });
 

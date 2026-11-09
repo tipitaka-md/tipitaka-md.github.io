@@ -49,6 +49,7 @@ export function extractPaliWords(text) {
       tr.startsWith('<a id=') ||
       tr.startsWith('<div') ||
       tr.startsWith('<p align') ||
+      tr.startsWith('[^') ||
       tr.startsWith('[Home](') ||
       tr.startsWith('[Go to ') ||
       /^\*+\s+[A-Za-z]/.test(tr) ||
@@ -174,6 +175,7 @@ export function highlightPaliDiff(targetMarkdown, baseMarkdown) {
       trimmed.startsWith('<!--') ||
       trimmed.startsWith('<a id=') ||
       trimmed.startsWith('<p align') ||
+      trimmed.startsWith('[^') ||
       trimmed.startsWith('[Home](') ||
       trimmed.startsWith('[Go to ') ||
       /^\*+\s+[A-Za-z]/.test(trimmed) ||
