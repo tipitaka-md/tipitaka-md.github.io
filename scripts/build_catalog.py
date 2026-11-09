@@ -19,13 +19,13 @@ def build_catalog():
     catalog = {
         "editions": {
             "tipitaka2500": {
-                "name": "World Tipiṭaka 2500",
-                "short_name": "T2500",
+                "name": "World Tipiṭaka Edition",
+                "short_name": "WTK",
                 "repo": "tipitaka-md/tipitaka2500",
                 "branch": "main",
                 "base_path": "tipitaka",
-                "badge": "🌟 World Tipiṭaka 2500",
-                "desc": "Roman Script 2005 / 2020 Edition (Mahāsaṅgīti Tipiṭaka Buddhavasse 2500)"
+                "badge": "🌟 World Tipiṭaka Edition",
+                "desc": "World Tipiṭaka Edition (Mahāsaṅgīti Tipiṭaka Buddhavasse 2500)"
             },
             "pts": {
                 "name": "Pali Text Society",
@@ -43,7 +43,7 @@ def build_catalog():
                 "branch": "main",
                 "base_path": "",
                 "badge": "🇱🇰 Buddha Jayanthi",
-                "desc": "Sri Lanka Buddha Jayanthi Tripitaka Series (B.E. 2500)"
+                "desc": "Sri Lanka Buddha Jayanthi Tripitaka Series (pathnirvana/tipitaka.lk)"
             },
             "cst": {
                 "name": "Chaṭṭha Saṅgāyana",
