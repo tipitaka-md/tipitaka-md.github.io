@@ -1,0 +1,202 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="About"
+  description="About Tipitaka Editions in Markdown: mission, architecture, and the 5 canonical Pāḷi editions preserved in open Markdown format."
+  lang="en"
+>
+  <main style="max-width: 860px; margin: 0 auto; padding: 2rem 1rem 4rem;">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.9rem;">
+      <a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a>
+      <span style="margin: 0 0.5rem; color: var(--text-secondary);">/</span>
+      <span style="color: var(--text-secondary);" aria-current="page">About</span>
+    </nav>
+
+    <header style="margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
+      <h1 style="font-size: 2.25rem; font-weight: 800; color: var(--text-emphasis); margin: 0 0 0.75rem;">
+        About Tipitaka in Markdown
+      </h1>
+      <p style="font-size: 1.15rem; line-height: 1.6; color: var(--text-secondary); margin: 0;">
+        Preserving, structuring, and comparing canonical Theravāda Buddhist literature across 5 international traditions in open, version-controlled Markdown.
+      </p>
+    </header>
+
+    <!-- Mission & Overview -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 1rem;">
+        🌱 Project Mission
+      </h2>
+      <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1rem;">
+        The <strong>Pāḷi Tipiṭaka</strong> represents the foundational corpus of early Buddhist teaching, preserved for millennia through oral recitation and later inscribed onto palm-leaf manuscripts across South and Southeast Asia. Over the 19th and 20th centuries, major national and international scholarly councils printed authoritative editions—each reflecting subtle historical, orthographical, and regional readings.
+      </p>
+      <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1rem;">
+        <strong>Tipitaka Editions in Markdown</strong> was founded to bring these monumental editions into the modern open-source text ecosystem. By converting each tradition into standardized, structured <strong>Markdown (<code>.md</code>)</strong> files and hosting them in publicly accessible, version-controlled Git repositories, we provide students, scholars, practitioners, and software developers with an unencumbered foundation for reading, collating, and analyzing the Dhamma.
+      </p>
+    </section>
+
+    <!-- Why Markdown? -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 1rem;">
+        📄 Why Plain Text Markdown?
+      </h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 1.25rem;">
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 0.5rem;">
+            ⏳ Future-Proof &amp; Resilient
+          </h3>
+          <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); margin: 0;">
+            Plain text files remain readable indefinitely without requiring proprietary software, specific database engines, or operating systems. They will outlive proprietary platforms.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 0.5rem;">
+            🔍 Git Version-Controlled
+          </h3>
+          <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); margin: 0;">
+            Every single line, variant, and punctuation mark is tracked in Git. Discrepancies and improvements can be reviewed via pull requests and diffs with full provenance.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 0.5rem;">
+            🛠️ Universal Interoperability
+          </h3>
+          <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); margin: 0;">
+            Markdown can be transformed into HTML, PDF, EPUB, static sites, or fed directly into natural language processing pipelines, AI models, and offline reading apps.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The 5 Editions -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 1rem;">
+        🏛️ The 5 Editions Represented
+      </h2>
+      <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1.5rem;">
+        The project preserves 5 primary international editions, each converted deterministically and hosted in its own repository:
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <!-- WTK -->
+        <div style="border-left: 4px solid var(--primary-color); padding-left: 1.25rem; background: var(--bg-secondary); padding: 1.25rem; border-radius: 0 8px 8px 0; border: 1px solid var(--border-color); border-left-width: 4px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-emphasis); margin: 0;">
+              🌟 World Tipiṭaka Edition (WTK / tipitaka2500) — Base Reference
+            </h3>
+            <a href="https://github.com/tipitaka-md/tipitaka2500" target="_blank" rel="noopener noreferrer" style="font-size: 0.85rem; color: var(--primary-color); text-decoration: none;">tipitaka-md/tipitaka2500 ↗</a>
+          </div>
+          <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-body); margin: 0.5rem 0 0;">
+            The 40-volume Roman-script World Tipiṭaka Edition (<em>Mahāsaṅgīti Tipiṭaka Buddhavasse 2500</em>, updated 2020 edition), published in Thailand following international council collations. Converted into 20,190+ individual files organized by volume, vagga, and sutta, it serves as the canonical base text for collation.
+          </p>
+        </div>
+
+        <!-- PTS -->
+        <div style="border-left: 4px solid #165b48; padding-left: 1.25rem; background: var(--bg-secondary); padding: 1.25rem; border-radius: 0 8px 8px 0; border: 1px solid var(--border-color); border-left-width: 4px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-emphasis); margin: 0;">
+              🇬🇧 Pali Text Society (PTS)
+            </h3>
+            <a href="https://github.com/tipitaka-md/pts" target="_blank" rel="noopener noreferrer" style="font-size: 0.85rem; color: #165b48; text-decoration: none;">tipitaka-md/pts ↗</a>
+          </div>
+          <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-body); margin: 0.5rem 0 0;">
+            Founded in London in 1881 by T.W. Rhys Davids, the Pali Text Society produced the pioneering European Roman-script critical edition of the Canon. Converted from the GRETIL (Göttingen Register of Electronic Texts in Indian Languages) archive with preserved PTS volume/page citation anchors.
+          </p>
+        </div>
+
+        <!-- BJT -->
+        <div style="border-left: 4px solid #85677b; padding-left: 1.25rem; background: var(--bg-secondary); padding: 1.25rem; border-radius: 0 8px 8px 0; border: 1px solid var(--border-color); border-left-width: 4px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-emphasis); margin: 0;">
+              🇱🇰 Buddha Jayanthi Tripitaka Series (BJT)
+            </h3>
+            <a href="https://github.com/tipitaka-md/buddha-jayanthi" target="_blank" rel="noopener noreferrer" style="font-size: 0.85rem; color: #85677b; text-decoration: none;">tipitaka-md/buddha-jayanthi ↗</a>
+          </div>
+          <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-body); margin: 0.5rem 0 0;">
+            The official 57-volume Sri Lankan Government commemorative edition sponsored under the Buddha Jayanthi commemoration (1956–1989). Converted from SuttaCentral and AP95 digital sources, maintaining BJT volume and page numbering.
+          </p>
+        </div>
+
+        <!-- CST -->
+        <div style="border-left: 4px solid #695d08; padding-left: 1.25rem; background: var(--bg-secondary); padding: 1.25rem; border-radius: 0 8px 8px 0; border: 1px solid var(--border-color); border-left-width: 4px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-emphasis); margin: 0;">
+              🇲🇲 Chaṭṭha Saṅgāyana (CST4)
+            </h3>
+            <a href="https://github.com/tipitaka-md/cst" target="_blank" rel="noopener noreferrer" style="font-size: 0.85rem; color: #695d08; text-decoration: none;">tipitaka-md/cst ↗</a>
+          </div>
+          <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-body); margin: 0.5rem 0 0;">
+            The authoritative Sixth Buddhist Council text sanctioned by an international council of Theravāda elders in Yangon (Myanmar, 1954–1956) and digitized by the Vipassana Research Institute (VRI). Converted directly from tipitaka-xml covering Mūla, Aṭṭhakathā, and Ṭīkā.
+          </p>
+        </div>
+
+        <!-- Siam Rath -->
+        <div style="border-left: 4px solid #96254a; padding-left: 1.25rem; background: var(--bg-secondary); padding: 1.25rem; border-radius: 0 8px 8px 0; border: 1px solid var(--border-color); border-left-width: 4px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-emphasis); margin: 0;">
+              🇹🇭 Royal Thai Siam Rath (Syāmaraṭṭha)
+            </h3>
+            <a href="https://github.com/tipitaka-md/siam-rath" target="_blank" rel="noopener noreferrer" style="font-size: 0.85rem; color: #96254a; text-decoration: none;">tipitaka-md/siam-rath ↗</a>
+          </div>
+          <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-body); margin: 0.5rem 0 0;">
+            The prestigious 45-volume Royal Thai Syāmaraṭṭha Tepiṭakaṃ published under the patronage of King Prajadhipok (Rama VII, 1925–1928). Converted deterministically from D-tipitaka with original Thai volume and item numbering.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Architecture -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 1rem;">
+        ⚡ Architecture &amp; Design Principles
+      </h2>
+      <ul style="font-size: 1.02rem; line-height: 1.7; padding-left: 1.25rem; margin: 0; color: var(--text-body);">
+        <li style="margin-bottom: 0.75rem;">
+          <strong>Dynamic Client-Side Rendering:</strong> Texts are fetched and rendered directly in the user’s browser from raw GitHub repository files or high-speed CDNs. There is no heavy backend server, database, or cached store that can grow stale.
+        </li>
+        <li style="margin-bottom: 0.75rem;">
+          <strong>Original Integrity:</strong> Raw Markdown files are never modified for web presentation. Formatting adaptations (such as paragraph flow and footnote anchoring) occur dynamically in memory during rendering.
+        </li>
+        <li style="margin-bottom: 0.75rem;">
+          <strong>Zero Lock-in:</strong> Every text can be downloaded as an untouched <code>.md</code> file or viewed on GitHub with a single click.
+        </li>
+        <li style="margin-bottom: 0.75rem;">
+          <strong>Offline First:</strong> Progressive Web App (PWA) service workers allow seamless reading even without active network access once files are cached.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Project Maintainer & License -->
+    <section style="border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 2rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 1rem;">
+        👤 Project Maintainer &amp; Dedication
+      </h2>
+      <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1rem;">
+        Created and maintained by <strong>Chris Tham</strong> (<a href="mailto:chris@christham.net" style="color: var(--primary-color);">chris@christham.net</a>).
+      </p>
+      <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1.5rem;">
+        All structuring, scripts, and documentation developed for this project are released under the <strong>Creative Commons Zero (CC0 1.0) Public Domain Dedication</strong>. You are completely free to copy, modify, distribute, and perform the work, even for commercial purposes, without asking permission.
+      </p>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a
+          href="/guide.html"
+          class="btn-primary"
+          style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.25rem; border-radius: 8px; font-weight: 600; text-decoration: none; color: #fff; background-color: var(--primary-color);"
+        >
+          <span>📘 Read the Quick Guide →</span>
+        </a>
+        <a
+          href="/reader.html?book=1V"
+          class="btn-secondary"
+          style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.25rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-secondary);"
+        >
+          <span>📖 Open Reader (1V)</span>
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>

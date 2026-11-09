@@ -1,0 +1,221 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Quick Guide"
+  description="How to use the features of Tipitaka in Markdown: single vs side-by-side view, variant highlighting, dictionary lookup, script switching, and Markdown access."
+  lang="en"
+>
+  <main style="max-width: 880px; margin: 0 auto; padding: 2rem 1rem 4rem;">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" style="margin-bottom: 1.5rem; font-size: 0.9rem;">
+      <a href="/" style="color: var(--primary-color); text-decoration: none;">Home</a>
+      <span style="margin: 0 0.5rem; color: var(--text-secondary);">/</span>
+      <span style="color: var(--text-secondary);" aria-current="page">Quick Guide</span>
+    </nav>
+
+    <header style="margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
+      <h1 style="font-size: 2.25rem; font-weight: 800; color: var(--text-emphasis); margin: 0 0 0.75rem;">
+        📖 Quick Guide
+      </h1>
+      <p style="font-size: 1.15rem; line-height: 1.6; color: var(--text-secondary); margin: 0;">
+        Learn how to navigate the reader, compare editions side-by-side, inspect textual variants, look up Pāḷi words, and download canonical Markdown files.
+      </p>
+    </header>
+
+    <!-- Quick Overview Steps -->
+    <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; margin-bottom: 3rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 1rem;">
+        ⚡ Fast Summary
+      </h2>
+      <ol style="margin: 0; padding-left: 1.25rem; line-height: 1.8; color: var(--text-body); font-size: 1rem;">
+        <li><strong>Open any book or sutta</strong> from the Homepage or Sidebar to read the canonical <strong>World Tipiṭaka Edition (WTK)</strong>.</li>
+        <li><strong>Select an edition tab</strong> (PTS, BJT, CST4, or Siam) to read another tradition.</li>
+        <li><strong>Switch to Side-by-Side</strong> using the view mode dropdown to collate that edition against the WTK base text.</li>
+        <li><strong>Toggle "Highlight Variants"</strong> to inspect text additions, changes, and omissions.</li>
+        <li><strong>Hover or tap any word</strong> for instant Pāḷi grammatical and dictionary analysis.</li>
+      </ol>
+    </div>
+
+    <!-- Feature 1: Base Text & Single View -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 0.75rem;">
+        1. Base Text: World Tipiṭaka Edition (WTK)
+      </h2>
+      <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1rem;">
+        When you open any book (such as <a href="/reader.html?book=1V" style="color: var(--primary-color);">Pārājikapāḷi 1V</a>) or sutta from the directory or sidebar, the reader displays the <strong>World Tipiṭaka Edition (WTK)</strong> in <strong>Single View</strong>.
+      </p>
+      <p style="font-size: 1.02rem; line-height: 1.7; color: var(--text-body);">
+        The WTK edition (<em>Mahāsaṅgīti Tipiṭaka Buddhavasse 2500</em>) serves as the canonical baseline reference text against which variants in other traditions are compared.
+      </p>
+    </section>
+
+    <!-- Feature 2: Side-by-Side Comparison -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 0.75rem;">
+        2. Side-by-Side Comparison (Enabling the Dropdown)
+      </h2>
+      <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1rem;">
+        The reader toolbar features tabs for all 5 editions:
+      </p>
+      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem;">
+        <span style="background: var(--bg-tertiary); border: 1px solid var(--border-color); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.9rem; font-weight: 600;">🌟 WTK (Base)</span>
+        <span style="background: var(--bg-tertiary); border: 1px solid var(--border-color); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.9rem; font-weight: 600;">🇬🇧 PTS</span>
+        <span style="background: var(--bg-tertiary); border: 1px solid var(--border-color); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.9rem; font-weight: 600;">🇱🇰 BJT</span>
+        <span style="background: var(--bg-tertiary); border: 1px solid var(--border-color); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.9rem; font-weight: 600;">🇲🇲 CST4</span>
+        <span style="background: var(--bg-tertiary); border: 1px solid var(--border-color); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.9rem; font-weight: 600;">🇹🇭 Siam</span>
+      </div>
+      <div style="background: var(--bg-secondary); border-left: 4px solid var(--primary-color); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 0.5rem;">
+          How to Collator Editions Side-by-Side:
+        </h3>
+        <ol style="margin: 0; padding-left: 1.2rem; line-height: 1.7; font-size: 0.95rem;">
+          <li>Click any comparative edition tab (e.g. <strong>🇬🇧 PTS</strong> or <strong>🇱🇰 BJT</strong>).</li>
+          <li>The <strong>View Mode dropdown</strong> will now enable the option: <code>⚖️ Side-by-Side (WTK vs ...)</code>.</li>
+          <li>Select <strong>Side-by-Side</strong> to split the screen into two synchronized panes: <strong>WTK Base text on the left</strong> and the <strong>comparative edition on the right</strong>.</li>
+          <li>Scrolling in either pane automatically synchronizes the counterpart pane for effortless reading.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Feature 3: Variant Highlighting -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 0.75rem;">
+        3. Real-Time Text Variant Highlighting
+      </h2>
+      <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1rem;">
+        When viewing comparative editions, click the <strong>✨ Highlight Variants</strong> button in the toolbar. The reader analyzes word differences against the WTK base text:
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem; background: var(--bg-secondary); padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">
+          <span class="legend-badge legend-add" style="font-weight: 700; white-space: nowrap;">● Addition</span>
+          <span style="font-size: 0.92rem; color: var(--text-body);">Words or phrases present in the comparative edition that are absent in WTK.</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.75rem; background: var(--bg-secondary); padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">
+          <span class="legend-badge legend-change" style="font-weight: 700; white-space: nowrap;">● Variant / Change</span>
+          <span style="font-size: 0.92rem; color: var(--text-body);">Orthographical or reading differences between the editions.</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.75rem; background: var(--bg-secondary); padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">
+          <span class="legend-badge legend-del" style="font-weight: 700; text-decoration: line-through; white-space: nowrap;">● Omission</span>
+          <span style="font-size: 0.92rem; color: var(--text-body);">Words present in the WTK base text that are omitted in the comparative edition (displayed with clear strikethrough).</span>
+        </div>
+      </div>
+
+      <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary);">
+        <em>Note:</em> Paragraph numbers, punctuation marks, and footnote callouts are excluded from difference calculations to ensure only authentic textual variations are highlighted.
+      </p>
+    </section>
+
+    <!-- Feature 4: Section Elision -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 0.75rem;">
+        4. Section Elision &amp; Focusing on Suttas
+      </h2>
+      <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1rem;">
+        Some editions (like PTS, CST, or BJT) group multiple suttas into large volume files. When you navigate to a specific sutta in WTK (e.g. <em>Bodhikathā</em> in 1.1.md), the reader automatically elides irrelevant preceding and subsequent suttas in the other editions so you can compare the exact passage.
+      </p>
+      <p style="font-size: 1.02rem; line-height: 1.7; color: var(--text-body);">
+        An elision banner appears at the top and bottom of the section. You can click <strong>"Show complete file"</strong> at any time to expand the full text, or toggle back to the elided view.
+      </p>
+    </section>
+
+    <!-- Feature 5: Dictionary Lookup -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 0.75rem;">
+        5. Instant Pāḷi Dictionary Lookup
+      </h2>
+      <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1rem;">
+        Gain immediate linguistic clarity while reading:
+      </p>
+      <ul style="margin: 0 0 1rem; padding-left: 1.25rem; line-height: 1.7; font-size: 1rem; color: var(--text-body);">
+        <li><strong>Hover or Tap:</strong> Move your cursor over any word (or tap it on mobile/tablet) to see an instantaneous popover card with grammatical analysis (case, number, gender, verbal tense) and English definitions.</li>
+        <li><strong>Toggle On/Off:</strong> Use the floating <strong>📖 Dict</strong> button in the bottom corner (or the toggle in the Sidebar) to turn the dictionary popover on or off whenever you prefer uninterrupted reading.</li>
+      </ul>
+    </section>
+
+    <!-- Feature 6: Script Transliteration -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 0.75rem;">
+        6. Live Multi-Script Transliteration
+      </h2>
+      <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1rem;">
+        The Canon can be viewed in 5 traditional scripts without altering the underlying text file:
+      </p>
+      <ul style="margin: 0; padding-left: 1.25rem; line-height: 1.7; font-size: 1rem; color: var(--text-body);">
+        <li>🔤 <strong>Roman (IAST)</strong></li>
+        <li>🇱🇰 <strong>Sinhala (සිංහල)</strong></li>
+        <li>🇹🇭 <strong>Thai (ไทย)</strong></li>
+        <li>🇲🇲 <strong>Burmese / Myanmar (မြန်မာ)</strong></li>
+        <li>🇮🇳 <strong>Devanagari (देवनागरी)</strong></li>
+      </ul>
+    </section>
+
+    <!-- Feature 7: Markdown Access & Download -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 0.75rem;">
+        7. Direct Markdown Access &amp; Offline Downloads
+      </h2>
+      <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1rem;">
+        At the top right of the reader, four action buttons give you complete sovereignty over the text:
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin: 0 0 0.35rem; color: var(--text-emphasis);">📄 View Markdown</h3>
+          <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin: 0;">Opens the raw Markdown text file in a separate browser tab.</p>
+        </div>
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin: 0 0 0.35rem; color: var(--text-emphasis);">⬇️ Download .md</h3>
+          <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin: 0;">Downloads the untouched, complete <code>.md</code> file directly to your device.</p>
+        </div>
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin: 0 0 0.35rem; color: var(--text-emphasis);">↗ GitHub</h3>
+          <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin: 0;">Jumps directly to the source file in its GitHub repository.</p>
+        </div>
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem;">
+          <h3 style="font-size: 1rem; font-weight: 700; margin: 0 0 0.35rem; color: var(--text-emphasis);">👁️ Raw View</h3>
+          <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin: 0;">Toggles between formatted rendering and the monospace Markdown source inline.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 8: Quick Jump -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 0.75rem;">
+        8. Quick Jump (Search Shortcut)
+      </h2>
+      <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1rem;">
+        Press <kbd style="background: var(--bg-tertiary); border: 1px solid var(--border-color); padding: 0.2rem 0.5rem; border-radius: 4px; font-family: inherit; font-size: 0.9rem;">⌘K</kbd> (Mac) or <kbd style="background: var(--bg-tertiary); border: 1px solid var(--border-color); padding: 0.2rem 0.5rem; border-radius: 4px; font-family: inherit; font-size: 0.9rem;">Ctrl+K</kbd> (Windows/Linux) anywhere on the site to trigger the search palette.
+      </p>
+      <p style="font-size: 1.02rem; line-height: 1.7; color: var(--text-body);">
+        Search by book code (e.g. <code>1V</code>, <code>6D</code>, <code>18Dh</code>, <code>32Kv</code>), sutta name (e.g. <code>Brahmajāla</code>, <code>Dhammacakka</code>), or citation (e.g. <code>DN 1</code>, <code>MN 10</code>, <code>SN 56.11</code>).
+      </p>
+    </section>
+
+    <!-- Ready to Start -->
+    <div style="border-top: 1px solid var(--border-color); padding-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+      <a
+        href="/reader.html?book=1V"
+        class="btn-primary"
+        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.25rem; border-radius: 8px; font-weight: 600; text-decoration: none; color: #fff; background-color: var(--primary-color);"
+      >
+        <span>📖 Open Reader (1V) →</span>
+      </a>
+      <a
+        href="/"
+        class="btn-secondary"
+        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.25rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-secondary);"
+      >
+        <span>🏠 Return Home</span>
+      </a>
+      <a
+        href="/about.html"
+        class="btn-secondary"
+        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.25rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-secondary);"
+      >
+        <span>ℹ️ About the Project</span>
+      </a>
+    </div>
+  </main>
+</Layout>

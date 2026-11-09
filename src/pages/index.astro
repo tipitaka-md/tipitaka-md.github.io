@@ -330,7 +330,7 @@ const CANON_SECTIONS: PitakaSection[] = [
 
 <Layout
   title="Tipitaka Editions in Markdown"
-  description="Comparative digital reader showcasing canonical Pāḷi Tipiṭaka texts converted to Markdown across the tipitaka-md repositories: tipitaka2500 (base), Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath."
+  description="Digital reader showcasing canonical Pāḷi Tipiṭaka texts converted to Markdown across the tipitaka-md repositories: World Tipiṭaka Edition (WTK base), Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath."
   lang="en"
 >
   <main>
@@ -347,22 +347,28 @@ const CANON_SECTIONS: PitakaSection[] = [
           class="btn-primary"
           style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; color: #fff; background-color: var(--primary-color);"
         >
-          <span>🚀 Open Reader (Vinayapiṭaka 1V)</span>
+          <span>📖 Open Reader (1V)</span>
+        </a>
+        <a
+          href="/guide.html"
+          class="btn-secondary"
+          style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-tertiary);"
+        >
+          <span>📘 Quick Guide</span>
+        </a>
+        <a
+          href="/about.html"
+          class="btn-secondary"
+          style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-tertiary);"
+        >
+          <span>ℹ️ About</span>
         </a>
         <a
           href="#canon-directory"
           class="btn-secondary"
-          style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-tertiary);"
-        >
-          <span>📚 Browse Complete Canon</span>
-        </a>
-        <a
-          href="https://github.com/tipitaka-md"
-          target="_blank"
-          rel="noopener noreferrer"
           style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-body);"
         >
-          <span>↗ tipitaka-md on GitHub</span>
+          <span>📚 Browse Canon</span>
         </a>
       </div>
     </div>
@@ -445,9 +451,9 @@ const CANON_SECTIONS: PitakaSection[] = [
         >
           <div>
             <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.35rem;">
-              BASE TEXT FOR COMPARISON
+              BASE TEXT (WTK)
             </div>
-            <h2>🌟 tipitaka2500 (Base Edition)</h2>
+            <h2>🌟 World Tipitaka Edition (WTK)</h2>
             <p>
               The complete 40-volume Roman-script World Tipiṭaka Edition (Mahāsaṅgīti Tipiṭaka Buddhavasse 2500 / 2020 Edition).
               Converted into 20,190+ individual Markdown files covering the entire Canon.
@@ -535,24 +541,6 @@ const CANON_SECTIONS: PitakaSection[] = [
           </div>
           <span class="home-index-stat">tipitaka-md/siam-rath ↗</span>
         </a>
-
-        <a
-          href="/reader.html?book=1V&mode=split"
-          class="home-index-card"
-          style="border-left: 4px solid #3d6889; background: var(--bg-secondary);"
-        >
-          <div>
-            <div style="font-size: 0.85rem; font-weight: 700; color: #3d6889; margin-bottom: 0.35rem;">
-              DUAL-PANE COLLATOR
-            </div>
-            <h2>⚖️ Side-by-Side Comparison</h2>
-            <p>
-              Open any two editions side-by-side with synchronized scrolling, real-time variant highlighting,
-              and synchronized chapter navigation across all 5 repositories.
-            </p>
-          </div>
-          <span class="home-index-stat">Open Dual-Pane Reader →</span>
-        </a>
       </div>
     </section>
 
@@ -563,7 +551,7 @@ const CANON_SECTIONS: PitakaSection[] = [
           📖 Complete Tipiṭaka Directory
         </h2>
         <p style="color: var(--text-secondary); margin: 0;">
-          Explore and compare every book of the Tipiṭaka across the 5 Markdown editions. Click any book to launch the comparative viewer:
+          Explore every book of the Tipiṭaka across the 5 Markdown editions. Click any book to open in the reader:
         </p>
       </div>
 
@@ -585,7 +573,7 @@ const CANON_SECTIONS: PitakaSection[] = [
                 <a
                   href={`/reader.html?book=${encodeURIComponent(book.code)}`}
                   class="home-index-card"
-                  title={`Open ${book.title} (${book.code}) in Comparative Reader`}
+                  title={`Open ${book.title} (${book.code}) in Reader`}
                 >
                   <div>
                     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.35rem;">
@@ -603,7 +591,7 @@ const CANON_SECTIONS: PitakaSection[] = [
                       {book.desc}
                     </p>
                   </div>
-                  <span class="home-index-stat">Compare 5 Editions →</span>
+                  <span class="home-index-stat">Read →</span>
                 </a>
               ))}
             </div>

@@ -3,8 +3,8 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Comparative Reader"
-  description="Read and compare canonical Pāḷi Tipiṭaka texts across 5 open Markdown repositories (World Tipiṭaka 2500 base, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath) with real-time text variant highlighting, dictionary lookup, and live script transliteration."
+  title="Tipiṭaka Reader"
+  description="Read and compare canonical Pāḷi Tipiṭaka texts across 5 open Markdown repositories (World Tipiṭaka Edition base, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST4, and Siam Rath) with real-time text variant highlighting, dictionary lookup, and live script transliteration."
   lang="pi"
 >
   <div class="reader-wrapper">
@@ -63,8 +63,8 @@ import Layout from '../layouts/Layout.astro';
       <div class="reader-toolbar">
         <!-- Edition Selector Tabs -->
         <div class="edition-tabs" role="tablist" aria-label="Tipiṭaka Editions">
-          <button type="button" class="edition-tab active" data-edition="tipitaka2500" role="tab" aria-selected="true" title="World Tipiṭaka 2500 (Canonical Base Reference)">
-            🌟 T2500 (Base)
+          <button type="button" class="edition-tab active" data-edition="tipitaka2500" role="tab" aria-selected="true" title="World Tipiṭaka Edition (Canonical Base Reference)">
+            🌟 WTK (Base)
           </button>
           <button type="button" class="edition-tab" data-edition="pts" role="tab" aria-selected="false" title="Pali Text Society (London / GRETIL Archive)">
             🇬🇧 PTS
@@ -85,9 +85,9 @@ import Layout from '../layouts/Layout.astro';
           <!-- View Mode (Single vs Side-by-Side Compare) -->
           <div class="control-group">
             <label for="view-mode-select" class="visually-hidden">View Mode</label>
-            <select id="view-mode-select" class="reader-select" title="Toggle Single View or Side-by-Side Comparison">
+            <select id="view-mode-select" class="reader-select" title="Toggle Single View or Side-by-Side Comparison against WTK">
               <option value="single">📖 Single View</option>
-              <option value="split">⚖️ Side-by-Side (Compare)</option>
+              <option value="split" disabled>⚖️ Side-by-Side (Select an edition)</option>
             </select>
           </div>
 
@@ -97,7 +97,7 @@ import Layout from '../layouts/Layout.astro';
             id="diff-toggle-btn"
             class="diff-toggle-btn active"
             aria-pressed="true"
-            title="Highlight textual differences against World Tipiṭaka 2500 base text"
+            title="Highlight textual differences against World Tipiṭaka Edition (WTK) base text"
           >
             <span>✨ Highlight Variants</span>
           </button>
@@ -151,7 +151,7 @@ import Layout from '../layouts/Layout.astro';
         <section class="split-pane" id="left-pane">
           <div class="split-pane-header">
             <div class="split-pane-info">
-              <h2 id="left-pane-title">🌟 World Tipiṭaka 2500 (Base)</h2>
+              <h2 id="left-pane-title">🌟 World Tipiṭaka Edition (Base)</h2>
               <span class="pane-badge badge-base">Base Reference</span>
             </div>
             <div class="split-pane-actions" id="left-pane-actions">
@@ -736,7 +736,7 @@ import Layout from '../layouts/Layout.astro';
   };
 
   const BOOK_CODE_ALIASES: Record<string, string> = {
-    // Abhidhamma aliases to T2500 canonical codes
+    // Abhidhamma aliases to WTK canonical codes
     '34dh': '29Dhs',
     '35vbh': '30Vbh',
     '35vb': '30Vbh',
@@ -756,7 +756,7 @@ import Layout from '../layouts/Layout.astro';
     '40p4': '39P3',
     '40p5': '40P7',
     '40p6': '40P7',
-    // Khuddaka aliases to T2500 canonical codes
+    // Khuddaka aliases to WTK canonical codes
     '20j': '22J',
     '21j': '22J',
     '24j': '23J',
@@ -1647,7 +1647,7 @@ import Layout from '../layouts/Layout.astro';
 
       let rightRenderMd = rightRenderSource;
       if (diffEnabled) {
-        rightRenderMd = highlightPaliDiff(rightRenderSource, baseMd, 'T2500');
+        rightRenderMd = highlightPaliDiff(rightRenderSource, baseMd, 'WTK');
       }
 
       if (leftContentEl) {
@@ -1667,7 +1667,7 @@ import Layout from '../layouts/Layout.astro';
 
       // Update pane headers
       const leftHeader = document.getElementById('left-pane-title');
-      if (leftHeader) leftHeader.textContent = `🌟 ${bookTitleStr} · T2500 (Base)`;
+      if (leftHeader) leftHeader.textContent = `🌟 ${bookTitleStr} · WTK (Base)`;
 
       const rightHeader = document.getElementById('right-pane-title');
       const rightBadge = document.getElementById('right-pane-badge');
@@ -1706,7 +1706,7 @@ import Layout from '../layouts/Layout.astro';
         currentSingleMd = singleRenderSource;
         let renderMd = singleRenderSource;
         if (diffEnabled) {
-          renderMd = highlightPaliDiff(singleRenderSource, baseMd, 'T2500');
+          renderMd = highlightPaliDiff(singleRenderSource, baseMd, 'WTK');
         }
 
         if (mainContentEl) {
@@ -1788,7 +1788,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /**
-   * Update active UI states for edition tabs
+   * Update active UI states for edition tabs and view mode dropdown
    */
   function updateActiveEditionTabs() {
     const tabs = document.querySelectorAll('.edition-tab');
@@ -1802,6 +1802,42 @@ import Layout from '../layouts/Layout.astro';
         tab.setAttribute('aria-selected', 'false');
       }
     });
+    updateViewModeDropdown();
+  }
+
+  function updateControlsVisibility() {
+    const diffLegend = document.getElementById('diff-legend');
+    if (diffLegend) {
+      diffLegend.style.display = (diffEnabled || viewMode === 'split') ? 'flex' : 'none';
+    }
+  }
+
+  function updateViewModeDropdown() {
+    const viewModeSelect = document.getElementById('view-mode-select') as HTMLSelectElement | null;
+    if (!viewModeSelect) return;
+    const isBase = currentEdition === 'tipitaka2500';
+    const splitOption = viewModeSelect.querySelector('option[value="split"]') as HTMLOptionElement | null;
+
+    if (isBase) {
+      if (splitOption) {
+        splitOption.disabled = true;
+        splitOption.textContent = '⚖️ Side-by-Side (Select an edition)';
+      }
+      viewModeSelect.title = 'Select another edition tab (PTS, BJT, CST, Siam) to enable Side-by-Side comparison against WTK';
+      if (viewMode === 'split') {
+        viewMode = 'single';
+      }
+    } else {
+      if (splitOption) {
+        splitOption.disabled = false;
+        const edInfo = catalog?.editions[currentEdition];
+        const shortName = edInfo ? edInfo.short_name : currentEdition.toUpperCase();
+        splitOption.textContent = `⚖️ Side-by-Side (WTK vs ${shortName})`;
+      }
+      viewModeSelect.title = 'Toggle Single View or Side-by-Side Comparison against WTK';
+    }
+    viewModeSelect.value = viewMode;
+    updateControlsVisibility();
   }
 
   // Setup Event Listeners
@@ -1815,6 +1851,8 @@ import Layout from '../layouts/Layout.astro';
           currentEdition = ed;
           if (currentEdition !== 'tipitaka2500') {
             compareEdition = currentEdition;
+          } else {
+            viewMode = 'single';
           }
           singleShowFull = false;
           rightShowFull = false;
@@ -1827,6 +1865,7 @@ import Layout from '../layouts/Layout.astro';
 
           const newUrl = new URL(window.location.href);
           newUrl.searchParams.set('edition', currentEdition);
+          newUrl.searchParams.set('mode', viewMode);
           if (currentEdition === 'tipitaka2500' && currentSectionRef) {
             newUrl.searchParams.set('file', currentSectionRef);
           }
@@ -1840,13 +1879,6 @@ import Layout from '../layouts/Layout.astro';
 
     // View Mode Select
     const viewModeSelect = document.getElementById('view-mode-select') as HTMLSelectElement;
-    const diffLegend = document.getElementById('diff-legend');
-
-    const updateControlsVisibility = () => {
-      if (diffLegend) {
-        diffLegend.style.display = (diffEnabled || viewMode === 'split') ? 'flex' : 'none';
-      }
-    };
 
     if (viewModeSelect) {
       viewModeSelect.value = viewMode;
