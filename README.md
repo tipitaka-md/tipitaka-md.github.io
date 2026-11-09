@@ -43,6 +43,7 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
      - **Thai** (ไทย)
      - **Burmese / Myanmar** (မြန်မာ)
      - **Devanagari** (देवनागरी)
+     - **Brahmi** (𑀩𑁆𑀭𑀸𑀳𑁆𑀫𑀻)
 
 3. **Page Citations & Interactive Concordance**
    - Canonical page markers (`§ 6D 1`, `§ M I 1`, `§ Vin III 1`) rendered as compact interactive chips.
