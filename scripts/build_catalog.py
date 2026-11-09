@@ -78,10 +78,10 @@ def build_catalog():
 
     vinaya_books_data = [
         ("1V", "Pārājikapāḷi", "1V.md", "vb-pj.md", "vp-prj.md", "mula/vinaya/vin01m.mul.md", "vinaya/vol01.md"),
-        ("2V", "Pācittiyapāḷi", "2V.md", "vb-pc.md", "vp-pct.md", "mula/vinaya/vin02m.mul.md", "vinaya/vol02.md"),
-        ("3V", "Mahāvaggapāḷi", "3V.md", "mv01.md", "vp-mv.md", "mula/vinaya/vin03m.mul.md", "vinaya/vol04.md"),
-        ("4V", "Cūḷavaggapāḷi", "4V.md", "cv01.md", "vp-cv.md", "mula/vinaya/vin04m.mul.md", "vinaya/vol06.md"),
-        ("5V", "Parivārapāḷi", "5V.md", "parivara.md", "vp-pv.md", "mula/vinaya/vin05m.mul.md", "vinaya/vol08.md"),
+        ("2V", "Pācittiyapāḷi", "2V.md", "vb-pc.md", "vp-pct.md", "mula/vinaya/vin02m1.mul.md", "vinaya/vol02.md"),
+        ("3V", "Mahāvaggapāḷi", "3V.md", "mv01.md", "vp-mv.md", "mula/vinaya/vin02m2.mul.md", "vinaya/vol04.md"),
+        ("4V", "Cūḷavaggapāḷi", "4V.md", "cv01.md", "vp-cv.md", "mula/vinaya/vin02m3.mul.md", "vinaya/vol06.md"),
+        ("5V", "Parivārapāḷi", "5V.md", "parivara.md", "vp-pv.md", "mula/vinaya/vin02m4.mul.md", "vinaya/vol08.md"),
     ]
 
     for bcode, btitle, t2500_file, pts_file, bjt_file, cst_file, sr_file in vinaya_books_data:
@@ -146,18 +146,17 @@ def build_catalog():
 
     # BJT DN mapping
     bjt_dn_map = {
-        1: "sutta/dn/dn-1.md", 2: "sutta/dn/dn-1-2.md", 3: "sutta/dn/dn-1-3.md",
-        4: "sutta/dn/dn-1-4.md", 5: "sutta/dn/dn-1-5.md", 6: "sutta/dn/dn-1-6.md",
-        7: "sutta/dn/dn-1-7.md", 8: "sutta/dn/dn-1-8.md", 9: "sutta/dn/dn-1-9.md",
-        10: "sutta/dn/dn-1-10.md", 11: "sutta/dn/dn-1-11.md", 12: "sutta/dn/dn-1-12.md",
-        13: "sutta/dn/dn-1-13.md", 14: "sutta/dn/dn-2.md", 15: "sutta/dn/dn-2-2.md",
-        16: "sutta/dn/dn-2-3.md", 17: "sutta/dn/dn-2-4.md", 18: "sutta/dn/dn-2-5.md",
-        19: "sutta/dn/dn-2-6.md", 20: "sutta/dn/dn-2-7.md", 21: "sutta/dn/dn-2-8.md",
-        22: "sutta/dn/dn-2-9.md", 23: "sutta/dn/dn-2-10.md", 24: "sutta/dn/dn-3.md",
-        25: "sutta/dn/dn-3-2.md", 26: "sutta/dn/dn-3-3.md", 27: "sutta/dn/dn-3-4.md",
-        28: "sutta/dn/dn-3-5.md", 29: "sutta/dn/dn-3-6.md", 30: "sutta/dn/dn-3-7.md",
-        31: "sutta/dn/dn-3-8.md", 32: "sutta/dn/dn-3-9.md", 33: "sutta/dn/dn-3-10.md",
-        34: "sutta/dn/dn-3-11.md"
+        1: "sutta/dn/dn-1.md", 2: "sutta/dn/dn-1.md",
+        3: "sutta/dn/dn-1-3.md", 4: "sutta/dn/dn-1-3.md", 5: "sutta/dn/dn-1-3.md",
+        6: "sutta/dn/dn-1-6.md", 7: "sutta/dn/dn-1-6.md", 8: "sutta/dn/dn-1-6.md", 9: "sutta/dn/dn-1-6.md", 10: "sutta/dn/dn-1-6.md",
+        11: "sutta/dn/dn-1-11.md", 12: "sutta/dn/dn-1-11.md", 13: "sutta/dn/dn-1-11.md",
+        14: "sutta/dn/dn-2.md", 15: "sutta/dn/dn-2.md",
+        16: "sutta/dn/dn-2-3.md",
+        17: "sutta/dn/dn-2-4.md", 18: "sutta/dn/dn-2-4.md", 19: "sutta/dn/dn-2-4.md",
+        20: "sutta/dn/dn-2-7.md", 21: "sutta/dn/dn-2-7.md", 22: "sutta/dn/dn-2-7.md", 23: "sutta/dn/dn-2-7.md",
+        24: "sutta/dn/dn-3.md", 25: "sutta/dn/dn-3.md", 26: "sutta/dn/dn-3.md", 27: "sutta/dn/dn-3.md",
+        28: "sutta/dn/dn-3-5.md", 29: "sutta/dn/dn-3-5.md", 30: "sutta/dn/dn-3-5.md", 31: "sutta/dn/dn-3-5.md", 32: "sutta/dn/dn-3-5.md",
+        33: "sutta/dn/dn-3-10.md", 34: "sutta/dn/dn-3-10.md"
     }
 
     for bcode, btitle, t2500_file, cst_file, sr_file, s_range in dn_volumes:
@@ -232,7 +231,7 @@ def build_catalog():
             t2500_sub = f"tipitaka/{bcode}/{v_idx}/{v_idx}.{s_idx}.md"
 
             vol_idx = 1 if snum <= 50 else (2 if snum <= 100 else 3)
-            bjt_sub = f"sutta/mn/mn-{vol_idx}-{v_idx}.md"
+            bjt_sub = f"sutta/mn/mn-{vol_idx}.md" if v_idx == 1 else f"sutta/mn/mn-{vol_idx}-{v_idx}.md"
 
             s_entry = {
                 "id": f"mn{snum}",
@@ -268,6 +267,28 @@ def build_catalog():
         ("14S5", "Mahāvaggasaṃyutta", "14S5.md", "mula/sutta/sn/s0305m.mul.md", "sutta/sn/vol19.md", range(45, 57)),
     ]
 
+    bjt_sn_map = {
+        1: "sutta/sn/sn-1.md", 2: "sutta/sn/sn-1.md",
+        3: "sutta/sn/sn-1-3.md", 4: "sutta/sn/sn-1-3.md", 5: "sutta/sn/sn-1-3.md", 6: "sutta/sn/sn-1-3.md",
+        7: "sutta/sn/sn-1-7.md", 8: "sutta/sn/sn-1-7.md", 9: "sutta/sn/sn-1-7.md", 10: "sutta/sn/sn-1-7.md", 11: "sutta/sn/sn-1-7.md",
+        12: "sutta/sn/sn-2.md", 13: "sutta/sn/sn-2.md",
+        14: "sutta/sn/sn-2-2.md", 15: "sutta/sn/sn-2-2.md", 16: "sutta/sn/sn-2-2.md",
+        17: "sutta/sn/sn-2-5.md", 18: "sutta/sn/sn-2-5.md", 19: "sutta/sn/sn-2-5.md", 20: "sutta/sn/sn-2-5.md", 21: "sutta/sn/sn-2-5.md",
+        22: "sutta/sn/sn-3.md",
+        23: "sutta/sn/sn-3-2.md", 24: "sutta/sn/sn-3-2.md", 25: "sutta/sn/sn-3-2.md", 26: "sutta/sn/sn-3-2.md", 27: "sutta/sn/sn-3-2.md",
+        28: "sutta/sn/sn-3-7.md", 29: "sutta/sn/sn-3-7.md", 30: "sutta/sn/sn-3-7.md", 31: "sutta/sn/sn-3-7.md", 32: "sutta/sn/sn-3-7.md", 33: "sutta/sn/sn-3-7.md", 34: "sutta/sn/sn-3-7.md",
+        35: "sutta/sn/sn-4.md",
+        36: "sutta/sn/sn-4-2.md", 37: "sutta/sn/sn-4-2.md", 38: "sutta/sn/sn-4-2.md", 39: "sutta/sn/sn-4-2.md", 40: "sutta/sn/sn-4-2.md", 41: "sutta/sn/sn-4-2.md",
+        42: "sutta/sn/sn-4-8.md", 43: "sutta/sn/sn-4-8.md", 44: "sutta/sn/sn-4-8.md",
+        45: "sutta/sn/sn-5.md",
+        46: "sutta/sn/sn-5-2.md",
+        47: "sutta/sn/sn-5-3.md",
+        48: "sutta/sn/sn-5-4.md", 49: "sutta/sn/sn-5-4.md", 50: "sutta/sn/sn-5-4.md",
+        51: "sutta/sn/sn-5-7.md", 52: "sutta/sn/sn-5-7.md", 53: "sutta/sn/sn-5-7.md", 54: "sutta/sn/sn-5-7.md",
+        55: "sutta/sn/sn-5-11.md",
+        56: "sutta/sn/sn-5-12.md"
+    }
+
     for bcode, btitle, t2500_file, cst_file, sr_file, s_range in sn_volumes:
         b_entry = {
             "code": bcode,
@@ -291,7 +312,7 @@ def build_catalog():
                 "editions": {
                     "tipitaka2500": f"tipitaka/{bcode}/{local_idx}.md",
                     "pts": f"sutta/sn/sn{snum:02d}.md",
-                    "bjt": f"sutta/sn/sn-{local_idx}.md",
+                    "bjt": bjt_sn_map.get(snum, f"sutta/sn/sn-{local_idx}.md"),
                     "cst": cst_file,
                     "siam-rath": sr_file
                 }
@@ -312,16 +333,16 @@ def build_catalog():
 
     an_volumes = [
         ("15A1", "Ekakanipāta", "15A1.md", 1, "sutta/an/an01.md", "sutta/an/an-1.md", "mula/sutta/an/s0401m.mul.md", "sutta/an/vol20.md"),
-        ("15A2", "Dukanipāta", "15A2.md", 2, "sutta/an/an02.md", "sutta/an/an-2.md", "mula/sutta/an/s0401m.mul.md", "sutta/an/vol20.md"),
-        ("15A3", "Tikanipāta", "15A3.md", 3, "sutta/an/an03.md", "sutta/an/an-3.md", "mula/sutta/an/s0401m.mul.md", "sutta/an/vol20.md"),
-        ("15A4", "Catukkanipāta", "15A4.md", 4, "sutta/an/an04.md", "sutta/an/an-4.md", "mula/sutta/an/s0402m.mul.md", "sutta/an/vol21.md"),
-        ("16A5", "Pañcakanipāta", "16A5.md", 5, "sutta/an/an05.md", "sutta/an/an-5.md", "mula/sutta/an/s0403m.mul.md", "sutta/an/vol22.md"),
-        ("16A6", "Chakkanipāta", "16A6.md", 6, "sutta/an/an06.md", "sutta/an/an-6.md", "mula/sutta/an/s0403m.mul.md", "sutta/an/vol22.md"),
-        ("16A7", "Sattakanipāta", "16A7.md", 7, "sutta/an/an07.md", "sutta/an/an-7.md", "mula/sutta/an/s0404m.mul.md", "sutta/an/vol23.md"),
-        ("17A8", "Aṭṭhakanipāta", "17A8.md", 8, "sutta/an/an08.md", "sutta/an/an-8.md", "mula/sutta/an/s0404m.mul.md", "sutta/an/vol23.md"),
-        ("17A9", "Navakanipāta", "17A9.md", 9, "sutta/an/an09.md", "sutta/an/an-9.md", "mula/sutta/an/s0404m.mul.md", "sutta/an/vol23.md"),
-        ("17A10", "Dasakanipāta", "17A10.md", 10, "sutta/an/an10.md", "sutta/an/an-10.md", "mula/sutta/an/s0405m.mul.md", "sutta/an/vol24.md"),
-        ("17A11", "Ekādasakanipāta", "17A11.md", 11, "sutta/an/an11.md", "sutta/an/an-11.md", "mula/sutta/an/s0405m.mul.md", "sutta/an/vol24.md"),
+        ("15A2", "Dukanipāta", "15A2.md", 2, "sutta/an/an02.md", "sutta/an/an-2.md", "mula/sutta/an/s0402m1.mul.md", "sutta/an/vol20.md"),
+        ("15A3", "Tikanipāta", "15A3.md", 3, "sutta/an/an03.md", "sutta/an/an-3.md", "mula/sutta/an/s0402m2.mul.md", "sutta/an/vol20.md"),
+        ("15A4", "Catukkanipāta", "15A4.md", 4, "sutta/an/an04.md", "sutta/an/an-4.md", "mula/sutta/an/s0402m3.mul.md", "sutta/an/vol21.md"),
+        ("16A5", "Pañcakanipāta", "16A5.md", 5, "sutta/an/an05.md", "sutta/an/an-5.md", "mula/sutta/an/s0403m1.mul.md", "sutta/an/vol22.md"),
+        ("16A6", "Chakkanipāta", "16A6.md", 6, "sutta/an/an06.md", "sutta/an/an-6.md", "mula/sutta/an/s0403m2.mul.md", "sutta/an/vol22.md"),
+        ("16A7", "Sattakanipāta", "16A7.md", 7, "sutta/an/an07.md", "sutta/an/an-7.md", "mula/sutta/an/s0403m3.mul.md", "sutta/an/vol23.md"),
+        ("17A8", "Aṭṭhakanipāta", "17A8.md", 8, "sutta/an/an08.md", "sutta/an/an-8.md", "mula/sutta/an/s0404m1.mul.md", "sutta/an/vol23.md"),
+        ("17A9", "Navakanipāta", "17A9.md", 9, "sutta/an/an09.md", "sutta/an/an-9.md", "mula/sutta/an/s0404m2.mul.md", "sutta/an/vol23.md"),
+        ("17A10", "Dasakanipāta", "17A10.md", 10, "sutta/an/an10.md", "sutta/an/an-10.md", "mula/sutta/an/s0404m3.mul.md", "sutta/an/vol24.md"),
+        ("17A11", "Ekādasakanipāta", "17A11.md", 11, "sutta/an/an11.md", "sutta/an/an-11.md", "mula/sutta/an/s0404m4.mul.md", "sutta/an/vol24.md"),
     ]
 
     for bcode, btitle, t2500_file, n_num, pts_file, bjt_file, cst_file, sr_file in an_volumes:
@@ -363,20 +384,18 @@ def build_catalog():
         ("19Pv", "Petavatthu", "19Pv.md", "sutta/kn/pv.md", "sutta/kn/kn-pv.md", "mula/sutta/kn/s0502m.mul.md", "sutta/kn/vol26.md"),
         ("19Th1", "Theragāthā", "19Th1.md", "sutta/kn/thag.md", "sutta/kn/kn-thag.md", "mula/sutta/kn/s0502m.mul.md", "sutta/kn/vol26.md"),
         ("19Th2", "Therīgāthā", "19Th2.md", "sutta/kn/thig.md", "sutta/kn/kn-thig.md", "mula/sutta/kn/s0502m.mul.md", "sutta/kn/vol26.md"),
-        ("20J", "Jātaka Vol. 1", "20J.md", "sutta/kn/jat01.md", "sutta/kn/kn-jat-1.md", "mula/sutta/kn/s0503m.mul.md", "sutta/kn/vol27.md"),
-        ("21J", "Jātaka Vol. 2", "21J.md", "sutta/kn/jat02.md", "sutta/kn/kn-jat-2.md", "mula/sutta/kn/s0504m.mul.md", "sutta/kn/vol28.md"),
-        ("22J", "Jātaka Vol. 3", "22J.md", "sutta/kn/jat03.md", "sutta/kn/kn-jat-3.md", "mula/sutta/kn/s0505m.mul.md", "sutta/kn/vol28.md"),
-        ("23J", "Jātaka Vol. 4", "23J.md", "sutta/kn/jat04.md", "sutta/kn/kn-jat-4.md", "mula/sutta/kn/s0506m.mul.md", "sutta/kn/vol28.md"),
-        ("24J", "Jātaka Vol. 5", "24J.md", "sutta/kn/jat05.md", "sutta/kn/kn-jat-5.md", "mula/sutta/kn/s0507m.mul.md", "sutta/kn/vol28.md"),
-        ("25J", "Jātaka Vol. 6", "25J.md", "sutta/kn/jat06.md", "sutta/kn/kn-jat-6.md", "mula/sutta/kn/s0508m.mul.md", "sutta/kn/vol28.md"),
-        ("26N1", "Mahāniddesa", "26N1.md", "sutta/kn/mnd.md", "sutta/kn/kn-mnd.md", "mula/sutta/kn/s0509m.mul.md", "sutta/kn/vol29.md"),
-        ("27N2", "Cūḷaniddesa", "27N2.md", "sutta/kn/cnd.md", "sutta/kn/kn-cnd.md", "mula/sutta/kn/s0510m.mul.md", "sutta/kn/vol30.md"),
-        ("28P", "Paṭisambhidāmagga 1", "28P.md", "sutta/kn/ps01.md", "sutta/kn/kn-ps-1.md", "mula/sutta/kn/s0511m.mul.md", "sutta/kn/vol31.md"),
-        ("29P", "Paṭisambhidāmagga 2", "29P.md", "sutta/kn/ps02.md", "sutta/kn/kn-ps-2.md", "mula/sutta/kn/s0512m.mul.md", "sutta/kn/vol31.md"),
-        ("30A", "Apadāna 1", "30A.md", "sutta/kn/ap.md", "sutta/kn/kn-ap-1.md", "mula/sutta/kn/s0513m.mul.md", "sutta/kn/vol32.md"),
-        ("31A", "Apadāna 2", "31A.md", "sutta/kn/ap.md", "sutta/kn/kn-ap-2.md", "mula/sutta/kn/s0514m.mul.md", "sutta/kn/vol33.md"),
-        ("32Bv", "Buddhavaṃsa", "32Bv.md", "sutta/kn/bv.md", "sutta/kn/kn-bv.md", "mula/sutta/kn/s0515m.mul.md", "sutta/kn/vol33.md"),
-        ("33Cp", "Cariyāpiṭaka", "33Cp.md", "sutta/kn/cp.md", "sutta/kn/kn-cp.md", "mula/sutta/kn/s0516m.mul.md", "sutta/kn/vol33.md"),
+        ("20Ap1", "Therāpadāna", "20Ap1.md", "sutta/kn/ap.md", "sutta/kn/kn-ap.md", "mula/sutta/kn/s0513m.mul.md", "sutta/kn/vol32.md"),
+        ("20Ap2", "Therīapadāna", "20Ap2.md", "sutta/kn/ap.md", "sutta/kn/kn-ap-2.md", "mula/sutta/kn/s0514m.mul.md", "sutta/kn/vol33.md"),
+        ("21Bu", "Buddhavaṃsa", "21Bu.md", "sutta/kn/bv.md", "sutta/kn/kn-bv.md", "mula/sutta/kn/s0515m.mul.md", "sutta/kn/vol33.md"),
+        ("21Cp", "Cariyāpiṭaka", "21Cp.md", "sutta/kn/cp.md", "sutta/kn/kn-cp.md", "mula/sutta/kn/s0516m.mul.md", "sutta/kn/vol33.md"),
+        ("22J", "Jātakapāḷi (Vol. 1)", "22J.md", "sutta/kn/jat01.md", "sutta/kn/kn-jat.md", "mula/sutta/kn/s0503m.mul.md", "sutta/kn/vol27.md"),
+        ("23J", "Jātakapāḷi (Vol. 2)", "23J.md", "sutta/kn/jat04.md", "sutta/kn/kn-jat-5.md", "mula/sutta/kn/s0506m.mul.md", "sutta/kn/vol28.md"),
+        ("24Mn", "Mahāniddesa", "24Mn.md", "sutta/kn/mnd.md", "sutta/kn/kn-mn.md", "mula/sutta/kn/s0509m.mul.md", "sutta/kn/vol29.md"),
+        ("25Cn", "Cūḷaniddesa", "25Cn.md", "sutta/kn/cnd.md", "sutta/kn/kn-nc.md", "mula/sutta/kn/s0510m1.mul.md", "sutta/kn/vol30.md"),
+        ("26Ps", "Paṭisambhidāmagga", "26Ps.md", "sutta/kn/ps01.md", "sutta/kn/kn-ps.md", "mula/sutta/kn/s0511m.mul.md", "sutta/kn/vol31.md"),
+        ("27Ne", "Nettippakaraṇa", "27Ne.md", "paracanonical/nettippakarana.md", "sutta/kn/kn-nett.md", "mula/sutta/kn/s0517m.mul.md", "sutta/kn/vol26.md"),
+        ("27Pe", "Peṭakopadesa", "27Pe.md", "paracanonical/petakopadesa.md", "sutta/kn/kn-petk.md", "tika/sutta/kn/s0518m.nrf.md", "sutta/kn/vol26.md"),
+        ("28Mi", "Milindapañha", "28Mi.md", "paracanonical/milindapanha.md", "", "mula/sutta/kn/s0519m.mul.md", "sutta/kn/vol26.md"),
     ]
 
     for bcode, btitle, t2500_file, pts_file, bjt_file, cst_file, sr_file in kn_data:
@@ -403,24 +422,24 @@ def build_catalog():
         "id": "abhidhamma",
         "title": "Abhidhammapiṭaka",
         "pali_title": "Abhidhammapiṭaka",
-        "description": "Higher Teachings (7 Treatises)",
+        "description": "Higher Teachings (7 Treatises in 12 Volumes)",
         "books": []
     }
 
     abh_data = [
-        ("34Dh", "Dhammasaṅgaṇī", "34Dh.md", "abhidhamma/dhs.md", "abhidhamma/ap-ds.md", "mula/abhidhamma/abh01m.mul.md", "abhidhamma/vol34.md"),
-        ("35Vb", "Vibhaṅga", "35Vb.md", "abhidhamma/vbh01.md", "abhidhamma/ap-vb.md", "mula/abhidhamma/abh02m.mul.md", "abhidhamma/vol35.md"),
-        ("36Dh", "Dhātukathā", "36Dh.md", "abhidhamma/dhk.md", "abhidhamma/ap-dt.md", "mula/abhidhamma/abh03m.mul.md", "abhidhamma/vol36.md"),
-        ("36Pu", "Puggalapaññatti", "36Pu.md", "abhidhamma/pug.md", "abhidhamma/ap-pp.md", "mula/abhidhamma/abh03m.mul.md", "abhidhamma/vol36.md"),
-        ("37K", "Kathāvatthu", "37K.md", "abhidhamma/kvu.md", "abhidhamma/ap-kv.md", "mula/abhidhamma/abh04m.mul.md", "abhidhamma/vol37.md"),
-        ("38Y1", "Yamaka 1", "38Y1.md", "abhidhamma/yam01.md", "abhidhamma/ap-ym-1.md", "mula/abhidhamma/abh05m.mul.md", "abhidhamma/vol38.md"),
-        ("38Y2", "Yamaka 2", "38Y2.md", "abhidhamma/yam02.md", "abhidhamma/ap-ym-2.md", "mula/abhidhamma/abh06m.mul.md", "abhidhamma/vol39.md"),
-        ("39P1", "Paṭṭhāna 1 (Tikapaṭṭhāna)", "39P1.md", "abhidhamma/pat-tika1.md", "abhidhamma/ap-pt-1.md", "mula/abhidhamma/abh07m.mul.md", "abhidhamma/vol40.md"),
-        ("39P2", "Paṭṭhāna 2 (Dukapaṭṭhāna)", "39P2.md", "abhidhamma/pat-duka.md", "abhidhamma/ap-pt-2.md", "mula/abhidhamma/abh08m.mul.md", "abhidhamma/vol41.md"),
-        ("40P3", "Paṭṭhāna 3", "40P3.md", "abhidhamma/pat-tika2.md", "abhidhamma/ap-pt-3.md", "mula/abhidhamma/abh09m.mul.md", "abhidhamma/vol42.md"),
-        ("40P4", "Paṭṭhāna 4", "40P4.md", "abhidhamma/pat-tika3.md", "abhidhamma/ap-pt-4.md", "mula/abhidhamma/abh10m.mul.md", "abhidhamma/vol43.md"),
-        ("40P5", "Paṭṭhāna 5", "40P5.md", "abhidhamma/pat-tika3.md", "abhidhamma/ap-pt-5.md", "mula/abhidhamma/abh11m.mul.md", "abhidhamma/vol44.md"),
-        ("40P6", "Paṭṭhāna 6", "40P6.md", "abhidhamma/pat-tika3.md", "abhidhamma/ap-pt-6.md", "mula/abhidhamma/abh12m.mul.md", "abhidhamma/vol45.md"),
+        ("29Dhs", "Dhammasaṅgaṇī", "29Dhs.md", "abhidhamma/dhs.md", "abhidhamma/ap-dhs.md", "mula/abhidhamma/abh01m.mul.md", "abhidhamma/vol34.md"),
+        ("30Vbh", "Vibhaṅga", "30Vbh.md", "abhidhamma/vbh01.md", "abhidhamma/ap-vbh.md", "mula/abhidhamma/abh02m.mul.md", "abhidhamma/vol35.md"),
+        ("31Dht", "Dhātukathā", "31Dht.md", "abhidhamma/dhk.md", "abhidhamma/ap-dhk.md", "mula/abhidhamma/abh03m1.mul.md", "abhidhamma/vol36.md"),
+        ("31Pu", "Puggalapaññatti", "31Pu.md", "abhidhamma/pug.md", "abhidhamma/ap-pug.md", "mula/abhidhamma/abh03m2.mul.md", "abhidhamma/vol36.md"),
+        ("32Kv", "Kathāvatthu", "32Kv.md", "abhidhamma/kvu.md", "abhidhamma/ap-kvu.md", "mula/abhidhamma/abh03m3.mul.md", "abhidhamma/vol37.md"),
+        ("33Y1", "Yamaka 1", "33Y1.md", "abhidhamma/yam01.md", "abhidhamma/ap-yam.md", "mula/abhidhamma/abh03m4.mul.md", "abhidhamma/vol38.md"),
+        ("34Y6", "Yamaka 2", "34Y6.md", "abhidhamma/yam02.md", "abhidhamma/ap-yam-6.md", "mula/abhidhamma/abh03m5.mul.md", "abhidhamma/vol39.md"),
+        ("35Y9", "Yamaka 3", "35Y9.md", "abhidhamma/yam02.md", "abhidhamma/ap-yam-8.md", "mula/abhidhamma/abh03m6.mul.md", "abhidhamma/vol39.md"),
+        ("36P1", "Paṭṭhāna 1 (Tikapaṭṭhāna 1)", "36P1.md", "abhidhamma/pat-tika1.md", "abhidhamma/ap-pat.md", "mula/abhidhamma/abh03m7.mul.md", "abhidhamma/vol40.md"),
+        ("37P1", "Paṭṭhāna 2 (Tikapaṭṭhāna 2)", "37P1.md", "abhidhamma/pat-tika2.md", "abhidhamma/ap-pat-2.md", "mula/abhidhamma/abh03m8.mul.md", "abhidhamma/vol41.md"),
+        ("38P2", "Paṭṭhāna 3 (Dukapaṭṭhāna)", "38P2.md", "abhidhamma/pat-duka.md", "abhidhamma/ap-pat-3.md", "mula/abhidhamma/abh03m9.mul.md", "abhidhamma/vol42.md"),
+        ("39P3", "Paṭṭhāna 4 (Dukatikapaṭṭhāna)", "39P3.md", "abhidhamma/pat-tika3.md", "abhidhamma/ap-pat-4.md", "mula/abhidhamma/abh03m10.mul.md", "abhidhamma/vol43.md"),
+        ("40P7", "Paṭṭhāna 5 (Dhammapaccanīya)", "40P7.md", "abhidhamma/pat-tika3.md", "abhidhamma/ap-pat.md", "mula/abhidhamma/abh03m11.mul.md", "abhidhamma/vol44.md"),
     ]
 
     for bcode, btitle, t2500_file, pts_file, bjt_file, cst_file, sr_file in abh_data:
@@ -464,7 +483,7 @@ def build_catalog():
                 "editions": {
                     "pts": "commentary/visuddhimagga.md",
                     "bjt": "anya/anya-vm.md",
-                    "cst": "mula/anya/anya01m.mul.md"
+                    "cst": "mula/anya/e0101n.mul.md"
                 }
             },
             {
@@ -497,11 +516,13 @@ def build_catalog():
     }
     catalog["structure"].append(extra_group)
 
-    out_file = os.path.expanduser('~/Repositories/Pali/tipitaka-md.github.io/catalog.json')
-    with open(out_file, 'w', encoding='utf-8') as f:
-        json.dump(catalog, f, indent=2, ensure_ascii=False)
-
-    print(f"Catalog successfully built at {out_file}.")
+    out_file1 = os.path.expanduser('~/Repositories/Pali/tipitaka-md.github.io/catalog.json')
+    out_file2 = os.path.expanduser('~/Repositories/Pali/tipitaka-md.github.io/public/catalog.json')
+    for out_file in [out_file1, out_file2]:
+        os.makedirs(os.path.dirname(out_file), exist_ok=True)
+        with open(out_file, 'w', encoding='utf-8') as f:
+            json.dump(catalog, f, indent=2, ensure_ascii=False)
+        print(f"Catalog successfully built at {out_file}.")
 
 if __name__ == '__main__':
     build_catalog()

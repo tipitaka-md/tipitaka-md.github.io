@@ -712,27 +712,79 @@ import Layout from '../layouts/Layout.astro';
     '27Ne': { title: 'Nettippakaraṇapāḷi', pitaka: 'Khuddakanikāya' },
     '27Pe': { title: 'Peṭakopadesapāḷi', pitaka: 'Khuddakanikāya' },
     '28Mi': { title: 'Milindapañhapāḷi', pitaka: 'Khuddakanikāya' },
+    '29Dhs': { title: 'Dhammasaṅgaṇīpāḷi', pitaka: 'Abhidhammapiṭaka' },
+    '30Vbh': { title: 'Vibhaṅgapāḷi', pitaka: 'Abhidhammapiṭaka' },
+    '31Dht': { title: 'Dhātukathāpāḷi', pitaka: 'Abhidhammapiṭaka' },
+    '31Pu': { title: 'Puggalapaññattipāḷi', pitaka: 'Abhidhammapiṭaka' },
+    '32Kv': { title: 'Kathāvatthupāḷi', pitaka: 'Abhidhammapiṭaka' },
+    '33Y1': { title: 'Yamakapāḷi 1', pitaka: 'Abhidhammapiṭaka' },
+    '34Y6': { title: 'Yamakapāḷi 2', pitaka: 'Abhidhammapiṭaka' },
+    '35Y9': { title: 'Yamakapāḷi 3', pitaka: 'Abhidhammapiṭaka' },
+    '36P1': { title: 'Paṭṭhānapāḷi 1', pitaka: 'Abhidhammapiṭaka' },
+    '37P1': { title: 'Paṭṭhānapāḷi 2', pitaka: 'Abhidhammapiṭaka' },
+    '38P2': { title: 'Paṭṭhānapāḷi 3', pitaka: 'Abhidhammapiṭaka' },
+    '39P3': { title: 'Paṭṭhānapāḷi 4', pitaka: 'Abhidhammapiṭaka' },
+    '40P7': { title: 'Paṭṭhānapāḷi 5', pitaka: 'Abhidhammapiṭaka' },
+    // Aliases
     '34Dh': { title: 'Dhammasaṅgaṇīpāḷi', pitaka: 'Abhidhammapiṭaka' },
     '35Vbh': { title: 'Vibhaṅgapāḷi', pitaka: 'Abhidhammapiṭaka' },
     '36Dht': { title: 'Dhātukathāpāḷi', pitaka: 'Abhidhammapiṭaka' },
     '36Pu': { title: 'Puggalapaññattipāḷi', pitaka: 'Abhidhammapiṭaka' },
     '37Kv': { title: 'Kathāvatthupāḷi', pitaka: 'Abhidhammapiṭaka' },
-    '38Y1': { title: 'Yamakapāḷi 1', pitaka: 'Abhidhammapiṭaka' },
-    '38Y2': { title: 'Yamakapāḷi 2', pitaka: 'Abhidhammapiṭaka' },
-    '38Y3': { title: 'Yamakapāḷi 3', pitaka: 'Abhidhammapiṭaka' },
-    '39P1': { title: 'Tikapaṭṭhānapāḷi 1', pitaka: 'Abhidhammapiṭaka' },
-    '39P2': { title: 'Tikapaṭṭhānapāḷi 2', pitaka: 'Abhidhammapiṭaka' },
-    '40P3': { title: 'Dukapaṭṭhānapāḷi', pitaka: 'Abhidhammapiṭaka' },
-    '40P4': { title: 'Dukapaṭṭhānapāḷi 2', pitaka: 'Abhidhammapiṭaka' },
-    '40P5': { title: 'Dukatikapaṭṭhānapāḷi', pitaka: 'Abhidhammapiṭaka' },
+    '38Y': { title: 'Yamakapāḷi', pitaka: 'Abhidhammapiṭaka' },
+    '39P': { title: 'Paṭṭhānapāḷi', pitaka: 'Abhidhammapiṭaka' },
   };
 
+  const BOOK_CODE_ALIASES: Record<string, string> = {
+    // Abhidhamma aliases to T2500 canonical codes
+    '34dh': '29Dhs',
+    '35vbh': '30Vbh',
+    '35vb': '30Vbh',
+    '36dht': '31Dht',
+    '36dh': '31Dht',
+    '36pu': '31Pu',
+    '37kv': '32Kv',
+    '37k': '32Kv',
+    '38y': '33Y1',
+    '38y1': '33Y1',
+    '38y2': '34Y6',
+    '38y3': '35Y9',
+    '39p': '36P1',
+    '39p1': '36P1',
+    '39p2': '37P1',
+    '40p3': '38P2',
+    '40p4': '39P3',
+    '40p5': '40P7',
+    '40p6': '40P7',
+    // Khuddaka aliases to T2500 canonical codes
+    '20j': '22J',
+    '21j': '22J',
+    '24j': '23J',
+    '25j': '23J',
+    '26n1': '24Mn',
+    '27n2': '25Cn',
+    '28p': '26Ps',
+    '29p': '26Ps',
+    '30a': '20Ap1',
+    '31a': '20Ap2',
+    '32bv': '21Bu',
+    '33cp': '21Cp',
+  };
+
+  function normalizeBookCode(code: string): string {
+    if (!code) return '1V';
+    const clean = code.trim().toLowerCase();
+    return BOOK_CODE_ALIASES[clean] || code;
+  }
+
   function getBookInfo(bookCode: string) {
+    const normalized = normalizeBookCode(bookCode);
+    if (BOOK_MAP[normalized]) return BOOK_MAP[normalized];
     if (BOOK_MAP[bookCode]) return BOOK_MAP[bookCode];
     if (catalog) {
       for (const p of catalog.structure) {
         for (const b of p.books) {
-          if (b.code.toLowerCase() === bookCode.toLowerCase()) {
+          if (b.code.toLowerCase() === normalized.toLowerCase() || b.code.toLowerCase() === bookCode.toLowerCase()) {
             return { title: b.title, pitaka: p.title };
           }
         }
@@ -1304,6 +1356,7 @@ import Layout from '../layouts/Layout.astro';
    * Look up file path for a given book/sutta in an edition
    */
   function getFilePathForEdition(edition: string, bookCode: string, suttaId?: string): string {
+    const normCode = normalizeBookCode(bookCode);
     // 1. If suttaId is provided and non-empty, look in catalog
     if (suttaId && catalog) {
       for (const pitaka of catalog.structure) {
@@ -1325,7 +1378,7 @@ import Layout from '../layouts/Layout.astro';
     if (catalog) {
       for (const pitaka of catalog.structure) {
         for (const book of pitaka.books) {
-          if (book.code.toLowerCase() === bookCode.toLowerCase()) {
+          if (book.code.toLowerCase() === normCode.toLowerCase() || book.code.toLowerCase() === bookCode.toLowerCase()) {
             if (book.editions && book.editions[edition]) {
               return book.editions[edition];
             }
@@ -1346,20 +1399,24 @@ import Layout from '../layouts/Layout.astro';
     }
 
     // 3. Fallback
-    return `tipitaka/${bookCode}.md`;
+    return `tipitaka/${normCode}.md`;
   }
 
   /**
    * Update active link in the sidebar and automatically expand the containing <details>
    */
   function updateActiveSidebarLink() {
+    const normCode = normalizeBookCode(currentBookCode);
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
     sidebarLinks.forEach((link) => {
       const href = (link as HTMLAnchorElement).getAttribute('href') || '';
       const isMatch =
         href.includes(`book=${currentBookCode}`) ||
+        href.includes(`book=${normCode}`) ||
         href.endsWith(`/${currentBookCode}.html`) ||
-        href.includes(`/${currentBookCode}.md`);
+        href.endsWith(`/${normCode}.html`) ||
+        href.includes(`/${currentBookCode}.md`) ||
+        href.includes(`/${normCode}.md`);
 
       if (isMatch) {
         link.classList.add('active');
@@ -1404,7 +1461,7 @@ import Layout from '../layouts/Layout.astro';
               currentSectionRef = '';
             }
             const m = targetFile.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
-            if (m) currentBookCode = m[1];
+            if (m) currentBookCode = normalizeBookCode(m[1]);
             currentSuttaId = targetSutta || detectSuttaFromPath(targetFile);
 
             if (currentEdition === 'tipitaka2500' || !targetFile.startsWith('tipitaka/')) {
@@ -1414,11 +1471,11 @@ import Layout from '../layouts/Layout.astro';
             }
           } else if (targetSutta) {
             currentSuttaId = targetSutta;
-            if (targetBook) currentBookCode = targetBook;
+            if (targetBook) currentBookCode = normalizeBookCode(targetBook);
             currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
             currentSectionRef = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
           } else if (targetBook) {
-            currentBookCode = targetBook;
+            currentBookCode = normalizeBookCode(targetBook);
             currentSuttaId = '';
             currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, '');
             currentSectionRef = '';
@@ -1468,7 +1525,7 @@ import Layout from '../layouts/Layout.astro';
           }
           const match = newFile.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
           if (match) {
-            currentBookCode = match[1];
+            currentBookCode = normalizeBookCode(match[1]);
           }
           currentSuttaId = detectSuttaFromPath(newFile);
 
@@ -1971,7 +2028,7 @@ import Layout from '../layouts/Layout.astro';
       }
       const m = paramFile.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
       if (m) {
-        currentBookCode = m[1];
+        currentBookCode = normalizeBookCode(m[1]);
       }
       currentSuttaId = params.get('sutta') || detectSuttaFromPath(paramFile);
 
@@ -1983,12 +2040,12 @@ import Layout from '../layouts/Layout.astro';
     } else if (params.has('sutta')) {
       currentSuttaId = params.get('sutta')!;
       if (params.has('book')) {
-        currentBookCode = params.get('book')!;
+        currentBookCode = normalizeBookCode(params.get('book')!);
       }
       currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
       currentSectionRef = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
     } else if (params.has('book')) {
-      currentBookCode = params.get('book')!;
+      currentBookCode = normalizeBookCode(params.get('book')!);
       currentSuttaId = '';
       currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, '');
       currentSectionRef = '';
