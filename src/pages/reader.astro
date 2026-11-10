@@ -105,8 +105,9 @@ import Layout from '../layouts/Layout.astro';
           <button
             type="button"
             id="diff-toggle-btn"
-            class="diff-toggle-btn active"
-            aria-pressed="true"
+            class="diff-toggle-btn"
+            aria-pressed="false"
+            style="display: none;"
             title="Highlight textual differences against World Tipiṭaka Edition (WTK) base text"
           >
             <span>✨ Highlight Variants</span>
@@ -128,7 +129,7 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Text Variant Legend Bar -->
-      <div class="diff-legend" id="diff-legend" style="display: flex;">
+      <div class="diff-legend" id="diff-legend" style="display: none;">
         <span class="diff-legend-title">Text Variants:</span>
         <span class="legend-badge legend-add">
           ● Addition
@@ -978,7 +979,7 @@ import Layout from '../layouts/Layout.astro';
   let currentFilePath = '';
   let currentSectionRef = '';
   let viewMode = 'single'; // 'single' | 'split'
-  let diffEnabled = true;
+  let diffEnabled = false; // Base edition never shows variants; enabled when switching to comparative editions
   let currentScript = 'roman';
   let showRawMarkdown = false;
 
@@ -1749,6 +1750,15 @@ import Layout from '../layouts/Layout.astro';
 
     if (newEdition) currentEdition = newEdition;
 
+    // Base edition should never show variants
+    if (currentEdition === 'tipitaka2500') {
+      diffEnabled = false;
+    } else if (params.has('diff')) {
+      diffEnabled = params.get('diff') === '1';
+    } else {
+      diffEnabled = true; // comparative editions enable diff by default
+    }
+
     if (newFile) {
       if (newFile.startsWith('tipitaka/')) {
         currentSectionRef = newFile;
@@ -1788,10 +1798,11 @@ import Layout from '../layouts/Layout.astro';
 
     const targetRef = currentSectionRef || currentFilePath;
     const hashStr = url.hash || '';
+    const diffQuery = currentEdition !== 'tipitaka2500' && diffEnabled ? '&diff=1' : '';
     window.history.pushState(
       {},
       '',
-      `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}${targetRef ? `&file=${encodeURIComponent(targetRef)}` : ''}&mode=${viewMode}&diff=${diffEnabled ? '1' : '0'}&script=${currentScript}${hashStr}`
+      `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}${targetRef ? `&file=${encodeURIComponent(targetRef)}` : ''}&mode=${viewMode}${diffQuery}&script=${currentScript}${hashStr}`
     );
     updateView();
     if (!hashStr) {
@@ -1870,9 +1881,10 @@ import Layout from '../layouts/Layout.astro';
       isMenuPage(targetMd, targetFile) ||
       (currentSectionRef ? isMenuPage('', currentSectionRef) : false);
 
-    // Update diff legend visibility: hide on menu pages
+    // Update diff legend visibility: hide on base edition or menu pages
     if (diffLegend) {
-      const showLegend = !isMenu && (diffEnabled || viewMode === 'split');
+      const isBase = currentEdition === 'tipitaka2500';
+      const showLegend = !isBase && !isMenu && (diffEnabled || viewMode === 'split');
       diffLegend.style.display = showLegend ? 'flex' : 'none';
     }
 
@@ -2031,27 +2043,15 @@ import Layout from '../layouts/Layout.astro';
           }
         }
       } else {
-        // currentEdition === 'tipitaka2500'
+        // currentEdition === 'tipitaka2500' (Base edition: never show variants)
         currentSingleMd = targetMd;
         currentBaseSectionMd = targetMd;
-        let renderMd = targetMd;
-        if (diffEnabled && !isRootBook) {
-          const compFile = getFilePathForEdition(compareEdition, currentBookCode, currentSuttaId);
-          let compMd = await fetchMarkdown(compareEdition, compFile);
-          if (compareEdition === 'pts') {
-            compMd = cleanPtsForDisplay(compMd);
-          }
-          const sectionTitle = extractTitleFromMarkdown(targetMd) || (currentSuttaId ? currentSuttaId.toUpperCase() : cleanCurrentPath.split('/').pop() || '');
-          const elidedComp = elideOtherEdition(targetMd, compMd, sectionTitle, 'compare');
-          const compBadge = catalog?.editions[compareEdition]?.short_name || compareEdition.toUpperCase();
-          renderMd = highlightPaliDiff(targetMd, elidedComp.content, compBadge);
-        }
 
         if (mainContentEl) {
           if (showRawMarkdown) {
             mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(targetMd)}</code></pre>`;
           } else {
-            mainContentEl.innerHTML = convertMarkdownToHtml(renderMd, targetFile, currentEdition, 'single');
+            mainContentEl.innerHTML = convertMarkdownToHtml(targetMd, targetFile, currentEdition, 'single');
           }
         }
       }
@@ -2312,8 +2312,27 @@ import Layout from '../layouts/Layout.astro';
 
   function updateControlsVisibility() {
     const diffLegend = document.getElementById('diff-legend');
+    const diffBtn = document.getElementById('diff-toggle-btn');
+    const isBase = currentEdition === 'tipitaka2500';
+
+    if (diffBtn) {
+      if (isBase) {
+        diffBtn.style.display = 'none';
+      } else {
+        diffBtn.style.display = 'inline-flex';
+        diffBtn.classList.toggle('active', diffEnabled);
+        diffBtn.setAttribute('aria-pressed', diffEnabled ? 'true' : 'false');
+      }
+    }
+
     if (diffLegend) {
-      diffLegend.style.display = (diffEnabled || viewMode === 'split') ? 'flex' : 'none';
+      const curPath = (currentFilePath || '').replace(/^\/+/, '');
+      const isCurrentMenu =
+        isMenuPage(currentSingleMd || currentBaseSectionMd, currentSectionRef || currentFilePath) ||
+        curPath === `tipitaka/${currentBookCode}.md` ||
+        curPath.endsWith(`/${currentBookCode}.md`);
+      const showLegend = !isBase && !isCurrentMenu && (diffEnabled || viewMode === 'split');
+      diffLegend.style.display = showLegend ? 'flex' : 'none';
     }
   }
 
@@ -2377,8 +2396,10 @@ import Layout from '../layouts/Layout.astro';
           currentEdition = ed;
           if (currentEdition !== 'tipitaka2500') {
             compareEdition = currentEdition;
+            diffEnabled = true; // Clicking on another edition enables the diff
           } else {
             viewMode = 'single';
+            diffEnabled = false; // Base edition should never show variants
           }
           singleShowFull = false;
           rightShowFull = false;
@@ -2396,12 +2417,18 @@ import Layout from '../layouts/Layout.astro';
           const newUrl = new URL(window.location.href);
           newUrl.searchParams.set('edition', currentEdition);
           newUrl.searchParams.set('mode', viewMode);
+          if (currentEdition !== 'tipitaka2500' && diffEnabled) {
+            newUrl.searchParams.set('diff', '1');
+          } else {
+            newUrl.searchParams.delete('diff');
+          }
           if (currentFilePath) {
             newUrl.searchParams.set('file', currentFilePath);
           }
           window.history.pushState({}, '', newUrl.toString());
 
           updateActiveEditionTabs();
+          updateControlsVisibility();
           updateView();
         }
       });
@@ -2425,12 +2452,9 @@ import Layout from '../layouts/Layout.astro';
     // Variant Diff Toggle
     const diffBtn = document.getElementById('diff-toggle-btn');
     if (diffBtn) {
-      diffBtn.classList.toggle('active', diffEnabled);
-      diffBtn.setAttribute('aria-pressed', diffEnabled ? 'true' : 'false');
       diffBtn.addEventListener('click', () => {
+        if (currentEdition === 'tipitaka2500') return; // Base edition never shows variants
         diffEnabled = !diffEnabled;
-        diffBtn.classList.toggle('active', diffEnabled);
-        diffBtn.setAttribute('aria-pressed', diffEnabled ? 'true' : 'false');
         updateControlsVisibility();
         const newUrl = new URL(window.location.href);
         newUrl.searchParams.set('diff', diffEnabled ? '1' : '0');
@@ -2635,8 +2659,16 @@ import Layout from '../layouts/Layout.astro';
     }
     if (params.has('compare')) compareEdition = params.get('compare')!;
     if (params.has('mode')) viewMode = params.get('mode')!;
-    if (params.has('diff')) diffEnabled = params.get('diff') === '1';
     if (params.has('script')) currentScript = params.get('script')!;
+
+    // Base edition should never show variants
+    if (currentEdition === 'tipitaka2500') {
+      diffEnabled = false;
+    } else if (params.has('diff')) {
+      diffEnabled = params.get('diff') === '1';
+    } else {
+      diffEnabled = true; // comparative editions enable diff by default
+    }
 
     if (params.has('file')) {
       const paramFile = params.get('file')!;
