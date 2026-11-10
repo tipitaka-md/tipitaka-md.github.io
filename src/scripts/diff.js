@@ -45,6 +45,7 @@ export function extractPaliWords(text) {
       !tr ||
       tr.startsWith('#') ||
       tr.startsWith('>') ||
+      tr.startsWith('---') ||
       tr.startsWith('<!--') ||
       tr.startsWith('<a id=') ||
       tr.startsWith('<div') ||
@@ -182,6 +183,7 @@ export function highlightPaliDiff(targetMarkdown, baseMarkdown) {
       !trimmed ||
       trimmed.startsWith('#') ||
       trimmed.startsWith('>') ||
+      trimmed.startsWith('---') ||
       trimmed.startsWith('<div') ||
       trimmed.startsWith('<!--') ||
       trimmed.startsWith('<a id=') ||
@@ -292,13 +294,21 @@ export function highlightPaliDiff(targetMarkdown, baseMarkdown) {
     resultBlocks.push(blockHtml);
   }
 
-  // Trailing deletes if any
-  if (trailingDeletes.length > 0 && resultBlocks.length > 0) {
+  // Trailing deletes if any: attach ONLY to the last content (non-skipped) block
+  let lastContentIdx = -1;
+  for (let i = blockData.length - 1; i >= 0; i--) {
+    if (!blockData[i].isSkip) {
+      lastContentIdx = i;
+      break;
+    }
+  }
+
+  if (trailingDeletes.length > 0 && lastContentIdx >= 0) {
     let trailingHtml = '';
     for (const delWord of trailingDeletes) {
       trailingHtml += ` <del class="diff-del">${escapeHtml(delWord)}</del>`;
     }
-    resultBlocks[resultBlocks.length - 1] += trailingHtml;
+    resultBlocks[lastContentIdx] += trailingHtml;
   }
 
   return resultBlocks.join('\n\n');

@@ -1120,9 +1120,9 @@ import Layout from '../layouts/Layout.astro';
           if (curId) addDef(curId, curBuf.join(' '));
           curId = defMatch[1];
           curBuf = [defMatch[2]];
-        } else if (curId && line.trim() && !line.startsWith('#')) {
+        } else if (curId && line.trim() && !line.startsWith('#') && !line.startsWith('<')) {
           curBuf.push(line.trim());
-        } else if (line.trim().startsWith('#') || line.trim() === '---') {
+        } else if (line.trim().startsWith('#') || line.trim() === '---' || line.trim().startsWith('<')) {
           if (curId) {
             addDef(curId, curBuf.join(' '));
             curId = null;
@@ -1272,6 +1272,15 @@ import Layout from '../layouts/Layout.astro';
       sliceRefs.add(cm[1]);
     }
 
+    if (hasSubsequent) {
+      elidedLines.push(
+        `\n<div class="elision-notice elision-bottom">` +
+        `<span>‹ Subsequent sections elided</span>` +
+        `<button type="button" class="btn-toggle-elision" data-pane="${paneId}">Show complete file</button>` +
+        `</div>`
+      );
+    }
+
     if (sliceRefs.size > 0 && definitions.size > 0) {
       const relevantDefs: Array<[string, string]> = [];
       const seen = new Set<string>();
@@ -1289,15 +1298,6 @@ import Layout from '../layouts/Layout.astro';
           elidedLines.push(`[^${fid}]: ${ftext}`);
         }
       }
-    }
-
-    if (hasSubsequent) {
-      elidedLines.push(
-        `\n<div class="elision-notice elision-bottom">` +
-        `<span>‹ Subsequent sections elided</span>` +
-        `<button type="button" class="btn-toggle-elision" data-pane="${paneId}">Show complete file</button>` +
-        `</div>`
-      );
     }
 
     return {
@@ -1931,13 +1931,26 @@ import Layout from '../layouts/Layout.astro';
       if (singlePaneView) singlePaneView.style.display = 'none';
       if (splitPanesView) splitPanesView.style.display = 'flex';
 
-      const leftFile = currentSectionRef || (currentEdition === 'tipitaka2500' ? currentFilePath : '') || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
+      let leftFile = currentSectionRef || (currentEdition === 'tipitaka2500' ? currentFilePath : '') || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
       const rightFile = getFilePathForEdition(compareEdition, currentBookCode, currentSuttaId);
 
-      const [baseMd, compareMd] = await Promise.all([
+      let [baseMd, compareMd] = await Promise.all([
         fetchMarkdown('tipitaka2500', leftFile),
         fetchMarkdown(compareEdition, rightFile),
       ]);
+
+      if (isMenuPage(baseMd, leftFile)) {
+        const firstChildMatch = baseMd.match(/\*+\s+\[[^\]]+\]\(([^)]+\.md)\)/);
+        if (firstChildMatch) {
+          const relChild = firstChildMatch[1].trim();
+          const resolvedChildUrl = resolveMarkdownLink(relChild, leftFile, 'tipitaka2500');
+          const fileMatch = resolvedChildUrl.match(/file=([^&#]+)/);
+          if (fileMatch) {
+            leftFile = decodeURIComponent(fileMatch[1]);
+            baseMd = await fetchMarkdown('tipitaka2500', leftFile);
+          }
+        }
+      }
 
       currentLeftFullMd = baseMd;
       currentRightFullMd = compareMd;
@@ -2019,8 +2032,22 @@ import Layout from '../layouts/Layout.astro';
       }
 
       if (!isRootBook && currentEdition !== 'tipitaka2500') {
-        const baseFile = currentSectionRef || (currentFilePath.startsWith('tipitaka/') ? currentFilePath : '') || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
-        const baseMd = await fetchMarkdown('tipitaka2500', baseFile);
+        let baseFile = currentSectionRef || (currentFilePath.startsWith('tipitaka/') ? currentFilePath : '') || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
+        let baseMd = await fetchMarkdown('tipitaka2500', baseFile);
+
+        if (isMenuPage(baseMd, baseFile)) {
+          const firstChildMatch = baseMd.match(/\*+\s+\[[^\]]+\]\(([^)]+\.md)\)/);
+          if (firstChildMatch) {
+            const relChild = firstChildMatch[1].trim();
+            const resolvedChildUrl = resolveMarkdownLink(relChild, baseFile, 'tipitaka2500');
+            const fileMatch = resolvedChildUrl.match(/file=([^&#]+)/);
+            if (fileMatch) {
+              baseFile = decodeURIComponent(fileMatch[1]);
+              baseMd = await fetchMarkdown('tipitaka2500', baseFile);
+            }
+          }
+        }
+
         currentBaseSectionMd = baseMd;
         const sectionTitle = extractTitleFromMarkdown(baseMd) || (currentSuttaId ? currentSuttaId.toUpperCase() : cleanCurrentPath.split('/').pop() || '');
 
