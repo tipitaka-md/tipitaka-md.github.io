@@ -115,6 +115,17 @@ export function diffWords(baseWords, targetWords) {
 
   const n = midBase.length;
   const m = midTarget.length;
+
+  // Safeguard: Prevent browser thread lockup if matrix size exceeds safety threshold (e.g. > 2,500,000 cells)
+  if (n * m > 2500000) {
+    console.warn(`Text variant diff matrix too large (${n}x${m} words); skipping deep matrix calculation to avoid UI freeze.`);
+    const fallbackOps = [];
+    for (const w of midTarget) {
+      fallbackOps.push({ type: 'equal', base: w, target: w });
+    }
+    return [...prefixOps, ...fallbackOps, ...suffixOps];
+  }
+
   const dp = Array.from({ length: n + 1 }, () => new Int32Array(m + 1));
 
   for (let i = 0; i < n; i++) {

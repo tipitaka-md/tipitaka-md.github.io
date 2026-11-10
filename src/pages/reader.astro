@@ -902,6 +902,35 @@ import Layout from '../layouts/Layout.astro';
       .trim();
   }
 
+  function paliStem(w: string): string {
+    if (!w || w.length <= 3) return w || '';
+    return w.replace(/[oaeuāīūi][ṃṁ]?$|[ṃṁ]$/, '');
+  }
+
+  function wordsMatch(w1: string, w2: string): boolean {
+    if (w1 === w2) return true;
+    if (w1.length >= 4 && w2.length >= 4) {
+      const s1 = paliStem(w1);
+      const s2 = paliStem(w2);
+      if (s1 === s2 || (s1.length >= 4 && (s2.startsWith(s1) || s1.startsWith(s2)))) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function containsWordSequence(lineNorm: string, targetWords: string[], threshold: number = 0.6): boolean {
+    if (!lineNorm || targetWords.length === 0) return false;
+    const lineWords = lineNorm.split(' ').filter(w => w.length > 2);
+    let matches = 0;
+    for (const tw of targetWords) {
+      if (lineWords.some(lw => wordsMatch(tw, lw))) {
+        matches++;
+      }
+    }
+    return (matches / targetWords.length) >= threshold;
+  }
+
   interface ElisionResult {
     content: string;
     isElided: boolean;
@@ -1006,7 +1035,10 @@ import Layout from '../layouts/Layout.astro';
     const normLast = normalizePaliForSearch(lastPara);
 
     const firstWords = normFirst.split(' ').filter(w => w.length > 2).slice(0, 5);
-    const lastWords = normLast.split(' ').filter(w => w.length > 2).slice(-4);
+    const lastWords = normLast.split(' ').filter(w => w.length > 2);
+    const substantiveLines = baseLines.filter(l => normalizePaliForSearch(l).length > 25);
+    const penultimatePara = substantiveLines[substantiveLines.length - 1] || lastPara;
+    const penultimateWords = normalizePaliForSearch(penultimatePara).split(' ').filter(w => w.length > 2).slice(-6);
 
     const otherLines = (otherMd || '').split('\n');
     let startLine = -1;
@@ -1014,7 +1046,7 @@ import Layout from '../layouts/Layout.astro';
 
     for (let i = 0; i < otherLines.length; i++) {
       const norm = normalizePaliForSearch(otherLines[i]);
-      if (norm && firstWords.length > 0 && firstWords.every(w => norm.includes(w))) {
+      if (norm && containsWordSequence(norm, firstWords, 0.6)) {
         startLine = i;
         break;
       }
@@ -1023,9 +1055,18 @@ import Layout from '../layouts/Layout.astro';
     if (startLine !== -1) {
       for (let i = startLine; i < otherLines.length; i++) {
         const norm = normalizePaliForSearch(otherLines[i]);
-        if (norm && lastWords.length > 0 && lastWords.every(w => norm.includes(w))) {
+        if (norm && containsWordSequence(norm, lastWords, 0.6)) {
           endLine = i;
           break;
+        }
+      }
+      if (endLine === -1) {
+        for (let i = startLine; i < otherLines.length; i++) {
+          const norm = normalizePaliForSearch(otherLines[i]);
+          if (norm && containsWordSequence(norm, penultimateWords, 0.6)) {
+            endLine = i;
+            break;
+          }
         }
       }
     }
@@ -1058,7 +1099,7 @@ import Layout from '../layouts/Layout.astro';
     let finalEndLine = endLine;
     if (endLine + 1 < otherLines.length) {
       const nextLine = otherLines[endLine + 1].trim();
-      if (nextLine.includes('niṭṭhitā') || nextLine.includes('niṭṭhito') || nextLine.includes('samattaṃ')) {
+      if (nextLine.includes('niṭṭhit') || nextLine.includes('samatt')) {
         finalEndLine = endLine + 1;
       }
     }
@@ -1075,7 +1116,15 @@ import Layout from '../layouts/Layout.astro';
       );
     }
 
-    const slicedSection = otherLines.slice(headingLine, finalEndLine + 1).join('\n');
+    const sliceArray = otherLines.slice(headingLine, finalEndLine + 1);
+    if (sliceArray.length > 0) {
+      const last = sliceArray[sliceArray.length - 1];
+      const matchConclusion = last.match(/^(.*?(?:niṭṭhit[a-zāīūṃṁ]*|samatt[a-zāīūṃṁ]*)\.?)(?:\s+[A-Za-zāīūñṅṇḍṭḷṃ].*|$)/i);
+      if (matchConclusion && matchConclusion[1].trim().length > 0) {
+        sliceArray[sliceArray.length - 1] = matchConclusion[1].trim();
+      }
+    }
+    const slicedSection = sliceArray.join('\n');
     elidedLines.push(slicedSection);
 
     // Extract footnote definitions from the full source markdown
