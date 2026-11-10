@@ -1,6 +1,6 @@
 /**
  * Pali Text Diff Engine
- * Compares comparative editions (PTS, BJT, CST, RTE) against World Tipitaka Edition (WTK) base text.
+ * Compares comparative editions (PTS, BJ, CST, RT) against World Tipitaka Edition (WT) base text.
  * Highlights:
  * - Light Green: Addition (text added in this edition)
  * - Light Yellow: Change / Variant (text differing from T2500)

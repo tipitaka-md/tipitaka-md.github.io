@@ -25,14 +25,14 @@ interface Props {
 
 const {
   title,
-  description = 'Tipitaka Editions in Markdown: digital reader showcasing canonical Pāḷi Tipiṭaka texts across 5 open Markdown repositories (World Tipiṭaka Edition WTK base, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST, and Royal Thai Edition RTE) with real-time variant highlighting, dictionary lookup, and multi-script transliteration.',
+  description = 'Tipitaka Editions in Markdown: digital reader showcasing canonical Pāḷi Tipiṭaka texts across 5 open Markdown repositories (World Tipiṭaka Edition WT base, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST, and Royal Thai Edition RT) with real-time variant highlighting, dictionary lookup, and multi-script transliteration.',
   currentBook = '',
   tocSectionPath = '',
   lang = 'en',
   ogType = 'website',
   ogImage = '/images/lotus-og.jpg',
   ogImageAlt = 'Lotus flower',
-  keywords = 'Tipitaka Editions in Markdown, Pāḷi Tipiṭaka, tipitaka-md, World Tipitaka Edition, WTK, Pali Text Society, PTS, Buddha Jayanthi, BJT, Chaṭṭha Saṅgāyana, CST, Royal Thai Edition, RTE, Siam Rath, Vinayapiṭaka, Suttantapiṭaka, Abhidhammapiṭaka, Markdown',
+  keywords = 'Tipitaka Editions in Markdown, Pāḷi Tipiṭaka, tipitaka-md, World Tipitaka Edition, WT, Pali Text Society, PTS, Buddha Jayanthi, BJ, Chaṭṭha Saṅgāyana, CST, Royal Thai Edition, RT, Siam Rath, Vinayapiṭaka, Suttantapiṭaka, Abhidhammapiṭaka, Markdown',
   prevUrl = '',
   nextUrl = '',
   breadcrumbs = [],
@@ -337,7 +337,7 @@ const jsonLdString = JSON.stringify({
       </div>
       <div class="modal-body">
         <label for="quick-jump-input" class="form-label">
-          Search by WTK volume &amp; paragraph (e.g. <code>1V:0001</code>, <code>6D:0001</code>), book code (e.g. <code>1V</code>, <code>6D</code>), or title:
+          Search by WT volume &amp; paragraph (e.g. <code>1V:0001</code>, <code>6D:0001</code>), book code (e.g. <code>1V</code>, <code>6D</code>), or title:
         </label>
         <input
           type="search"
@@ -454,8 +454,8 @@ const jsonLdString = JSON.stringify({
           const htmlParts = [];
           let wtkMatchCount = 0;
 
-          // Check for WTK volume:paragraph citation (e.g. "1V:0001", "1V:41", "6D:0189", "6D:189")
-          const wtkMatch = q.match(/^([0-9]{1,2}[A-Za-z0-9]+)\s*[:.]\s*(\d+)$/i);
+          // Check for WT volume:paragraph citation (e.g. "1V:0001", "1V:41", "6D:0189", "6D:189")
+          const wtkMatch = q.match(/^(?:WT\s*|WTK\s*|WTE\s*)?([0-9]{1,2}[A-Za-z0-9]+)\s*[:.]\s*(\d+)$/i);
           if (wtkMatch) {
             const volCode = wtkMatch[1].toUpperCase();
             const parNum = parseInt(wtkMatch[2], 10);
@@ -471,10 +471,10 @@ const jsonLdString = JSON.stringify({
                 const targetUrl = `/reader.html?edition=tipitaka2500&book=${encodeURIComponent(matchedKey)}&file=${encodeURIComponent(filePath)}#p${parNum}`;
                 htmlParts.push(`
                   <div class="quick-jump-group">
-                    <div class="quick-jump-group-title">WTK Citation Match</div>
+                    <div class="quick-jump-group-title">WT Citation Match</div>
                     <a href="${targetUrl}" class="quick-jump-item" style="border-left: 3px solid var(--primary-color);">
                       <div>
-                        <strong>WTK ${matchedKey}:${paddedPar}</strong> <span class="badge-code">${matchedKey} § ${start}–${end}</span>
+                        <strong>WT ${matchedKey}:${paddedPar}</strong> <span class="badge-code">${matchedKey} § ${start}–${end}</span>
                         <div class="quick-jump-sub">${title}</div>
                       </div>
                       <span class="badge-pill">Jump to Paragraph →</span>

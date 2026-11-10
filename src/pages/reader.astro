@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Tipiṭaka Reader"
-  description="Read and compare canonical Pāḷi Tipiṭaka texts across 5 open Markdown repositories (World Tipiṭaka Edition base, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST, and Royal Thai Edition RTE) with real-time text variant highlighting, dictionary lookup, and live script transliteration."
+  description="Read and compare canonical Pāḷi Tipiṭaka texts across 5 open Markdown repositories (World Tipiṭaka Edition base, Pali Text Society, Buddha Jayanthi, Chaṭṭha Saṅgāyana CST, and Royal Thai Edition RT) with real-time text variant highlighting, dictionary lookup, and live script transliteration."
   lang="pi"
 >
   <div class="reader-wrapper">
@@ -64,19 +64,19 @@ import Layout from '../layouts/Layout.astro';
         <!-- Edition Selector Tabs -->
         <div class="edition-tabs" role="tablist" aria-label="Tipiṭaka Editions">
           <button type="button" class="edition-tab active" data-edition="tipitaka2500" role="tab" aria-selected="true" title="World Tipiṭaka Edition (Canonical Base Reference)">
-            🌟 WTK (Base)
+            🌟 WT (Base)
           </button>
           <button type="button" class="edition-tab" data-edition="pts" role="tab" aria-selected="false" title="Pali Text Society (London / GRETIL Archive)">
             🇬🇧 PTS
           </button>
           <button type="button" class="edition-tab" data-edition="bjt" role="tab" aria-selected="false" title="Buddha Jayanthi (Sri Lanka B.E. 2500 Commemoration)">
-            🇱🇰 BJT
+            🇱🇰 BJ
           </button>
           <button type="button" class="edition-tab" data-edition="cst" role="tab" aria-selected="false" title="Chaṭṭha Saṅgāyana (VRI Sixth Buddhist Council)">
             🇲🇲 CST
           </button>
-          <button type="button" class="edition-tab" data-edition="siam-rath" role="tab" aria-selected="false" title="Royal Thai Edition (RTE / Syāmaraṭṭha)">
-            🇹🇭 RTE
+          <button type="button" class="edition-tab" data-edition="siam-rath" role="tab" aria-selected="false" title="Royal Thai Edition (RT / Syāmaraṭṭha)">
+            🇹🇭 RT
           </button>
         </div>
 
@@ -95,7 +95,7 @@ import Layout from '../layouts/Layout.astro';
           <!-- View Mode (Single vs Side-by-Side Compare) -->
           <div class="control-group">
             <label for="view-mode-select" class="visually-hidden">View Mode</label>
-            <select id="view-mode-select" class="reader-select" title="Toggle Single View or Side-by-Side Comparison against WTK">
+            <select id="view-mode-select" class="reader-select" title="Toggle Single View or Side-by-Side Comparison against WT">
               <option value="single">📖 Single View</option>
               <option value="split" disabled>⚖️ Side-by-Side (Select an edition)</option>
             </select>
@@ -108,7 +108,7 @@ import Layout from '../layouts/Layout.astro';
             class="diff-toggle-btn"
             aria-pressed="false"
             style="display: none;"
-            title="Highlight textual differences against World Tipiṭaka Edition (WTK) base text"
+            title="Highlight textual differences against World Tipiṭaka Edition (WT) base text"
           >
             <span>✨ Highlight Variants</span>
           </button>
@@ -902,7 +902,7 @@ import Layout from '../layouts/Layout.astro';
   };
 
   const BOOK_CODE_ALIASES: Record<string, string> = {
-    // Abhidhamma aliases to WTK canonical codes
+    // Abhidhamma aliases to WT canonical codes
     '34dh': '29Dhs',
     '35vbh': '30Vbh',
     '35vb': '30Vbh',
@@ -922,7 +922,7 @@ import Layout from '../layouts/Layout.astro';
     '40p4': '39P3',
     '40p5': '40P7',
     '40p6': '40P7',
-    // Khuddaka aliases to WTK canonical codes
+    // Khuddaka aliases to WT canonical codes
     '20j': '22J',
     '21j': '22J',
     '24j': '23J',
@@ -1343,7 +1343,7 @@ import Layout from '../layouts/Layout.astro';
 
   /**
    * Custom marked renderer that transforms all Markdown links to reader routes
-   * and preserves paragraph anchors for WTK volume & paragraph numbering
+   * and preserves paragraph anchors for WT volume & paragraph numbering
    */
   function createMarkedRenderer(fromFile: string, edition: string) {
     const renderer = new marked.Renderer();
@@ -1999,7 +1999,7 @@ import Layout from '../layouts/Layout.astro';
 
       let rightRenderMd = rightRenderSource;
       if (diffEnabled && !isMenuPage(baseMd, leftFile)) {
-        rightRenderMd = highlightPaliDiff(rightRenderSource, baseMd, 'WTK');
+        rightRenderMd = highlightPaliDiff(rightRenderSource, baseMd, 'WT');
       }
 
       if (leftContentEl) {
@@ -2019,7 +2019,7 @@ import Layout from '../layouts/Layout.astro';
 
       // Update pane headers
       const leftHeader = document.getElementById('left-pane-title');
-      if (leftHeader) leftHeader.textContent = `🌟 ${bookTitleStr} · WTK (Base)`;
+      if (leftHeader) leftHeader.textContent = `🌟 ${bookTitleStr} · WT (Base)`;
 
       const rightHeader = document.getElementById('right-pane-title');
       const rightBadge = document.getElementById('right-pane-badge');
@@ -2069,7 +2069,7 @@ import Layout from '../layouts/Layout.astro';
         currentSingleMd = singleRenderSource;
         let renderMd = singleRenderSource;
         if (diffEnabled && !isMenuPage(baseMd, baseFile)) {
-          renderMd = highlightPaliDiff(singleRenderSource, baseMd, 'WTK');
+          renderMd = highlightPaliDiff(singleRenderSource, baseMd, 'WT');
         }
 
         if (mainContentEl) {
@@ -2409,7 +2409,7 @@ import Layout from '../layouts/Layout.astro';
         splitOption.disabled = true;
         splitOption.textContent = '⚖️ Side-by-Side (Select an edition)';
       }
-      viewModeSelect.title = 'Select another edition tab (PTS, BJT, CST, RTE) to enable Side-by-Side comparison against WTK';
+      viewModeSelect.title = 'Select another edition tab (PTS, BJ, CST, RT) to enable Side-by-Side comparison against WT';
       if (viewMode === 'split') {
         viewMode = 'single';
       }
@@ -2418,9 +2418,9 @@ import Layout from '../layouts/Layout.astro';
         splitOption.disabled = false;
         const edInfo = catalog?.editions[currentEdition];
         const shortName = edInfo ? edInfo.short_name : currentEdition.toUpperCase();
-        splitOption.textContent = `⚖️ Side-by-Side (WTK vs ${shortName})`;
+        splitOption.textContent = `⚖️ Side-by-Side (WT vs ${shortName})`;
       }
-      viewModeSelect.title = 'Toggle Single View or Side-by-Side Comparison against WTK';
+      viewModeSelect.title = 'Toggle Single View or Side-by-Side Comparison against WT';
     }
     viewModeSelect.value = viewMode;
     updateControlsVisibility();

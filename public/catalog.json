@@ -2,7 +2,7 @@
   "editions": {
     "tipitaka2500": {
       "name": "World Tipiṭaka Edition",
-      "short_name": "WTK",
+      "short_name": "WT",
       "repo": "tipitaka-md/tipitaka2500",
       "branch": "main",
       "base_path": "tipitaka",
@@ -20,7 +20,7 @@
     },
     "bjt": {
       "name": "Buddha Jayanthi",
-      "short_name": "BJT",
+      "short_name": "BJ",
       "repo": "tipitaka-md/buddha-jayanthi",
       "branch": "main",
       "base_path": "",
@@ -38,7 +38,7 @@
     },
     "siam-rath": {
       "name": "Royal Thai Edition",
-      "short_name": "RTE",
+      "short_name": "RT",
       "repo": "tipitaka-md/siam-rath",
       "branch": "main",
       "base_path": "",
