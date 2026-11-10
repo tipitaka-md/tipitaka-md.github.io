@@ -16,7 +16,7 @@ interface PitakaSection {
   books: BookSummary[];
 }
 
-const CANON_SECTIONS: PitakaSection[] = [
+const TIPITAKA_SECTIONS: PitakaSection[] = [
   {
     id: 'vinaya',
     name: 'Vinayapiṭaka (Monastic Law)',
@@ -85,7 +85,7 @@ const CANON_SECTIONS: PitakaSection[] = [
     id: 'majjhima',
     name: 'Suttantapiṭaka · Majjhimanikāya (Middle-Length Discourses)',
     badge: '3 Books · 152 Suttas',
-    desc: 'The heart of canonical meditation, psychology, and philosophical dialogues.',
+    desc: 'The heart of early Buddhist meditation, psychology, and philosophical dialogues.',
     books: [
       {
         code: '9M',
@@ -253,13 +253,13 @@ const CANON_SECTIONS: PitakaSection[] = [
         code: '22J',
         title: 'Jātakapāḷi (Vols 22 & 23)',
         pali: '547 Birth Stories',
-        desc: 'The 547 canonical birth stories in verse recounting previous lives of the Bodhisatta.',
+        desc: 'The 547 birth stories in verse recounting previous lives of the Bodhisatta.',
       },
       {
         code: '24Mn',
         title: 'Mahāniddesapāḷi & Cūḷaniddesa',
-        pali: 'Canonical Exegesis (Vols 24Mn & 25Cn)',
-        desc: 'The ancient canonical exegetical commentary attributed to Venerable Sāriputta on the Suttanipāta.',
+        pali: 'Exegesis (Vols 24Mn & 25Cn)',
+        desc: 'The ancient exegetical commentary attributed to Venerable Sāriputta on the Suttanipāta.',
       },
       {
         code: '26Ps',
@@ -269,7 +269,7 @@ const CANON_SECTIONS: PitakaSection[] = [
       },
       {
         code: '28Mi',
-        title: 'Milindapañhapāḷi & Paracanonical',
+        title: 'Milindapañhapāḷi & Associated Texts',
         pali: 'Milindapañha, Netti, Peṭako',
         desc: 'Questions of King Menander with Ven. Nāgasena, alongside Nettippakaraṇa and Peṭakopadesa.',
       },
@@ -315,7 +315,7 @@ const CANON_SECTIONS: PitakaSection[] = [
         code: '33Y1',
         title: 'Yamakapāḷi (Vols 33Y1, 34Y6, 35Y9)',
         pali: 'The Book of Pairs',
-        desc: 'Rigorous two-way logical inquiries testing the scope and definitions of canonical psychological concepts.',
+        desc: 'Rigorous two-way logical inquiries testing the scope and definitions of Tipiṭaka psychological concepts.',
       },
       {
         code: '36P1',
@@ -371,11 +371,11 @@ const CANON_SECTIONS: PitakaSection[] = [
           <span>ℹ️ About</span>
         </a>
         <a
-          href="#canon-directory"
+          href="#table-of-contents"
           class="btn-secondary"
           style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 1px solid var(--border-color); color: var(--text-body); background-color: var(--bg-body);"
         >
-          <span>📚 Browse</span>
+          <span>📑 Table of Contents</span>
         </a>
       </div>
     </div>
@@ -576,11 +576,12 @@ const CANON_SECTIONS: PitakaSection[] = [
       </div>
     </section>
 
-    <!-- Complete Canon Showcase (All 3 Pitakas / All Books) -->
-    <section id="canon-directory" aria-label="Complete Canon Directory" style="margin: 3.5rem 0 2.5rem;">
+    <!-- Table of Contents (All 3 Pitakas / All Books) -->
+    <section id="table-of-contents" aria-label="Table of Contents" style="margin: 3.5rem 0 2.5rem;">
+      <a id="canon-directory" style="display: block; position: relative; top: -2rem; visibility: hidden;"></a>
       <div style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
         <h2 style="font-size: 1.45rem; font-weight: 700; margin: 0 0 0.35rem; color: var(--text-emphasis);">
-          📖 Complete Tipiṭaka Directory
+          📖 Table of Contents
         </h2>
         <p style="color: var(--text-secondary); margin: 0;">
           Explore every book of the Tipiṭaka across the 5 Markdown editions. Click any book to open in the reader:
@@ -588,7 +589,7 @@ const CANON_SECTIONS: PitakaSection[] = [
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 2.5rem;">
-        {CANON_SECTIONS.map((section) => (
+        {TIPITAKA_SECTIONS.map((section) => (
           <div class="canon-section-block">
             <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
               <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0; color: var(--text-emphasis);">
@@ -634,7 +635,7 @@ const CANON_SECTIONS: PitakaSection[] = [
 
     <footer style="margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); font-size: 0.9rem; color: var(--text-secondary);">
       <p>
-        <strong>tipitaka-md</strong> is an open-source project dedicated to preserving, structuring, and comparing canonical Pāḷi literature in plain text Markdown.
+        <strong>tipitaka-md</strong> is an open-source project dedicated to preserving, structuring, and comparing Pāḷi Tipiṭaka literature in plain text Markdown.
         Created and maintained by <strong>Chris Tham</strong> (<a href="mailto:chris@christham.net">chris@christham.net</a>).
       </p>
       <p style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">

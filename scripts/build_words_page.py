@@ -33,7 +33,7 @@ with open('/Users/christie/Repositories/Pali/tipitaka-md.github.io/src/pages/wor
       <p class="lead-sub">
         Explore all <strong>{totalWords.toLocaleString()}</strong> unique Pāḷi headwords across the 2,708,706 words
         of the <strong>World Tipiṭaka Edition (WT Base Reference)</strong>, with Roman Pāḷi, Thai script, IPA phonetic transcription,
-        and frequency breakdowns across all 88 canonical books.
+        and frequency breakdowns across all 88 books of the Tipiṭaka.
       </p>
     </div>
 

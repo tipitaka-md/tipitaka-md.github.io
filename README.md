@@ -1,7 +1,7 @@
 # Tipiṭaka Multi-Edition Comparison Viewer
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Viewer-7e22ce?style=flat&logo=github)](https://tipitaka-md.github.io/)
-[![Editions](https://img.shields.io/badge/Pāli%20Editions-5%20Canonical%20Editions-blue)](https://tipitaka-md.github.io/)
+[![Editions](https://img.shields.io/badge/Pāli%20Editions-5%20Tipiṭaka%20Editions-blue)](https://tipitaka-md.github.io/)
 [![License: CC0](https://img.shields.io/badge/License-CC0%201.0%20Universal-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 
 An ultra-fast, zero-server static web application for side-by-side comparative reading and concordance exploration across 5 major historical and modern editions of the Pāli Tipiṭaka.
@@ -51,10 +51,10 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
      - **Brahmi** (𑀩𑁆𑀭𑀸𑀳𑁆𑀫𑀻)
 
 5. **Page Citations & Interactive Concordance**
-   - Canonical page markers (`§ 6D 1`, `§ M I 1`, `§ Vin III 1`) rendered as compact interactive chips.
+   - Printed page markers (`§ 6D 1`, `§ M I 1`, `§ Vin III 1`) rendered as compact interactive chips.
    - Concordance badges in the header showing edition coverage for the open text.
 
-6. **Instant Quick-Jump & Full Canonical Search (`⌘K` / `/`)**
+6. **Instant Quick-Jump & Full Tipiṭaka Search (`⌘K` / `/`)**
    - Command palette modal to instantly jump to any book or sutta by code or title (e.g., `1V`, `6D`, `18Dh`, `Brahmajāla`, `Mahāparinibbāna`).
 
 7. **Footnote & Variant Reader**

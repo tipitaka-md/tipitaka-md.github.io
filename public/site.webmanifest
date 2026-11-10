@@ -1,13 +1,13 @@
 {
-  "name": "The World Tipiṭaka Edition (Mahāsaṅgīti Tipiṭaka Buddhavasse 2500)",
-  "short_name": "Tipiṭaka 2500",
-  "description": "Complete 40-volume Roman-script Pāḷi Tipiṭaka (2020 Edition) with critical apparatus footnotes, cross-references, page concordances, and instant dictionary lookup.",
+  "name": "Tipitaka Editions in Markdown",
+  "short_name": "Tipitaka MD",
+  "description": "Multi-edition Pāḷi Tipiṭaka comparison reader across 5 canonical editions: World Tipiṭaka (WT base), Pali Text Society (PTS), Buddha Jayanthi (BJ), Chaṭṭha Saṅgāyana (CST), and Royal Thai Edition (RT).",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#ffffff",
-  "theme_color": "#b565a7",
+  "theme_color": "#7e22ce",
   "categories": ["education", "books", "reference"],
   "icons": [
     {

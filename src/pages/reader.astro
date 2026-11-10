@@ -2112,7 +2112,7 @@ import Layout from '../layouts/Layout.astro';
       if (isRootBook) {
         breadcrumbsEl.innerHTML = `
           <li><a href="/">Home</a></li>
-          ${pitakaStr ? `<li><a href="/#canon-directory">${pitakaStr}</a></li>` : ''}
+          ${pitakaStr ? `<li><a href="/#table-of-contents">${pitakaStr}</a></li>` : ''}
           <li aria-current="page">${bookTitleStr}</li>
         `;
       } else {
@@ -2242,7 +2242,7 @@ import Layout from '../layouts/Layout.astro';
     if (isRootBook) {
       parentNav = {
         href: '/',
-        title: 'Canon Home'
+        title: 'Tipiṭaka Home'
       };
       if (currentBookIdx > 0) {
         const pBook = allBooks[currentBookIdx - 1];
