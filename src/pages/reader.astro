@@ -1312,7 +1312,7 @@ import Layout from '../layouts/Layout.astro';
    * Resolves relative markdown links into clean reader navigation URLs
    */
   function resolveMarkdownLink(href: string, fromFile: string, edition: string): string {
-    if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('#')) {
+    if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('#') || href.startsWith('mailto:')) {
       return href;
     }
     if (href === '/') {
@@ -1344,11 +1344,14 @@ import Layout from '../layouts/Layout.astro';
    */
   function createMarkedRenderer(fromFile: string, edition: string) {
     const renderer = new marked.Renderer();
-    renderer.link = function ({ href, title, text }) {
-      const targetUrl = resolveMarkdownLink(href || '', fromFile, edition);
+    renderer.link = function (token: any) {
+      const href = token.href || '';
+      const text = this.parser.parseInline(token.tokens || []) || token.text || '';
+      const title = token.title || '';
+      const targetUrl = resolveMarkdownLink(href, fromFile, edition);
       const isExternal = targetUrl.startsWith('http://') || targetUrl.startsWith('https://');
       const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
-      const titleAttr = title ? ` title="${title}"` : '';
+      const titleAttr = title ? ` title="${escapeHtml(title)}"` : '';
       return `<a href="${targetUrl}"${targetAttr}${titleAttr} data-reader-link="true">${text}</a>`;
     };
 
@@ -1370,14 +1373,15 @@ import Layout from '../layouts/Layout.astro';
       return `<${tag}${startAttr}>\n${body}\n</${tag}>\n`;
     };
 
-    renderer.paragraph = function ({ text }: { text: string }) {
-      const match = text.match(/^(\d+)\.\s+/);
+    renderer.paragraph = function (token: any) {
+      const inlineHtml = this.parser.parseInline(token.tokens || []);
+      const match = inlineHtml.match(/^(\d+)\.\s+/);
       if (match) {
         const parNum = match[1];
-        const rest = text.slice(match[0].length);
+        const rest = inlineHtml.slice(match[0].length);
         return `<p id="p${parNum}" class="wtk-paragraph" data-par="${parNum}"><span class="wtk-par-num" id="par-${parNum}">${parNum}.</span> ${rest}</p>\n`;
       }
-      return `<p>${text}</p>\n`;
+      return `<p>${inlineHtml}</p>\n`;
     };
 
     return renderer;
