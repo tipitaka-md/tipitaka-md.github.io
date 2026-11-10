@@ -1,7 +1,7 @@
 {
   "name": "Tipiṭaka Multi-Edition Comparison",
   "short_name": "Tipiṭaka",
-  "description": "Multi-edition Pali Tipiṭaka comparison viewer (World Tipiṭaka Edition WTK, PTS, BJT, CST, RTE)",
+  "description": "Multi-edition Pali Tipiṭaka comparison viewer (World Tipiṭaka Edition WT, PTS, BJ, CST, RT)",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",

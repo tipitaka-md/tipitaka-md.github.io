@@ -24,7 +24,7 @@ with open('/Users/christie/Repositories/Pali/tipitaka-md.github.io/src/pages/wor
 
     out.write('''<Layout
   title="Pāḷi Word Index (Padabhājanīya)"
-  description="Search and browse all 146,693 unique Pāḷi headwords across the 40-volume World Tipiṭaka Edition (WTK base reference) with Roman script, Thai script, IPA pronunciation, and frequency distributions across all 88 books."
+  description="Search and browse all 146,693 unique Pāḷi headwords across the 40-volume World Tipiṭaka Edition (WT base reference) with Roman script, Thai script, IPA pronunciation, and frequency distributions across all 88 books."
   breadcrumbs={breadcrumbs}
 >
   <main class="index-page">
@@ -32,7 +32,7 @@ with open('/Users/christie/Repositories/Pali/tipitaka-md.github.io/src/pages/wor
       <h1>Pāḷi Word Index (Padabhājanīya)</h1>
       <p class="lead-sub">
         Explore all <strong>{totalWords.toLocaleString()}</strong> unique Pāḷi headwords across the 2,708,706 words
-        of the <strong>World Tipiṭaka Edition (WTK Base Reference)</strong>, with Roman Pāḷi, Thai script, IPA phonetic transcription,
+        of the <strong>World Tipiṭaka Edition (WT Base Reference)</strong>, with Roman Pāḷi, Thai script, IPA phonetic transcription,
         and frequency breakdowns across all 88 canonical books.
       </p>
     </div>
@@ -82,7 +82,7 @@ with open('/Users/christie/Repositories/Pali/tipitaka-md.github.io/src/pages/wor
         <div class="form-group">
           <label for="words-book-select" class="form-label">Book Filter</label>
           <select id="words-book-select" class="form-select">
-            <option value="ALL">All 88 Books (WTK Base)</option>
+            <option value="ALL">All 88 Books (WT Base)</option>
             <optgroup label="Vinayapiṭaka (1V–5V)">
               {
                 BOOKS.filter((b) => b.pitaka === 'V').map((b) => (
@@ -139,7 +139,7 @@ with open('/Users/christie/Repositories/Pali/tipitaka-md.github.io/src/pages/wor
             <th scope="col" style="width: 25%;">Roman Pāḷi Headword</th>
             <th scope="col" style="width: 20%;">Thai Script &amp; IPA</th>
             <th scope="col" style="width: 10%;">Total</th>
-            <th scope="col" style="width: 45%;">Vinaya / Suttanta / Abhidhamma Distribution (WTK Base)</th>
+            <th scope="col" style="width: 45%;">Vinaya / Suttanta / Abhidhamma Distribution (WT Base)</th>
           </tr>
         </thead>
         <tbody id="words-tbody"></tbody>
@@ -245,7 +245,7 @@ with open('/Users/christie/Repositories/Pali/tipitaka-md.github.io/src/pages/wor
     async function fetchShard(code) {
       if (cache.has(code)) return cache.get(code);
       try {
-        const res = await fetch('/data/words/' + code + '.json');
+        const res = await fetch('/data/words/' + code + '.json', { cache: 'no-store' });
         if (!res.ok) return [];
         const data = await res.json();
         cache.set(code, data);

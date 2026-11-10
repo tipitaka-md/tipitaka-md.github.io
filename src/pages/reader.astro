@@ -1747,6 +1747,11 @@ import Layout from '../layouts/Layout.astro';
     }
 
     const params = url.searchParams;
+    const newEdition = params.get('edition');
+    const newFile = params.get('file');
+    const newBook = params.get('book');
+    const newSutta = params.get('sutta');
+
     singleShowFull = false;
     rightShowFull = false;
 
@@ -1755,7 +1760,6 @@ import Layout from '../layouts/Layout.astro';
       viewMode = 'single';
       diffEnabled = false;
     } else {
-      const newEdition = params.get('edition');
       if (newEdition) currentEdition = newEdition;
     }
 

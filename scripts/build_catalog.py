@@ -3,7 +3,7 @@
 Generate complete cross-edition catalog for tipitaka-md.github.io.
 Maps canonical divisions across:
 - tipitaka2500 (World Tipitaka Base)
-- buddha-jayanthi (BJT)
+- buddha-jayanthi (BJ)
 - cst (Chattha Sangayana CST)
 - siam-rath (Royal Thai Edition)
 - pts (Pali Text Society)
@@ -20,7 +20,7 @@ def build_catalog():
         "editions": {
             "tipitaka2500": {
                 "name": "World Tipiṭaka Edition",
-                "short_name": "WTK",
+                "short_name": "WT",
                 "repo": "tipitaka-md/tipitaka2500",
                 "branch": "main",
                 "base_path": "tipitaka",
@@ -38,7 +38,7 @@ def build_catalog():
             },
             "bjt": {
                 "name": "Buddha Jayanthi",
-                "short_name": "BJT",
+                "short_name": "BJ",
                 "repo": "tipitaka-md/buddha-jayanthi",
                 "branch": "main",
                 "base_path": "",
@@ -56,7 +56,7 @@ def build_catalog():
             },
             "siam-rath": {
                 "name": "Royal Thai Edition",
-                "short_name": "RTE",
+                "short_name": "RT",
                 "repo": "tipitaka-md/siam-rath",
                 "branch": "main",
                 "base_path": "",
