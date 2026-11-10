@@ -115,6 +115,14 @@ const jsonLdString = JSON.stringify({
     <meta name="robots" content="index, follow" />
     <meta name="color-scheme" content="light dark" />
 
+    <script is:inline>
+      try {
+        if (localStorage.getItem('tipitaka-sidebar-collapsed') === 'true' && window.innerWidth > 768) {
+          document.documentElement.classList.add('sidebar-collapsed');
+        }
+      } catch (e) {}
+    </script>
+
     <script is:inline define:vars={{ siteBuildId: __SITE_BUILD_ID__ }}>
       const refreshedUrl = new URL(window.location.href);
       if (refreshedUrl.searchParams.has('_sw_refresh')) {
@@ -321,6 +329,19 @@ const jsonLdString = JSON.stringify({
       <label for="sidebar-drawer-toggle" class="sidebar-backdrop" aria-hidden="true"></label>
       <Sidebar currentBook={currentBook} />
       <div class="content-pane">
+        <button
+          type="button"
+          id="sidebar-show-btn"
+          class="sidebar-show-btn"
+          aria-label="Show sidebar (Ctrl+B / ⌘B)"
+          title="Show sidebar (Ctrl+B / ⌘B)"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+            <path d="m12 9 3 3-3 3"></path>
+          </svg>
+        </button>
         <div class="content-container">
           <slot />
         </div>
@@ -652,6 +673,67 @@ const jsonLdString = JSON.stringify({
           if (!isEditing && e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey) {
             e.preventDefault();
             openQuickJump();
+          }
+        });
+      })();
+
+      // --- Sidebar Toggle System (Desktop Collapse / Expand + Mobile Drawer) ---
+      (() => {
+        const collapseBtn = document.getElementById('sidebar-collapse-btn');
+        const showBtn = document.getElementById('sidebar-show-btn');
+        const drawerToggle = document.getElementById('sidebar-drawer-toggle');
+
+        function toggleSidebar(force) {
+          const isMobile = window.innerWidth <= 768;
+          if (isMobile) {
+            if (drawerToggle) {
+              drawerToggle.checked = typeof force === 'boolean' ? force : !drawerToggle.checked;
+            }
+            return;
+          }
+
+          const willCollapse = typeof force === 'boolean'
+            ? force
+            : !document.documentElement.classList.contains('sidebar-collapsed');
+
+          if (willCollapse) {
+            document.documentElement.classList.add('sidebar-collapsed');
+            try { localStorage.setItem('tipitaka-sidebar-collapsed', 'true'); } catch {}
+          } else {
+            document.documentElement.classList.remove('sidebar-collapsed');
+            try { localStorage.setItem('tipitaka-sidebar-collapsed', 'false'); } catch {}
+          }
+        }
+
+        if (collapseBtn) {
+          collapseBtn.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+              if (drawerToggle) drawerToggle.checked = false;
+            } else {
+              toggleSidebar(true);
+            }
+          });
+        }
+
+        if (showBtn) {
+          showBtn.addEventListener('click', () => {
+            toggleSidebar(false);
+          });
+        }
+
+        // Global keyboard shortcut: Ctrl+B or Cmd+B to toggle sidebar
+        document.addEventListener('keydown', (e) => {
+          const tag = (e.target && e.target.tagName) || '';
+          const isEditing =
+            tag === 'INPUT' ||
+            tag === 'TEXTAREA' ||
+            tag === 'SELECT' ||
+            (e.target && e.target.isContentEditable);
+          if (isEditing) return;
+
+          if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'b') {
+            e.preventDefault();
+            toggleSidebar();
           }
         });
       })();

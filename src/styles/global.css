@@ -265,6 +265,23 @@ a:hover {
   }
 }
 
+.sidebar-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-header-row .sidebar-brand {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+  min-width: 0;
+}
+
 .sidebar-brand {
   display: flex;
   align-items: center;
@@ -283,6 +300,91 @@ a:hover {
   font-size: 1.25rem;
   margin-left: 0.5rem;
   font-weight: 600;
+}
+
+.sidebar-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.sidebar-toggle-btn:hover {
+  color: var(--primary-color);
+  background-color: var(--bg-secondary);
+  border-color: var(--primary-color);
+}
+
+.sidebar-show-btn {
+  display: none;
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1020;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-body);
+  color: var(--text-emphasis);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+  transition: all 0.15s ease-in-out;
+}
+
+.sidebar-show-btn:hover {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  background-color: var(--bg-secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+}
+
+/* Sidebar Collapsed State (Desktop > 768px) */
+@media (min-width: 769px) {
+  html.sidebar-collapsed .sidebar {
+    display: none !important;
+  }
+
+  html.sidebar-collapsed .sidebar-show-btn {
+    display: inline-flex;
+  }
+
+  html.sidebar-collapsed .content-pane {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  html.sidebar-collapsed .content-container {
+    max-width: 1500px;
+  }
+
+  html.sidebar-collapsed .reader-header-top {
+    padding-left: 2.75rem;
+  }
+
+  html.sidebar-collapsed nav[aria-label="Breadcrumb"] {
+    padding-left: 2.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-show-btn {
+    display: none !important;
+  }
 }
 
 .sidebar-list,
@@ -1404,6 +1506,38 @@ details[open] > .btn-toggle::before {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-emphasis);
+}
+
+/* 5 Tipiṭaka Edition Cards Grid (Balanced 3, 2 layout on wide displays) */
+.home-editions-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem;
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .home-editions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .home-editions-grid > .home-edition-card:nth-child(5) {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-editions-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .home-editions-grid > .home-edition-card:nth-child(1),
+  .home-editions-grid > .home-edition-card:nth-child(2),
+  .home-editions-grid > .home-edition-card:nth-child(3) {
+    grid-column: span 2;
+  }
+  .home-editions-grid > .home-edition-card:nth-child(4),
+  .home-editions-grid > .home-edition-card:nth-child(5) {
+    grid-column: span 3;
+  }
 }
 
 .home-edition-card {
