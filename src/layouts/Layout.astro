@@ -115,6 +115,14 @@ const jsonLdString = JSON.stringify({
     <meta name="robots" content="index, follow" />
     <meta name="color-scheme" content="light dark" />
 
+    <script is:inline>
+      const refreshedUrl = new URL(window.location.href);
+      if (refreshedUrl.searchParams.has('_sw_refresh')) {
+        refreshedUrl.searchParams.delete('_sw_refresh');
+        history.replaceState(history.state, '', refreshedUrl.href);
+      }
+    </script>
+
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalUrl} />
 

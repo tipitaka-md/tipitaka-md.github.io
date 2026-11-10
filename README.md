@@ -63,7 +63,7 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
 7. **Zero-Backend Reader**
    - Standalone static HTML5/CSS3/ES6 site deployed directly on GitHub Pages.
    - Texts are fetched on demand from GitHub, with jsDelivr as a fallback. Reading requires an internet connection.
-   - [`public/sw.js`](public/sw.js) retires the legacy cache-first service worker and its `tipitaka-v1` cache; it must remain available at `/sw.js` for returning visitors.
+   - [`public/sw.js`](public/sw.js) retires the legacy cache-first service worker and its `tipitaka-v1` cache, then refreshes open pages. It must remain available at `/sw.js` for returning visitors.
 
 ---
 
