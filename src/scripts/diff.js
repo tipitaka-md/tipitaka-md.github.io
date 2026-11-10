@@ -21,6 +21,7 @@ function normalizePaliWord(w) {
   return w
     .toLowerCase()
     .replace(/[ṃṁ]/g, 'ṃ') // Normalize niggahīta so ṁ and ṃ are equal
+    .replace(/ṃ(?=[kKgGhH])/gi, 'ṅ') // Before velars (k, kh, g, gh), niggahīta is phonetically equivalent to velar nasal ṅ (e.g. saṃgha <-> saṅgha)
     .replace(/[’\x27\"“”‘’\-]/g, ''); // Ignore internal sandhi punctuation/hyphens
 }
 
@@ -53,6 +54,8 @@ export function extractPaliWords(text) {
       tr.startsWith('[^') ||
       tr.startsWith('[Home](') ||
       tr.startsWith('[Go to ') ||
+      /^\s*#+.*\[\^/.test(tr) ||
+      /^\d*\[\^/.test(tr) ||
       /^\*+\s+[A-Za-z]/.test(tr) ||
       /^\([0-9]+\.\)$/.test(tr)
     ) {
@@ -171,7 +174,9 @@ export function highlightPaliDiff(targetMarkdown, baseMarkdown) {
   const baseWords = extractPaliWords(baseMarkdown);
   if (baseWords.length === 0) return targetMarkdown;
 
-  const blocks = targetMarkdown.split(/\n\s*\n/);
+  // Ensure inline footnote lines (e.g. Siam Rath #[^2-1]...) are split into their own skip blocks
+  const normalizedTarget = targetMarkdown.replace(/\n(?=\s*#+.*\[\^)/g, '\n\n');
+  const blocks = normalizedTarget.split(/\n\s*\n/);
   const resultBlocks = [];
 
   const blockData = [];
@@ -191,6 +196,8 @@ export function highlightPaliDiff(targetMarkdown, baseMarkdown) {
       trimmed.startsWith('[^') ||
       trimmed.startsWith('[Home](') ||
       trimmed.startsWith('[Go to ') ||
+      /^\s*#+.*\[\^/.test(trimmed) ||
+      /^\d*\[\^/.test(trimmed) ||
       /^\*+\s+[A-Za-z]/.test(trimmed) ||
       /^\([0-9]+\.\)$/.test(trimmed);
 

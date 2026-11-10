@@ -1033,6 +1033,7 @@ import Layout from '../layouts/Layout.astro';
     return cleanMarkdownText(str)
       .toLowerCase()
       .replace(/[ṁṃ]/g, 'ṃ')
+      .replace(/ṃ(?=[kgh])/g, 'ṅ')
       .replace(/[^a-zāīūñṅṇḍṭḷṃ\s]/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
@@ -1055,8 +1056,8 @@ import Layout from '../layouts/Layout.astro';
     return false;
   }
 
-  function containsWordSequence(lineNorm: string, targetWords: string[], threshold: number = 0.6): boolean {
-    if (!lineNorm || targetWords.length === 0) return false;
+  function containsWordScore(lineNorm: string, targetWords: string[]): number {
+    if (!lineNorm || targetWords.length === 0) return 0;
     const lineWords = lineNorm.split(' ').filter(w => w.length > 2);
     let matches = 0;
     for (const tw of targetWords) {
@@ -1064,7 +1065,11 @@ import Layout from '../layouts/Layout.astro';
         matches++;
       }
     }
-    return (matches / targetWords.length) >= threshold;
+    return matches / targetWords.length;
+  }
+
+  function containsWordSequence(lineNorm: string, targetWords: string[], threshold: number = 0.6): boolean {
+    return containsWordScore(lineNorm, targetWords) >= threshold;
   }
 
   interface ElisionResult {
@@ -1171,38 +1176,36 @@ import Layout from '../layouts/Layout.astro';
     const normLast = normalizePaliForSearch(lastPara);
 
     const firstWords = normFirst.split(' ').filter(w => w.length > 2).slice(0, 5);
-    const lastWords = normLast.split(' ').filter(w => w.length > 2);
-    const substantiveLines = baseLines.filter(l => normalizePaliForSearch(l).length > 25);
-    const penultimatePara = substantiveLines[substantiveLines.length - 1] || lastPara;
-    const penultimateWords = normalizePaliForSearch(penultimatePara).split(' ').filter(w => w.length > 2).slice(-6);
+    const lastWords = normLast.split(' ').filter(w => w.length > 2).slice(-10);
 
     const otherLines = (otherMd || '').split('\n');
     let startLine = -1;
     let endLine = -1;
 
     for (let i = 0; i < otherLines.length; i++) {
-      const norm = normalizePaliForSearch(otherLines[i]);
-      if (norm && containsWordSequence(norm, firstWords, 0.6)) {
+      const norm1 = normalizePaliForSearch(otherLines[i]);
+      const norm2 = normalizePaliForSearch(otherLines[i] + ' ' + (otherLines[i + 1] || ''));
+      if (containsWordScore(norm1, firstWords) >= 0.6 || containsWordScore(norm2, firstWords) >= 0.6) {
         startLine = i;
         break;
       }
     }
 
     if (startLine !== -1) {
+      let bestScore = 0;
       for (let i = startLine; i < otherLines.length; i++) {
-        const norm = normalizePaliForSearch(otherLines[i]);
-        if (norm && containsWordSequence(norm, lastWords, 0.6)) {
-          endLine = i;
-          break;
-        }
-      }
-      if (endLine === -1) {
-        for (let i = startLine; i < otherLines.length; i++) {
-          const norm = normalizePaliForSearch(otherLines[i]);
-          if (norm && containsWordSequence(norm, penultimateWords, 0.6)) {
-            endLine = i;
-            break;
+        const norm1 = normalizePaliForSearch(otherLines[i]);
+        const norm2 = normalizePaliForSearch(otherLines[i] + ' ' + (otherLines[i + 1] || ''));
+        const s1 = containsWordScore(norm1, lastWords);
+        const s2 = containsWordScore(norm2, lastWords);
+        const s = Math.max(s1, s2);
+        if (s >= 0.5) {
+          if (s >= bestScore) {
+            bestScore = s;
+            endLine = (s2 > s1 && otherLines[i + 1]) ? i + 1 : i;
           }
+        } else if (endLine !== -1 && (i - endLine > 25)) {
+          break;
         }
       }
     }
@@ -1869,10 +1872,13 @@ import Layout from '../layouts/Layout.astro';
     const pitakaStr = bookInfo ? bookInfo.pitaka : '';
 
     const cleanCurrentPath = (currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId)).replace(/^\/+/, '');
+    const rootBookFile = catalog ? getFilePathForEdition(currentEdition, currentBookCode, '') : '';
+    const cleanRootBook = (rootBookFile || '').replace(/^\/+/, '');
     const isRootBook =
       !currentFilePath ||
       cleanCurrentPath === `tipitaka/${currentBookCode}.md` ||
-      cleanCurrentPath.endsWith(`/${currentBookCode}.md`);
+      cleanCurrentPath.endsWith(`/${currentBookCode}.md`) ||
+      (cleanRootBook && cleanCurrentPath === cleanRootBook && !currentSuttaId && !currentSectionRef);
 
     const targetFile = currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
     const targetMd = await fetchMarkdown(currentEdition, targetFile);
@@ -1939,17 +1945,17 @@ import Layout from '../layouts/Layout.astro';
         fetchMarkdown(compareEdition, rightFile),
       ]);
 
-      if (isMenuPage(baseMd, leftFile)) {
+      let depthLeft = 0;
+      while (isMenuPage(baseMd, leftFile) && depthLeft < 4) {
         const firstChildMatch = baseMd.match(/\*+\s+\[[^\]]+\]\(([^)]+\.md)\)/);
-        if (firstChildMatch) {
-          const relChild = firstChildMatch[1].trim();
-          const resolvedChildUrl = resolveMarkdownLink(relChild, leftFile, 'tipitaka2500');
-          const fileMatch = resolvedChildUrl.match(/file=([^&#]+)/);
-          if (fileMatch) {
-            leftFile = decodeURIComponent(fileMatch[1]);
-            baseMd = await fetchMarkdown('tipitaka2500', leftFile);
-          }
-        }
+        if (!firstChildMatch) break;
+        const relChild = firstChildMatch[1].trim();
+        const resolvedChildUrl = resolveMarkdownLink(relChild, leftFile, 'tipitaka2500');
+        const fileMatch = resolvedChildUrl.match(/file=([^&#]+)/);
+        if (!fileMatch) break;
+        leftFile = decodeURIComponent(fileMatch[1]);
+        baseMd = await fetchMarkdown('tipitaka2500', leftFile);
+        depthLeft++;
       }
 
       currentLeftFullMd = baseMd;
@@ -1992,7 +1998,7 @@ import Layout from '../layouts/Layout.astro';
       if (rightGhLink) rightGhLink.href = `https://github.com/${rightRepo}/blob/${rightBranch}/${rightClean}`;
 
       let rightRenderMd = rightRenderSource;
-      if (diffEnabled) {
+      if (diffEnabled && !isMenuPage(baseMd, leftFile)) {
         rightRenderMd = highlightPaliDiff(rightRenderSource, baseMd, 'WTK');
       }
 
@@ -2035,17 +2041,17 @@ import Layout from '../layouts/Layout.astro';
         let baseFile = currentSectionRef || (currentFilePath.startsWith('tipitaka/') ? currentFilePath : '') || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
         let baseMd = await fetchMarkdown('tipitaka2500', baseFile);
 
-        if (isMenuPage(baseMd, baseFile)) {
+        let depth = 0;
+        while (isMenuPage(baseMd, baseFile) && depth < 4) {
           const firstChildMatch = baseMd.match(/\*+\s+\[[^\]]+\]\(([^)]+\.md)\)/);
-          if (firstChildMatch) {
-            const relChild = firstChildMatch[1].trim();
-            const resolvedChildUrl = resolveMarkdownLink(relChild, baseFile, 'tipitaka2500');
-            const fileMatch = resolvedChildUrl.match(/file=([^&#]+)/);
-            if (fileMatch) {
-              baseFile = decodeURIComponent(fileMatch[1]);
-              baseMd = await fetchMarkdown('tipitaka2500', baseFile);
-            }
-          }
+          if (!firstChildMatch) break;
+          const relChild = firstChildMatch[1].trim();
+          const resolvedChildUrl = resolveMarkdownLink(relChild, baseFile, 'tipitaka2500');
+          const fileMatch = resolvedChildUrl.match(/file=([^&#]+)/);
+          if (!fileMatch) break;
+          baseFile = decodeURIComponent(fileMatch[1]);
+          baseMd = await fetchMarkdown('tipitaka2500', baseFile);
+          depth++;
         }
 
         currentBaseSectionMd = baseMd;
@@ -2062,7 +2068,7 @@ import Layout from '../layouts/Layout.astro';
 
         currentSingleMd = singleRenderSource;
         let renderMd = singleRenderSource;
-        if (diffEnabled) {
+        if (diffEnabled && !isMenuPage(baseMd, baseFile)) {
           renderMd = highlightPaliDiff(singleRenderSource, baseMd, 'WTK');
         }
 
@@ -2175,10 +2181,13 @@ import Layout from '../layouts/Layout.astro';
     const parentTitle = document.getElementById('parent-book-title');
 
     const cleanCurrentPath = (currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId)).replace(/^\/+/, '');
+    const rootBookFile = catalog ? getFilePathForEdition(currentEdition, currentBookCode, '') : '';
+    const cleanRootBook = (rootBookFile || '').replace(/^\/+/, '');
     const isRootBook =
       !currentFilePath ||
       cleanCurrentPath === `tipitaka/${currentBookCode}.md` ||
-      cleanCurrentPath.endsWith(`/${currentBookCode}.md`);
+      cleanCurrentPath.endsWith(`/${currentBookCode}.md`) ||
+      (cleanRootBook && cleanCurrentPath === cleanRootBook && !currentSuttaId && !currentSectionRef);
 
     let prevNav: { href: string; title: string } | null = null;
     let nextNav: { href: string; title: string } | null = null;
@@ -2346,8 +2355,21 @@ import Layout from '../layouts/Layout.astro';
     const diffBtn = document.getElementById('diff-toggle-btn');
     const isBase = currentEdition === 'tipitaka2500';
 
+    const rootBookFile = catalog ? getFilePathForEdition(currentEdition, currentBookCode, '') : '';
+    const cleanRootBook = (rootBookFile || '').replace(/^\/+/, '');
+    const curPath = (currentFilePath || '').replace(/^\/+/, '');
+    const isRootBook =
+      !currentFilePath ||
+      curPath === `tipitaka/${currentBookCode}.md` ||
+      curPath.endsWith(`/${currentBookCode}.md`) ||
+      (cleanRootBook && curPath === cleanRootBook && !currentSuttaId && !currentSectionRef);
+
+    const isCurrentMenu =
+      isRootBook ||
+      isMenuPage(currentSingleMd || currentBaseSectionMd, currentSectionRef || currentFilePath);
+
     if (diffBtn) {
-      if (isBase) {
+      if (isBase || isRootBook) {
         diffBtn.style.display = 'none';
       } else {
         diffBtn.style.display = 'inline-flex';
@@ -2357,11 +2379,6 @@ import Layout from '../layouts/Layout.astro';
     }
 
     if (diffLegend) {
-      const curPath = (currentFilePath || '').replace(/^\/+/, '');
-      const isCurrentMenu =
-        isMenuPage(currentSingleMd || currentBaseSectionMd, currentSectionRef || currentFilePath) ||
-        curPath === `tipitaka/${currentBookCode}.md` ||
-        curPath.endsWith(`/${currentBookCode}.md`);
       const showLegend = !isBase && !isCurrentMenu && (diffEnabled || viewMode === 'split');
       diffLegend.style.display = showLegend ? 'flex' : 'none';
     }
