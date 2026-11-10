@@ -30,8 +30,8 @@ import Layout from '../layouts/Layout.astro';
         ⚡ Fast Summary
       </h2>
       <ol style="margin: 0; padding-left: 1.25rem; line-height: 1.8; color: var(--text-body); font-size: 1rem;">
-        <li><strong>Open any book or sutta</strong> from the Homepage or Sidebar to read the canonical <strong>World Tipiṭaka Edition (WT)</strong>.</li>
-        <li><strong>Select an edition tab</strong> (PTS, BJ, CST, or RT) to read another tradition.</li>
+        <li><strong>Open any book or sutta</strong> from the Homepage or Sidebar to read the canonical <strong>World Tipiṭaka Edition (WT)</strong>. (Sidebar navigation always opens the base WT edition to guarantee structural alignment and eliminate diff errors).</li>
+        <li><strong>Select an edition tab</strong> (PTS, BJ, CST, or RT) to switch to another tradition for that text.</li>
         <li><strong>Switch to Side-by-Side</strong> using the view mode dropdown to collate that edition against the WT base text.</li>
         <li><strong>Toggle "Highlight Variants"</strong> to inspect text additions, changes, and omissions.</li>
         <li><strong>Hover or tap any word</strong> for instant Pāḷi grammatical and dictionary analysis.</li>
@@ -46,9 +46,17 @@ import Layout from '../layouts/Layout.astro';
       <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1rem;">
         When you open any book (such as <a href="/reader.html?book=1V" style="color: var(--primary-color);">Pārājikapāḷi 1V</a>) or sutta from the directory or sidebar, the reader displays the <strong>World Tipiṭaka Edition (WT)</strong> in <strong>Single View</strong>.
       </p>
-      <p style="font-size: 1.02rem; line-height: 1.7; color: var(--text-body);">
+      <p style="font-size: 1.02rem; line-height: 1.7; color: var(--text-body); margin-bottom: 1rem;">
         The WT edition (<em>Mahāsaṅgīti Tipiṭaka Buddhavasse 2500</em>) serves as the canonical baseline reference text against which variants in other traditions are compared.
       </p>
+      <div style="background: var(--bg-secondary); border-left: 4px solid var(--accent-color, #10b981); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--text-emphasis); margin: 0 0 0.4rem;">
+          🧭 Sidebar Navigation Rule: Always Base Text
+        </h3>
+        <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-body); margin: 0;">
+          Different editions frequently differ in their file splits and volume boundaries (for instance, Roman Siam Rath structures entire volumes in massive single files, while WT splits texts cleanly into chapters and suttas). To avoid volume desynchronization and misleading comparison errors, clicking any link in the sidebar <strong>always opens the base edition (WT)</strong> in clean single view. Once the text is loaded, you can freely switch editions or activate side-by-side comparison.
+        </p>
+      </div>
     </section>
 
     <!-- Feature 2: Side-by-Side Comparison -->
@@ -114,7 +122,7 @@ import Layout from '../layouts/Layout.astro';
         4. Section Elision &amp; Focusing on Suttas
       </h2>
       <p style="font-size: 1.02rem; line-height: 1.7; margin-bottom: 1rem;">
-        Some editions (like PTS, CST, or BJ) group multiple suttas into large volume files. When you navigate to a specific sutta in WT (e.g. <em>Bodhikathā</em> in 1.1.md), the reader automatically elides irrelevant preceding and subsequent suttas in the other editions so you can compare the exact passage.
+        Some editions (like PTS, CST, BJ, or RT) group multiple suttas into large volume files. When you navigate to a specific sutta in WT (e.g. <em>Bodhikathā</em> in 1.1.md), the reader automatically elides irrelevant preceding and subsequent suttas in the other editions so you can compare the exact passage.
       </p>
       <p style="font-size: 1.02rem; line-height: 1.7; color: var(--text-body);">
         An elision banner appears at the top and bottom of the section. You can click <strong>"Show complete file"</strong> at any time to expand the full text, or toggle back to the elided view.

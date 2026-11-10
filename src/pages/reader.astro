@@ -1734,7 +1734,7 @@ import Layout from '../layouts/Layout.astro';
   /**
    * Smooth client-side SPA navigation between reader texts and books
    */
-  function navigateToUrl(href: string) {
+  function navigateToUrl(href: string, forceBaseEdition: boolean = false) {
     if (!href || href === '#' || href.startsWith('javascript:')) return;
     if (href === '/') {
       window.location.href = '/';
@@ -1750,16 +1750,19 @@ import Layout from '../layouts/Layout.astro';
     singleShowFull = false;
     rightShowFull = false;
 
-    const newEdition = params.get('edition');
-    const newFile = params.get('file');
-    const newBook = params.get('book');
-    const newSutta = params.get('sutta');
-
-    if (newEdition) currentEdition = newEdition;
+    if (forceBaseEdition) {
+      currentEdition = 'tipitaka2500';
+      viewMode = 'single';
+      diffEnabled = false;
+    } else {
+      const newEdition = params.get('edition');
+      if (newEdition) currentEdition = newEdition;
+    }
 
     // Base edition should never show variants
     if (currentEdition === 'tipitaka2500') {
       diffEnabled = false;
+      viewMode = 'single';
     } else if (params.has('diff')) {
       diffEnabled = params.get('diff') === '1';
     } else {
@@ -1829,7 +1832,8 @@ import Layout from '../layouts/Layout.astro';
         const url = new URL(href, window.location.origin);
         if (url.pathname === '/reader.html' || url.pathname.endsWith('/reader.html')) {
           e.preventDefault();
-          navigateToUrl(href);
+          // Clicking a sidebar link always opens the base edition to avoid syncing and diff errors
+          navigateToUrl(href, true);
         }
       });
     });
