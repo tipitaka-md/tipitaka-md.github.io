@@ -60,9 +60,10 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
    - Adjustable font size scaling.
    - Elegant typography with *Noto Serif*, *Gentium Plus*, and *Noto Sans*.
 
-7. **Zero-Backend & Offline PWA**
+7. **Zero-Backend Reader**
    - Standalone static HTML5/CSS3/ES6 site deployed directly on GitHub Pages.
-   - Texts are fetched on demand via CDN (`cdn.jsdelivr.net`) and cached locally via Service Worker (`sw.js`).
+   - Texts are fetched on demand from GitHub, with jsDelivr as a fallback. Reading requires an internet connection.
+   - [`public/sw.js`](public/sw.js) retires the legacy cache-first service worker and its `tipitaka-v1` cache; it must remain available at `/sw.js` for returning visitors.
 
 ---
 

@@ -156,7 +156,7 @@ import Layout from '../layouts/Layout.astro';
       </h2>
       <ul style="font-size: 1.02rem; line-height: 1.7; padding-left: 1.25rem; margin: 0; color: var(--text-body);">
         <li style="margin-bottom: 0.75rem;">
-          <strong>Dynamic Client-Side Rendering:</strong> Texts are fetched and rendered directly in the user’s browser from raw GitHub repository files or high-speed CDNs. There is no heavy backend server, database, or cached store that can grow stale.
+          <strong>Dynamic Client-Side Rendering:</strong> Texts are fetched and rendered directly in the user’s browser from raw GitHub repository files or high-speed CDNs, without using the browser's HTTP cache for these requests. Upstream caches may still affect freshness.
         </li>
         <li style="margin-bottom: 0.75rem;">
           <strong>Original Integrity:</strong> Raw Markdown files are never modified for web presentation. Formatting adaptations (such as paragraph flow and footnote anchoring) occur dynamically in memory during rendering.
@@ -165,7 +165,7 @@ import Layout from '../layouts/Layout.astro';
           <strong>Zero Lock-in:</strong> Every text can be downloaded as an untouched <code>.md</code> file or viewed on GitHub with a single click.
         </li>
         <li style="margin-bottom: 0.75rem;">
-          <strong>Offline First:</strong> Progressive Web App (PWA) service workers allow seamless reading even without active network access once files are cached.
+          <strong>Online Reading:</strong> An internet connection is required to fetch texts. Downloaded Markdown files can be read offline.
         </li>
       </ul>
     </section>
