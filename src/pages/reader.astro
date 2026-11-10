@@ -448,6 +448,101 @@ import Layout from '../layouts/Layout.astro';
     transition: background-color 1.5s ease-out, box-shadow 1.5s ease-out;
   }
 
+  .pts-page-marker {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: baseline;
+    margin: 0 0.35rem;
+    position: relative;
+    top: -0.1em;
+  }
+
+  .pts-page-pill {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-family: var(--font-mono, monospace);
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-hover, rgba(0, 0, 0, 0.05));
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1px 6px;
+    line-height: 1.25;
+    user-select: none;
+    opacity: 0.75;
+    transition: all 0.2s ease;
+  }
+
+  .pts-page-marker:hover .pts-page-pill {
+    opacity: 1;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background: var(--bg-surface);
+  }
+
+  .pts-page-highlight .pts-page-pill {
+    animation: pts-glow 3.5s ease-out forwards;
+  }
+
+  @keyframes pts-glow {
+    0% {
+      background-color: #fef08a;
+      border-color: #ca8a04;
+      color: #854d0e;
+      box-shadow: 0 0 14px rgba(234, 179, 8, 0.65);
+      transform: scale(1.15);
+      opacity: 1;
+    }
+    60% {
+      background-color: #fef08a;
+      border-color: #ca8a04;
+      color: #854d0e;
+      box-shadow: 0 0 8px rgba(234, 179, 8, 0.4);
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    100% {
+      background-color: var(--bg-hover, rgba(0, 0, 0, 0.05));
+      border-color: var(--border-color);
+      color: var(--text-muted);
+      box-shadow: none;
+      transform: scale(1);
+      opacity: 0.75;
+    }
+  }
+
+  [data-theme='dark'] .pts-page-pill {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  [data-theme='dark'] @keyframes pts-glow {
+    0% {
+      background-color: #854d0e;
+      border-color: #facc15;
+      color: #fef08a;
+      box-shadow: 0 0 14px rgba(250, 204, 21, 0.5);
+      transform: scale(1.15);
+      opacity: 1;
+    }
+    60% {
+      background-color: #854d0e;
+      border-color: #facc15;
+      color: #fef08a;
+      box-shadow: 0 0 8px rgba(250, 204, 21, 0.3);
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    100% {
+      background-color: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      box-shadow: none;
+      transform: scale(1);
+      opacity: 0.75;
+    }
+  }
+
   .raw-markdown-view {
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
@@ -1472,9 +1567,9 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /**
-   * Omit PTS paragraph numbers and page numbers dynamically for display
-   * so that text flows smoothly and reads naturally, while leaving the genuine
-   * raw Markdown intact for raw view and downloads.
+   * Preserve PTS page anchors and badges dynamically for display
+   * so that scholars and readers can see exact PTS page boundaries and jump to them,
+   * while formatting the text continuously without disruptive word breaks.
    */
   function cleanPtsForDisplay(md: string): string {
     if (!md) return '';
@@ -1487,48 +1582,66 @@ import Layout from '../layouts/Layout.astro';
       footer = '## Footnotes' + parts.slice(1).join('## Footnotes');
     }
 
-    // 1. Hyphenated word break across page: word-\n...page...\nword -> wordword
+    const makePageSpan = (pRaw: string) => {
+      const num = parseInt(pRaw, 10);
+      const padded = String(num).padStart(3, '0');
+      return `<span id="page-${padded}" class="pts-page-marker" data-page="${num}"><a id="page-${num}" class="pts-page-anchor"></a><span class="pts-page-pill" title="PTS Page ${num}">PTS p. ${num}</span></span>`;
+    };
+
+    // 1. Hyphenated word break across page: word-\n...page...\nword -> wordword + marker
     body = body.replace(
-      /(\w+)-\s*\n+(?:<!--\s*PTS\s+Page\s*[^>]+-->\s*\n+)?(?:<a\s+id="page-[^"]+"><\/a>\s*\n+)?(?:#+\s*\*?\[PTS\s+Page\s*[^\]]+\]\*?\s*\n+)(\w+)/g,
-      '$1$2'
+      /(\w+)-\s*\n+(?:<!--\s*PTS\s+Page\s*([0-9a-zA-Z\-_]+)\s*-->\s*\n+)?(?:<a\s+id="page-([0-9a-zA-Z\-_]+)"><\/a>\s*\n+)?(?:#+\s*\*?\[PTS\s+Page\s*([0-9a-zA-Z\-_]+)\]\*?\s*\n+)(\w+)/g,
+      (_, w1: string, p1: string, p2: string, p3: string, w2: string) => {
+        const p = p1 || p2 || p3;
+        const span = p ? ` ${makePageSpan(p)} ` : '';
+        return `${w1}${w2}${span}`;
+      }
     );
 
     // 2. Page break block across text: connect with space if in sentence, or paragraph break if sentence ended
     body = body.replace(
-      /(\S[^\n]*)\s*\n+(?:<!--\s*PTS\s+Page\s*[^>]+-->\s*\n+)?(?:<a\s+id="page-[^"]+"><\/a>\s*\n+)?(?:#+\s*\*?\[PTS\s+Page\s*[^\]]+\]\*?\s*\n+)([^\s\n])/g,
-      (_, pre: string, post: string) => {
+      /(\S[^\n]*)\s*\n+(?:<!--\s*PTS\s+Page\s*([0-9a-zA-Z\-_]+)\s*-->\s*\n+)?(?:<a\s+id="page-([0-9a-zA-Z\-_]+)"><\/a>\s*\n+)?(?:#+\s*\*?\[PTS\s+Page\s*([0-9a-zA-Z\-_]+)\]\*?\s*\n+)([^\s\n])/g,
+      (_, pre: string, p1: string, p2: string, p3: string, post: string) => {
+        const p = p1 || p2 || p3;
+        const span = p ? makePageSpan(p) : '';
         const preNoFn = pre.replace(/\[\^[^\]]+\]$/, '').trimEnd();
         if (/[.:;!?”"’']$/.test(preNoFn) || /^["“‘#]/.test(post)) {
-          return `${pre}\n\n${post}`;
+          return `${pre}\n\n${span}\n\n${post}`;
         }
-        return `${pre} ${post}`;
+        return `${pre} ${span} ${post}`;
       }
     );
 
-    // Remaining standalone page markers / anchors
+    // 3. Remaining standalone page markers / anchors
+    body = body.replace(
+      /(?:<!--\s*PTS\s+Page\s*([0-9a-zA-Z\-_]+)\s*-->\s*)?(?:<a\s+id="page-([0-9a-zA-Z\-_]+)"><\/a>\s*)?(?:#+\s*\*?\[PTS\s+Page\s*([0-9a-zA-Z\-_]+)\]\*?\s*)/gi,
+      (_, p1: string, p2: string, p3: string) => {
+        const p = p1 || p2 || p3;
+        return p ? `\n\n${makePageSpan(p)}\n\n` : ' ';
+      }
+    );
     body = body.replace(/<!--\s*PTS\s+Page\s*[^>]+-->\s*/gi, ' ');
     body = body.replace(/<a\s+id="page-[^"]+"><\/a>\s*/gi, ' ');
-    body = body.replace(/#+\s*\*?\[PTS\s+Page\s*[^\]]+\]\*?\s*/gi, ' ');
     body = body.replace(/\[PTS\s+Page\s*[^\]]+\](?:\s*\[[\/\\a-zA-Z0-9 ]+\])?/gi, ' ');
 
-    // 3. Paragraph numbers in double pipes: ||1||, ||2||, ||15||23||, || 1 ||
+    // 4. Paragraph numbers in double pipes: ||1||, ||2||, ||15||23||, || 1 ||
     body = body.replace(/\|\|\s*\d+(?:\s*\|\|\s*\d+)*\s*\|\|[ \t]*(?:  \n|\n|[ \t]+)?/g, ' ');
 
-    // 4. Verse / section IDs in pipes or slashes: || Th_1 ||, // Dhp_1 //, || Ja_I:1 ||
+    // 5. Verse / section IDs in pipes or slashes: || Th_1 ||, // Dhp_1 //, || Ja_I:1 ||
     body = body.replace(/\|\|\s*(?:Ja|Th|Thī|Sn|Nidd|Ap|Cp|It|Vv|Pv|Dhp|Bv|F\.)_[^|\n]+?\s*\|\|[ \t]*/g, ' ');
     body = body.replace(/\/\/\s*(?:Dhp|Bv)_[^/\n]+?\s*\/\/[ \t]*/g, ' ');
     body = body.replace(/\b(?:JaNi_\d+|Ja_[A-Za-z0-9_.:]+):\s*/g, ' ');
 
-    // 5. Leading paragraph numbers in prose: 1., 2., 1.1., (1) at line start
+    // 6. Leading paragraph numbers in prose: 1., 2., 1.1., (1) at line start
     body = body.replace(/^\s*(?:\d+(?:\.\d+)*\.|\(\d+\))\s+/gm, '');
 
-    // 6. Double dandas / pipe delimiters: || || -> . and || -> ,
+    // 7. Double dandas / pipe delimiters: || || -> . and || -> ,
     body = body.replace(/\s*\|\|\s*\|\|\.?/g, '.');
     body = body.replace(/\s*\|\|/g, ',');
     body = body.replace(/,\s*,/g, ',');
     body = body.replace(/\.\s*\./g, '.');
 
-    // 7. Normalize spaces and empty lines
+    // 8. Normalize spaces and empty lines
     body = body.replace(/[ \t]{2,}/g, ' ');
     body = body.replace(/\n{3,}/g, '\n\n');
 
@@ -2007,7 +2120,7 @@ import Layout from '../layouts/Layout.astro';
 
       let rightRenderMd = rightRenderSource;
       if (diffEnabled && !isMenuPage(baseMd, leftFile)) {
-        rightRenderMd = highlightPaliDiff(rightRenderSource, baseMd, 'WT');
+        rightRenderMd = highlightPaliDiff(rightRenderSource, baseMd);
       }
 
       if (leftContentEl) {
@@ -2077,7 +2190,7 @@ import Layout from '../layouts/Layout.astro';
         currentSingleMd = singleRenderSource;
         let renderMd = singleRenderSource;
         if (diffEnabled && !isMenuPage(baseMd, baseFile)) {
-          renderMd = highlightPaliDiff(singleRenderSource, baseMd, 'WT');
+          renderMd = highlightPaliDiff(singleRenderSource, baseMd);
         }
 
         if (mainContentEl) {
@@ -2138,15 +2251,44 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /**
-   * Scroll to and highlight paragraph anchor if URL hash is present (e.g. #p41 or #p0041)
+   * Scroll to and highlight paragraph anchor or PTS page anchor if URL hash is present
+   * Supports: #page-001, #page-1, #p41, #par-41
    */
   function scrollToParagraphHash() {
     const hash = window.location.hash;
     if (!hash) return;
+
+    // 1. Handle PTS page anchor (e.g. #page-001 or #page-12)
+    const pageMatch = hash.match(/^#page-0*(\d+)$/i);
+    if (pageMatch) {
+      const pNum = parseInt(pageMatch[1], 10);
+      const padded = String(pNum).padStart(3, '0');
+      const tryScrollPage = (attempts = 0) => {
+        const target =
+          document.getElementById(`page-${padded}`) ||
+          document.getElementById(`page-${pNum}`) ||
+          document.querySelector(`[data-page="${pNum}"]`);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.classList.remove('pts-page-highlight');
+          void (target as HTMLElement).offsetWidth;
+          target.classList.add('pts-page-highlight');
+          setTimeout(() => {
+            target.classList.remove('pts-page-highlight');
+          }, 4500);
+        } else if (attempts < 6) {
+          setTimeout(() => tryScrollPage(attempts + 1), 180);
+        }
+      };
+      setTimeout(() => tryScrollPage(0), 100);
+      return;
+    }
+
+    // 2. Handle WT paragraph anchor (e.g. #p41, #par-0041)
     const match = hash.match(/^#p(?:ar-)?0*(\d+)$/i);
     if (match) {
       const num = parseInt(match[1], 10);
-      setTimeout(() => {
+      const tryScrollPar = (attempts = 0) => {
         const target =
           document.getElementById(`p${num}`) ||
           document.querySelector(`[data-par="${num}"]`) ||
@@ -2159,8 +2301,11 @@ import Layout from '../layouts/Layout.astro';
           setTimeout(() => {
             target.classList.remove('wtk-paragraph-highlight');
           }, 4500);
+        } else if (attempts < 6) {
+          setTimeout(() => tryScrollPar(attempts + 1), 180);
         }
-      }, 150);
+      };
+      setTimeout(() => tryScrollPar(0), 100);
     }
   }
 

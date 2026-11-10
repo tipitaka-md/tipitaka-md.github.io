@@ -54,8 +54,10 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
    - Printed page markers (`§ 6D 1`, `§ M I 1`, `§ Vin III 1`) rendered as compact interactive chips.
    - Concordance badges in the header showing edition coverage for the open text.
 
-6. **Instant Quick-Jump & Full Tipiṭaka Search (`⌘K` / `/`)**
+6. **Instant Quick-Jump, Citation Lookup & Search (`⌘K` / `/`)**
    - Command palette modal to instantly jump to any book or sutta by code or title (e.g., `1V`, `6D`, `18Dh`, `Brahmajāla`, `Mahāparinibbāna`).
+   - **PTS Reference Lookup:** Direct jump to any standard Pali Text Society volume and page reference (e.g. `M I 1`, `M.i.1`, `D II 150`, `Vin III 1`, `S V 420`, `A I 1`, `Dhp 40`, `Ud 15`, `Vism 120`, `Mil 25`) with smooth scrolling to the exact page anchor and highlight badge.
+   - **World Tipiṭaka Paragraph Lookup:** Direct paragraph jump via `1V:0001`, `6D:0189`, etc.
 
 7. **Footnote & Variant Reader**
    - Clickable footnote superscripts open notes in a bottom drawer without disturbing reading flow.

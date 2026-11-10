@@ -1,0 +1,2358 @@
+{
+  "meta": {
+    "title": "PTS Reference Citation Index",
+    "edition": "Pali Text Society",
+    "total_volumes": 65,
+    "total_files": 291,
+    "total_pages": 18069
+  },
+  "aliases": {
+    "D": "D",
+    "DN": "D",
+    "DIGHA": "D",
+    "DĪGHA": "D",
+    "M": "M",
+    "MN": "M",
+    "MAJJHIMA": "M",
+    "S": "S",
+    "SN": "S",
+    "SAMYUTTA": "S",
+    "SAṂYUTTA": "S",
+    "A": "A",
+    "AN": "A",
+    "ANGUTTARA": "A",
+    "AṄGUTTARA": "A",
+    "VIN": "Vin",
+    "VINAYA": "Vin",
+    "V": "Vin",
+    "JA": "Ja",
+    "JAT": "Ja",
+    "JATAKA": "Ja",
+    "JĀTAKA": "Ja",
+    "PS": "Ps",
+    "PATIS": "Ps",
+    "PAṬIS": "Ps",
+    "PATISAMBHIDAMAGGA": "Ps",
+    "PAṬISAMBHIDĀMAGGA": "Ps",
+    "YAM": "Yam",
+    "YAMAKA": "Yam",
+    "SP": "Sp",
+    "SAMANTAPASADIKA": "Sp",
+    "SAMANTAPĀSĀDIKĀ": "Sp",
+    "DHP": "Dhp",
+    "DHAMMAPADA": "Dhp",
+    "UD": "Ud",
+    "UDANA": "Ud",
+    "UDĀNA": "Ud",
+    "IT": "Iti",
+    "ITI": "Iti",
+    "ITIVUTTAKA": "Iti",
+    "SNP": "Snp",
+    "SNIP": "Snp",
+    "SUTTANIPATA": "Snp",
+    "SUTTANIPĀTA": "Snp",
+    "VV": "Vv",
+    "VIMANAVATTHU": "Vv",
+    "VIMĀNAVATTHU": "Vv",
+    "PV": "Pv",
+    "PETAVATTHU": "Pv",
+    "THAG": "Thag",
+    "TH": "Thag",
+    "THERAGATHA": "Thag",
+    "THERAGĀTHĀ": "Thag",
+    "THIG": "Thig",
+    "THI": "Thig",
+    "THERIGATHA": "Thig",
+    "THERĪGĀTHĀ": "Thig",
+    "KHP": "Khp",
+    "KHUDDAKAPATHA": "Khp",
+    "KHUDDAKAPĀṬHA": "Khp",
+    "MND": "Mnd",
+    "NIDD1": "Mnd",
+    "MAHANIDDESA": "Mnd",
+    "MAHĀNIDDESA": "Mnd",
+    "CND": "Cnd",
+    "NIDD2": "Cnd",
+    "CULANIDDESA": "Cnd",
+    "CŪḶANIDDESA": "Cnd",
+    "AP": "Ap",
+    "APADANA": "Ap",
+    "APADĀNA": "Ap",
+    "BV": "Bv",
+    "BUDDHAVAMSA": "Bv",
+    "BUDDHAVAṂSA": "Bv",
+    "CP": "Cp",
+    "CARIYAPITAKA": "Cp",
+    "CARIYĀPIṬAKA": "Cp",
+    "DHS": "Dhs",
+    "DHAMMASANGANI": "Dhs",
+    "DHAMMASAṄGAṆĪ": "Dhs",
+    "VBH": "Vbh",
+    "VIBH": "Vbh",
+    "VIBHANGA": "Vbh",
+    "VIBHAṄGA": "Vbh",
+    "DHK": "Dhk",
+    "DHATUK": "Dhk",
+    "DHĀTUK": "Dhk",
+    "DHATUKATHA": "Dhk",
+    "DHĀTUKATHĀ": "Dhk",
+    "PUG": "Pug",
+    "PUGGALAPANNATTI": "Pug",
+    "PUGGALAPAÑÑATTI": "Pug",
+    "KVU": "Kvu",
+    "KV": "Kvu",
+    "KATHAVATTHU": "Kvu",
+    "KATHĀVATTHU": "Kvu",
+    "PATTH": "Patth",
+    "PAṬṬH": "Patth",
+    "PATTHANA": "Patth",
+    "PAṬṬHĀNA": "Patth",
+    "PAT": "Patth",
+    "VISM": "Vism",
+    "VISUDDHIMAGGA": "Vism",
+    "VM": "Vism",
+    "MIL": "Mil",
+    "MILINDA": "Mil",
+    "MILINDAPANHA": "Mil",
+    "MILINDAPAÑHA": "Mil",
+    "MHV": "Mhv",
+    "MAHAVAMSA": "Mhv",
+    "MAHĀVAṂSA": "Mhv",
+    "DPV": "Dpv",
+    "DIPAVAMSA": "Dpv",
+    "DĪPAVAṂSA": "Dpv"
+  },
+  "volume_titles": {
+    "D 1": "Dīgha Nikāya Vol. I (Sīlakkhandhavagga)",
+    "D 2": "Dīgha Nikāya Vol. II (Mahāvagga)",
+    "D 3": "Dīgha Nikāya Vol. III (Pāthikavagga)",
+    "M 1": "Majjhima Nikāya Vol. I (Mūlapaṇṇāsa)",
+    "M 2": "Majjhima Nikāya Vol. II (Majjhimapaṇṇāsa)",
+    "M 3": "Majjhima Nikāya Vol. III (Uparipaṇṇāsa)",
+    "S 1": "Saṃyutta Nikāya Vol. I (Sagāthāvagga)",
+    "S 2": "Saṃyutta Nikāya Vol. II (Nidānavagga)",
+    "S 3": "Saṃyutta Nikāya Vol. III (Khandhavagga)",
+    "S 4": "Saṃyutta Nikāya Vol. IV (Saḷāyatanavagga)",
+    "S 5": "Saṃyutta Nikāya Vol. V (Mahāvagga)",
+    "A 1": "Aṅguttara Nikāya Vol. I (Eka- to Tikanipāta)",
+    "A 2": "Aṅguttara Nikāya Vol. II (Catukkanipāta)",
+    "A 3": "Aṅguttara Nikāya Vol. III (Pañcaka- & Chakkanipāta)",
+    "A 4": "Aṅguttara Nikāya Vol. IV (Sattaka- to Navakanipāta)",
+    "A 5": "Aṅguttara Nikāya Vol. V (Dasaka- & Ekādasakanipāta)",
+    "Vin 1": "Vinaya Piṭaka Vol. I (Mahāvagga)",
+    "Vin 2": "Vinaya Piṭaka Vol. II (Cullavagga)",
+    "Vin 3": "Vinaya Piṭaka Vol. III (Suttavibhaṅga 1)",
+    "Vin 4": "Vinaya Piṭaka Vol. IV (Suttavibhaṅga 2)",
+    "Vin 5": "Vinaya Piṭaka Vol. V (Parivāra)",
+    "Ja 1": "Jātaka Vol. I",
+    "Ja 2": "Jātaka Vol. II",
+    "Ja 3": "Jātaka Vol. III",
+    "Ja 4": "Jātaka Vol. IV",
+    "Ja 5": "Jātaka Vol. V",
+    "Ja 6": "Jātaka Vol. VI",
+    "Ps 1": "Paṭisambhidāmagga Vol. I",
+    "Ps 2": "Paṭisambhidāmagga Vol. II",
+    "Yam 1": "Yamaka Vol. I",
+    "Yam 2": "Yamaka Vol. II",
+    "Sp 1": "Samantapāsādikā Vol. I",
+    "Sp 2": "Samantapāsādikā Vol. II",
+    "Sp 3": "Samantapāsādikā Vol. III",
+    "Sp 4": "Samantapāsādikā Vol. IV",
+    "Sp 5": "Samantapāsādikā Vol. V",
+    "Sp 6": "Samantapāsādikā Vol. VI",
+    "Sp 7": "Samantapāsādikā Vol. VII",
+    "Dhp": "Dhammapada",
+    "Ud": "Udāna",
+    "Iti": "Itivuttaka",
+    "Snp": "Suttanipāta",
+    "Vv": "Vimānavatthu",
+    "Pv": "Petavatthu",
+    "Thag": "Theragāthā",
+    "Thig": "Therīgāthā",
+    "Khp": "Khuddakapāṭha",
+    "Mnd": "Mahāniddesa",
+    "Cnd": "Cūḷaniddesa",
+    "Ap": "Apadāna",
+    "Bv": "Buddhavaṃsa",
+    "Cp": "Cariyāpiṭaka",
+    "Dhs": "Dhammasaṅgaṇī",
+    "Vbh": "Vibhaṅga",
+    "Dhk": "Dhātukathā",
+    "Pug": "Puggalapaññatti",
+    "Kvu": "Kathāvatthu",
+    "Patth": "Paṭṭhāna",
+    "Vism": "Visuddhimagga",
+    "Mil": "Milindapañha",
+    "Mhv": "Mahāvaṃsa",
+    "Dpv": "Dīpavaṃsa"
+  },
+  "volumes": {
+    "Dhk": [
+      [
+        1,
+        113,
+        "abhidhamma/dhk.md",
+        "Dhātukathā",
+        "31Dht"
+      ]
+    ],
+    "Dhs": [
+      [
+        1,
+        264,
+        "abhidhamma/dhs.md",
+        "Dhammasaṅgaṇī",
+        "29Dhs"
+      ]
+    ],
+    "Kvu": [
+      [
+        1,
+        628,
+        "abhidhamma/kvu.md",
+        "Kathāvatthu",
+        "32Kv"
+      ]
+    ],
+    "Patth": [
+      [
+        1,
+        353,
+        "abhidhamma/pat-duka.md",
+        "Dukapaṭṭhāna",
+        "38P2"
+      ]
+    ],
+    "Patth 1": [
+      [
+        1,
+        7,
+        "abhidhamma/pat-tika1.md",
+        "Tikapaṭṭhāna Vol. 1",
+        "36P1"
+      ]
+    ],
+    "Patth 2": [
+      [
+        69,
+        229,
+        "abhidhamma/pat-tika2.md",
+        "Tikapaṭṭhāna Vol. 2",
+        "37P1"
+      ]
+    ],
+    "Patth 3": [
+      [
+        317,
+        344,
+        "abhidhamma/pat-tika3.md",
+        "Tikapaṭṭhāna Vol. 3",
+        "40P7"
+      ]
+    ],
+    "Pug": [
+      [
+        1,
+        74,
+        "abhidhamma/pug.md",
+        "Puggalapaññatti",
+        "31Pu"
+      ]
+    ],
+    "Vbh": [
+      [
+        1,
+        24,
+        "abhidhamma/vbh01.md",
+        "Vibhaṅga - Khandhavibhaṅga",
+        "30Vbh"
+      ],
+      [
+        25,
+        48,
+        "abhidhamma/vbh02.md",
+        "Vibhaṅga - Āyatanavibhaṅga",
+        "30Vbh"
+      ],
+      [
+        49,
+        72,
+        "abhidhamma/vbh03.md",
+        "Vibhaṅga - Dhātuvibhaṅga",
+        "30Vbh"
+      ],
+      [
+        73,
+        96,
+        "abhidhamma/vbh04.md",
+        "Vibhaṅga - Saccavibhaṅga",
+        "30Vbh"
+      ],
+      [
+        97,
+        120,
+        "abhidhamma/vbh05.md",
+        "Vibhaṅga - Indriyavibhaṅga",
+        "30Vbh"
+      ],
+      [
+        121,
+        144,
+        "abhidhamma/vbh06.md",
+        "Vibhaṅga - Paccayākāravibhaṅga",
+        "30Vbh"
+      ],
+      [
+        145,
+        168,
+        "abhidhamma/vbh07.md",
+        "Vibhaṅga - Satipaṭṭhānavibhaṅga",
+        "30Vbh"
+      ],
+      [
+        169,
+        192,
+        "abhidhamma/vbh08.md",
+        "Vibhaṅga - Sammappadhānavibhaṅga",
+        "30Vbh"
+      ],
+      [
+        193,
+        216,
+        "abhidhamma/vbh09.md",
+        "Vibhaṅga - Iddhipādavibhaṅga",
+        "30Vbh"
+      ],
+      [
+        217,
+        240,
+        "abhidhamma/vbh10.md",
+        "Vibhaṅga - Bojjhaṅgavibhaṅga",
+        "30Vbh"
+      ],
+      [
+        241,
+        264,
+        "abhidhamma/vbh11.md",
+        "Vibhaṅga - Maggavibhaṅga",
+        "30Vbh"
+      ],
+      [
+        265,
+        288,
+        "abhidhamma/vbh12.md",
+        "Vibhaṅga - Jhānavibhaṅga",
+        "30Vbh"
+      ],
+      [
+        289,
+        312,
+        "abhidhamma/vbh13.md",
+        "Vibhaṅga - Appamaññāvibhaṅga",
+        "30Vbh"
+      ],
+      [
+        313,
+        336,
+        "abhidhamma/vbh14.md",
+        "Vibhaṅga - Sikkhāpadavibhaṅga",
+        "30Vbh"
+      ],
+      [
+        337,
+        360,
+        "abhidhamma/vbh15.md",
+        "Vibhaṅga - Paṭisambhidāvibhaṅga",
+        "30Vbh"
+      ],
+      [
+        361,
+        384,
+        "abhidhamma/vbh16.md",
+        "Vibhaṅga - Ñāṇavibhaṅga",
+        "30Vbh"
+      ],
+      [
+        385,
+        408,
+        "abhidhamma/vbh17.md",
+        "Vibhaṅga - Khuddakavatthuvibhaṅga",
+        "30Vbh"
+      ],
+      [
+        409,
+        436,
+        "abhidhamma/vbh18.md",
+        "Vibhaṅga - Dhammahadayavibhaṅga",
+        "30Vbh"
+      ]
+    ],
+    "Yam 1": [
+      [
+        1,
+        378,
+        "abhidhamma/yam01.md",
+        "Yamaka Vol. 1",
+        "33Y1"
+      ]
+    ],
+    "Yam 2": [
+      [
+        1,
+        215,
+        "abhidhamma/yam02.md",
+        "Yamaka Vol. 2",
+        "35Y9"
+      ]
+    ],
+    "Dpv": [
+      [
+        1,
+        1,
+        "chronicles/dipavamsa.md",
+        "Dīpavaṃsa",
+        "Dpv"
+      ]
+    ],
+    "Mhv": [
+      [
+        1,
+        1,
+        "chronicles/mahavamsa.md",
+        "Mahāvaṃsa",
+        "Mhv"
+      ]
+    ],
+    "Sp 1": [
+      [
+        1,
+        284,
+        "commentary/samantapasadika-01.md",
+        "Samantapāsādikā Vol. 1",
+        "Smp"
+      ]
+    ],
+    "Sp 2": [
+      [
+        285,
+        516,
+        "commentary/samantapasadika-02.md",
+        "Samantapāsādikā Vol. 2",
+        "Sp"
+      ]
+    ],
+    "Sp 3": [
+      [
+        517,
+        734,
+        "commentary/samantapasadika-03.md",
+        "Samantapāsādikā Vol. 3",
+        "Sp"
+      ]
+    ],
+    "Sp 4": [
+      [
+        735,
+        949,
+        "commentary/samantapasadika-04.md",
+        "Samantapāsādikā Vol. 4",
+        "Sp"
+      ]
+    ],
+    "Sp 5": [
+      [
+        951,
+        1154,
+        "commentary/samantapasadika-05.md",
+        "Samantapāsādikā Vol. 5",
+        "Sp"
+      ]
+    ],
+    "Sp 6": [
+      [
+        1155,
+        1300,
+        "commentary/samantapasadika-06.md",
+        "Samantapāsādikā Vol. 6",
+        "Sp"
+      ]
+    ],
+    "Sp 7": [
+      [
+        1301,
+        1416,
+        "commentary/samantapasadika-07.md",
+        "Samantapāsādikā Vol. 7",
+        "Sp"
+      ]
+    ],
+    "Vism": [
+      [
+        1,
+        713,
+        "commentary/visuddhimagga.md",
+        "Visuddhimagga",
+        "Vm"
+      ]
+    ],
+    "Mil": [
+      [
+        1,
+        420,
+        "paracanonical/milindapanha.md",
+        "Milindapañha",
+        "Mil"
+      ]
+    ],
+    "A 1": [
+      [
+        1,
+        101,
+        "sutta/an/an01.md",
+        "Ekakanipāta (AN 1)",
+        "15A1"
+      ],
+      [
+        102,
+        202,
+        "sutta/an/an02.md",
+        "Dukanipāta (AN 2)",
+        "15A2"
+      ],
+      [
+        203,
+        304,
+        "sutta/an/an03.md",
+        "Tikanipāta (AN 3)",
+        "15A3"
+      ]
+    ],
+    "A 2": [
+      [
+        1,
+        257,
+        "sutta/an/an04.md",
+        "Catukkanipāta (AN 4)",
+        "15A4"
+      ]
+    ],
+    "A 3": [
+      [
+        1,
+        226,
+        "sutta/an/an05.md",
+        "Pañcakanipāta (AN 5)",
+        "16A5"
+      ],
+      [
+        227,
+        452,
+        "sutta/an/an06.md",
+        "Chakkanipāta (AN 6)",
+        "16A6"
+      ]
+    ],
+    "A 4": [
+      [
+        1,
+        155,
+        "sutta/an/an07.md",
+        "Sattakanipāta (AN 7)",
+        "16A7"
+      ],
+      [
+        156,
+        310,
+        "sutta/an/an08.md",
+        "Aṭṭhakanipāta (AN 8)",
+        "17A8"
+      ],
+      [
+        311,
+        466,
+        "sutta/an/an09.md",
+        "Navakanipāta (AN 9)",
+        "17A9"
+      ]
+    ],
+    "A 5": [
+      [
+        1,
+        180,
+        "sutta/an/an10.md",
+        "Dasakanipāta (AN 10)",
+        "17A10"
+      ],
+      [
+        181,
+        361,
+        "sutta/an/an11.md",
+        "Ekādasakanipāta (AN 11)",
+        "17A11"
+      ]
+    ],
+    "D 1": [
+      [
+        1,
+        46,
+        "sutta/dn/dn01.md",
+        "Brahmajāla Sutta (DN 1)",
+        "6D"
+      ],
+      [
+        47,
+        86,
+        "sutta/dn/dn02.md",
+        "Sāmaññaphala Sutta (DN 2)",
+        "6D"
+      ],
+      [
+        87,
+        110,
+        "sutta/dn/dn03.md",
+        "Ambaṭṭha Sutta (DN 3)",
+        "6D"
+      ],
+      [
+        111,
+        126,
+        "sutta/dn/dn04.md",
+        "Soṇadaṇḍa Sutta (DN 4)",
+        "6D"
+      ],
+      [
+        127,
+        149,
+        "sutta/dn/dn05.md",
+        "Kūṭadanta Sutta (DN 5)",
+        "6D"
+      ],
+      [
+        150,
+        158,
+        "sutta/dn/dn06.md",
+        "Mahāli Sutta (DN 6)",
+        "6D"
+      ],
+      [
+        159,
+        160,
+        "sutta/dn/dn07.md",
+        "Jāliya Sutta (DN 7)",
+        "6D"
+      ],
+      [
+        161,
+        177,
+        "sutta/dn/dn08.md",
+        "Kassapa Sīhanāda Sutta (DN 8)",
+        "6D"
+      ],
+      [
+        178,
+        203,
+        "sutta/dn/dn09.md",
+        "Poṭṭhapāda Sutta (DN 9)",
+        "6D"
+      ],
+      [
+        204,
+        210,
+        "sutta/dn/dn10.md",
+        "Subha Sutta (DN 10)",
+        "6D"
+      ],
+      [
+        211,
+        223,
+        "sutta/dn/dn11.md",
+        "Kevaddha Sutta (DN 11)",
+        "6D"
+      ],
+      [
+        224,
+        234,
+        "sutta/dn/dn12.md",
+        "Lohicca Sutta (DN 12)",
+        "6D"
+      ],
+      [
+        235,
+        253,
+        "sutta/dn/dn13.md",
+        "Tevijja Sutta (DN 13)",
+        "6D"
+      ]
+    ],
+    "D 2": [
+      [
+        1,
+        54,
+        "sutta/dn/dn14.md",
+        "Mahāpadāna Sutta (DN 14)",
+        "7D"
+      ],
+      [
+        55,
+        168,
+        "sutta/dn/dn15.md",
+        "Mahānidāna Sutta (DN 15)",
+        "7D"
+      ],
+      [
+        169,
+        199,
+        "sutta/dn/dn17.md",
+        "Mahāsudassana Sutta (DN 17)",
+        "7D"
+      ],
+      [
+        200,
+        219,
+        "sutta/dn/dn18.md",
+        "Janavasabha Sutta (DN 18)",
+        "7D"
+      ],
+      [
+        220,
+        262,
+        "sutta/dn/dn19.md",
+        "Mahāgovinda Sutta (DN 19)",
+        "7D"
+      ],
+      [
+        263,
+        289,
+        "sutta/dn/dn21.md",
+        "Sakkapañha Sutta (DN 21)",
+        "7D"
+      ],
+      [
+        290,
+        315,
+        "sutta/dn/dn22.md",
+        "Mahāsatipaṭṭhāna Sutta (DN 22)",
+        "7D"
+      ],
+      [
+        316,
+        358,
+        "sutta/dn/dn23.md",
+        "Pāyāsi Sutta (DN 23)",
+        "7D"
+      ]
+    ],
+    "D 3": [
+      [
+        1,
+        35,
+        "sutta/dn/dn24.md",
+        "Pāthika Sutta (DN 24)",
+        "8D"
+      ],
+      [
+        36,
+        57,
+        "sutta/dn/dn25.md",
+        "Udumbarika Sīhanāda Sutta (DN 25)",
+        "8D"
+      ],
+      [
+        58,
+        79,
+        "sutta/dn/dn26.md",
+        "Cakkavatti Sīhanāda Sutta (DN 26)",
+        "8D"
+      ],
+      [
+        80,
+        98,
+        "sutta/dn/dn27.md",
+        "Aggañña Sutta (DN 27)",
+        "8D"
+      ],
+      [
+        99,
+        116,
+        "sutta/dn/dn28.md",
+        "Sampasādanīya Sutta (DN 28)",
+        "8D"
+      ],
+      [
+        117,
+        141,
+        "sutta/dn/dn29.md",
+        "Pāsādika Sutta (DN 29)",
+        "8D"
+      ],
+      [
+        142,
+        179,
+        "sutta/dn/dn30.md",
+        "Lakkhaṇa Sutta (DN 30)",
+        "8D"
+      ],
+      [
+        180,
+        193,
+        "sutta/dn/dn31.md",
+        "Siṅgālovāda Sutta (DN 31)",
+        "8D"
+      ],
+      [
+        194,
+        206,
+        "sutta/dn/dn32.md",
+        "Āṭānāṭiya Sutta (DN 32)",
+        "8D"
+      ],
+      [
+        207,
+        271,
+        "sutta/dn/dn33.md",
+        "Saṅgīti Sutta (DN 33)",
+        "8D"
+      ],
+      [
+        272,
+        293,
+        "sutta/dn/dn34.md",
+        "Dasuttara Sutta (DN 34)",
+        "8D"
+      ]
+    ],
+    "Ap": [
+      [
+        1,
+        615,
+        "sutta/kn/ap.md",
+        "Apadāna",
+        "20Ap2"
+      ]
+    ],
+    "Bv": [
+      [
+        1,
+        102,
+        "sutta/kn/bv.md",
+        "Buddhavaṃsa",
+        "21Bu"
+      ]
+    ],
+    "Cnd": [
+      [
+        1,
+        73,
+        "sutta/kn/cnd.md",
+        "Cūḷaniddesa",
+        "25Cn"
+      ]
+    ],
+    "Cp": [
+      [
+        1,
+        37,
+        "sutta/kn/cp.md",
+        "Cariyāpiṭaka",
+        "21Cp"
+      ]
+    ],
+    "Dhp": [
+      [
+        1,
+        120,
+        "sutta/kn/dhp.md",
+        "Dhammapada",
+        "18Dh"
+      ]
+    ],
+    "Iti": [
+      [
+        1,
+        124,
+        "sutta/kn/iti.md",
+        "Itivuttaka",
+        "18It"
+      ]
+    ],
+    "Ja 1": [
+      [
+        1,
+        511,
+        "sutta/kn/jat01.md",
+        "Jātaka Vol. 1 (Ekanipāta)",
+        "22J"
+      ]
+    ],
+    "Ja 2": [
+      [
+        1,
+        451,
+        "sutta/kn/jat02.md",
+        "Jātaka Vol. 2 (Duka- & Tikanipāta)",
+        "20J"
+      ]
+    ],
+    "Ja 3": [
+      [
+        1,
+        543,
+        "sutta/kn/jat03.md",
+        "Jātaka Vol. 3 (Catukka- to Navakanipāta)",
+        "20J"
+      ]
+    ],
+    "Ja 4": [
+      [
+        1,
+        499,
+        "sutta/kn/jat04.md",
+        "Jātaka Vol. 4 (Dasaka- to Visatinipāta)",
+        "23J"
+      ]
+    ],
+    "Ja 5": [
+      [
+        1,
+        511,
+        "sutta/kn/jat05.md",
+        "Jātaka Vol. 5 (Tiṃsa- to Saṭṭhinipāta)",
+        "20J"
+      ]
+    ],
+    "Ja 6": [
+      [
+        1,
+        596,
+        "sutta/kn/jat06.md",
+        "Jātaka Vol. 6 (Mahānipāta)",
+        "20J"
+      ]
+    ],
+    "Khp": [
+      [
+        1,
+        9,
+        "sutta/kn/khp.md",
+        "Khuddakapāṭha",
+        "18Kh"
+      ]
+    ],
+    "Mnd": [
+      [
+        1,
+        510,
+        "sutta/kn/mnd.md",
+        "Mahāniddesa",
+        "24Mn"
+      ]
+    ],
+    "Ps 1": [
+      [
+        1,
+        196,
+        "sutta/kn/ps01.md",
+        "Paṭisambhidāmagga Vol. 1",
+        "26Ps"
+      ]
+    ],
+    "Ps 2": [
+      [
+        1,
+        246,
+        "sutta/kn/ps02.md",
+        "Paṭisambhidāmagga Vol. 2",
+        "24P2"
+      ]
+    ],
+    "Pv": [
+      [
+        1,
+        95,
+        "sutta/kn/pv.md",
+        "Petavatthu",
+        "19Pv"
+      ]
+    ],
+    "Snp": [
+      [
+        1,
+        223,
+        "sutta/kn/snp.md",
+        "Suttanipāta",
+        "18Sn"
+      ]
+    ],
+    "Thag": [
+      [
+        1,
+        115,
+        "sutta/kn/thag.md",
+        "Theragāthā",
+        "19Th1"
+      ]
+    ],
+    "Thig": [
+      [
+        123,
+        174,
+        "sutta/kn/thig.md",
+        "Therīgāthā",
+        "19Th2"
+      ]
+    ],
+    "Ud": [
+      [
+        1,
+        94,
+        "sutta/kn/ud.md",
+        "Udāna",
+        "18Ud"
+      ]
+    ],
+    "Vv": [
+      [
+        1,
+        135,
+        "sutta/kn/vv.md",
+        "Vimānavatthu",
+        "19Vv"
+      ]
+    ],
+    "M 1": [
+      [
+        1,
+        5,
+        "sutta/mn/mn001.md",
+        "Majjhima Nikāya Sutta 1 (MN 1)",
+        "9M"
+      ],
+      [
+        6,
+        11,
+        "sutta/mn/mn002.md",
+        "Majjhima Nikāya Sutta 2 (MN 2)",
+        "9M"
+      ],
+      [
+        12,
+        15,
+        "sutta/mn/mn003.md",
+        "Majjhima Nikāya Sutta 3 (MN 3)",
+        "9M"
+      ],
+      [
+        16,
+        23,
+        "sutta/mn/mn004.md",
+        "Majjhima Nikāya Sutta 4 (MN 4)",
+        "9M"
+      ],
+      [
+        24,
+        32,
+        "sutta/mn/mn005.md",
+        "Majjhima Nikāya Sutta 5 (MN 5)",
+        "9M"
+      ],
+      [
+        33,
+        35,
+        "sutta/mn/mn006.md",
+        "Majjhima Nikāya Sutta 6 (MN 6)",
+        "9M"
+      ],
+      [
+        36,
+        39,
+        "sutta/mn/mn007.md",
+        "Majjhima Nikāya Sutta 7 (MN 7)",
+        "9M"
+      ],
+      [
+        40,
+        45,
+        "sutta/mn/mn008.md",
+        "Majjhima Nikāya Sutta 8 (MN 8)",
+        "9M"
+      ],
+      [
+        46,
+        54,
+        "sutta/mn/mn009.md",
+        "Majjhima Nikāya Sutta 9 (MN 9)",
+        "9M"
+      ],
+      [
+        55,
+        62,
+        "sutta/mn/mn010.md",
+        "Majjhima Nikāya Sutta 10 (MN 10)",
+        "9M"
+      ],
+      [
+        63,
+        67,
+        "sutta/mn/mn011.md",
+        "Majjhima Nikāya Sutta 11 (MN 11)",
+        "9M"
+      ],
+      [
+        68,
+        82,
+        "sutta/mn/mn012.md",
+        "Majjhima Nikāya Sutta 12 (MN 12)",
+        "9M"
+      ],
+      [
+        83,
+        90,
+        "sutta/mn/mn013.md",
+        "Majjhima Nikāya Sutta 13 (MN 13)",
+        "9M"
+      ],
+      [
+        91,
+        94,
+        "sutta/mn/mn014.md",
+        "Majjhima Nikāya Sutta 14 (MN 14)",
+        "9M"
+      ],
+      [
+        95,
+        98,
+        "sutta/mn/mn015.md",
+        "Majjhima Nikāya Sutta 15 (MN 15)",
+        "9M"
+      ],
+      [
+        99,
+        103,
+        "sutta/mn/mn016.md",
+        "Majjhima Nikāya Sutta 16 (MN 16)",
+        "9M"
+      ],
+      [
+        104,
+        107,
+        "sutta/mn/mn017.md",
+        "Majjhima Nikāya Sutta 17 (MN 17)",
+        "9M"
+      ],
+      [
+        108,
+        113,
+        "sutta/mn/mn018.md",
+        "Majjhima Nikāya Sutta 18 (MN 18)",
+        "9M"
+      ],
+      [
+        114,
+        118,
+        "sutta/mn/mn019.md",
+        "Majjhima Nikāya Sutta 19 (MN 19)",
+        "9M"
+      ],
+      [
+        119,
+        121,
+        "sutta/mn/mn020.md",
+        "Majjhima Nikāya Sutta 20 (MN 20)",
+        "9M"
+      ],
+      [
+        122,
+        129,
+        "sutta/mn/mn021.md",
+        "Majjhima Nikāya Sutta 21 (MN 21)",
+        "9M"
+      ],
+      [
+        130,
+        141,
+        "sutta/mn/mn022.md",
+        "Majjhima Nikāya Sutta 22 (MN 22)",
+        "9M"
+      ],
+      [
+        142,
+        144,
+        "sutta/mn/mn023.md",
+        "Majjhima Nikāya Sutta 23 (MN 23)",
+        "9M"
+      ],
+      [
+        145,
+        150,
+        "sutta/mn/mn024.md",
+        "Majjhima Nikāya Sutta 24 (MN 24)",
+        "9M"
+      ],
+      [
+        151,
+        159,
+        "sutta/mn/mn025.md",
+        "Majjhima Nikāya Sutta 25 (MN 25)",
+        "9M"
+      ],
+      [
+        160,
+        174,
+        "sutta/mn/mn026.md",
+        "Majjhima Nikāya Sutta 26 (MN 26)",
+        "9M"
+      ],
+      [
+        175,
+        183,
+        "sutta/mn/mn027.md",
+        "Majjhima Nikāya Sutta 27 (MN 27)",
+        "9M"
+      ],
+      [
+        184,
+        191,
+        "sutta/mn/mn028.md",
+        "Majjhima Nikāya Sutta 28 (MN 28)",
+        "9M"
+      ],
+      [
+        192,
+        197,
+        "sutta/mn/mn029.md",
+        "Majjhima Nikāya Sutta 29 (MN 29)",
+        "9M"
+      ],
+      [
+        198,
+        204,
+        "sutta/mn/mn030.md",
+        "Majjhima Nikāya Sutta 30 (MN 30)",
+        "9M"
+      ],
+      [
+        205,
+        211,
+        "sutta/mn/mn031.md",
+        "Majjhima Nikāya Sutta 31 (MN 31)",
+        "9M"
+      ],
+      [
+        212,
+        219,
+        "sutta/mn/mn032.md",
+        "Majjhima Nikāya Sutta 32 (MN 32)",
+        "9M"
+      ],
+      [
+        220,
+        224,
+        "sutta/mn/mn033.md",
+        "Majjhima Nikāya Sutta 33 (MN 33)",
+        "9M"
+      ],
+      [
+        225,
+        226,
+        "sutta/mn/mn034.md",
+        "Majjhima Nikāya Sutta 34 (MN 34)",
+        "9M"
+      ],
+      [
+        227,
+        236,
+        "sutta/mn/mn035.md",
+        "Majjhima Nikāya Sutta 35 (MN 35)",
+        "9M"
+      ],
+      [
+        237,
+        250,
+        "sutta/mn/mn036.md",
+        "Majjhima Nikāya Sutta 36 (MN 36)",
+        "9M"
+      ],
+      [
+        251,
+        255,
+        "sutta/mn/mn037.md",
+        "Majjhima Nikāya Sutta 37 (MN 37)",
+        "9M"
+      ],
+      [
+        256,
+        270,
+        "sutta/mn/mn038.md",
+        "Majjhima Nikāya Sutta 38 (MN 38)",
+        "9M"
+      ],
+      [
+        271,
+        280,
+        "sutta/mn/mn039.md",
+        "Majjhima Nikāya Sutta 39 (MN 39)",
+        "9M"
+      ],
+      [
+        281,
+        284,
+        "sutta/mn/mn040.md",
+        "Majjhima Nikāya Sutta 40 (MN 40)",
+        "9M"
+      ],
+      [
+        285,
+        289,
+        "sutta/mn/mn041.md",
+        "Majjhima Nikāya Sutta 41 (MN 41)",
+        "9M"
+      ],
+      [
+        290,
+        291,
+        "sutta/mn/mn042.md",
+        "Majjhima Nikāya Sutta 42 (MN 42)",
+        "9M"
+      ],
+      [
+        292,
+        298,
+        "sutta/mn/mn043.md",
+        "Majjhima Nikāya Sutta 43 (MN 43)",
+        "9M"
+      ],
+      [
+        299,
+        304,
+        "sutta/mn/mn044.md",
+        "Majjhima Nikāya Sutta 44 (MN 44)",
+        "9M"
+      ],
+      [
+        305,
+        308,
+        "sutta/mn/mn045.md",
+        "Majjhima Nikāya Sutta 45 (MN 45)",
+        "9M"
+      ],
+      [
+        309,
+        316,
+        "sutta/mn/mn046.md",
+        "Majjhima Nikāya Sutta 46 (MN 46)",
+        "9M"
+      ],
+      [
+        317,
+        319,
+        "sutta/mn/mn047.md",
+        "Majjhima Nikāya Sutta 47 (MN 47)",
+        "9M"
+      ],
+      [
+        320,
+        325,
+        "sutta/mn/mn048.md",
+        "Majjhima Nikāya Sutta 48 (MN 48)",
+        "9M"
+      ],
+      [
+        326,
+        331,
+        "sutta/mn/mn049.md",
+        "Majjhima Nikāya Sutta 49 (MN 49)",
+        "9M"
+      ],
+      [
+        332,
+        338,
+        "sutta/mn/mn050.md",
+        "Majjhima Nikāya Sutta 50 (MN 50)",
+        "9M"
+      ],
+      [
+        339,
+        348,
+        "sutta/mn/mn051.md",
+        "Majjhima Nikāya Sutta 51 (MN 51)",
+        "10M"
+      ],
+      [
+        349,
+        352,
+        "sutta/mn/mn052.md",
+        "Majjhima Nikāya Sutta 52 (MN 52)",
+        "10M"
+      ],
+      [
+        353,
+        358,
+        "sutta/mn/mn053.md",
+        "Majjhima Nikāya Sutta 53 (MN 53)",
+        "10M"
+      ],
+      [
+        359,
+        367,
+        "sutta/mn/mn054.md",
+        "Majjhima Nikāya Sutta 54 (MN 54)",
+        "10M"
+      ],
+      [
+        368,
+        370,
+        "sutta/mn/mn055.md",
+        "Majjhima Nikāya Sutta 55 (MN 55)",
+        "10M"
+      ],
+      [
+        371,
+        386,
+        "sutta/mn/mn056.md",
+        "Majjhima Nikāya Sutta 56 (MN 56)",
+        "10M"
+      ],
+      [
+        387,
+        391,
+        "sutta/mn/mn057.md",
+        "Majjhima Nikāya Sutta 57 (MN 57)",
+        "10M"
+      ],
+      [
+        392,
+        395,
+        "sutta/mn/mn058.md",
+        "Majjhima Nikāya Sutta 58 (MN 58)",
+        "10M"
+      ],
+      [
+        396,
+        399,
+        "sutta/mn/mn059.md",
+        "Majjhima Nikāya Sutta 59 (MN 59)",
+        "10M"
+      ],
+      [
+        400,
+        413,
+        "sutta/mn/mn060.md",
+        "Majjhima Nikāya Sutta 60 (MN 60)",
+        "10M"
+      ],
+      [
+        414,
+        419,
+        "sutta/mn/mn061.md",
+        "Majjhima Nikāya Sutta 61 (MN 61)",
+        "10M"
+      ],
+      [
+        420,
+        425,
+        "sutta/mn/mn062.md",
+        "Majjhima Nikāya Sutta 62 (MN 62)",
+        "10M"
+      ],
+      [
+        426,
+        431,
+        "sutta/mn/mn063.md",
+        "Majjhima Nikāya Sutta 63 (MN 63)",
+        "10M"
+      ],
+      [
+        432,
+        436,
+        "sutta/mn/mn064.md",
+        "Majjhima Nikāya Sutta 64 (MN 64)",
+        "10M"
+      ],
+      [
+        437,
+        446,
+        "sutta/mn/mn065.md",
+        "Majjhima Nikāya Sutta 65 (MN 65)",
+        "10M"
+      ],
+      [
+        447,
+        455,
+        "sutta/mn/mn066.md",
+        "Majjhima Nikāya Sutta 66 (MN 66)",
+        "10M"
+      ],
+      [
+        456,
+        461,
+        "sutta/mn/mn067.md",
+        "Majjhima Nikāya Sutta 67 (MN 67)",
+        "10M"
+      ],
+      [
+        462,
+        468,
+        "sutta/mn/mn068.md",
+        "Majjhima Nikāya Sutta 68 (MN 68)",
+        "10M"
+      ],
+      [
+        469,
+        472,
+        "sutta/mn/mn069.md",
+        "Majjhima Nikāya Sutta 69 (MN 69)",
+        "10M"
+      ],
+      [
+        473,
+        480,
+        "sutta/mn/mn070.md",
+        "Majjhima Nikāya Sutta 70 (MN 70)",
+        "10M"
+      ],
+      [
+        481,
+        482,
+        "sutta/mn/mn071.md",
+        "Majjhima Nikāya Sutta 71 (MN 71)",
+        "10M"
+      ],
+      [
+        483,
+        488,
+        "sutta/mn/mn072.md",
+        "Majjhima Nikāya Sutta 72 (MN 72)",
+        "10M"
+      ],
+      [
+        489,
+        496,
+        "sutta/mn/mn073.md",
+        "Majjhima Nikāya Sutta 73 (MN 73)",
+        "10M"
+      ],
+      [
+        497,
+        500,
+        "sutta/mn/mn074.md",
+        "Majjhima Nikāya Sutta 74 (MN 74)",
+        "10M"
+      ],
+      [
+        501,
+        512,
+        "sutta/mn/mn075.md",
+        "Majjhima Nikāya Sutta 75 (MN 75)",
+        "10M"
+      ],
+      [
+        513,
+        524,
+        "sutta/mn/mn076.md",
+        "Majjhima Nikāya Sutta 76 (MN 76)",
+        "10M"
+      ]
+    ],
+    "M 2": [
+      [
+        1,
+        21,
+        "sutta/mn/mn077.md",
+        "Majjhima Nikāya Sutta 77 (MN 77)",
+        "10M"
+      ],
+      [
+        22,
+        28,
+        "sutta/mn/mn078.md",
+        "Majjhima Nikāya Sutta 78 (MN 78)",
+        "10M"
+      ],
+      [
+        29,
+        39,
+        "sutta/mn/mn079.md",
+        "Majjhima Nikāya Sutta 79 (MN 79)",
+        "10M"
+      ],
+      [
+        40,
+        44,
+        "sutta/mn/mn080.md",
+        "Majjhima Nikāya Sutta 80 (MN 80)",
+        "10M"
+      ],
+      [
+        45,
+        53,
+        "sutta/mn/mn081.md",
+        "Majjhima Nikāya Sutta 81 (MN 81)",
+        "10M"
+      ],
+      [
+        54,
+        73,
+        "sutta/mn/mn082.md",
+        "Majjhima Nikāya Sutta 82 (MN 82)",
+        "10M"
+      ],
+      [
+        74,
+        82,
+        "sutta/mn/mn083.md",
+        "Majjhima Nikāya Sutta 83 (MN 83)",
+        "10M"
+      ],
+      [
+        83,
+        90,
+        "sutta/mn/mn084.md",
+        "Majjhima Nikāya Sutta 84 (MN 84)",
+        "10M"
+      ],
+      [
+        91,
+        96,
+        "sutta/mn/mn085.md",
+        "Majjhima Nikāya Sutta 85 (MN 85)",
+        "10M"
+      ],
+      [
+        97,
+        105,
+        "sutta/mn/mn086.md",
+        "Majjhima Nikāya Sutta 86 (MN 86)",
+        "10M"
+      ],
+      [
+        106,
+        111,
+        "sutta/mn/mn087.md",
+        "Majjhima Nikāya Sutta 87 (MN 87)",
+        "10M"
+      ],
+      [
+        112,
+        117,
+        "sutta/mn/mn088.md",
+        "Majjhima Nikāya Sutta 88 (MN 88)",
+        "10M"
+      ],
+      [
+        118,
+        124,
+        "sutta/mn/mn089.md",
+        "Majjhima Nikāya Sutta 89 (MN 89)",
+        "10M"
+      ],
+      [
+        125,
+        132,
+        "sutta/mn/mn090.md",
+        "Majjhima Nikāya Sutta 90 (MN 90)",
+        "10M"
+      ],
+      [
+        133,
+        145,
+        "sutta/mn/mn091.md",
+        "Majjhima Nikāya Sutta 91 (MN 91)",
+        "10M"
+      ],
+      [
+        146,
+        146,
+        "sutta/mn/mn092.md",
+        "Majjhima Nikāya Sutta 92 (MN 92)",
+        "10M"
+      ],
+      [
+        147,
+        156,
+        "sutta/mn/mn093.md",
+        "Majjhima Nikāya Sutta 93 (MN 93)",
+        "10M"
+      ],
+      [
+        157,
+        163,
+        "sutta/mn/mn094.md",
+        "Majjhima Nikāya Sutta 94 (MN 94)",
+        "10M"
+      ],
+      [
+        164,
+        176,
+        "sutta/mn/mn095.md",
+        "Majjhima Nikāya Sutta 95 (MN 95)",
+        "10M"
+      ],
+      [
+        177,
+        183,
+        "sutta/mn/mn096.md",
+        "Majjhima Nikāya Sutta 96 (MN 96)",
+        "10M"
+      ],
+      [
+        184,
+        195,
+        "sutta/mn/mn097.md",
+        "Majjhima Nikāya Sutta 97 (MN 97)",
+        "10M"
+      ],
+      [
+        196,
+        208,
+        "sutta/mn/mn099.md",
+        "Majjhima Nikāya Sutta 99 (MN 99)",
+        "10M"
+      ],
+      [
+        209,
+        213,
+        "sutta/mn/mn100.md",
+        "Majjhima Nikāya Sutta 100 (MN 100)",
+        "10M"
+      ],
+      [
+        214,
+        227,
+        "sutta/mn/mn101.md",
+        "Majjhima Nikāya Sutta 101 (MN 101)",
+        "11M"
+      ],
+      [
+        228,
+        237,
+        "sutta/mn/mn102.md",
+        "Majjhima Nikāya Sutta 102 (MN 102)",
+        "11M"
+      ],
+      [
+        238,
+        242,
+        "sutta/mn/mn103.md",
+        "Majjhima Nikāya Sutta 103 (MN 103)",
+        "11M"
+      ],
+      [
+        243,
+        251,
+        "sutta/mn/mn104.md",
+        "Majjhima Nikāya Sutta 104 (MN 104)",
+        "11M"
+      ],
+      [
+        252,
+        260,
+        "sutta/mn/mn105.md",
+        "Majjhima Nikāya Sutta 105 (MN 105)",
+        "11M"
+      ],
+      [
+        261,
+        266,
+        "sutta/mn/mn106.md",
+        "Majjhima Nikāya Sutta 106 (MN 106)",
+        "11M"
+      ]
+    ],
+    "M 3": [
+      [
+        1,
+        6,
+        "sutta/mn/mn107.md",
+        "Majjhima Nikāya Sutta 107 (MN 107)",
+        "11M"
+      ],
+      [
+        7,
+        14,
+        "sutta/mn/mn108.md",
+        "Majjhima Nikāya Sutta 108 (MN 108)",
+        "11M"
+      ],
+      [
+        15,
+        19,
+        "sutta/mn/mn109.md",
+        "Majjhima Nikāya Sutta 109 (MN 109)",
+        "11M"
+      ],
+      [
+        20,
+        24,
+        "sutta/mn/mn110.md",
+        "Majjhima Nikāya Sutta 110 (MN 110)",
+        "11M"
+      ],
+      [
+        25,
+        28,
+        "sutta/mn/mn111.md",
+        "Majjhima Nikāya Sutta 111 (MN 111)",
+        "11M"
+      ],
+      [
+        29,
+        36,
+        "sutta/mn/mn112.md",
+        "Majjhima Nikāya Sutta 112 (MN 112)",
+        "11M"
+      ],
+      [
+        37,
+        44,
+        "sutta/mn/mn113.md",
+        "Majjhima Nikāya Sutta 113 (MN 113)",
+        "11M"
+      ],
+      [
+        45,
+        60,
+        "sutta/mn/mn114.md",
+        "Majjhima Nikāya Sutta 114 (MN 114)",
+        "11M"
+      ],
+      [
+        61,
+        67,
+        "sutta/mn/mn115.md",
+        "Majjhima Nikāya Sutta 115 (MN 115)",
+        "11M"
+      ],
+      [
+        68,
+        70,
+        "sutta/mn/mn116.md",
+        "Majjhima Nikāya Sutta 116 (MN 116)",
+        "11M"
+      ],
+      [
+        71,
+        77,
+        "sutta/mn/mn117.md",
+        "Majjhima Nikāya Sutta 117 (MN 117)",
+        "11M"
+      ],
+      [
+        78,
+        87,
+        "sutta/mn/mn118.md",
+        "Majjhima Nikāya Sutta 118 (MN 118)",
+        "11M"
+      ],
+      [
+        88,
+        98,
+        "sutta/mn/mn119.md",
+        "Majjhima Nikāya Sutta 119 (MN 119)",
+        "11M"
+      ],
+      [
+        99,
+        103,
+        "sutta/mn/mn120.md",
+        "Majjhima Nikāya Sutta 120 (MN 120)",
+        "11M"
+      ],
+      [
+        104,
+        108,
+        "sutta/mn/mn121.md",
+        "Majjhima Nikāya Sutta 121 (MN 121)",
+        "11M"
+      ],
+      [
+        109,
+        117,
+        "sutta/mn/mn122.md",
+        "Majjhima Nikāya Sutta 122 (MN 122)",
+        "11M"
+      ],
+      [
+        118,
+        123,
+        "sutta/mn/mn123.md",
+        "Majjhima Nikāya Sutta 123 (MN 123)",
+        "11M"
+      ],
+      [
+        124,
+        127,
+        "sutta/mn/mn124.md",
+        "Majjhima Nikāya Sutta 124 (MN 124)",
+        "11M"
+      ],
+      [
+        128,
+        137,
+        "sutta/mn/mn125.md",
+        "Majjhima Nikāya Sutta 125 (MN 125)",
+        "11M"
+      ],
+      [
+        138,
+        143,
+        "sutta/mn/mn126.md",
+        "Majjhima Nikāya Sutta 126 (MN 126)",
+        "11M"
+      ],
+      [
+        144,
+        151,
+        "sutta/mn/mn127.md",
+        "Majjhima Nikāya Sutta 127 (MN 127)",
+        "11M"
+      ],
+      [
+        152,
+        162,
+        "sutta/mn/mn128.md",
+        "Majjhima Nikāya Sutta 128 (MN 128)",
+        "11M"
+      ],
+      [
+        163,
+        177,
+        "sutta/mn/mn129.md",
+        "Majjhima Nikāya Sutta 129 (MN 129)",
+        "11M"
+      ],
+      [
+        178,
+        186,
+        "sutta/mn/mn130.md",
+        "Majjhima Nikāya Sutta 130 (MN 130)",
+        "11M"
+      ],
+      [
+        187,
+        188,
+        "sutta/mn/mn131.md",
+        "Majjhima Nikāya Sutta 131 (MN 131)",
+        "11M"
+      ],
+      [
+        189,
+        191,
+        "sutta/mn/mn132.md",
+        "Majjhima Nikāya Sutta 132 (MN 132)",
+        "11M"
+      ],
+      [
+        192,
+        198,
+        "sutta/mn/mn133.md",
+        "Majjhima Nikāya Sutta 133 (MN 133)",
+        "11M"
+      ],
+      [
+        199,
+        201,
+        "sutta/mn/mn134.md",
+        "Majjhima Nikāya Sutta 134 (MN 134)",
+        "11M"
+      ],
+      [
+        202,
+        206,
+        "sutta/mn/mn135.md",
+        "Majjhima Nikāya Sutta 135 (MN 135)",
+        "11M"
+      ],
+      [
+        207,
+        214,
+        "sutta/mn/mn136.md",
+        "Majjhima Nikāya Sutta 136 (MN 136)",
+        "11M"
+      ],
+      [
+        215,
+        222,
+        "sutta/mn/mn137.md",
+        "Majjhima Nikāya Sutta 137 (MN 137)",
+        "11M"
+      ],
+      [
+        223,
+        229,
+        "sutta/mn/mn138.md",
+        "Majjhima Nikāya Sutta 138 (MN 138)",
+        "11M"
+      ],
+      [
+        230,
+        236,
+        "sutta/mn/mn139.md",
+        "Majjhima Nikāya Sutta 139 (MN 139)",
+        "11M"
+      ],
+      [
+        237,
+        247,
+        "sutta/mn/mn140.md",
+        "Majjhima Nikāya Sutta 140 (MN 140)",
+        "11M"
+      ],
+      [
+        248,
+        252,
+        "sutta/mn/mn141.md",
+        "Majjhima Nikāya Sutta 141 (MN 141)",
+        "11M"
+      ],
+      [
+        253,
+        257,
+        "sutta/mn/mn142.md",
+        "Majjhima Nikāya Sutta 142 (MN 142)",
+        "11M"
+      ],
+      [
+        258,
+        262,
+        "sutta/mn/mn143.md",
+        "Majjhima Nikāya Sutta 143 (MN 143)",
+        "11M"
+      ],
+      [
+        263,
+        266,
+        "sutta/mn/mn144.md",
+        "Majjhima Nikāya Sutta 144 (MN 144)",
+        "11M"
+      ],
+      [
+        267,
+        269,
+        "sutta/mn/mn145.md",
+        "Majjhima Nikāya Sutta 145 (MN 145)",
+        "11M"
+      ],
+      [
+        270,
+        276,
+        "sutta/mn/mn146.md",
+        "Majjhima Nikāya Sutta 146 (MN 146)",
+        "11M"
+      ],
+      [
+        277,
+        279,
+        "sutta/mn/mn147.md",
+        "Majjhima Nikāya Sutta 147 (MN 147)",
+        "11M"
+      ],
+      [
+        280,
+        286,
+        "sutta/mn/mn148.md",
+        "Majjhima Nikāya Sutta 148 (MN 148)",
+        "11M"
+      ],
+      [
+        287,
+        289,
+        "sutta/mn/mn149.md",
+        "Majjhima Nikāya Sutta 149 (MN 149)",
+        "11M"
+      ],
+      [
+        290,
+        292,
+        "sutta/mn/mn150.md",
+        "Majjhima Nikāya Sutta 150 (MN 150)",
+        "11M"
+      ],
+      [
+        293,
+        297,
+        "sutta/mn/mn151.md",
+        "Majjhima Nikāya Sutta 151 (MN 151)",
+        "11M"
+      ],
+      [
+        298,
+        302,
+        "sutta/mn/mn152.md",
+        "Majjhima Nikāya Sutta 152 (MN 152)",
+        "11M"
+      ]
+    ],
+    "S 1": [
+      [
+        1,
+        240,
+        "sutta/sn/sn11.md",
+        "Saṃyutta Nikāya (SN 11)",
+        "12S1"
+      ]
+    ],
+    "S 2": [
+      [
+        1,
+        286,
+        "sutta/sn/sn21.md",
+        "Saṃyutta Nikāya (SN 21)",
+        "12S2"
+      ]
+    ],
+    "S 3": [
+      [
+        1,
+        279,
+        "sutta/sn/sn34.md",
+        "Saṃyutta Nikāya (SN 34)",
+        "13S3"
+      ]
+    ],
+    "S 4": [
+      [
+        1,
+        403,
+        "sutta/sn/sn44.md",
+        "Saṃyutta Nikāya (SN 44)",
+        "13S4"
+      ]
+    ],
+    "S 5": [
+      [
+        1,
+        478,
+        "sutta/sn/sn56.md",
+        "Saṃyutta Nikāya (SN 56)",
+        "14S5"
+      ]
+    ],
+    "Vin 2": [
+      [
+        1,
+        25,
+        "vinaya/cv01.md",
+        "Cullavagga Khandhaka 1",
+        "4V"
+      ],
+      [
+        26,
+        50,
+        "vinaya/cv02.md",
+        "Cullavagga Khandhaka 2",
+        "4V"
+      ],
+      [
+        51,
+        75,
+        "vinaya/cv03.md",
+        "Cullavagga Khandhaka 3",
+        "4V"
+      ],
+      [
+        76,
+        100,
+        "vinaya/cv04.md",
+        "Cullavagga Khandhaka 4",
+        "4V"
+      ],
+      [
+        101,
+        125,
+        "vinaya/cv05.md",
+        "Cullavagga Khandhaka 5",
+        "4V"
+      ],
+      [
+        126,
+        150,
+        "vinaya/cv06.md",
+        "Cullavagga Khandhaka 6",
+        "4V"
+      ],
+      [
+        151,
+        175,
+        "vinaya/cv07.md",
+        "Cullavagga Khandhaka 7",
+        "4V"
+      ],
+      [
+        176,
+        200,
+        "vinaya/cv08.md",
+        "Cullavagga Khandhaka 8",
+        "4V"
+      ],
+      [
+        201,
+        225,
+        "vinaya/cv09.md",
+        "Cullavagga Khandhaka 9",
+        "4V"
+      ],
+      [
+        226,
+        250,
+        "vinaya/cv10.md",
+        "Cullavagga Khandhaka 10",
+        "4V"
+      ],
+      [
+        251,
+        275,
+        "vinaya/cv11.md",
+        "Cullavagga Khandhaka 11",
+        "4V"
+      ],
+      [
+        276,
+        308,
+        "vinaya/cv12.md",
+        "Cullavagga Khandhaka 12",
+        "4V"
+      ]
+    ],
+    "Vin 1": [
+      [
+        1,
+        36,
+        "vinaya/mv01.md",
+        "Mahāvagga Khandhaka 1",
+        "3V"
+      ],
+      [
+        37,
+        72,
+        "vinaya/mv02.md",
+        "Mahāvagga Khandhaka 2",
+        "3V"
+      ],
+      [
+        73,
+        108,
+        "vinaya/mv03.md",
+        "Mahāvagga Khandhaka 3",
+        "3V"
+      ],
+      [
+        109,
+        144,
+        "vinaya/mv04.md",
+        "Mahāvagga Khandhaka 4",
+        "3V"
+      ],
+      [
+        145,
+        180,
+        "vinaya/mv05.md",
+        "Mahāvagga Khandhaka 5",
+        "3V"
+      ],
+      [
+        181,
+        216,
+        "vinaya/mv06.md",
+        "Mahāvagga Khandhaka 6",
+        "3V"
+      ],
+      [
+        217,
+        252,
+        "vinaya/mv07.md",
+        "Mahāvagga Khandhaka 7",
+        "3V"
+      ],
+      [
+        253,
+        288,
+        "vinaya/mv08.md",
+        "Mahāvagga Khandhaka 8",
+        "3V"
+      ],
+      [
+        289,
+        324,
+        "vinaya/mv09.md",
+        "Mahāvagga Khandhaka 9",
+        "3V"
+      ],
+      [
+        325,
+        360,
+        "vinaya/mv10.md",
+        "Mahāvagga Khandhaka 10",
+        "3V"
+      ]
+    ],
+    "Vin 5": [
+      [
+        1,
+        226,
+        "vinaya/parivara.md",
+        "Parivārapāḷi",
+        "5V"
+      ]
+    ],
+    "Vin 3": [
+      [
+        1,
+        66,
+        "vinaya/vb-pj.md",
+        "Suttavibhaṅga 1 - Pārājikakaṇḍa",
+        "1V"
+      ],
+      [
+        67,
+        132,
+        "vinaya/vb-ss.md",
+        "Suttavibhaṅga 1 - Saṃghādisesa",
+        "1V"
+      ],
+      [
+        133,
+        198,
+        "vinaya/vb-ay.md",
+        "Suttavibhaṅga 1 - Aniyata",
+        "1V"
+      ],
+      [
+        199,
+        266,
+        "vinaya/vb-np.md",
+        "Suttavibhaṅga 1 - Nissaggiyapācittiya",
+        "1V"
+      ]
+    ],
+    "Vin 4": [
+      [
+        1,
+        87,
+        "vinaya/vb-pc.md",
+        "Suttavibhaṅga 2 - Pācittiya",
+        "2V"
+      ],
+      [
+        88,
+        174,
+        "vinaya/vb-pd.md",
+        "Suttavibhaṅga 2 - Pāṭidesanīya",
+        "2V"
+      ],
+      [
+        175,
+        261,
+        "vinaya/vb-sk.md",
+        "Suttavibhaṅga 2 - Sekhiyavatta",
+        "2V"
+      ],
+      [
+        262,
+        351,
+        "vinaya/vb-bi.md",
+        "Suttavibhaṅga 2 - Bhikkhunīvibhaṅga",
+        "2V"
+      ]
+    ]
+  }
+}

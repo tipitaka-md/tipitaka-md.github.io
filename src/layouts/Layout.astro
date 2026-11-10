@@ -358,13 +358,13 @@ const jsonLdString = JSON.stringify({
       </div>
       <div class="modal-body">
         <label for="quick-jump-input" class="form-label">
-          Search by WT volume &amp; paragraph (e.g. <code>1V:0001</code>, <code>6D:0001</code>), book code (e.g. <code>1V</code>, <code>6D</code>), or title:
+          Search by PTS reference (e.g. <code>M I 1</code>, <code>D II 150</code>, <code>Vin III 1</code>, <code>Dhp 40</code>), WT paragraph (e.g. <code>1V:0001</code>, <code>6D:0001</code>), book code, or title:
         </label>
         <input
           type="search"
           id="quick-jump-input"
           class="form-input"
-          placeholder="Type 1V:0001, 6D:0001, 18Dh, Brahmajāla, or Mahāvibhaṅga…"
+          placeholder="Type M I 1, D II 150, 1V:0001, Dhp 40, Brahmajāla, or Mahāvibhaṅga…"
           autocomplete="off"
           spellcheck="false"
         />
@@ -462,6 +462,60 @@ const jsonLdString = JSON.stringify({
           return wtkParagraphs;
         }
 
+        let ptsReferences = null;
+        async function ensurePtsReferences() {
+          if (ptsReferences) return ptsReferences;
+          try {
+            const res = await fetch('/pts_references.json', { cache: 'no-store' });
+            ptsReferences = await res.json();
+          } catch {
+            ptsReferences = { volumes: {}, aliases: {}, volume_titles: {} };
+          }
+          return ptsReferences;
+        }
+
+        const ROMAN_TO_INT = {
+          i: 1, ii: 2, iii: 3, iv: 4, v: 5,
+          vi: 6, vii: 7, viii: 8, ix: 9, x: 10,
+          xi: 11, xii: 12
+        };
+
+        function parsePtsCitation(rawQuery, ptsData) {
+          if (!rawQuery || !ptsData || !ptsData.volumes) return null;
+          const q = rawQuery.trim().replace(/^PTS\s+/i, '');
+
+          // 1. Two-level citation: <Book> [sep] <Vol> [sep] <Page>
+          // e.g. "M I 1", "M.i.1", "M 1.1", "M 1 1", "Vin III 1", "D II 150", "Ja 1 10"
+          let match = q.match(/^([a-zA-Z\u0100-\u017F\u1E00-\u1EFF]+)\s*[:.\s,-]\s*([ivxIVX]+|\d+)\s*[:.\s,-]\s*(\d+)$/i);
+          if (match) {
+            const bookRaw = match[1].toUpperCase();
+            const volRaw = match[2].toLowerCase();
+            const pageNum = parseInt(match[3], 10);
+            const volNum = ROMAN_TO_INT[volRaw] || parseInt(volRaw, 10);
+            const canonicalBook = ptsData.aliases[bookRaw] || ptsData.aliases[stripDiacritics(bookRaw).toUpperCase()];
+            if (canonicalBook && volNum) {
+              const volKey = `${canonicalBook} ${volNum}`;
+              if (ptsData.volumes[volKey]) {
+                return { volKey, pageNum, originalQuery: rawQuery };
+              }
+            }
+          }
+
+          // 2. Single-level citation: <Book> [sep] <Page>
+          // e.g. "Dhp 40", "Dhp.40", "Ud 15", "Sn 50", "Vism 120", "Mil 25"
+          match = q.match(/^([a-zA-Z\u0100-\u017F\u1E00-\u1EFF]+)\s*[:.\s,-]\s*(\d+)$/i);
+          if (match) {
+            let bookRaw = match[1].toUpperCase();
+            if (bookRaw === 'SN') bookRaw = 'SNP';
+            const pageNum = parseInt(match[2], 10);
+            const canonicalBook = ptsData.aliases[bookRaw] || ptsData.aliases[stripDiacritics(bookRaw).toUpperCase()];
+            if (canonicalBook && ptsData.volumes[canonicalBook]) {
+              return { volKey: canonicalBook, pageNum, originalQuery: rawQuery };
+            }
+          }
+          return null;
+        }
+
         function stripDiacritics(str) {
           return (str || '')
             .normalize('NFKD')
@@ -474,6 +528,36 @@ const jsonLdString = JSON.stringify({
           const qNorm = stripDiacritics(q);
           const htmlParts = [];
           let wtkMatchCount = 0;
+
+          // Check for PTS reference match (e.g. "M I 1", "M.i.1", "D II 150", "Vin III 1", "Dhp 40")
+          const isPtsCandidate = /^(?:PTS\s+)?[a-zA-Z\u0100-\u017F\u1E00-\u1EFF]+\s*[:.\s,-]\s*(?:[ivxIVX]+|\d+)/i.test(q);
+          if (isPtsCandidate) {
+            const ptsData = await ensurePtsReferences();
+            const ptsMatch = parsePtsCitation(q, ptsData);
+            if (ptsMatch) {
+              const { volKey, pageNum } = ptsMatch;
+              const sections = ptsData.volumes[volKey] || [];
+              const foundSec = sections.find(([start, end]) => pageNum >= start && pageNum <= end);
+              if (foundSec) {
+                const [start, end, filePath, title, bookCode] = foundSec;
+                const paddedPage = String(pageNum).padStart(3, '0');
+                const volTitle = (ptsData.volume_titles && ptsData.volume_titles[volKey]) || volKey;
+                const targetUrl = `/reader.html?edition=pts&book=${encodeURIComponent(bookCode)}&file=${encodeURIComponent(filePath)}#page-${paddedPage}`;
+                htmlParts.push(`
+                  <div class="quick-jump-group">
+                    <div class="quick-jump-group-title">🇬🇧 PTS Reference Match</div>
+                    <a href="${targetUrl}" class="quick-jump-item" style="border-left: 3px solid #0284c7;">
+                      <div>
+                        <strong>PTS ${volKey} : p. ${pageNum}</strong> <span class="badge-code">${volTitle}</span>
+                        <div class="quick-jump-sub">${title} (pp. ${start}–${end})</div>
+                      </div>
+                      <span class="badge-pill" style="background: rgba(2, 132, 199, 0.15); color: #0284c7; border-color: rgba(2, 132, 199, 0.3);">Jump to PTS Page →</span>
+                    </a>
+                  </div>
+                `);
+              }
+            }
+          }
 
           // Check for WT volume:paragraph citation (e.g. "1V:0001", "1V:41", "6D:0189", "6D:189")
           const wtkMatch = q.match(/^(?:WT\s*|WTK\s*|WTE\s*)?([0-9]{1,2}[A-Za-z0-9]+)\s*[:.]\s*(\d+)$/i);
