@@ -64,6 +64,7 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
    - Standalone static HTML5/CSS3/ES6 site deployed directly on GitHub Pages.
    - Texts are fetched on demand from GitHub, with jsDelivr as a fallback. Reading requires an internet connection.
    - [`public/sw.js`](public/sw.js) retires the legacy cache-first service worker and its `tipitaka-v1` cache, then refreshes open pages. It must remain available at `/sw.js` for returning visitors.
+   - Open pages check the deployed build version on return and periodically while visible, then refresh when a newer build is available. GitHub Pages controls HTTP cache headers; offline browsers and older pages without this check cannot be forced to update.
 
 ---
 

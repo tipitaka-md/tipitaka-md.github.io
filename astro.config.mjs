@@ -27,6 +27,9 @@ export default defineConfig({
     }),
   ],
   vite: {
+    define: {
+      __SITE_BUILD_ID__: JSON.stringify(Date.now().toString()),
+    },
     plugins: [
       {
         name: 'rewrite-tipitaka-html-in-dev',

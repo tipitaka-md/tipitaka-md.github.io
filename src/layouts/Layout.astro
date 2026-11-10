@@ -115,12 +115,49 @@ const jsonLdString = JSON.stringify({
     <meta name="robots" content="index, follow" />
     <meta name="color-scheme" content="light dark" />
 
-    <script is:inline>
+    <script is:inline define:vars={{ siteBuildId: __SITE_BUILD_ID__ }}>
       const refreshedUrl = new URL(window.location.href);
       if (refreshedUrl.searchParams.has('_sw_refresh')) {
         refreshedUrl.searchParams.delete('_sw_refresh');
         history.replaceState(history.state, '', refreshedUrl.href);
       }
+
+      (() => {
+        const retryDelay = 10 * 60 * 1000;
+        const checkInterval = 60 * 1000;
+        let lastCheck = 0;
+        let checking = false;
+
+        async function checkForUpdate() {
+          if (checking || document.visibilityState !== 'visible' || Date.now() - lastCheck < checkInterval) return;
+          checking = true;
+          lastCheck = Date.now();
+          try {
+            const response = await fetch('/site-version.json', { cache: 'no-store' });
+            if (!response.ok) throw new Error(`Version check failed: HTTP ${response.status}`);
+            const data = await response.json();
+            if (typeof data.version !== 'string' || !data.version) throw new Error('Invalid site version');
+            if (data.version === siteBuildId) return;
+
+            const key = 'tipitaka-update-attempt';
+            const previous = JSON.parse(sessionStorage.getItem(key) || 'null');
+            if (previous?.version === data.version && Date.now() - previous.time < retryDelay) return;
+            sessionStorage.setItem(key, JSON.stringify({ version: data.version, time: Date.now() }));
+            const url = new URL(window.location.href);
+            url.searchParams.set('_sw_refresh', Date.now().toString());
+            window.location.replace(url.href);
+          } catch (error) {
+            console.warn('Unable to check for a site update:', error);
+          } finally {
+            checking = false;
+          }
+        }
+
+        window.addEventListener('pageshow', checkForUpdate);
+        document.addEventListener('visibilitychange', checkForUpdate);
+        window.addEventListener('focus', checkForUpdate);
+        window.setInterval(checkForUpdate, checkInterval);
+      })();
     </script>
 
     <!-- Canonical URL -->
