@@ -1243,7 +1243,7 @@ import Layout from '../layouts/Layout.astro';
     // 1. Fetch dynamically from GitHub raw
     try {
       const rawUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${cleanPath}`;
-      const res = await fetch(rawUrl);
+      const res = await fetch(rawUrl, { cache: 'no-store' });
       if (res.ok) {
         const text = await res.text();
         if (text && !text.includes('<!DOCTYPE html>')) {
@@ -1258,7 +1258,7 @@ import Layout from '../layouts/Layout.astro';
     // 2. Fallback dynamically to jsDelivr CDN
     try {
       const cdnUrl = `https://cdn.jsdelivr.net/gh/tipitaka-md/${repoShort}@${branch}/${cleanPath}`;
-      const res = await fetch(cdnUrl);
+      const res = await fetch(cdnUrl, { cache: 'no-store' });
       if (res.ok) {
         const text = await res.text();
         if (text && !text.includes('<!DOCTYPE html>')) {
@@ -2193,7 +2193,7 @@ import Layout from '../layouts/Layout.astro';
   // Initialization
   async function init() {
     try {
-      const res = await fetch('/catalog.json');
+      const res = await fetch('/catalog.json', { cache: 'no-store' });
       if (res.ok) {
         catalog = await res.json();
       }

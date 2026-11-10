@@ -1394,7 +1394,7 @@ const breadcrumbs = [
     async function fetchShard(code) {
       if (cache.has(code)) return cache.get(code);
       try {
-        const res = await fetch('/data/words/' + code + '.json');
+        const res = await fetch('/data/words/' + code + '.json', { cache: 'no-store' });
         if (!res.ok) return [];
         const data = await res.json();
         cache.set(code, data);

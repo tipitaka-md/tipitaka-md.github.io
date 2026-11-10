@@ -30,8 +30,8 @@ const {
   tocSectionPath = '',
   lang = 'en',
   ogType = 'website',
-  ogImage = '/images/wat-arun-og.jpg',
-  ogImageAlt = 'Wat Arun in Bangkok, Thailand',
+  ogImage = '/images/lotus-og.jpg',
+  ogImageAlt = 'Lotus flower',
   keywords = 'Tipitaka Editions in Markdown, Pāḷi Tipiṭaka, tipitaka-md, World Tipitaka Edition, WTK, Pali Text Society, PTS, Buddha Jayanthi, BJT, Chaṭṭha Saṅgāyana, CST, Royal Thai Edition, RTE, Siam Rath, Vinayapiṭaka, Suttantapiṭaka, Abhidhammapiṭaka, Markdown',
   prevUrl = '',
   nextUrl = '',
@@ -376,7 +376,7 @@ const jsonLdString = JSON.stringify({
         async function ensureCatalogData() {
           if (catalogData) return catalogData;
           try {
-            const res = await fetch('/catalog.json');
+            const res = await fetch('/catalog.json', { cache: 'no-store' });
             catalogData = await res.json();
           } catch {
             catalogData = { structure: [] };
@@ -388,7 +388,7 @@ const jsonLdString = JSON.stringify({
         async function ensureWtkParagraphs() {
           if (wtkParagraphs) return wtkParagraphs;
           try {
-            const res = await fetch('/wtk_paragraphs.json');
+            const res = await fetch('/wtk_paragraphs.json', { cache: 'no-store' });
             wtkParagraphs = await res.json();
           } catch {
             wtkParagraphs = {};
@@ -690,13 +690,15 @@ const jsonLdString = JSON.stringify({
         async function loadManifest() {
           if (manifest) return manifest;
           if (!manifestPromise) {
-            manifestPromise = fetch('/data/dpd/manifest.json')
+            manifestPromise = fetch('/data/dpd/manifest.json', { cache: 'no-store' })
               .then((res) => {
                 if (!res.ok) throw new Error('Local manifest not found');
                 return res.json();
               })
               .catch(() => {
-                return fetch('https://tipitaka2500.github.io/data/dpd/manifest.json')
+                return fetch('https://tipitaka2500.github.io/data/dpd/manifest.json', {
+                  cache: 'no-store',
+                })
                   .then((res) => {
                     if (!res.ok) throw new Error('Remote manifest not found');
                     return res.json();
@@ -735,9 +737,11 @@ const jsonLdString = JSON.stringify({
         async function loadShard(fileId) {
           if (shardCache.has(fileId)) return shardCache.get(fileId);
           try {
-            let res = await fetch(`/data/dpd/${fileId}.json`);
+            let res = await fetch(`/data/dpd/${fileId}.json`, { cache: 'no-store' });
             if (!res.ok) {
-              res = await fetch(`https://tipitaka2500.github.io/data/dpd/${fileId}.json`);
+              res = await fetch(`https://tipitaka2500.github.io/data/dpd/${fileId}.json`, {
+                cache: 'no-store',
+              });
             }
             if (!res.ok) return null;
             const data = await res.json();
