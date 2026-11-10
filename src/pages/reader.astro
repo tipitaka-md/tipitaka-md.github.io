@@ -82,6 +82,16 @@ import Layout from '../layouts/Layout.astro';
 
         <!-- Controls Group -->
         <div class="reader-controls">
+          <!-- Quick Page Navigation -->
+          <div class="header-nav-btns" role="group" aria-label="Page navigation">
+            <a href="#" id="header-prev-btn" class="header-nav-btn disabled" title="Previous text (Alt+Left or [)" rel="prev">
+              ← Prev
+            </a>
+            <a href="#" id="header-next-btn" class="header-nav-btn disabled" title="Next text (Alt+Right or ])" rel="next">
+              Next →
+            </a>
+          </div>
+
           <!-- View Mode (Single vs Side-by-Side Compare) -->
           <div class="control-group">
             <label for="view-mode-select" class="visually-hidden">View Mode</label>
@@ -185,9 +195,27 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Bottom Navigation -->
-      <nav aria-label="Sutta navigation" class="reader-nav-footer">
-        <a href="#" id="parent-book-btn" class="nav-btn parent-btn">
-          ↑ Book Index
+      <nav aria-label="Section navigation" class="reader-nav-footer">
+        <a href="#" id="footer-prev-btn" class="nav-btn nav-btn-prev disabled" rel="prev" title="Previous text">
+          <span class="nav-arrow" aria-hidden="true">←</span>
+          <span class="nav-text">
+            <span class="nav-hint">Previous</span>
+            <span id="footer-prev-title" class="nav-title">Previous</span>
+          </span>
+        </a>
+        <a href="#" id="parent-book-btn" class="nav-btn nav-btn-parent" title="Parent book / chapter index">
+          <span class="nav-arrow" aria-hidden="true">↑</span>
+          <span class="nav-text">
+            <span class="nav-hint">Index</span>
+            <span id="parent-book-title" class="nav-title">Book Index</span>
+          </span>
+        </a>
+        <a href="#" id="footer-next-btn" class="nav-btn nav-btn-next disabled" rel="next" title="Next text">
+          <span class="nav-text">
+            <span class="nav-hint">Next</span>
+            <span id="footer-next-title" class="nav-title">Next</span>
+          </span>
+          <span class="nav-arrow" aria-hidden="true">→</span>
         </a>
       </nav>
     </main>
@@ -517,20 +545,58 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 700;
   }
 
+  .header-nav-btns {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--bg-body);
+    overflow: hidden;
+  }
+
+  .header-nav-btn {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-body);
+    text-decoration: none;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .header-nav-btn:first-child {
+    border-right: 1px solid var(--border-color);
+  }
+
+  .header-nav-btn:hover:not(.disabled) {
+    color: var(--primary-color);
+    background-color: var(--bg-hover);
+  }
+
+  .header-nav-btn.disabled,
+  .nav-btn.disabled {
+    opacity: 0.35;
+    pointer-events: none;
+    cursor: default;
+  }
+
   .reader-nav-footer {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--border-color);
+    align-items: center;
   }
 
   .nav-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1.25rem;
-    border-radius: 6px;
+    gap: 0.6rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
     border: 1px solid var(--border-color);
     background-color: var(--bg-body);
     color: var(--text-body);
@@ -538,6 +604,74 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 600;
     font-size: 0.9rem;
     transition: all 0.15s ease;
+    min-width: 0;
+  }
+
+  .nav-btn-prev {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .nav-btn-parent {
+    justify-self: center;
+    text-align: center;
+  }
+
+  .nav-btn-next {
+    justify-self: end;
+    text-align: right;
+  }
+
+  .nav-btn:hover:not(.disabled) {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background-color: var(--bg-hover);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .nav-text {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .nav-hint {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+  }
+
+  .nav-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 240px;
+    font-size: 0.88rem;
+  }
+
+  .nav-arrow {
+    font-size: 1.15rem;
+    line-height: 1;
+    color: var(--primary-color);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 700px) {
+    .reader-nav-footer {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+    .nav-btn {
+      width: 100%;
+      justify-content: center;
+    }
+    .nav-title {
+      max-width: none;
+    }
   }
 
   .nav-btn:hover {
@@ -859,6 +993,7 @@ import Layout from '../layouts/Layout.astro';
   let currentLeftMd = '';
   let currentRightFullMd = '';
   let currentRightMd = '';
+  let currentBaseSectionMd = '';
 
   /**
    * Helper to trigger direct browser download of Markdown text
@@ -1285,9 +1420,15 @@ import Layout from '../layouts/Layout.astro';
     }
 
     const edConfig = catalog?.editions[edition];
-    const repo = edConfig ? edConfig.repo : 'tipitaka-md/tipitaka2500';
+    let repo = edConfig ? edConfig.repo : 'tipitaka-md/tipitaka2500';
+    let branch = edConfig ? edConfig.branch : 'main';
+
+    // Canonical directory / menu files under tipitaka/ are hosted centrally in tipitaka2500
+    if (cleanPath.startsWith('tipitaka/') && edition !== 'tipitaka2500') {
+      repo = 'tipitaka-md/tipitaka2500';
+      branch = 'main';
+    }
     const repoShort = repo.replace(/^tipitaka-md\//, '');
-    const branch = edConfig ? edConfig.branch : 'main';
 
     // 1. Fetch dynamically from GitHub raw
     try {
@@ -1465,6 +1606,39 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /**
+   * Check if a markdown page is an index/menu page (table of contents)
+   * rather than a canonical Pali text page.
+   */
+  function isMenuPage(md: string, filePath?: string): boolean {
+    const clean = (filePath || '').replace(/^\/+/, '');
+    // Root book index: tipitaka/6D.md, tipitaka/1V.md, etc.
+    if (/^tipitaka\/[0-9]+[A-Za-z0-9]*\.md$/i.test(clean) || clean === 'tipitaka/index.md' || clean === 'index.md') {
+      return true;
+    }
+    if (!md) return false;
+
+    // Filter out comments, navigation breadcrumbs, etc.
+    const lines = md.split('\n')
+      .map(l => l.trim())
+      .filter(l => l && !l.startsWith('<!--') && !l.startsWith('<a ') && !l.startsWith('[Home]') && !l.startsWith('[Go to'));
+
+    if (lines.length === 0) return true;
+
+    // Non-header, non-blockquote lines (actual body lines)
+    const contentLines = lines.filter(l => !l.startsWith('#') && !l.startsWith('>'));
+    if (contentLines.length === 0) return true; // Only headings
+
+    // Check how many content lines are list links to .md files
+    const linkLines = contentLines.filter(l =>
+      /^\*+\s+\[.+\]\(.+\.md(?:#[^)]*)?\)/.test(l) ||
+      /^[-*]\s+\[.+\]\(.+\.md(?:#[^)]*)?\)/.test(l) ||
+      /^\d+\.\s+\[.+\]\(.+\.md(?:#[^)]*)?\)/.test(l)
+    );
+
+    return linkLines.length >= 1 && (linkLines.length / contentLines.length) >= 0.35;
+  }
+
+  /**
    * Look up file path for a given book/sutta in an edition
    */
   function getFilePathForEdition(edition: string, bookCode: string, suttaId?: string): string {
@@ -1494,15 +1668,18 @@ import Layout from '../layouts/Layout.astro';
             if (book.editions && book.editions[edition]) {
               return book.editions[edition];
             }
-            if (book.sections && book.sections.length > 0) {
-              const s0 = book.sections[0];
-              if (s0[edition]) return s0[edition] as string;
-              if (s0.editions && (s0.editions as any)[edition]) return (s0.editions as any)[edition];
-            }
-            if (book.suttas && book.suttas.length > 0) {
-              const s0 = book.suttas[0];
-              if (s0.editions && s0.editions[edition]) {
-                return s0.editions[edition];
+            // Only fall back to first section or sutta if a specific suttaId was requested
+            if (suttaId) {
+              if (book.sections && book.sections.length > 0) {
+                const s0 = book.sections[0];
+                if (s0[edition]) return s0[edition] as string;
+                if (s0.editions && (s0.editions as any)[edition]) return (s0.editions as any)[edition];
+              }
+              if (book.suttas && book.suttas.length > 0) {
+                const s0 = book.suttas[0];
+                if (s0.editions && s0.editions[edition]) {
+                  return s0.editions[edition];
+                }
               }
             }
           }
@@ -1510,7 +1687,7 @@ import Layout from '../layouts/Layout.astro';
       }
     }
 
-    // 3. Fallback
+    // 3. Fallback: return book-level menu path
     return `tipitaka/${normCode}.md`;
   }
 
@@ -1547,6 +1724,82 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /**
+   * Smooth client-side SPA navigation between reader texts and books
+   */
+  function navigateToUrl(href: string) {
+    if (!href || href === '#' || href.startsWith('javascript:')) return;
+    if (href === '/') {
+      window.location.href = '/';
+      return;
+    }
+    const url = new URL(href, window.location.origin);
+    if (!url.pathname.endsWith('/reader.html') && url.pathname !== '/reader.html') {
+      window.location.href = href;
+      return;
+    }
+
+    const params = url.searchParams;
+    singleShowFull = false;
+    rightShowFull = false;
+
+    const newEdition = params.get('edition');
+    const newFile = params.get('file');
+    const newBook = params.get('book');
+    const newSutta = params.get('sutta');
+
+    if (newEdition) currentEdition = newEdition;
+
+    if (newFile) {
+      if (newFile.startsWith('tipitaka/')) {
+        currentSectionRef = newFile;
+      } else {
+        currentSectionRef = '';
+      }
+      const match = newFile.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
+      if (match) {
+        currentBookCode = normalizeBookCode(match[1]);
+      } else if (newBook) {
+        currentBookCode = normalizeBookCode(newBook);
+      }
+      currentSuttaId = newSutta || detectSuttaFromPath(newFile);
+
+      if (currentEdition === 'tipitaka2500' || !newFile.startsWith('tipitaka/')) {
+        currentFilePath = newFile;
+      } else {
+        currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+      }
+    } else if (newSutta) {
+      currentSuttaId = newSutta;
+      if (newBook) currentBookCode = normalizeBookCode(newBook);
+      currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+      currentSectionRef = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
+    } else if (newBook) {
+      currentBookCode = normalizeBookCode(newBook);
+      currentSuttaId = '';
+      currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, '');
+      currentSectionRef = '';
+    }
+
+    const drawerToggle = document.getElementById('sidebar-drawer-toggle') as HTMLInputElement | null;
+    if (drawerToggle) drawerToggle.checked = false;
+
+    updateActiveSidebarLink();
+    updateActiveEditionTabs();
+
+    const targetRef = currentSectionRef || currentFilePath;
+    const hashStr = url.hash || '';
+    window.history.pushState(
+      {},
+      '',
+      `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}${targetRef ? `&file=${encodeURIComponent(targetRef)}` : ''}&mode=${viewMode}&diff=${diffEnabled ? '1' : '0'}&script=${currentScript}${hashStr}`
+    );
+    updateView();
+    if (!hashStr) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  /**
    * Intercept clicks on sidebar links for smooth client-side navigation
    */
   function attachSidebarLinkHandlers() {
@@ -1555,59 +1808,10 @@ import Layout from '../layouts/Layout.astro';
       link.addEventListener('click', (e) => {
         const href = (link as HTMLAnchorElement).getAttribute('href');
         if (!href) return;
-
         const url = new URL(href, window.location.origin);
         if (url.pathname === '/reader.html' || url.pathname.endsWith('/reader.html')) {
           e.preventDefault();
-          const targetBook = url.searchParams.get('book');
-          const targetFile = url.searchParams.get('file');
-          const targetSutta = url.searchParams.get('sutta');
-
-          singleShowFull = false;
-          rightShowFull = false;
-
-          if (targetFile) {
-            if (targetFile.startsWith('tipitaka/')) {
-              currentSectionRef = targetFile;
-            } else {
-              currentSectionRef = '';
-            }
-            const m = targetFile.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
-            if (m) currentBookCode = normalizeBookCode(m[1]);
-            currentSuttaId = targetSutta || detectSuttaFromPath(targetFile);
-
-            if (currentEdition === 'tipitaka2500' || !targetFile.startsWith('tipitaka/')) {
-              currentFilePath = targetFile;
-            } else {
-              currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
-            }
-          } else if (targetSutta) {
-            currentSuttaId = targetSutta;
-            if (targetBook) currentBookCode = normalizeBookCode(targetBook);
-            currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
-            currentSectionRef = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
-          } else if (targetBook) {
-            currentBookCode = normalizeBookCode(targetBook);
-            currentSuttaId = '';
-            currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, '');
-            currentSectionRef = '';
-          }
-
-          const drawerToggle = document.getElementById('sidebar-drawer-toggle') as HTMLInputElement;
-          if (drawerToggle) drawerToggle.checked = false;
-
-          updateActiveSidebarLink();
-          const targetRef = currentSectionRef || currentFilePath;
-          const hashStr = url.hash || '';
-          window.history.pushState(
-            {},
-            '',
-            `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}${targetRef ? `&file=${encodeURIComponent(targetRef)}` : ''}&mode=${viewMode}&diff=${diffEnabled ? '1' : '0'}&script=${currentScript}${hashStr}`
-          );
-          updateView();
-          if (!hashStr) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }
+          navigateToUrl(href);
         }
       });
     });
@@ -1625,45 +1829,7 @@ import Layout from '../layouts/Layout.astro';
           return;
         }
         e.preventDefault();
-        const url = new URL(href, window.location.origin);
-        const params = url.searchParams;
-
-        singleShowFull = false;
-        rightShowFull = false;
-
-        const newFile = params.get('file');
-        const newEdition = params.get('edition');
-        if (newEdition) currentEdition = newEdition;
-        if (newFile) {
-          if (newFile.startsWith('tipitaka/')) {
-            currentSectionRef = newFile;
-          }
-          const match = newFile.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
-          if (match) {
-            currentBookCode = normalizeBookCode(match[1]);
-          }
-          currentSuttaId = detectSuttaFromPath(newFile);
-
-          if (currentEdition === 'tipitaka2500' || !newFile.startsWith('tipitaka/')) {
-            currentFilePath = newFile;
-          } else {
-            currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
-          }
-        }
-
-        const targetRef = currentSectionRef || currentFilePath;
-        const hashStr = url.hash || '';
-        window.history.pushState(
-          {},
-          '',
-          `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}${targetRef ? `&file=${encodeURIComponent(targetRef)}` : ''}&mode=${viewMode}&diff=${diffEnabled ? '1' : '0'}&script=${currentScript}${hashStr}`
-        );
-        updateActiveSidebarLink();
-        updateActiveEditionTabs();
-        updateView();
-        if (!hashStr) {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        navigateToUrl(href);
       });
     });
   }
@@ -1682,12 +1848,6 @@ import Layout from '../layouts/Layout.astro';
 
     if (loadingEl) loadingEl.style.display = 'flex';
 
-    // Update diff legend visibility
-    if (diffLegend) {
-      const showLegend = diffEnabled || viewMode === 'split';
-      diffLegend.style.display = showLegend ? 'flex' : 'none';
-    }
-
     // Retrieve Book and Pitaka metadata
     const bookInfo = getBookInfo(currentBookCode);
     const bookTitleStr = bookInfo ? `${currentBookCode} ${bookInfo.title}` : currentBookCode;
@@ -1699,10 +1859,33 @@ import Layout from '../layouts/Layout.astro';
       cleanCurrentPath === `tipitaka/${currentBookCode}.md` ||
       cleanCurrentPath.endsWith(`/${currentBookCode}.md`);
 
+    const targetFile = currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+    const targetMd = await fetchMarkdown(currentEdition, targetFile);
+    currentSingleFullMd = targetMd;
+
+    const isMenu =
+      isRootBook ||
+      cleanCurrentPath === `tipitaka/${currentBookCode}.md` ||
+      cleanCurrentPath.endsWith(`/${currentBookCode}.md`) ||
+      isMenuPage(targetMd, targetFile) ||
+      (currentSectionRef ? isMenuPage('', currentSectionRef) : false);
+
+    // Update diff legend visibility: hide on menu pages
+    if (diffLegend) {
+      const showLegend = !isMenu && (diffEnabled || viewMode === 'split');
+      diffLegend.style.display = showLegend ? 'flex' : 'none';
+    }
+
+    updateViewModeDropdown();
+
     // Calculate file URLs for single and split panes
     const edConfig = catalog?.editions[currentEdition];
-    const repo = edConfig ? edConfig.repo : 'tipitaka-md/tipitaka2500';
-    const branch = edConfig ? edConfig.branch : 'main';
+    let repo = edConfig ? edConfig.repo : 'tipitaka-md/tipitaka2500';
+    let branch = edConfig ? edConfig.branch : 'main';
+    if (isMenu && cleanCurrentPath.startsWith('tipitaka/') && currentEdition !== 'tipitaka2500') {
+      repo = 'tipitaka-md/tipitaka2500';
+      branch = 'main';
+    }
 
     const rawUrl = `https://raw.githubusercontent.com/${repo}/${branch}/${cleanCurrentPath}`;
     const githubUrl = `https://github.com/${repo}/blob/${branch}/${cleanCurrentPath}`;
@@ -1713,7 +1896,22 @@ import Layout from '../layouts/Layout.astro';
     if (rawLink) rawLink.href = rawUrl;
     if (githubLink) githubLink.href = githubUrl;
 
-    if (viewMode === 'split') {
+    if (isMenu) {
+      // Menu page: render table of contents without elision or diffing
+      if (splitPanesView) splitPanesView.style.display = 'none';
+      if (singlePaneView) singlePaneView.style.display = 'block';
+
+      currentSingleMd = targetMd;
+      currentBaseSectionMd = targetMd;
+
+      if (mainContentEl) {
+        if (showRawMarkdown) {
+          mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(targetMd)}</code></pre>`;
+        } else {
+          mainContentEl.innerHTML = convertMarkdownToHtml(targetMd, targetFile, currentEdition, 'single');
+        }
+      }
+    } else if (viewMode === 'split') {
       if (singlePaneView) singlePaneView.style.display = 'none';
       if (splitPanesView) splitPanesView.style.display = 'flex';
 
@@ -1728,6 +1926,7 @@ import Layout from '../layouts/Layout.astro';
       currentLeftFullMd = baseMd;
       currentRightFullMd = compareMd;
       currentLeftMd = baseMd;
+      currentBaseSectionMd = baseMd;
 
       const sectionTitle = extractTitleFromMarkdown(baseMd) || (currentSuttaId ? currentSuttaId.toUpperCase() : cleanCurrentPath.split('/').pop() || '');
 
@@ -1798,10 +1997,6 @@ import Layout from '../layouts/Layout.astro';
       if (splitPanesView) splitPanesView.style.display = 'none';
       if (singlePaneView) singlePaneView.style.display = 'block';
 
-      const targetFile = currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
-      const targetMd = await fetchMarkdown(currentEdition, targetFile);
-      currentSingleFullMd = targetMd;
-
       let singleRenderSource = targetMd;
       if (currentEdition === 'pts') {
         singleRenderSource = cleanPtsForDisplay(singleRenderSource);
@@ -1810,6 +2005,7 @@ import Layout from '../layouts/Layout.astro';
       if (!isRootBook && currentEdition !== 'tipitaka2500') {
         const baseFile = currentSectionRef || (currentFilePath.startsWith('tipitaka/') ? currentFilePath : '') || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
         const baseMd = await fetchMarkdown('tipitaka2500', baseFile);
+        currentBaseSectionMd = baseMd;
         const sectionTitle = extractTitleFromMarkdown(baseMd) || (currentSuttaId ? currentSuttaId.toUpperCase() : cleanCurrentPath.split('/').pop() || '');
 
         if (!singleShowFull) {
@@ -1837,6 +2033,7 @@ import Layout from '../layouts/Layout.astro';
       } else {
         // currentEdition === 'tipitaka2500'
         currentSingleMd = targetMd;
+        currentBaseSectionMd = targetMd;
         let renderMd = targetMd;
         if (diffEnabled && !isRootBook) {
           const compFile = getFilePathForEdition(compareEdition, currentBookCode, currentSuttaId);
@@ -1922,14 +2119,176 @@ import Layout from '../layouts/Layout.astro';
     }
   }
 
+  function getAllCanonicalBooks(): Array<{ code: string; title: string }> {
+    if (!catalog) return [];
+    const books: Array<{ code: string; title: string }> = [];
+    for (const p of catalog.structure) {
+      for (const b of p.books) {
+        books.push({ code: b.code, title: b.title });
+      }
+    }
+    return books;
+  }
+
   /**
-   * Update bottom navigation buttons
+   * Update header and bottom navigation buttons (previous, next, and parent)
    */
   function updateNavigationButtons() {
-    const parentBtn = document.getElementById('parent-book-btn') as HTMLAnchorElement;
+    const headerPrevBtn = document.getElementById('header-prev-btn') as HTMLAnchorElement | null;
+    const headerNextBtn = document.getElementById('header-next-btn') as HTMLAnchorElement | null;
+    const footerPrevBtn = document.getElementById('footer-prev-btn') as HTMLAnchorElement | null;
+    const footerNextBtn = document.getElementById('footer-next-btn') as HTMLAnchorElement | null;
+    const footerPrevTitle = document.getElementById('footer-prev-title');
+    const footerNextTitle = document.getElementById('footer-next-title');
+    const parentBtn = document.getElementById('parent-book-btn') as HTMLAnchorElement | null;
+    const parentTitle = document.getElementById('parent-book-title');
+
+    const cleanCurrentPath = (currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId)).replace(/^\/+/, '');
+    const isRootBook =
+      !currentFilePath ||
+      cleanCurrentPath === `tipitaka/${currentBookCode}.md` ||
+      cleanCurrentPath.endsWith(`/${currentBookCode}.md`);
+
+    let prevNav: { href: string; title: string } | null = null;
+    let nextNav: { href: string; title: string } | null = null;
+    let parentNav: { href: string; title: string } = {
+      href: `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}`,
+      title: `${currentBookCode} Index`
+    };
+
+    const allBooks = getAllCanonicalBooks();
+    const currentBookIdx = allBooks.findIndex(
+      b => b.code.toLowerCase() === normalizeBookCode(currentBookCode).toLowerCase()
+    );
+
+    // 1. Try extracting [Go to previous/next page] from canonical markdown
+    const mdToCheck = currentBaseSectionMd || currentSingleFullMd || currentSingleMd || currentLeftFullMd;
+    const fromPath = currentSectionRef || (currentFilePath.startsWith('tipitaka/') ? currentFilePath : '') || `tipitaka/${currentBookCode}.md`;
+
+    if (mdToCheck) {
+      const prevMatch = mdToCheck.match(/\[Go to previous page\s*\(([^)]+)\)\]\(([^)]+)\)/i);
+      const nextMatch = mdToCheck.match(/\[Go to next page\s*\(([^)]+)\)\]\(([^)]+)\)/i);
+      const parentMatch = mdToCheck.match(/\[Go to parent page\s*\(([^)]+)\)\]\(([^)]+)\)/i);
+
+      if (prevMatch) {
+        prevNav = {
+          title: prevMatch[1].trim(),
+          href: resolveMarkdownLink(prevMatch[2].trim(), fromPath, currentEdition)
+        };
+      }
+      if (nextMatch) {
+        nextNav = {
+          title: nextMatch[1].trim(),
+          href: resolveMarkdownLink(nextMatch[2].trim(), fromPath, currentEdition)
+        };
+      }
+      if (parentMatch) {
+        parentNav = {
+          title: parentMatch[1].trim(),
+          href: resolveMarkdownLink(parentMatch[2].trim(), fromPath, currentEdition)
+        };
+      }
+    }
+
+    // 2. If at root book (or prev/next not in markdown), fall back to canonical book list
+    if (isRootBook) {
+      parentNav = {
+        href: '/',
+        title: 'Canon Home'
+      };
+      if (currentBookIdx > 0) {
+        const pBook = allBooks[currentBookIdx - 1];
+        prevNav = {
+          title: `${pBook.code} ${pBook.title}`,
+          href: `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(pBook.code)}`
+        };
+      }
+      if (currentBookIdx >= 0 && currentBookIdx < allBooks.length - 1) {
+        const nBook = allBooks[currentBookIdx + 1];
+        nextNav = {
+          title: `${nBook.code} ${nBook.title}`,
+          href: `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(nBook.code)}`
+        };
+      }
+    }
+
+    // Update Previous button UI
+    if (prevNav) {
+      if (headerPrevBtn) {
+        headerPrevBtn.href = prevNav.href;
+        headerPrevBtn.classList.remove('disabled');
+        headerPrevBtn.removeAttribute('aria-disabled');
+        headerPrevBtn.title = `Previous: ${prevNav.title} (Alt+Left or [)`;
+      }
+      if (footerPrevBtn) {
+        footerPrevBtn.href = prevNav.href;
+        footerPrevBtn.classList.remove('disabled');
+        footerPrevBtn.removeAttribute('aria-disabled');
+        footerPrevBtn.title = `Previous: ${prevNav.title}`;
+      }
+      if (footerPrevTitle) {
+        footerPrevTitle.textContent = prevNav.title;
+      }
+    } else {
+      if (headerPrevBtn) {
+        headerPrevBtn.href = '#';
+        headerPrevBtn.classList.add('disabled');
+        headerPrevBtn.setAttribute('aria-disabled', 'true');
+        headerPrevBtn.title = 'No previous text';
+      }
+      if (footerPrevBtn) {
+        footerPrevBtn.href = '#';
+        footerPrevBtn.classList.add('disabled');
+        footerPrevBtn.setAttribute('aria-disabled', 'true');
+        footerPrevBtn.title = 'Beginning of book';
+      }
+      if (footerPrevTitle) {
+        footerPrevTitle.textContent = 'Beginning';
+      }
+    }
+
+    // Update Next button UI
+    if (nextNav) {
+      if (headerNextBtn) {
+        headerNextBtn.href = nextNav.href;
+        headerNextBtn.classList.remove('disabled');
+        headerNextBtn.removeAttribute('aria-disabled');
+        headerNextBtn.title = `Next: ${nextNav.title} (Alt+Right or ])`;
+      }
+      if (footerNextBtn) {
+        footerNextBtn.href = nextNav.href;
+        footerNextBtn.classList.remove('disabled');
+        footerNextBtn.removeAttribute('aria-disabled');
+        footerNextBtn.title = `Next: ${nextNav.title}`;
+      }
+      if (footerNextTitle) {
+        footerNextTitle.textContent = nextNav.title;
+      }
+    } else {
+      if (headerNextBtn) {
+        headerNextBtn.href = '#';
+        headerNextBtn.classList.add('disabled');
+        headerNextBtn.setAttribute('aria-disabled', 'true');
+        headerNextBtn.title = 'No next text';
+      }
+      if (footerNextBtn) {
+        footerNextBtn.href = '#';
+        footerNextBtn.classList.add('disabled');
+        footerNextBtn.setAttribute('aria-disabled', 'true');
+        footerNextBtn.title = 'End of book';
+      }
+      if (footerNextTitle) {
+        footerNextTitle.textContent = 'End';
+      }
+    }
+
+    // Update Parent button UI
     if (parentBtn) {
-      parentBtn.href = `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}`;
-      parentBtn.textContent = `↑ ${currentBookCode} Index`;
+      parentBtn.href = parentNav.href;
+      parentBtn.title = `Go to ${parentNav.title}`;
+    }
+    if (parentTitle) {
+      parentTitle.textContent = parentNav.title;
     }
   }
 
@@ -1963,8 +2322,22 @@ import Layout from '../layouts/Layout.astro';
     if (!viewModeSelect) return;
     const isBase = currentEdition === 'tipitaka2500';
     const splitOption = viewModeSelect.querySelector('option[value="split"]') as HTMLOptionElement | null;
+    const curPath = (currentFilePath || '').replace(/^\/+/, '');
+    const isCurrentMenu =
+      isMenuPage(currentSingleMd || currentBaseSectionMd, currentSectionRef || currentFilePath) ||
+      curPath === `tipitaka/${currentBookCode}.md` ||
+      curPath.endsWith(`/${currentBookCode}.md`);
 
-    if (isBase) {
+    if (isCurrentMenu) {
+      if (splitOption) {
+        splitOption.disabled = true;
+        splitOption.textContent = '⚖️ Side-by-Side (Unavailable on menu)';
+      }
+      viewModeSelect.title = 'Side-by-Side comparison is not available on index/menu pages';
+      if (viewMode === 'split') {
+        viewMode = 'single';
+      }
+    } else if (isBase) {
       if (splitOption) {
         splitOption.disabled = true;
         splitOption.textContent = '⚖️ Side-by-Side (Select an edition)';
@@ -1994,6 +2367,13 @@ import Layout from '../layouts/Layout.astro';
       tab.addEventListener('click', () => {
         const ed = tab.getAttribute('data-edition');
         if (ed && ed !== currentEdition) {
+          const curPath = (currentFilePath || '').replace(/^\/+/, '');
+          const isCurrentlyMenu =
+            isMenuPage(currentSingleMd || currentBaseSectionMd, currentSectionRef || currentFilePath) ||
+            curPath === `tipitaka/${currentBookCode}.md` ||
+            curPath.endsWith(`/${currentBookCode}.md`) ||
+            !currentFilePath;
+
           currentEdition = ed;
           if (currentEdition !== 'tipitaka2500') {
             compareEdition = currentEdition;
@@ -2003,7 +2383,11 @@ import Layout from '../layouts/Layout.astro';
           singleShowFull = false;
           rightShowFull = false;
 
-          if (currentEdition === 'tipitaka2500' && currentSectionRef) {
+          if (isCurrentlyMenu) {
+            // Stay on the menu page across editions
+            currentFilePath = currentSectionRef || currentFilePath || `tipitaka/${currentBookCode}.md`;
+            currentSuttaId = '';
+          } else if (currentEdition === 'tipitaka2500' && currentSectionRef) {
             currentFilePath = currentSectionRef;
           } else {
             currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
@@ -2012,8 +2396,8 @@ import Layout from '../layouts/Layout.astro';
           const newUrl = new URL(window.location.href);
           newUrl.searchParams.set('edition', currentEdition);
           newUrl.searchParams.set('mode', viewMode);
-          if (currentEdition === 'tipitaka2500' && currentSectionRef) {
-            newUrl.searchParams.set('file', currentSectionRef);
+          if (currentFilePath) {
+            newUrl.searchParams.set('file', currentFilePath);
           }
           window.history.pushState({}, '', newUrl.toString());
 
@@ -2169,6 +2553,59 @@ import Layout from '../layouts/Layout.astro';
     // Sidebar Link Handlers
     attachSidebarLinkHandlers();
 
+    // Header and Footer Navigation Button Handlers
+    const navButtons = [
+      document.getElementById('header-prev-btn'),
+      document.getElementById('header-next-btn'),
+      document.getElementById('footer-prev-btn'),
+      document.getElementById('footer-next-btn'),
+      document.getElementById('parent-book-btn'),
+    ];
+
+    navButtons.forEach((btn) => {
+      if (btn) {
+        btn.addEventListener('click', (e) => {
+          const href = (btn as HTMLAnchorElement).getAttribute('href');
+          if (!href || href === '#' || btn.classList.contains('disabled')) return;
+          e.preventDefault();
+          navigateToUrl(href);
+        });
+      }
+    });
+
+    // Keyboard navigation shortcuts: Alt+Left / [ for Previous, Alt+Right / ] for Next
+    document.addEventListener('keydown', (e) => {
+      const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+      if (
+        activeTag === 'input' ||
+        activeTag === 'textarea' ||
+        activeTag === 'select' ||
+        (document.activeElement as HTMLElement)?.isContentEditable
+      ) {
+        return;
+      }
+
+      if ((e.key === 'ArrowLeft' && e.altKey) || e.key === '[') {
+        const prevBtn = document.getElementById('footer-prev-btn') as HTMLAnchorElement | null;
+        if (prevBtn && !prevBtn.classList.contains('disabled')) {
+          const href = prevBtn.getAttribute('href');
+          if (href && href !== '#') {
+            e.preventDefault();
+            navigateToUrl(href);
+          }
+        }
+      } else if ((e.key === 'ArrowRight' && e.altKey) || e.key === ']') {
+        const nextBtn = document.getElementById('footer-next-btn') as HTMLAnchorElement | null;
+        if (nextBtn && !nextBtn.classList.contains('disabled')) {
+          const href = nextBtn.getAttribute('href');
+          if (href && href !== '#') {
+            e.preventDefault();
+            navigateToUrl(href);
+          }
+        }
+      }
+    });
+
     // Handle Browser PopState (Back / Forward)
     window.addEventListener('popstate', () => {
       parseUrlParams();
@@ -2212,12 +2649,19 @@ import Layout from '../layouts/Layout.astro';
       if (m) {
         currentBookCode = normalizeBookCode(m[1]);
       }
-      currentSuttaId = params.get('sutta') || detectSuttaFromPath(paramFile);
 
-      if (currentEdition === 'tipitaka2500' || !paramFile.startsWith('tipitaka/')) {
+      const isParamFileMenu = /^tipitaka\/[0-9]+[A-Za-z0-9]*\.md$/i.test(paramFile) || paramFile === 'tipitaka/index.md';
+      if (isParamFileMenu) {
+        currentSuttaId = '';
         currentFilePath = paramFile;
       } else {
-        currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+        currentSuttaId = params.get('sutta') || detectSuttaFromPath(paramFile);
+
+        if (currentEdition === 'tipitaka2500' || !paramFile.startsWith('tipitaka/')) {
+          currentFilePath = paramFile;
+        } else {
+          currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
+        }
       }
     } else if (params.has('sutta')) {
       currentSuttaId = params.get('sutta')!;
