@@ -1252,6 +1252,12 @@ import Layout from '../layouts/Layout.astro';
     return { body: body.trim(), definitions };
   }
 
+  function countPaliWords(str: string): number {
+    if (!str) return 0;
+    const m = str.match(/[a-zA-Z\u0100-\u017F\u1E00-\u1EFF]+/g);
+    return m ? m.length : 0;
+  }
+
   /**
    * Elide non-relevant sections from other editions to match the specific section in tipitaka2500
    */
@@ -1273,9 +1279,9 @@ import Layout from '../layouts/Layout.astro';
     const firstWords = normFirst.split(' ').filter(w => w.length > 2).slice(0, 5);
     const lastWords = normLast.split(' ').filter(w => w.length > 2).slice(-10);
 
+    const baseWordsCount = countPaliWords(baseLines.join(' '));
     const otherLines = (otherMd || '').split('\n');
     let startLine = -1;
-    let endLine = -1;
 
     for (let i = 0; i < otherLines.length; i++) {
       const norm1 = normalizePaliForSearch(otherLines[i]);
@@ -1286,23 +1292,52 @@ import Layout from '../layouts/Layout.astro';
       }
     }
 
-    if (startLine !== -1) {
-      let bestScore = 0;
-      for (let i = startLine; i < otherLines.length; i++) {
-        const norm1 = normalizePaliForSearch(otherLines[i]);
-        const norm2 = normalizePaliForSearch(otherLines[i] + ' ' + (otherLines[i + 1] || ''));
-        const s1 = containsWordScore(norm1, lastWords);
-        const s2 = containsWordScore(norm2, lastWords);
-        const s = Math.max(s1, s2);
-        if (s >= 0.5) {
-          if (s >= bestScore) {
-            bestScore = s;
-            endLine = (s2 > s1 && otherLines[i + 1]) ? i + 1 : i;
-          }
-        } else if (endLine !== -1 && (i - endLine > 25)) {
-          break;
-        }
+    if (startLine === -1) {
+      return { content: otherMd, isElided: false, hasEarlier: false, hasSubsequent: false };
+    }
+
+    let runningWords = 0;
+    const candidates: Array<{ lineIdx: number; score: number; words: number; wordRatio: number }> = [];
+
+    for (let i = startLine; i < otherLines.length; i++) {
+      runningWords += countPaliWords(otherLines[i]);
+      const norm1 = normalizePaliForSearch(otherLines[i]);
+      const norm2 = normalizePaliForSearch(otherLines[i] + ' ' + (otherLines[i + 1] || ''));
+      const s1 = containsWordScore(norm1, lastWords);
+      const s2 = containsWordScore(norm2, lastWords);
+      const s = Math.max(s1, s2);
+      if (s >= 0.5) {
+        const lineIdx = (s2 > s1 && otherLines[i + 1]) ? i + 1 : i;
+        const wordRatio = baseWordsCount > 0 ? runningWords / baseWordsCount : 1.0;
+        candidates.push({ lineIdx, score: s, words: runningWords, wordRatio });
       }
+
+      // Stop searching if we have gathered candidates and passed 1.5x expected words
+      if (baseWordsCount > 0 && runningWords > baseWordsCount * 1.5 && candidates.some(c => c.wordRatio >= 0.75)) {
+        break;
+      }
+      if (baseWordsCount > 0 && runningWords > baseWordsCount * 2.5) {
+        break;
+      }
+    }
+
+    if (candidates.length === 0) {
+      return { content: otherMd, isElided: false, hasEarlier: false, hasSubsequent: false };
+    }
+
+    // Select candidate matching the end of section:
+    // Prefer candidates with score >= 0.6 and wordRatio >= 0.65 closest to 1.0
+    const valid = candidates.filter(c => c.score >= 0.6 && c.wordRatio >= 0.65);
+    let chosen = candidates[candidates.length - 1];
+    if (valid.length > 0) {
+      valid.sort((a, b) => Math.abs(a.wordRatio - 1.0) - Math.abs(b.wordRatio - 1.0));
+      chosen = valid[0];
+    }
+
+    let endLine = chosen.lineIdx;
+    // Include short trailing sentence/punctuation line if any (e.g. 'Ahosi .' or 'ti .')
+    if (otherLines[endLine + 1] && otherLines[endLine + 1].trim().length < 15 && !otherLines[endLine + 1].trim().startsWith('#')) {
+      endLine++;
     }
 
     if (startLine === -1 || endLine === -1) {
@@ -2871,6 +2906,10 @@ import Layout from '../layouts/Layout.astro';
       diffEnabled = true; // comparative editions enable diff by default
     }
 
+    if (params.has('book')) {
+      currentBookCode = normalizeBookCode(params.get('book')!);
+    }
+
     if (params.has('file')) {
       const paramFile = params.get('file')!;
       if (paramFile.startsWith('tipitaka/')) {
@@ -2878,9 +2917,11 @@ import Layout from '../layouts/Layout.astro';
       } else {
         currentSectionRef = '';
       }
-      const m = paramFile.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
-      if (m) {
-        currentBookCode = normalizeBookCode(m[1]);
+      if (!params.has('book')) {
+        const m = paramFile.match(/tipitaka\/([0-9]+[A-Za-z0-9]*)/);
+        if (m) {
+          currentBookCode = normalizeBookCode(m[1]);
+        }
       }
 
       const isParamFileMenu = /^tipitaka\/[0-9]+[A-Za-z0-9]*\.md$/i.test(paramFile) || paramFile === 'tipitaka/index.md';
@@ -2898,13 +2939,9 @@ import Layout from '../layouts/Layout.astro';
       }
     } else if (params.has('sutta')) {
       currentSuttaId = params.get('sutta')!;
-      if (params.has('book')) {
-        currentBookCode = normalizeBookCode(params.get('book')!);
-      }
       currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
       currentSectionRef = getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
     } else if (params.has('book')) {
-      currentBookCode = normalizeBookCode(params.get('book')!);
       currentSuttaId = '';
       currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, '');
       currentSectionRef = '';

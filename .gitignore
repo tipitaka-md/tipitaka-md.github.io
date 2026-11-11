@@ -3,6 +3,7 @@
 __pycache__/
 .vscode/
 .idea/
+.claude/
 node_modules/
 dist/
 .astro/
