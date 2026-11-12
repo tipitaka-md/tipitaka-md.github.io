@@ -34,7 +34,10 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
-const WORD_REGEX = /[a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+(?:[’\x27\-“”‘’][a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+)*/g;
+// Letter runs joined by one hyphen or by one or two quote marks (CST closes speech with ’’, WT with ”)
+const WORD_REGEX = /[a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+(?:(?:[’\x27“”‘]{1,2}|-)[a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+)*/g;
+// WT context lines such as "* Ākaṅkheyyasutta" (the first letter may carry a diacritic)
+const TITLE_LINE_REGEX = /^\*+\s+\p{L}/u;
 
 export function extractPaliWords(text) {
   if (!text) return [];
@@ -56,7 +59,7 @@ export function extractPaliWords(text) {
       tr.startsWith('[Go to ') ||
       /^\s*#+.*\[\^/.test(tr) ||
       /^\d*\[\^/.test(tr) ||
-      /^\*+\s+[A-Za-z]/.test(tr) ||
+      TITLE_LINE_REGEX.test(tr) ||
       /^\([0-9]+\.\)$/.test(tr)
     ) {
       continue;
@@ -131,11 +134,13 @@ export function diffWords(baseWords, targetWords) {
   }
 
   const dp = Array.from({ length: n + 1 }, () => new Int32Array(m + 1));
+  const normBase = midBase.map(normalizePaliWord);
+  const normTarget = midTarget.map(normalizePaliWord);
 
   for (let i = 0; i < n; i++) {
-    const wA = normalizePaliWord(midBase[i]);
+    const wA = normBase[i];
     for (let j = 0; j < m; j++) {
-      if (wA === normalizePaliWord(midTarget[j])) {
+      if (wA === normTarget[j]) {
         dp[i + 1][j + 1] = dp[i][j] + 1;
       } else {
         dp[i + 1][j + 1] = Math.max(dp[i + 1][j], dp[i][j + 1]);
@@ -146,7 +151,7 @@ export function diffWords(baseWords, targetWords) {
   let i = n, j = m;
   const midOps = [];
   while (i > 0 || j > 0) {
-    if (i > 0 && j > 0 && normalizePaliWord(midBase[i - 1]) === normalizePaliWord(midTarget[j - 1])) {
+    if (i > 0 && j > 0 && normBase[i - 1] === normTarget[j - 1]) {
       midOps.push({ type: 'equal', base: midBase[i - 1], target: midTarget[j - 1] });
       i--; j--;
     } else if (j > 0 && (i === 0 || dp[i][j - 1] >= dp[i - 1][j])) {
@@ -198,13 +203,14 @@ export function highlightPaliDiff(targetMarkdown, baseMarkdown) {
       trimmed.startsWith('[Go to ') ||
       /^\s*#+.*\[\^/.test(trimmed) ||
       /^\d*\[\^/.test(trimmed) ||
-      /^\*+\s+[A-Za-z]/.test(trimmed) ||
+      TITLE_LINE_REGEX.test(trimmed) ||
       /^\([0-9]+\.\)$/.test(trimmed);
 
     if (isSkip) {
       blockData.push({ isSkip: true, original: block });
     } else {
-      const tokenRegex = /(<[^>]+>|\[\^[^\]]+\]|[a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+(?:[’\x27\-“”‘’][a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+)*)/g;
+      // Page-marker chips are reader chrome, not text: keep them whole
+      const tokenRegex = new RegExp('(<span id="page-[^>]*>.*?<\\/span><\\/span>|<[^>]+>|\\[\\^[^\\]]+\\]|' + WORD_REGEX.source + ')', 'g');
       const segments = [];
       let lastIndex = 0;
       let m;

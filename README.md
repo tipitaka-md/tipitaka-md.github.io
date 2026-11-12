@@ -4,7 +4,7 @@
 [![Editions](https://img.shields.io/badge/Pāli%20Editions-5%20Tipiṭaka%20Editions-blue)](https://tipitaka-md.github.io/)
 [![License: CC0](https://img.shields.io/badge/License-CC0%201.0%20Universal-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 
-An ultra-fast, zero-server static web application for side-by-side comparative reading and concordance exploration across 5 major historical and modern editions of the Pāli Tipiṭaka.
+A zero-server static web application for side-by-side comparative reading and concordance exploration across 5 major historical and modern editions of the Pāli Tipiṭaka.
 
 **Live Viewer:** [https://tipitaka-md.github.io/](https://tipitaka-md.github.io/)
 
@@ -34,16 +34,16 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
      - 🟩 **Light Green**: **Addition** (words/phrases present in the edition that are not in WT).
      - 🟨 **Light Yellow**: **Change / Variant** (variant readings, sandhi, orthography, and spelling variants).
      - 🟥 **Light Pink**: **Deletion** (words in WT omitted in this edition, shown with strikethrough).
-   - One-click toggle (`✨ Diff`) in the header toolbar to turn diff highlighting on/off.
-   - Intelligent sliding-window sutta elision isolates matching sections when comparing against massive multi-sutta volume files (e.g. Royal Thai or CST volumes).
+   - One-click toggle (`✨ Highlight Variants`) in the header toolbar to turn diff highlighting on/off.
+   - Passage alignment isolates the matching section when an edition keeps many suttas in one volume file (e.g. Royal Thai or CST volumes): the whole WT passage is matched against the other edition's text, independent of word spacing, and the rest of the file is elided with a "Show complete file" toggle.
 
 3. **Smart Alignment & Sidebar Navigation**
    - Clicking any book or chapter in the sidebar automatically opens the canonical **Base Edition (WT)** in clean Single View with diffing disabled. This eliminates volume/chapter desynchronization across traditions with divergent division structures (such as Royal Thai full volumes vs. WT individual suttas).
-   - Once loaded, edition tabs allow instant switching or parallel comparison with guaranteed passage alignment.
+   - Once loaded, edition tabs allow instant switching or parallel comparison of the same passage.
+   - An edition that has no text for the open book gets a disabled tab. Post-canonical works without a WT text (Visuddhimagga, Samantapāsādikā, Mahāvaṃsa, Kaccāyana) open in the first edition that has them, in single view.
 
 4. **On-the-Fly Script Transliteration**
-   - Bidirectional client-side transliteration engine (`transliterator.js`):
-     - **IAST Roman**
+   - Client-side transliteration from Roman ([`src/scripts/transliterator.js`](src/scripts/transliterator.js)) into:
      - **Sinhala** (සිංහල)
      - **Thai** (ไทย)
      - **Burmese / Myanmar** (မြန်မာ)
@@ -62,12 +62,16 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
 7. **Footnote & Variant Reader**
    - Clickable footnote superscripts open notes in a bottom drawer without disturbing reading flow.
 
-8. **Reading Experience & Themes**
-   - Three carefully crafted color palettes: **Light**, **Sepia**, and **Dark**.
-   - Adjustable font size scaling.
-   - Elegant typography with *Noto Serif*, *Gentium Plus*, and *Noto Sans*.
+8. **Pāḷi Word Index & Dictionary Lookup**
+   - [`/words.html`](https://tipitaka-md.github.io/words.html) indexes 146,693 Pāḷi headwords of the WT edition with Thai script, IPA, and per-book frequencies.
+   - Hovering or tapping a word in the reader looks it up in the Digital Pāḷi Dictionary.
 
-9. **Zero-Backend Architecture**
+9. **Reading Experience & Themes**
+   - **Light**, **Dark**, and **Auto** (follow the system) color schemes; an explicit choice is remembered.
+   - Typography with *Noto Serif* and *Noto Sans*, including the Sinhala, Thai, Myanmar, Devanagari, and Brahmi families.
+   - Installable as a PWA (it still needs a connection to fetch texts).
+
+10. **Zero-Backend Architecture**
    - Standalone static Astro site deployed directly to GitHub Pages.
    - Texts are fetched on demand from GitHub, with jsDelivr as a fallback. Reading requires an internet connection.
    - [`public/sw.js`](public/sw.js) retires legacy cache-first service workers and refreshes open pages.
@@ -79,9 +83,16 @@ An ultra-fast, zero-server static web application for side-by-side comparative r
 
 The cross-edition concordances are built using [`scripts/build_catalog.py`](scripts/build_catalog.py), mapping books and suttas across all 5 repositories into [`catalog.json`](catalog.json) and [`public/catalog.json`](public/catalog.json).
 
+Both scripts read the edition repositories from local clones under `~/Repositories/Pali/` (`tipitaka2500`, `pts`, `buddha-jayanthi`, `cst`, `siam-rath`).
+
 To regenerate the catalog:
 ```bash
-python3 scripts/build_catalog.py
+npm run build:catalog
+```
+
+The PTS volume/page lookup index ([`public/pts_references.json`](public/pts_references.json)) takes its book codes from the catalog, so rebuild it afterwards:
+```bash
+npm run build:pts
 ```
 
 ---
@@ -95,9 +106,14 @@ npm install
 # Start development server
 npm run dev
 
+# Type-check the Astro pages
+npm run check
+
 # Build production static output
 npm run build
 ```
+
+The site is built from `src/` and `public/` only; GitHub Actions deploys `dist/` to GitHub Pages on every push to `main`.
 
 ---
 

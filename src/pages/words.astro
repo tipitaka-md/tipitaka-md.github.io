@@ -1408,7 +1408,8 @@ const breadcrumbs = [
       if (!total || !distStr) return '';
       const badges = distStr
         .trim()
-        .split(/\s+/)
+        .split(/[;\s]+/)
+        .filter(Boolean)
         .map((tok) => {
           const [bcode, cnt] = tok.split(':');
           if (!bcode || !cnt) return escapeHtml(tok);
@@ -1527,7 +1528,7 @@ const breadcrumbs = [
             w.r.startsWith(qLower) ||
             w.a.startsWith(qNorm) ||
             (w.w && w.w.startsWith(q)) ||
-            (w.i && w.i.includes(q))
+            (w.i && w.i.replace(/^\[/, '').startsWith(q.replace(/^\[/, '')))
           );
         }
         return (
@@ -1587,8 +1588,8 @@ const breadcrumbs = [
       debounceTimer = setTimeout(() => updateView(false), 180);
     });
     matchSelect.addEventListener('change', () => updateView(false));
-    bookSelect.addEventListener('change', () => updateView(true));
-    sortSelect.addEventListener('change', () => updateView(true));
+    bookSelect.addEventListener('change', () => updateView(false));
+    sortSelect.addEventListener('change', () => updateView(false));
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -1600,7 +1601,7 @@ const breadcrumbs = [
     );
     observer.observe(sentinel);
 
-    updateView(Boolean(initParams.get('letter') || initParams.get('q')));
+    updateView(false);
   })();
 </script>
 

@@ -159,6 +159,10 @@ def build_catalog():
         33: "sutta/dn/dn-3-10.md", 34: "sutta/dn/dn-3-10.md"
     }
 
+    # PTS files that are header-only upstream: the text sits in a neighbouring file
+    pts_dn_merged = {16: 15, 20: 19}
+    pts_mn_merged = {98: 99}
+
     for bcode, btitle, t2500_file, cst_file, sr_file, s_range in dn_volumes:
         b_entry = {
             "code": bcode,
@@ -184,7 +188,7 @@ def build_catalog():
                 "pali_title": s_name,
                 "editions": {
                     "tipitaka2500": f"tipitaka/{bcode}/{local_idx}.md",
-                    "pts": f"sutta/dn/dn{snum:02d}.md",
+                    "pts": f"sutta/dn/dn{pts_dn_merged.get(snum, snum):02d}.md",
                     "bjt": bjt_dn_map.get(snum, f"sutta/dn/dn-{snum}.md"),
                     "cst": cst_file,
                     "siam-rath": sr_file
@@ -225,9 +229,17 @@ def build_catalog():
             "suttas": []
         }
         for snum in s_range:
-            # Vagga index and sutta index
-            v_idx = ((snum - 1) % 50) // 10 + 1
-            s_idx = (snum - 1) % 10 + 1
+            # Vagga index and sutta index. Vaggas hold 10 suttas, except
+            # Vibhaṅgavagga (11M vagga 4), which holds 12 (MN 131-142).
+            vagga_sizes = [10, 10, 10, 12, 10] if bcode == '11M' else [10] * 5
+            offset = snum - s_range.start
+            v_idx = 1
+            for size in vagga_sizes:
+                if offset < size:
+                    break
+                offset -= size
+                v_idx += 1
+            s_idx = offset + 1
             t2500_sub = f"tipitaka/{bcode}/{v_idx}/{v_idx}.{s_idx}.md"
 
             vol_idx = 1 if snum <= 50 else (2 if snum <= 100 else 3)
@@ -239,7 +251,7 @@ def build_catalog():
                 "title": f"{btitle} · {v_idx}.{s_idx}",
                 "editions": {
                     "tipitaka2500": t2500_sub,
-                    "pts": f"sutta/mn/mn{snum:03d}.md",
+                    "pts": f"sutta/mn/mn{pts_mn_merged.get(snum, snum):03d}.md",
                     "bjt": bjt_sub,
                     "cst": cst_file,
                     "siam-rath": sr_file
@@ -298,10 +310,13 @@ def build_catalog():
             "pitaka": "Suttantapiṭaka",
             "editions": {
                 "tipitaka2500": f"tipitaka/{t2500_file}",
+                # PTS ships each volume whole, in the file of its last saṃyutta
+                "pts": f"sutta/sn/sn{s_range[-1]:02d}.md",
+                "bjt": bjt_sn_map[s_range[0]],
                 "cst": cst_file,
                 "siam-rath": sr_file
             },
-            "samyuttas": []
+            "suttas": []
         }
         for snum in s_range:
             local_idx = snum - s_range[0] + 1
@@ -311,13 +326,13 @@ def build_catalog():
                 "title": f"{btitle} · Saṁyutta {local_idx}",
                 "editions": {
                     "tipitaka2500": f"tipitaka/{bcode}/{local_idx}.md",
-                    "pts": f"sutta/sn/sn{snum:02d}.md",
+                    "pts": f"sutta/sn/sn{s_range[-1]:02d}.md",
                     "bjt": bjt_sn_map.get(snum, f"sutta/sn/sn-{local_idx}.md"),
                     "cst": cst_file,
                     "siam-rath": sr_file
                 }
             }
-            b_entry["samyuttas"].append(s_entry)
+            b_entry["suttas"].append(s_entry)
         sn_group["books"].append(b_entry)
 
     catalog["structure"].append(sn_group)
@@ -376,26 +391,26 @@ def build_catalog():
 
     kn_data = [
         ("18Kh", "Khuddakapāṭha", "18Kh.md", "sutta/kn/khp.md", "sutta/kn/kn-khp.md", "mula/sutta/kn/s0501m.mul.md", "sutta/kn/vol25.md"),
-        ("18Dh", "Dhammapada", "18Dh.md", "sutta/kn/dhp.md", "sutta/kn/kn-dhp.md", "mula/sutta/kn/s0501m.mul.md", "sutta/kn/vol25.md"),
-        ("18Ud", "Udāna", "18Ud.md", "sutta/kn/ud.md", "sutta/kn/kn-ud.md", "mula/sutta/kn/s0501m.mul.md", "sutta/kn/vol25.md"),
-        ("18It", "Itivuttaka", "18It.md", "sutta/kn/iti.md", "sutta/kn/kn-iti.md", "mula/sutta/kn/s0501m.mul.md", "sutta/kn/vol25.md"),
-        ("18Sn", "Suttanipāta", "18Sn.md", "sutta/kn/snp.md", "sutta/kn/kn-snp.md", "mula/sutta/kn/s0501m.mul.md", "sutta/kn/vol25.md"),
-        ("19Vv", "Vimānavatthu", "19Vv.md", "sutta/kn/vv.md", "sutta/kn/kn-vv.md", "mula/sutta/kn/s0502m.mul.md", "sutta/kn/vol26.md"),
-        ("19Pv", "Petavatthu", "19Pv.md", "sutta/kn/pv.md", "sutta/kn/kn-pv.md", "mula/sutta/kn/s0502m.mul.md", "sutta/kn/vol26.md"),
-        ("19Th1", "Theragāthā", "19Th1.md", "sutta/kn/thag.md", "sutta/kn/kn-thag.md", "mula/sutta/kn/s0502m.mul.md", "sutta/kn/vol26.md"),
-        ("19Th2", "Therīgāthā", "19Th2.md", "sutta/kn/thig.md", "sutta/kn/kn-thig.md", "mula/sutta/kn/s0502m.mul.md", "sutta/kn/vol26.md"),
-        ("20Ap1", "Therāpadāna", "20Ap1.md", "sutta/kn/ap.md", "sutta/kn/kn-ap.md", "mula/sutta/kn/s0513m.mul.md", "sutta/kn/vol32.md"),
-        ("20Ap2", "Therīapadāna", "20Ap2.md", "sutta/kn/ap.md", "sutta/kn/kn-ap-2.md", "mula/sutta/kn/s0514m.mul.md", "sutta/kn/vol33.md"),
-        ("21Bu", "Buddhavaṃsa", "21Bu.md", "sutta/kn/bv.md", "sutta/kn/kn-bv.md", "mula/sutta/kn/s0515m.mul.md", "sutta/kn/vol33.md"),
-        ("21Cp", "Cariyāpiṭaka", "21Cp.md", "sutta/kn/cp.md", "sutta/kn/kn-cp.md", "mula/sutta/kn/s0516m.mul.md", "sutta/kn/vol33.md"),
-        ("22J", "Jātakapāḷi (Vol. 1)", "22J.md", "sutta/kn/jat01.md", "sutta/kn/kn-jat.md", "mula/sutta/kn/s0503m.mul.md", "sutta/kn/vol27.md"),
-        ("23J", "Jātakapāḷi (Vol. 2)", "23J.md", "sutta/kn/jat04.md", "sutta/kn/kn-jat-5.md", "mula/sutta/kn/s0506m.mul.md", "sutta/kn/vol28.md"),
-        ("24Mn", "Mahāniddesa", "24Mn.md", "sutta/kn/mnd.md", "sutta/kn/kn-mn.md", "mula/sutta/kn/s0509m.mul.md", "sutta/kn/vol29.md"),
-        ("25Cn", "Cūḷaniddesa", "25Cn.md", "sutta/kn/cnd.md", "sutta/kn/kn-nc.md", "mula/sutta/kn/s0510m1.mul.md", "sutta/kn/vol30.md"),
-        ("26Ps", "Paṭisambhidāmagga", "26Ps.md", "sutta/kn/ps01.md", "sutta/kn/kn-ps.md", "mula/sutta/kn/s0511m.mul.md", "sutta/kn/vol31.md"),
-        ("27Ne", "Nettippakaraṇa", "27Ne.md", "paracanonical/nettippakarana.md", "sutta/kn/kn-nett.md", "mula/sutta/kn/s0517m.mul.md", "sutta/kn/vol26.md"),
-        ("27Pe", "Peṭakopadesa", "27Pe.md", "paracanonical/petakopadesa.md", "sutta/kn/kn-petk.md", "tika/sutta/kn/s0518m.nrf.md", "sutta/kn/vol26.md"),
-        ("28Mi", "Milindapañha", "28Mi.md", "paracanonical/milindapanha.md", "", "mula/sutta/kn/s0519m.mul.md", "sutta/kn/vol26.md"),
+        ("18Dh", "Dhammapada", "18Dh.md", "sutta/kn/dhp.md", "sutta/kn/kn-dhp.md", "mula/sutta/kn/s0502m.mul.md", "sutta/kn/vol25.md"),
+        ("18Ud", "Udāna", "18Ud.md", "sutta/kn/ud.md", "sutta/kn/kn-ud.md", "mula/sutta/kn/s0503m.mul.md", "sutta/kn/vol25.md"),
+        ("18It", "Itivuttaka", "18It.md", "sutta/kn/iti.md", "sutta/kn/kn-iti.md", "mula/sutta/kn/s0504m.mul.md", "sutta/kn/vol25.md"),
+        ("18Sn", "Suttanipāta", "18Sn.md", "sutta/kn/snp.md", "sutta/kn/kn-snp.md", "mula/sutta/kn/s0505m.mul.md", "sutta/kn/vol25.md"),
+        ("19Vv", "Vimānavatthu", "19Vv.md", "sutta/kn/vv.md", "sutta/kn/kn-vv.md", "mula/sutta/kn/s0506m.mul.md", "sutta/kn/vol26.md"),
+        ("19Pv", "Petavatthu", "19Pv.md", "sutta/kn/pv.md", "sutta/kn/kn-pv.md", "mula/sutta/kn/s0507m.mul.md", "sutta/kn/vol26.md"),
+        ("19Th1", "Theragāthā", "19Th1.md", "sutta/kn/thag.md", "sutta/kn/kn-thag.md", "mula/sutta/kn/s0508m.mul.md", "sutta/kn/vol26.md"),
+        ("19Th2", "Therīgāthā", "19Th2.md", "sutta/kn/thig.md", "sutta/kn/kn-thig.md", "mula/sutta/kn/s0509m.mul.md", "sutta/kn/vol26.md"),
+        ("20Ap1", "Therāpadāna", "20Ap1.md", "sutta/kn/ap.md", "sutta/kn/kn-ap.md", "mula/sutta/kn/s0510m1.mul.md", "sutta/kn/vol32.md"),
+        ("20Ap2", "Therīapadāna", "20Ap2.md", "sutta/kn/ap.md", "sutta/kn/kn-ap-2.md", "mula/sutta/kn/s0510m2.mul.md", "sutta/kn/vol33.md"),
+        ("21Bu", "Buddhavaṃsa", "21Bu.md", "sutta/kn/bv.md", "sutta/kn/kn-bv.md", "mula/sutta/kn/s0511m.mul.md", "sutta/kn/vol33.md"),
+        ("21Cp", "Cariyāpiṭaka", "21Cp.md", "sutta/kn/cp.md", "sutta/kn/kn-cp.md", "mula/sutta/kn/s0512m.mul.md", "sutta/kn/vol33.md"),
+        ("22J", "Jātakapāḷi (Vol. 1)", "22J.md", "sutta/kn/jat01.md", "sutta/kn/kn-jat.md", "mula/sutta/kn/s0513m.mul.md", "sutta/kn/vol27.md"),
+        ("23J", "Jātakapāḷi (Vol. 2)", "23J.md", "sutta/kn/jat05.md", "sutta/kn/kn-jat-15.md", "mula/sutta/kn/s0514m.mul.md", "sutta/kn/vol28.md"),
+        ("24Mn", "Mahāniddesa", "24Mn.md", "sutta/kn/mnd.md", "sutta/kn/kn-mn.md", "mula/sutta/kn/s0515m.mul.md", "sutta/kn/vol29.md"),
+        ("25Cn", "Cūḷaniddesa", "25Cn.md", "sutta/kn/cnd.md", "sutta/kn/kn-nc.md", "mula/sutta/kn/s0516m.mul.md", "sutta/kn/vol30.md"),
+        ("26Ps", "Paṭisambhidāmagga", "26Ps.md", "sutta/kn/ps01.md", "sutta/kn/kn-ps.md", "mula/sutta/kn/s0517m.mul.md", "sutta/kn/vol31.md"),
+        ("27Ne", "Nettippakaraṇa", "27Ne.md", "paracanonical/nettippakarana.md", "sutta/kn/kn-nett.md", "mula/sutta/kn/s0519m.mul.md", ""),
+        ("27Pe", "Peṭakopadesa", "27Pe.md", "paracanonical/petakopadesa.md", "sutta/kn/kn-petk.md", "tika/sutta/kn/s0520m.nrf.md", ""),
+        ("28Mi", "Milindapañha", "28Mi.md", "paracanonical/milindapanha.md", "", "tika/sutta/kn/s0518m.nrf.md", ""),
     ]
 
     for bcode, btitle, t2500_file, pts_file, bjt_file, cst_file, sr_file in kn_data:
@@ -413,6 +428,8 @@ def build_catalog():
                 "siam-rath": sr_file
             }
         }
+        # An edition that lacks this book is omitted rather than mapped to ""
+        b_entry["editions"] = {k: v for k, v in b_entry["editions"].items() if v}
         kn_group["books"].append(b_entry)
 
     catalog["structure"].append(kn_group)
@@ -467,15 +484,6 @@ def build_catalog():
         "pali_title": "Aṭṭhakathā",
         "description": "Post-Canonical Commentaries and Treatises",
         "books": [
-            {
-                "code": "Mil",
-                "title": "Milindapañha",
-                "pali_title": "Milindapañha",
-                "editions": {
-                    "pts": "paracanonical/milindapanha.md",
-                    "cst": "mula/sutta/kn/s0519m.mul.md"
-                }
-            },
             {
                 "code": "Vm",
                 "title": "Visuddhimagga",

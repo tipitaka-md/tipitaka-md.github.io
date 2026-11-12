@@ -317,6 +317,11 @@ import Layout from '../layouts/Layout.astro';
     background-color: var(--bg-hover);
   }
 
+  .edition-tab:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
   .edition-tab.active {
     background-color: var(--bg-body);
     color: var(--primary-color);
@@ -393,168 +398,6 @@ import Layout from '../layouts/Layout.astro';
     font-family: var(--font-sans);
     color: var(--text-body);
     word-break: break-word;
-  }
-
-  .tipitaka-article h1,
-  .tipitaka-article h2,
-  .tipitaka-article h3,
-  .tipitaka-article h4 {
-    font-family: var(--font-sans);
-    color: var(--text-emphasis);
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .tipitaka-article p {
-    margin-bottom: 1.25rem;
-  }
-
-  .tipitaka-article ul {
-    list-style-type: none;
-    padding-left: 0.5rem;
-  }
-
-  .tipitaka-article ul li {
-    padding: 0.35rem 0;
-  }
-
-  .tipitaka-article .wtk-par-list {
-    list-style-type: decimal;
-    padding-left: 2rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .tipitaka-article .wtk-par-item {
-    padding: 0.25rem 0;
-    margin-bottom: 0.75rem;
-  }
-
-  .tipitaka-article .wtk-paragraph {
-    margin-bottom: 1.25rem;
-  }
-
-  .tipitaka-article .wtk-par-num {
-    font-weight: 700;
-    color: var(--primary-color, #ea580c);
-    margin-right: 0.35rem;
-  }
-
-  .wtk-paragraph-highlight {
-    background-color: rgba(245, 158, 11, 0.22) !important;
-    border-left: 4px solid var(--primary-color, #ea580c) !important;
-    padding-left: 0.75rem !important;
-    border-radius: 4px;
-    box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
-    transition: background-color 1.5s ease-out, box-shadow 1.5s ease-out;
-  }
-
-  .pts-page-marker {
-    display: inline-flex;
-    align-items: center;
-    vertical-align: baseline;
-    margin: 0 0.35rem;
-    position: relative;
-    top: -0.1em;
-  }
-
-  .pts-page-pill {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-family: var(--font-mono, monospace);
-    font-weight: 600;
-    color: var(--text-muted);
-    background: var(--bg-hover, rgba(0, 0, 0, 0.05));
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 1px 6px;
-    line-height: 1.25;
-    user-select: none;
-    opacity: 0.75;
-    transition: all 0.2s ease;
-  }
-
-  .pts-page-marker:hover .pts-page-pill {
-    opacity: 1;
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    background: var(--bg-surface);
-  }
-
-  .pts-page-highlight .pts-page-pill {
-    animation: pts-glow 3.5s ease-out forwards;
-  }
-
-  @keyframes pts-glow {
-    0% {
-      background-color: #fef08a;
-      border-color: #ca8a04;
-      color: #854d0e;
-      box-shadow: 0 0 14px rgba(234, 179, 8, 0.65);
-      transform: scale(1.15);
-      opacity: 1;
-    }
-    60% {
-      background-color: #fef08a;
-      border-color: #ca8a04;
-      color: #854d0e;
-      box-shadow: 0 0 8px rgba(234, 179, 8, 0.4);
-      transform: scale(1.05);
-      opacity: 1;
-    }
-    100% {
-      background-color: var(--bg-hover, rgba(0, 0, 0, 0.05));
-      border-color: var(--border-color);
-      color: var(--text-muted);
-      box-shadow: none;
-      transform: scale(1);
-      opacity: 0.75;
-    }
-  }
-
-  [data-theme='dark'] .pts-page-pill {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.12);
-  }
-
-  [data-theme='dark'] @keyframes pts-glow {
-    0% {
-      background-color: #854d0e;
-      border-color: #facc15;
-      color: #fef08a;
-      box-shadow: 0 0 14px rgba(250, 204, 21, 0.5);
-      transform: scale(1.15);
-      opacity: 1;
-    }
-    60% {
-      background-color: #854d0e;
-      border-color: #facc15;
-      color: #fef08a;
-      box-shadow: 0 0 8px rgba(250, 204, 21, 0.3);
-      transform: scale(1.05);
-      opacity: 1;
-    }
-    100% {
-      background-color: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.12);
-      color: var(--text-muted);
-      box-shadow: none;
-      transform: scale(1);
-      opacity: 0.75;
-    }
-  }
-
-  .raw-markdown-view {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.25rem;
-    white-space: pre-wrap;
-    word-break: break-word;
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    font-size: 0.92rem;
-    line-height: 1.6;
-    color: var(--text-body);
-    overflow-x: auto;
   }
 
   .split-panes-container {
@@ -775,6 +618,151 @@ import Layout from '../layouts/Layout.astro';
     border-color: var(--primary-color);
   }
 
+  @media (max-width: 900px) {
+    .split-panes-container {
+      flex-direction: column;
+    }
+    .split-pane {
+      max-height: none;
+      overflow-y: visible;
+    }
+  }
+</style>
+
+<!-- Rules for markup the reader script injects with innerHTML: Astro scoping would never match it -->
+<style is:global>
+  .tipitaka-article h1,
+  .tipitaka-article h2,
+  .tipitaka-article h3,
+  .tipitaka-article h4 {
+    font-family: var(--font-sans);
+    color: var(--text-emphasis);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tipitaka-article p {
+    margin-bottom: 1.25rem;
+  }
+
+  .tipitaka-article ul {
+    list-style-type: none;
+    padding-left: 0.5rem;
+  }
+
+  .tipitaka-article ul li {
+    padding: 0.35rem 0;
+  }
+
+  .tipitaka-article .wtk-par-list {
+    list-style-type: decimal;
+    padding-left: 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .tipitaka-article .wtk-par-item {
+    padding: 0.25rem 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .tipitaka-article .wtk-paragraph {
+    margin-bottom: 1.25rem;
+  }
+
+  .tipitaka-article .wtk-par-num {
+    font-weight: 700;
+    color: var(--primary-color, #ea580c);
+    margin-right: 0.35rem;
+  }
+
+  .wtk-paragraph-highlight {
+    background-color: rgba(245, 158, 11, 0.22) !important;
+    border-left: 4px solid var(--primary-color, #ea580c) !important;
+    padding-left: 0.75rem !important;
+    border-radius: 4px;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+    transition: background-color 1.5s ease-out, box-shadow 1.5s ease-out;
+  }
+
+  .pts-page-marker {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: baseline;
+    margin: 0 0.35rem;
+    position: relative;
+    top: -0.1em;
+  }
+
+  .pts-page-pill {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-family: var(--font-mono, monospace);
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-hover, rgba(0, 0, 0, 0.05));
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1px 6px;
+    line-height: 1.25;
+    user-select: none;
+    opacity: 0.75;
+    transition: all 0.2s ease;
+  }
+
+  .pts-page-marker:hover .pts-page-pill {
+    opacity: 1;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background: var(--bg-surface);
+  }
+
+  .pts-page-highlight .pts-page-pill {
+    animation: pts-glow 3.5s ease-out forwards;
+  }
+
+  @keyframes pts-glow {
+    0% {
+      background-color: #fef08a;
+      border-color: #ca8a04;
+      color: #854d0e;
+      box-shadow: 0 0 14px rgba(234, 179, 8, 0.65);
+      transform: scale(1.15);
+      opacity: 1;
+    }
+    60% {
+      background-color: #fef08a;
+      border-color: #ca8a04;
+      color: #854d0e;
+      box-shadow: 0 0 8px rgba(234, 179, 8, 0.4);
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    100% {
+      background-color: var(--bg-hover, rgba(0, 0, 0, 0.05));
+      border-color: var(--border-color);
+      color: var(--text-muted);
+      box-shadow: none;
+      transform: scale(1);
+      opacity: 0.75;
+    }
+  }
+
+
+  .raw-markdown-view {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-body);
+    overflow-x: auto;
+  }
+
+
   /* Footnote Reference in Text */
   .footnote-ref {
     font-size: 0.8em;
@@ -866,15 +854,6 @@ import Layout from '../layouts/Layout.astro';
     animation: footnotePulse 1.8s ease-out;
   }
 
-  @media (max-width: 900px) {
-    .split-panes-container {
-      flex-direction: column;
-    }
-    .split-pane {
-      max-height: none;
-      overflow-y: visible;
-    }
-  }
 </style>
 
 <script>
@@ -1038,6 +1017,50 @@ import Layout from '../layouts/Layout.astro';
     return BOOK_CODE_ALIASES[clean] || code;
   }
 
+  function findCatalogBook(bookCode: string): any {
+    const norm = normalizeBookCode(bookCode).toLowerCase();
+    for (const p of catalog?.structure || []) {
+      const hit = p.books.find((bk: any) => bk.code.toLowerCase() === norm);
+      if (hit) return hit;
+    }
+    return null;
+  }
+
+  /**
+   * Whether an edition has a text for this book. Commentaries and chronicles
+   * (Vm, Smp, Mhv, ...) exist in only some editions and have no WT base text.
+   */
+  function editionHasBook(edition: string, bookCode: string): boolean {
+    if (!catalog) return true;
+    const entry = findCatalogBook(bookCode);
+    if (!entry) {
+      // Not in the catalog: canonical WT codes start with a volume number,
+      // anything else (e.g. a PTS-only citation target) exists only where it is open.
+      return /^\d/.test(bookCode) || edition === currentEdition;
+    }
+    if (!entry.editions) return true;
+    return !!entry.editions[edition] || (entry.suttas || []).some((su: any) => su.editions?.[edition]);
+  }
+
+  /**
+   * A book with no WT text cannot open in the base edition or be compared
+   * against it: show it in the first edition that has it, single view, no diff.
+   */
+  function fallBackFromMissingBase() {
+    if (editionHasBook('tipitaka2500', currentBookCode)) return;
+    viewMode = 'single';
+    diffEnabled = false;
+    if (editionHasBook(currentEdition, currentBookCode)) return;
+    const entry = findCatalogBook(currentBookCode);
+    const next = ['pts', 'cst', 'bjt', 'siam-rath'].find((ed) => entry?.editions?.[ed]);
+    if (!next) return;
+    currentEdition = next;
+    compareEdition = next;
+    currentSuttaId = '';
+    currentSectionRef = '';
+    currentFilePath = entry.editions[next];
+  }
+
   function getBookInfo(bookCode: string) {
     const normalized = normalizeBookCode(bookCode);
     if (BOOK_MAP[normalized]) return BOOK_MAP[normalized];
@@ -1090,6 +1113,14 @@ import Layout from '../layouts/Layout.astro';
   let currentRightFullMd = '';
   let currentRightMd = '';
   let currentBaseSectionMd = '';
+  // Path of the WT file that currentBaseSectionMd was loaded from (after any menu auto-descent)
+  let currentBaseFile = '';
+  // The reader's own choice for variant highlighting on comparative editions
+  let diffPreference = true;
+  // Monotonic token so an older, slower updateView() cannot overwrite a newer one
+  let viewToken = 0;
+  // True when the next completed render should scroll to the URL hash
+  let pendingHashScroll = true;
 
   /**
    * Helper to trigger direct browser download of Markdown text
@@ -1132,39 +1163,6 @@ import Layout from '../layouts/Layout.astro';
       .replace(/[^a-zāīūñṅṇḍṭḷṃ\s]/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
-  }
-
-  function paliStem(w: string): string {
-    if (!w || w.length <= 3) return w || '';
-    return w.replace(/[oaeuāīūi][ṃṁ]?$|[ṃṁ]$/, '');
-  }
-
-  function wordsMatch(w1: string, w2: string): boolean {
-    if (w1 === w2) return true;
-    if (w1.length >= 4 && w2.length >= 4) {
-      const s1 = paliStem(w1);
-      const s2 = paliStem(w2);
-      if (s1 === s2 || (s1.length >= 4 && (s2.startsWith(s1) || s1.startsWith(s2)))) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  function containsWordScore(lineNorm: string, targetWords: string[]): number {
-    if (!lineNorm || targetWords.length === 0) return 0;
-    const lineWords = lineNorm.split(' ').filter(w => w.length > 2);
-    let matches = 0;
-    for (const tw of targetWords) {
-      if (lineWords.some(lw => wordsMatch(tw, lw))) {
-        matches++;
-      }
-    }
-    return matches / targetWords.length;
-  }
-
-  function containsWordSequence(lineNorm: string, targetWords: string[], threshold: number = 0.6): boolean {
-    return containsWordScore(lineNorm, targetWords) >= threshold;
   }
 
   interface ElisionResult {
@@ -1234,7 +1232,7 @@ import Layout from '../layouts/Layout.astro';
     }
 
     // 2. Parse inline #+...[^ lines (e.g. Siam Rath #[^2-1] ...)
-    body = body.replace(/^\s*#+.*\[\^.*$/gm, (line) => {
+    body = body.replace(/^[ \t]*#(?![#\s]).*\[\^.*$/gm, (line) => {
       const itemRegex = /\[\^([^\]]+)\]\s*([^\[]+)/g;
       let m: RegExpExecArray | null;
       while ((m = itemRegex.exec(line)) !== null) {
@@ -1252,10 +1250,112 @@ import Layout from '../layouts/Layout.astro';
     return { body: body.trim(), definitions };
   }
 
-  function countPaliWords(str: string): number {
-    if (!str) return 0;
-    const m = str.match(/[a-zA-Z\u0100-\u017F\u1E00-\u1EFF]+/g);
-    return m ? m.length : 0;
+  /**
+   * Locate the run of lines in another edition's file that carries the same
+   * passage as the base section.
+   *
+   * Suttas open and close with the same stock phrases, so anchoring on the
+   * first or last few words lands on whichever sutta comes first in a volume
+   * file. Instead the whole passage is aligned: every run of ALIGN_GRAM
+   * letters in the other edition scores +1 when the base section contains it
+   * and -1 when it does not, and the best-scoring contiguous stretch (maximum
+   * subarray) is the match. Letters are compared with spaces removed because
+   * editions split words differently (PTS "etad avoca", "bhikkhu-saṃghena").
+   */
+  const ALIGN_GRAM = 7;
+  function findAlignedLineRange(baseLines: string[], otherLines: string[]): { startLine: number; endLine: number } | null {
+    const base = normalizePaliForSearch(baseLines.join(' ')).replace(/ /g, '');
+    if (base.length < ALIGN_GRAM * 4) return null;
+    const baseGrams = new Set<string>();
+    for (let i = 0; i + ALIGN_GRAM <= base.length; i++) baseGrams.add(base.slice(i, i + ALIGN_GRAM));
+
+    const parts: string[] = [];
+    const lineStart: number[] = []; // offset in `text` where each kept line begins
+    const lineIndex: number[] = [];
+    let offset = 0;
+    for (let i = 0; i < otherLines.length; i++) {
+      const t = otherLines[i].trim();
+      // Headings, comments, quoted metadata and footnote definitions are not running text
+      if (!t || t.startsWith('#') || t.startsWith('<!--') || t.startsWith('>') || /^\[\^[^\]]+\]:/.test(t)) continue;
+      const letters = normalizePaliForSearch(t).replace(/ /g, '');
+      if (!letters) continue;
+      parts.push(letters);
+      lineStart.push(offset);
+      lineIndex.push(i);
+      offset += letters.length;
+    }
+    const text = parts.join('');
+    const last = text.length - ALIGN_GRAM;
+    if (last < 0) return null;
+
+    const hits = new Uint8Array(last + 1);
+    for (let i = 0; i <= last; i++) hits[i] = baseGrams.has(text.slice(i, i + ALIGN_GRAM)) ? 1 : 0;
+
+    let best = 0, bestStart = -1, bestEnd = -1, bestHits = 0;
+    let run = 0, runStart = 0, runHits = 0;
+    for (let i = 0; i <= last; i++) {
+      if (run <= 0) {
+        run = 0;
+        runStart = i;
+        runHits = 0;
+      }
+      run += hits[i] ? 1 : -1;
+      runHits += hits[i];
+      if (run > best) {
+        best = run;
+        bestStart = runStart;
+        bestEnd = i;
+        bestHits = runHits;
+      }
+    }
+    // Too little of the base section found: report no match rather than slice the wrong text
+    if (bestStart === -1 || bestHits < Math.max(ALIGN_GRAM * 3, baseGrams.size * 0.3)) return null;
+
+    // Formulaic neighbours (e.g. Saññīvāda / Asaññīvāda) all score well and merge
+    // into one long run. Keep the base-sized window that covers the most distinct
+    // base sequences: only the true section has its distinguishing words.
+    const width = Math.round(base.length * 1.15);
+    if (bestEnd - bestStart + 1 > base.length * 1.5 && width > ALIGN_GRAM) {
+      const counts = new Map<string, number>();
+      let distinct = 0, topDistinct = -1, topStart = bestStart;
+      for (let i = bestStart; i <= bestEnd; i++) {
+        if (hits[i]) {
+          const g = text.slice(i, i + ALIGN_GRAM);
+          const c = counts.get(g) || 0;
+          if (c === 0) distinct++;
+          counts.set(g, c + 1);
+        }
+        const drop = i - width;
+        if (drop >= bestStart && hits[drop]) {
+          const g = text.slice(drop, drop + ALIGN_GRAM);
+          const c = (counts.get(g) || 1) - 1;
+          if (c === 0) { counts.delete(g); distinct--; } else counts.set(g, c);
+        }
+        if (i - bestStart + 1 >= Math.min(width, bestEnd - bestStart + 1) && distinct > topDistinct) {
+          topDistinct = distinct;
+          topStart = Math.max(bestStart, i - width + 1);
+        }
+      }
+      bestStart = topStart;
+      bestEnd = Math.min(bestEnd, topStart + width - 1);
+    }
+
+    const lineOf = (pos: number): number => {
+      let lo = 0, hi = lineStart.length - 1;
+      while (lo < hi) {
+        const mid = (lo + hi + 1) >> 1;
+        if (lineStart[mid] <= pos) lo = mid; else hi = mid - 1;
+      }
+      return lo;
+    };
+    // A window edge may fall inside a paragraph: keep a boundary line only if
+    // at least a third of it lies inside the window.
+    let first = lineOf(bestStart);
+    let lastLine = lineOf(bestEnd + ALIGN_GRAM - 1);
+    const lineEnd = (k: number) => (k + 1 < lineStart.length ? lineStart[k + 1] : text.length);
+    if (first < lastLine && (lineEnd(first) - bestStart) * 3 < lineEnd(first) - lineStart[first]) first++;
+    if (lastLine > first && (bestEnd + ALIGN_GRAM - lineStart[lastLine]) * 3 < lineEnd(lastLine) - lineStart[lastLine]) lastLine--;
+    return { startLine: lineIndex[first], endLine: lineIndex[lastLine] };
   }
 
   /**
@@ -1266,82 +1366,16 @@ import Layout from '../layouts/Layout.astro';
       .map(l => l.trim())
       .filter(l => l && !l.startsWith('[') && !l.startsWith('*') && !l.startsWith('#') && !l.startsWith('<!--'));
 
-    const firstPara = baseLines.find(l => normalizePaliForSearch(l).length > 20) || baseLines[0];
-    const lastPara = [...baseLines].reverse().find(l => normalizePaliForSearch(l).length > 10) || baseLines[baseLines.length - 1];
-
-    if (!firstPara || !lastPara) {
-      return { content: otherMd, isElided: false, hasEarlier: false, hasSubsequent: false };
-    }
-
-    const normFirst = normalizePaliForSearch(firstPara);
-    const normLast = normalizePaliForSearch(lastPara);
-
-    const firstWords = normFirst.split(' ').filter(w => w.length > 2).slice(0, 5);
-    const lastWords = normLast.split(' ').filter(w => w.length > 2).slice(-10);
-
-    const baseWordsCount = countPaliWords(baseLines.join(' '));
     const otherLines = (otherMd || '').split('\n');
-    let startLine = -1;
-
-    for (let i = 0; i < otherLines.length; i++) {
-      const norm1 = normalizePaliForSearch(otherLines[i]);
-      const norm2 = normalizePaliForSearch(otherLines[i] + ' ' + (otherLines[i + 1] || ''));
-      if (containsWordScore(norm1, firstWords) >= 0.6 || containsWordScore(norm2, firstWords) >= 0.6) {
-        startLine = i;
-        break;
-      }
-    }
-
-    if (startLine === -1) {
+    const range = findAlignedLineRange(baseLines, otherLines);
+    if (!range) {
       return { content: otherMd, isElided: false, hasEarlier: false, hasSubsequent: false };
     }
-
-    let runningWords = 0;
-    const candidates: Array<{ lineIdx: number; score: number; words: number; wordRatio: number }> = [];
-
-    for (let i = startLine; i < otherLines.length; i++) {
-      runningWords += countPaliWords(otherLines[i]);
-      const norm1 = normalizePaliForSearch(otherLines[i]);
-      const norm2 = normalizePaliForSearch(otherLines[i] + ' ' + (otherLines[i + 1] || ''));
-      const s1 = containsWordScore(norm1, lastWords);
-      const s2 = containsWordScore(norm2, lastWords);
-      const s = Math.max(s1, s2);
-      if (s >= 0.5) {
-        const lineIdx = (s2 > s1 && otherLines[i + 1]) ? i + 1 : i;
-        const wordRatio = baseWordsCount > 0 ? runningWords / baseWordsCount : 1.0;
-        candidates.push({ lineIdx, score: s, words: runningWords, wordRatio });
-      }
-
-      // Stop searching if we have gathered candidates and passed 1.5x expected words
-      if (baseWordsCount > 0 && runningWords > baseWordsCount * 1.5 && candidates.some(c => c.wordRatio >= 0.75)) {
-        break;
-      }
-      if (baseWordsCount > 0 && runningWords > baseWordsCount * 2.5) {
-        break;
-      }
-    }
-
-    if (candidates.length === 0) {
-      return { content: otherMd, isElided: false, hasEarlier: false, hasSubsequent: false };
-    }
-
-    // Select candidate matching the end of section:
-    // Prefer candidates with score >= 0.6 and wordRatio >= 0.65 closest to 1.0
-    const valid = candidates.filter(c => c.score >= 0.6 && c.wordRatio >= 0.65);
-    let chosen = candidates[candidates.length - 1];
-    if (valid.length > 0) {
-      valid.sort((a, b) => Math.abs(a.wordRatio - 1.0) - Math.abs(b.wordRatio - 1.0));
-      chosen = valid[0];
-    }
-
-    let endLine = chosen.lineIdx;
+    const startLine = range.startLine;
+    let endLine = range.endLine;
     // Include short trailing sentence/punctuation line if any (e.g. 'Ahosi .' or 'ti .')
     if (otherLines[endLine + 1] && otherLines[endLine + 1].trim().length < 15 && !otherLines[endLine + 1].trim().startsWith('#')) {
       endLine++;
-    }
-
-    if (startLine === -1 || endLine === -1) {
-      return { content: otherMd, isElided: false, hasEarlier: false, hasSubsequent: false };
     }
 
     // Check preceding lines for section heading or chapter title
@@ -1485,16 +1519,22 @@ import Layout from '../layouts/Layout.astro';
       const isExternal = targetUrl.startsWith('http://') || targetUrl.startsWith('https://');
       const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
       const titleAttr = title ? ` title="${escapeHtml(title)}"` : '';
-      return `<a href="${targetUrl}"${targetAttr}${titleAttr} data-reader-link="true">${text}</a>`;
+      return `<a href="${escapeHtml(targetUrl)}"${targetAttr}${titleAttr} data-reader-link="true">${text}</a>`;
     };
 
     renderer.list = function (token: any) {
       if (token.ordered && typeof token.start === 'number' && token.start > 0) {
         const start = token.start;
-        const body = token.items.map((item: any, idx: number) => {
-          const parNum = start + idx;
+        // Markdown keeps only the first number of an ordered list, but CST and BJ
+        // paragraph numbers skip and restart, so read each item's own number.
+        let expected = start;
+        const body = token.items.map((item: any) => {
+          const own = /^\s*(\d+)[.)]/.exec(item.raw || '');
+          const parNum = own ? parseInt(own[1], 10) : expected;
+          const valueAttr = parNum !== expected ? ` value="${parNum}"` : '';
+          expected = parNum + 1;
           const parsedItem = this.listitem(item);
-          return parsedItem.replace(/^<li([^>]*)>/, `<li$1 id="p${parNum}" class="wtk-par-item" data-par="${parNum}">`);
+          return parsedItem.replace(/^<li([^>]*)>/, `<li$1${valueAttr} id="p${parNum}" class="wtk-par-item" data-par="${parNum}">`);
         }).join('\n');
         return `<ol start="${start}" class="wtk-par-list">\n${body}\n</ol>\n`;
       }
@@ -1557,6 +1597,12 @@ import Layout from '../layouts/Layout.astro';
       return contentCache.get(cacheKey)!;
     }
 
+    // The path comes from the URL: keep it inside the edition's repository.
+    const safePathLabel = escapeHtml(cleanPath).replace(/`/g, '&#96;');
+    if (!cleanPath || /[\\?#]/.test(cleanPath) || cleanPath.split('/').some(seg => seg === '..' || seg === '.' || seg === '')) {
+      return `# Not Found\n\n<p>Invalid file path <code>${safePathLabel}</code>.</p>`;
+    }
+
     const edConfig = catalog?.editions[edition];
     let repo = edConfig ? edConfig.repo : 'tipitaka-md/tipitaka2500';
     let branch = edConfig ? edConfig.branch : 'main';
@@ -1597,7 +1643,7 @@ import Layout from '../layouts/Layout.astro';
       throw new Error(`HTTP ${res.status}: ${res.statusText}`);
     } catch (err) {
       console.warn(`Failed to fetch ${cleanPath} for ${edition}:`, err);
-      return `# Not Found\n\nCould not load \`${cleanPath}\` from \`${repo}\`.`;
+      return `# Not Found\n\n<p>Could not load <code>${safePathLabel}</code> from <code>${escapeHtml(repo)}</code>.</p>`;
     }
   }
 
@@ -1640,7 +1686,8 @@ import Layout from '../layouts/Layout.astro';
         const p = p1 || p2 || p3;
         const span = p ? makePageSpan(p) : '';
         const preNoFn = pre.replace(/\[\^[^\]]+\]$/, '').trimEnd();
-        if (/[.:;!?”"’']$/.test(preNoFn) || /^["“‘#]/.test(post)) {
+        const preIsBlock = /^(?:-{3,}|\*{3,}|_{3,}|#.*|<[^>]+>)$/.test(pre.trim());
+        if (preIsBlock || /[.:;!?”"’']$/.test(preNoFn) || /^["“‘#<]/.test(post)) {
           return `${pre}\n\n${span}\n\n${post}`;
         }
         return `${pre} ${span} ${post}`;
@@ -1668,13 +1715,13 @@ import Layout from '../layouts/Layout.astro';
     body = body.replace(/\b(?:JaNi_\d+|Ja_[A-Za-z0-9_.:]+):\s*/g, ' ');
 
     // 6. Leading paragraph numbers in prose: 1., 2., 1.1., (1) at line start
-    body = body.replace(/^\s*(?:\d+(?:\.\d+)*\.|\(\d+\))\s+/gm, '');
+    body = body.replace(/^[ \t]*(?:\d+(?:\.\d+)*\.|\(\d+\))[ \t]+/gm, '');
 
     // 7. Double dandas / pipe delimiters: || || -> . and || -> ,
     body = body.replace(/\s*\|\|\s*\|\|\.?/g, '.');
     body = body.replace(/\s*\|\|/g, ',');
     body = body.replace(/,\s*,/g, ',');
-    body = body.replace(/\.\s*\./g, '.');
+    body = body.replace(/(?<!\.)\.\.(?!\.)/g, '.');
 
     // 8. Normalize spaces and empty lines
     body = body.replace(/[ \t]{2,}/g, ' ');
@@ -1687,10 +1734,8 @@ import Layout from '../layouts/Layout.astro';
    * Convert markdown string into HTML with link resolution, footnote rendering, and script transliteration
    */
   function convertMarkdownToHtml(markdown: string, filePath: string, edition: string, paneId: string = 'single'): string {
-    let mdToParse = markdown;
-    if (edition === 'pts') {
-      mdToParse = cleanPtsForDisplay(mdToParse);
-    }
+    // PTS text is cleaned once by updateView before elision/diffing.
+    const mdToParse = markdown;
 
     const { body: cleanedBody, definitions } = extractFootnotes(mdToParse);
 
@@ -1749,7 +1794,7 @@ import Layout from '../layouts/Layout.astro';
 
     if (currentScript !== 'roman') {
       const notices: string[] = [];
-      html = html.replace(/<div class="elision-notice[\s\S]*?<\/div>/g, (m) => {
+      html = html.replace(/<div class="elision-notice[\s\S]*?<\/div>|<span class="pts-page-pill"[^>]*>[^<]*<\/span>|<h4 class="footnotes-heading">[^<]*<\/h4>/g, (m) => {
         notices.push(m);
         return `<!--ELISION_NOTICE_${notices.length - 1}-->`;
       });
@@ -1917,9 +1962,11 @@ import Layout from '../layouts/Layout.astro';
       viewMode = 'single';
     } else if (params.has('diff')) {
       diffEnabled = params.get('diff') === '1';
+      diffPreference = diffEnabled;
     } else {
-      diffEnabled = true; // comparative editions enable diff by default
+      diffEnabled = diffPreference; // on by default until the reader turns it off
     }
+    if (currentEdition !== 'tipitaka2500') compareEdition = currentEdition;
 
     if (newFile) {
       if (newFile.startsWith('tipitaka/')) {
@@ -1952,6 +1999,8 @@ import Layout from '../layouts/Layout.astro';
       currentSectionRef = '';
     }
 
+    fallBackFromMissingBase();
+
     const drawerToggle = document.getElementById('sidebar-drawer-toggle') as HTMLInputElement | null;
     if (drawerToggle) drawerToggle.checked = false;
 
@@ -1960,16 +2009,22 @@ import Layout from '../layouts/Layout.astro';
 
     const targetRef = currentSectionRef || currentFilePath;
     const hashStr = url.hash || '';
-    const diffQuery = currentEdition !== 'tipitaka2500' && diffEnabled ? '&diff=1' : '';
+    const diffQuery = currentEdition !== 'tipitaka2500' ? `&diff=${diffEnabled ? '1' : '0'}` : '';
     window.history.pushState(
       {},
       '',
       `/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}${targetRef ? `&file=${encodeURIComponent(targetRef)}` : ''}&mode=${viewMode}${diffQuery}&script=${currentScript}${hashStr}`
     );
+    pendingHashScroll = true;
     updateView();
     if (!hashStr) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+  }
+
+  /** Cmd/Ctrl/Shift/Alt-clicks and non-primary buttons keep the browser's own behaviour (new tab, download…) */
+  function isModifiedClick(e: MouseEvent): boolean {
+    return e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0;
   }
 
   /**
@@ -1982,6 +2037,7 @@ import Layout from '../layouts/Layout.astro';
         const href = (link as HTMLAnchorElement).getAttribute('href');
         if (!href) return;
         const url = new URL(href, window.location.origin);
+        if (isModifiedClick(e as MouseEvent)) return;
         if (url.pathname === '/reader.html' || url.pathname.endsWith('/reader.html')) {
           e.preventDefault();
           // Clicking a sidebar link always opens the base edition to avoid syncing and diff errors
@@ -2002,6 +2058,7 @@ import Layout from '../layouts/Layout.astro';
         if (!href || href === '/' || href.startsWith('http://') || href.startsWith('https://')) {
           return;
         }
+        if (isModifiedClick(e as MouseEvent)) return;
         e.preventDefault();
         navigateToUrl(href);
       });
@@ -2021,6 +2078,8 @@ import Layout from '../layouts/Layout.astro';
     const diffLegend = document.getElementById('diff-legend');
 
     if (loadingEl) loadingEl.style.display = 'flex';
+    const token = ++viewToken;
+    const isStale = () => token !== viewToken;
 
     // Retrieve Book and Pitaka metadata
     const bookInfo = getBookInfo(currentBookCode);
@@ -2038,7 +2097,9 @@ import Layout from '../layouts/Layout.astro';
 
     const targetFile = currentFilePath || getFilePathForEdition(currentEdition, currentBookCode, currentSuttaId);
     const targetMd = await fetchMarkdown(currentEdition, targetFile);
+    if (isStale()) return;
     currentSingleFullMd = targetMd;
+    currentBaseFile = '';
 
     const isMenu =
       isRootBook ||
@@ -2100,6 +2161,7 @@ import Layout from '../layouts/Layout.astro';
         fetchMarkdown('tipitaka2500', leftFile),
         fetchMarkdown(compareEdition, rightFile),
       ]);
+      if (isStale()) return;
 
       let depthLeft = 0;
       while (isMenuPage(baseMd, leftFile) && depthLeft < 4) {
@@ -2111,8 +2173,10 @@ import Layout from '../layouts/Layout.astro';
         if (!fileMatch) break;
         leftFile = decodeURIComponent(fileMatch[1]);
         baseMd = await fetchMarkdown('tipitaka2500', leftFile);
+        if (isStale()) return;
         depthLeft++;
       }
+      currentBaseFile = leftFile;
 
       currentLeftFullMd = baseMd;
       currentRightFullMd = compareMd;
@@ -2193,9 +2257,10 @@ import Layout from '../layouts/Layout.astro';
         singleRenderSource = cleanPtsForDisplay(singleRenderSource);
       }
 
-      if (!isRootBook && currentEdition !== 'tipitaka2500') {
+      if (!isRootBook && currentEdition !== 'tipitaka2500' && editionHasBook('tipitaka2500', currentBookCode)) {
         let baseFile = currentSectionRef || (currentFilePath.startsWith('tipitaka/') ? currentFilePath : '') || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
         let baseMd = await fetchMarkdown('tipitaka2500', baseFile);
+        if (isStale()) return;
 
         let depth = 0;
         while (isMenuPage(baseMd, baseFile) && depth < 4) {
@@ -2207,13 +2272,19 @@ import Layout from '../layouts/Layout.astro';
           if (!fileMatch) break;
           baseFile = decodeURIComponent(fileMatch[1]);
           baseMd = await fetchMarkdown('tipitaka2500', baseFile);
+          if (isStale()) return;
           depth++;
         }
+        currentBaseFile = baseFile;
 
         currentBaseSectionMd = baseMd;
         const sectionTitle = extractTitleFromMarkdown(baseMd) || (currentSuttaId ? currentSuttaId.toUpperCase() : cleanCurrentPath.split('/').pop() || '');
 
-        if (!singleShowFull) {
+        // A PTS page citation (#page-N with no WT section) needs the whole file so the page anchor exists
+        const isPageJump = !currentSectionRef && /^#page-\d+$/i.test(window.location.hash);
+        if (isPageJump) {
+          // no elision and no WT section to compare against
+        } else if (!singleShowFull) {
           const elided = elideOtherEdition(baseMd, singleRenderSource, sectionTitle, 'single');
           if (elided.isElided) {
             singleRenderSource = elided.content;
@@ -2224,7 +2295,7 @@ import Layout from '../layouts/Layout.astro';
 
         currentSingleMd = singleRenderSource;
         let renderMd = singleRenderSource;
-        if (diffEnabled && !isMenuPage(baseMd, baseFile)) {
+        if (diffEnabled && !isPageJump && !isMenuPage(baseMd, baseFile)) {
           renderMd = highlightPaliDiff(singleRenderSource, baseMd);
         }
 
@@ -2236,15 +2307,15 @@ import Layout from '../layouts/Layout.astro';
           }
         }
       } else {
-        // currentEdition === 'tipitaka2500' (Base edition: never show variants)
-        currentSingleMd = targetMd;
-        currentBaseSectionMd = targetMd;
+        // Base edition, or a book with no base text: nothing to compare against
+        currentSingleMd = singleRenderSource;
+        currentBaseSectionMd = singleRenderSource;
 
         if (mainContentEl) {
           if (showRawMarkdown) {
             mainContentEl.innerHTML = `<pre class="raw-markdown-view"><code>${escapeHtml(targetMd)}</code></pre>`;
           } else {
-            mainContentEl.innerHTML = convertMarkdownToHtml(targetMd, targetFile, currentEdition, 'single');
+            mainContentEl.innerHTML = convertMarkdownToHtml(singleRenderSource, targetFile, currentEdition, 'single');
           }
         }
       }
@@ -2260,14 +2331,14 @@ import Layout from '../layouts/Layout.astro';
       if (isRootBook) {
         breadcrumbsEl.innerHTML = `
           <li><a href="/">Home</a></li>
-          ${pitakaStr ? `<li><a href="/#table-of-contents">${pitakaStr}</a></li>` : ''}
-          <li aria-current="page">${bookTitleStr}</li>
+          ${pitakaStr ? `<li><a href="/#table-of-contents">${escapeHtml(pitakaStr)}</a></li>` : ''}
+          <li aria-current="page">${escapeHtml(bookTitleStr)}</li>
         `;
       } else {
         breadcrumbsEl.innerHTML = `
           <li><a href="/">Home</a></li>
-          <li><a href="/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}">${bookTitleStr}</a></li>
-          <li aria-current="page">${subTitle}</li>
+          <li><a href="/reader.html?edition=${encodeURIComponent(currentEdition)}&book=${encodeURIComponent(currentBookCode)}">${escapeHtml(bookTitleStr)}</a></li>
+          <li aria-current="page">${escapeHtml(subTitle)}</li>
         `;
       }
     }
@@ -2280,9 +2351,22 @@ import Layout from '../layouts/Layout.astro';
     }
 
     if (loadingEl) loadingEl.style.display = 'none';
+    updateViewModeDropdown();
     attachReaderLinkHandlers();
     updateNavigationButtons();
-    scrollToParagraphHash();
+
+    // Scroll only for the navigation that asked for it; re-renders (script, diff,
+    // raw view, expand) must not jump back to an old URL hash.
+    const restoreY = (window as any).__tipitakaRestoreScroll;
+    if (typeof restoreY === 'number') {
+      (window as any).__tipitakaRestoreScroll = undefined;
+      pendingHashScroll = false;
+      const pane = document.querySelector('.content-pane');
+      if (pane) pane.scrollTop = restoreY;
+    } else if (pendingHashScroll) {
+      pendingHashScroll = false;
+      scrollToParagraphHash();
+    }
   }
 
   /**
@@ -2391,7 +2475,7 @@ import Layout from '../layouts/Layout.astro';
 
     // 1. Try extracting [Go to previous/next page] from canonical markdown
     const mdToCheck = currentBaseSectionMd || currentSingleFullMd || currentSingleMd || currentLeftFullMd;
-    const fromPath = currentSectionRef || (currentFilePath.startsWith('tipitaka/') ? currentFilePath : '') || `tipitaka/${currentBookCode}.md`;
+    const fromPath = (currentBaseSectionMd && currentBaseFile) || currentSectionRef || (currentFilePath.startsWith('tipitaka/') ? currentFilePath : '') || `tipitaka/${currentBookCode}.md`;
 
     if (mdToCheck) {
       const prevMatch = mdToCheck.match(/\[Go to previous page\s*\(([^)]+)\)\]\(([^)]+)\)/i);
@@ -2525,8 +2609,14 @@ import Layout from '../layouts/Layout.astro';
    */
   function updateActiveEditionTabs() {
     const tabs = document.querySelectorAll('.edition-tab');
+    // An edition with no text for this book (e.g. no Royal Thai Nettippakaraṇa)
+    // gets a disabled tab instead of silently showing the base text.
     tabs.forEach((tab) => {
       const ed = tab.getAttribute('data-edition');
+      const available = editionHasBook(ed || '', currentBookCode);
+      (tab as HTMLButtonElement).disabled = !available;
+      if (!tab.hasAttribute('data-title')) tab.setAttribute('data-title', tab.getAttribute('title') || '');
+      tab.setAttribute('title', available ? tab.getAttribute('data-title') || '' : 'This edition has no text for this book');
       if (ed === currentEdition) {
         tab.classList.add('active');
         tab.setAttribute('aria-selected', 'true');
@@ -2557,7 +2647,7 @@ import Layout from '../layouts/Layout.astro';
       isMenuPage(currentSingleMd || currentBaseSectionMd, currentSectionRef || currentFilePath);
 
     if (diffBtn) {
-      if (isBase || isRootBook) {
+      if (isBase || isRootBook || !editionHasBook('tipitaka2500', currentBookCode)) {
         diffBtn.style.display = 'none';
       } else {
         diffBtn.style.display = 'inline-flex';
@@ -2583,7 +2673,14 @@ import Layout from '../layouts/Layout.astro';
       curPath === `tipitaka/${currentBookCode}.md` ||
       curPath.endsWith(`/${currentBookCode}.md`);
 
-    if (isCurrentMenu) {
+    if (!editionHasBook('tipitaka2500', currentBookCode)) {
+      if (splitOption) {
+        splitOption.disabled = true;
+        splitOption.textContent = '⚖️ Side-by-Side (No WT text)';
+      }
+      viewModeSelect.title = 'This book has no World Tipiṭaka text to compare against';
+      viewMode = 'single';
+    } else if (isCurrentMenu) {
       if (splitOption) {
         splitOption.disabled = true;
         splitOption.textContent = '⚖️ Side-by-Side (Unavailable on menu)';
@@ -2632,6 +2729,7 @@ import Layout from '../layouts/Layout.astro';
           currentEdition = ed;
           if (currentEdition !== 'tipitaka2500') {
             compareEdition = currentEdition;
+            diffPreference = true;
             diffEnabled = true; // Clicking on another edition enables the diff
           } else {
             viewMode = 'single';
@@ -2639,8 +2737,15 @@ import Layout from '../layouts/Layout.astro';
           }
           singleShowFull = false;
           rightShowFull = false;
+          const baseless = !editionHasBook('tipitaka2500', currentBookCode);
+          if (baseless) {
+            viewMode = 'single';
+            diffEnabled = false;
+            currentSectionRef = '';
+            currentSuttaId = '';
+          }
 
-          if (isCurrentlyMenu) {
+          if (isCurrentlyMenu && !baseless) {
             // Stay on the menu page across editions
             currentFilePath = currentSectionRef || currentFilePath || `tipitaka/${currentBookCode}.md`;
             currentSuttaId = '';
@@ -2658,9 +2763,11 @@ import Layout from '../layouts/Layout.astro';
           } else {
             newUrl.searchParams.delete('diff');
           }
-          if (currentFilePath) {
-            newUrl.searchParams.set('file', currentFilePath);
+          const tabFileRef = currentSectionRef || currentFilePath;
+          if (tabFileRef) {
+            newUrl.searchParams.set('file', tabFileRef);
           }
+          newUrl.searchParams.set('book', currentBookCode);
           window.history.pushState({}, '', newUrl.toString());
 
           updateActiveEditionTabs();
@@ -2691,6 +2798,7 @@ import Layout from '../layouts/Layout.astro';
       diffBtn.addEventListener('click', () => {
         if (currentEdition === 'tipitaka2500') return; // Base edition never shows variants
         diffEnabled = !diffEnabled;
+        diffPreference = diffEnabled;
         updateControlsVisibility();
         const newUrl = new URL(window.location.href);
         newUrl.searchParams.set('diff', diffEnabled ? '1' : '0');
@@ -2724,7 +2832,7 @@ import Layout from '../layouts/Layout.astro';
     const leftDownloadBtn = document.getElementById('left-download-btn');
     if (leftDownloadBtn) {
       leftDownloadBtn.addEventListener('click', () => {
-        const leftFile = currentFilePath || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
+        const leftFile = currentBaseFile || currentSectionRef || getFilePathForEdition('tipitaka2500', currentBookCode, currentSuttaId);
         const fileName = (leftFile.split('/').pop() || `${currentBookCode}_tipitaka2500.md`).replace(/\.html$/, '.md');
         downloadMarkdownFile(fileName, currentLeftFullMd || currentLeftMd);
       });
@@ -2827,6 +2935,7 @@ import Layout from '../layouts/Layout.astro';
         btn.addEventListener('click', (e) => {
           const href = (btn as HTMLAnchorElement).getAttribute('href');
           if (!href || href === '#' || btn.classList.contains('disabled')) return;
+          if (isModifiedClick(e as MouseEvent)) return;
           e.preventDefault();
           navigateToUrl(href);
         });
@@ -2844,6 +2953,9 @@ import Layout from '../layouts/Layout.astro';
       ) {
         return;
       }
+
+      // Leave browser shortcuts such as Cmd+[ / Ctrl+[ (history) alone
+      if (e.metaKey || e.ctrlKey) return;
 
       if ((e.key === 'ArrowLeft' && e.altKey) || e.key === '[') {
         const prevBtn = document.getElementById('footer-prev-btn') as HTMLAnchorElement | null;
@@ -2871,8 +2983,8 @@ import Layout from '../layouts/Layout.astro';
       parseUrlParams();
       updateActiveSidebarLink();
       updateActiveEditionTabs();
+      pendingHashScroll = true;
       updateView();
-      scrollToParagraphHash();
     });
 
     // Handle hash change for paragraph deep linking
@@ -2887,14 +2999,13 @@ import Layout from '../layouts/Layout.astro';
     rightShowFull = false;
 
     const params = new URLSearchParams(window.location.search);
-    if (params.has('edition')) {
-      currentEdition = params.get('edition')!;
-      if (currentEdition !== 'tipitaka2500') {
-        compareEdition = currentEdition;
-      }
+    // Absent parameters mean the defaults, so Back/Forward restores the view the URL describes
+    currentEdition = params.get('edition') || 'tipitaka2500';
+    if (currentEdition !== 'tipitaka2500') {
+      compareEdition = currentEdition;
     }
     if (params.has('compare')) compareEdition = params.get('compare')!;
-    if (params.has('mode')) viewMode = params.get('mode')!;
+    viewMode = params.get('mode') === 'split' ? 'split' : 'single';
     if (params.has('script')) currentScript = params.get('script')!;
 
     // Base edition should never show variants
@@ -2902,8 +3013,9 @@ import Layout from '../layouts/Layout.astro';
       diffEnabled = false;
     } else if (params.has('diff')) {
       diffEnabled = params.get('diff') === '1';
+      diffPreference = diffEnabled;
     } else {
-      diffEnabled = true; // comparative editions enable diff by default
+      diffEnabled = diffPreference; // on by default until the reader turns it off
     }
 
     if (params.has('book')) {
@@ -2951,6 +3063,7 @@ import Layout from '../layouts/Layout.astro';
       currentFilePath = getFilePathForEdition(currentEdition, currentBookCode, '');
       currentSectionRef = '';
     }
+    fallBackFromMissingBase();
   }
 
   // Initialization

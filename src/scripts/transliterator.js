@@ -38,8 +38,8 @@ const PALI_CHARS = {
     { iast: 'ch', si: 'ඡ', th: 'ฉ', my: 'ဆ', de: 'छ', br: '𑀙' },
     { iast: 'jh', si: 'ඣ', th: 'ฌ', my: 'ဈ', de: 'झ', br: '𑀛' },
     { iast: 'ṭh', si: 'ඨ', th: 'ฐ', my: 'ဌ', de: 'ठ', br: '𑀞' },
-    { iast: 'ḍh', si: 'ඪ', th: 'ឍ', my: 'ဎ', de: 'ढ', br: '𑀠' },
-    { iast: 'th', si: 'ථ', th: 'ถ', my: 'သ', de: 'थ', br: '𑀣' },
+    { iast: 'ḍh', si: 'ඪ', th: 'ฒ', my: 'ဎ', de: 'ढ', br: '𑀠' },
+    { iast: 'th', si: 'ථ', th: 'ถ', my: 'ထ', de: 'थ', br: '𑀣' },
     { iast: 'dh', si: 'ධ', th: 'ธ', my: 'ဓ', de: 'ध', br: '𑀥' },
     { iast: 'ph', si: 'ඵ', th: 'ผ', my: 'ဖ', de: 'फ', br: '𑀨' },
     { iast: 'bh', si: 'භ', th: 'ภ', my: 'ဘ', de: 'भ', br: '𑀪' },
@@ -118,9 +118,9 @@ export function transliteratePali(text, targetScript) {
 
   // Regex for Pali syllables: (Consonant)?(Vowel|Niggahita)?
   // Tokenize preserving case and markdown/HTML structures
-  let result = protectedText.replace(/(<[^>]+>|\[\^[^\]]+\]|__URL_\d+__|\*\*.*?\*\*|`.*?`|[a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+)/g, (match) => {
+  let result = protectedText.replace(/(<[^>]+>|&(?:#\d+|#x[0-9a-fA-F]+|[a-zA-Z][a-zA-Z0-9]*);|\[\^[^\]]+\]|__URL_\d+__|\*\*.*?\*\*|`.*?`|[a-zA-ZāīūṭḍṇḷñṅṃṁĀĪŪṬḌṆḶÑṄṂṀ]+)/g, (match) => {
     // If HTML tag, footnote reference, protected URL, or code, skip
-    if (match.startsWith('<') || match.startsWith('[^') || match.startsWith('__URL_') || match.startsWith('`')) {
+    if (match.startsWith('<') || match.startsWith('&') || match.startsWith('[^') || match.startsWith('__URL_') || match.startsWith('`')) {
       return match;
     }
 

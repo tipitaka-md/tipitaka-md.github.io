@@ -128,6 +128,19 @@ const jsonLdString = JSON.stringify({
       if (refreshedUrl.searchParams.has('_sw_refresh')) {
         refreshedUrl.searchParams.delete('_sw_refresh');
         history.replaceState(history.state, '', refreshedUrl.href);
+        // Put the reader back where they were before the update reload
+        try {
+          const saved = JSON.parse(sessionStorage.getItem('tipitaka-refresh-scroll') || 'null');
+          sessionStorage.removeItem('tipitaka-refresh-scroll');
+          if (saved && saved.path === refreshedUrl.pathname + refreshedUrl.search && typeof saved.y === 'number') {
+            window.__tipitakaRestoreScroll = saved.y;
+            // Static pages restore on load; the reader restores after its first render
+            window.addEventListener('load', () => {
+              const pane = document.querySelector('.content-pane');
+              if (typeof window.__tipitakaRestoreScroll === 'number' && pane) pane.scrollTop = window.__tipitakaRestoreScroll;
+            });
+          }
+        } catch {}
       }
 
       (() => {
@@ -150,9 +163,21 @@ const jsonLdString = JSON.stringify({
             const key = 'tipitaka-update-attempt';
             const previous = JSON.parse(sessionStorage.getItem(key) || 'null');
             if (previous?.version === data.version && Date.now() - previous.time < retryDelay) return;
+            // Never reload under someone typing or using a dialog; the next check retries
+            const active = document.activeElement;
+            if (document.querySelector('dialog[open]') || (active && /^(INPUT|TEXTAREA|SELECT)$/.test(active.tagName))) return;
             sessionStorage.setItem(key, JSON.stringify({ version: data.version, time: Date.now() }));
             const url = new URL(window.location.href);
             url.searchParams.set('_sw_refresh', Date.now().toString());
+            try {
+              // Serialise the query the same way the reloaded page will, so the paths compare equal
+              const clean = new URL(url.href);
+              clean.searchParams.delete('_sw_refresh');
+              sessionStorage.setItem(
+                'tipitaka-refresh-scroll',
+                JSON.stringify({ path: clean.pathname + clean.search, y: document.querySelector('.content-pane')?.scrollTop ?? 0 })
+              );
+            } catch {}
             window.location.replace(url.href);
           } catch (error) {
             console.warn('Unable to check for a site update:', error);
@@ -407,11 +432,10 @@ const jsonLdString = JSON.stringify({
         buttons.forEach((btn) => {
           btn.addEventListener('click', () => {
             const chosen = btn.getAttribute('data-scheme-value') || 'light dark';
-            const systemScheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-              ? 'dark'
-              : 'light';
             try {
-              if (chosen === 'light dark' || chosen === systemScheme) {
+              // An explicit Light/Dark is kept even when it matches the OS today,
+              // so it survives the OS scheme changing later.
+              if (chosen === 'light dark') {
                 localStorage.removeItem('color-scheme');
               } else {
                 localStorage.setItem('color-scheme', chosen);
@@ -833,7 +857,15 @@ const jsonLdString = JSON.stringify({
           if (saved !== null) dictEnabled = saved === 'true';
         } catch {}
 
+        const sidebarToggleBtn = document.getElementById('dict-toggle-sidebar');
+        const sidebarStatus = document.getElementById('sidebar-dict-status');
+
         function updateToggleUI(enabled) {
+          if (sidebarToggleBtn) {
+            sidebarToggleBtn.classList.toggle('active', enabled);
+            sidebarToggleBtn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+          }
+          if (sidebarStatus) sidebarStatus.textContent = enabled ? 'ON' : 'OFF';
           if (toggleBtn) {
             toggleBtn.classList.toggle('active', enabled);
             toggleBtn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
@@ -854,6 +886,13 @@ const jsonLdString = JSON.stringify({
 
         if (toggleBtn) {
           toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setDictEnabled(!dictEnabled);
+          });
+        }
+
+        if (sidebarToggleBtn) {
+          sidebarToggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             setDictEnabled(!dictEnabled);
           });
@@ -967,6 +1006,7 @@ const jsonLdString = JSON.stringify({
           if (!raw) return '';
           return raw
             .toLowerCase()
+            .replace(/ṁ/g, 'ṃ') // WT writes niggahīta as ṁ; the dictionary is keyed on ṃ
             .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()'"?।॥0-9—–«»\[\]{}]/g, '')
             .trim();
         }
@@ -1252,7 +1292,7 @@ const jsonLdString = JSON.stringify({
           const text = textNode.nodeValue || '';
           if (!text.trim()) return null;
 
-          const isPaliChar = (ch) => /[A-Za-zāīūñṅṇṭḍḷṃĀĪŪÑṄṆṬḌḶṂ]/.test(ch);
+          const isPaliChar = (ch) => /[A-Za-zāīūñṅṇṭḍḷṃṁĀĪŪÑṄṆṬḌḶṂṀ]/.test(ch);
 
           let start = offset;
           let end = offset;
